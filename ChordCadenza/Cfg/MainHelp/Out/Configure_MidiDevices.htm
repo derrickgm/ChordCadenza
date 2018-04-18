@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Configure_MidiDevices</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>Configure Midi Devices</h2>
+<p>This is used to configure Midi Input and Output devices</p>
+
+<p>
+  There are three devices that can be configured here:
+  <ul>
+    <li>Midi Keyboard (input)</li>
+    <li>Sequencer Stream (output)</li>
+    <li>Midi Keyboard (output)</li>
+  </ul>
+</p>  
+
+<p>The Midi Keyboard input device should be set to your midi keyboard</p>
+
+<p>The output devices can be set to a Midi Synthesizer that is external to this application, or to the Built_In synthesizer that is provided by this application.</p>
+
+<p>If you set the output devices to the same external synthesizer, you will have to ensure that any midi keyboard output is set to a midi channel not used by the output stream. If you set the output devices to the built-in synthesizer, they will use different ports, so all channels can be used on both devices.</p>
+
+<p>The synth packaged with Windows (Microsoft GS Wavetable Synth or similar) is not recommended. This is poor quality, and introduces a latency (delay) that will be noticeable even if the sound card delay is small.</p>
+
+<p>If you use the Built_In Synth, and the audiocard is connected, a panel will be displayed to allow the soundfont, volume, tuning and FX effects to be set.</p> 
+
+<p>The soundfont dropdown list shows all the soundfont files found in the soundfonts path. The list can be changed using <b>PlayMap Menu > Configure > Paths > SoundFonts</b>. You will need to redisplay the Midi Config window for the update to take effect.</p>
+
+<p>The selected soundfont will be loaded on Connect/Reconnect. If there are no soundfont files found, you will be prompted to select a new soundfonts path.</p>
+
+<p>Changes will be actioned after the Connect/Reconnect button is clicked, and will be saved using the <b>PlayMap Menu > File > Save Settings</b>, or clicking <b>Save Settings and Exit Program</b> option when exiting the application.</p>
+
+<p>A description of the controls used in the Midi Devices Configuration Window can be found <a href="Form_MidiDevs_Ctls.htm">here</a>.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

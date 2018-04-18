@@ -1,0 +1,33 @@
+﻿STEPMODE
+--------
+
+play track whilst playing rest of midifile
+
+like KeyboardMode, except:
+  input from one midi track 
+    instead of ChordFile
+  always play whole chord with single keypress 
+    like 'Play Notes per Chord' option on frmStart
+  move forward to next chord after playing (Midi ON)
+    instead of using chord time/syncopation
+    allows for some overlap
+    white note - play next chord
+    black note - skip next chord?
+  record midi ON and OFF times
+  reposition if more than (nn/dd note) out, and another chord is nearer midi ON time
+  display
+    frmSC 'Show Tracks'
+  record
+    number of events should not change
+    extract track to 2/3 recording tracks - ON, OFF, CC
+    adjust timings & velocities during record
+      if not in order, adjust timing to keep in order!
+    save midifile
+      exclude original track
+      include ON, OFF, CC recording tracks
+  punch in/out
+    start at nearest first ON ev in a bar
+    end anywhere
+  continuous controllers (pitchebend)
+    exclude from original track
+    maybe include on 3rd new recording track (CC)

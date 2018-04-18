@@ -1,0 +1,54 @@
+<h2>How To Update Time Signatures</h2>
+
+<p>The <b>ChordMap</b> provides a way of updating time signatures in a <b>ChordFile</b>.</p>
+
+<p>Generally, it is a good idea to make sure the time signature(s) of the music are correct before inputting any chords or lyrics, or synchronising audio. If you are using a <b>MidiFile</b>, the time signatures will be copied from there. You should only then need to update the time signatures if they are incorrect.</p>
+
+<h3>Open the ChordMap window</h3>
+Click the <b>ChordMap</b> <i>Button</i> from the <b>PlayMap</b> or <b>TrackMap</b>. If you haven't loaded a <b>ChordFile</b>, a window should be displayed to create a new <b>ChordFile</b> with a maximum number of bars. Click <b>OK</b> to proceed.</p>
+
+<h3>Update Time Signatures</h3>
+<p>If you click on anywhere in the <b>TSig</b> pane of the <b>ChordMap,</b> you will get a menu for updating time signatures.</p>
+<p>This will change the position of time signatures, but will not affect the absolute position (ticks) of chords or pitches.</p>
+<p>The menu contains the following submenu items:</p>
+
+<ul>
+<line>  
+<h3>Set TSig to End</h3>
+<p>Change the time signature from the current cursor position to the end of the song.</p> 
+<p>All time signatures after the current cursor will be replaced with the new time signature.</p>
+
+</line>
+<line>
+<h3>Change TSigs in Selected Area</h3>
+<p>Change the time signature(s) in the selected area to the new time signature.</p>
+<p>If the new time signature does not fit the selected area exactly, a filler bar will be inserted. This should ensure that any bars after the selected area remain the same.</p>
+<p>If you try to put a new time signature into a selected area that is too small, you will get an error message.</p>
+
+</line>
+<line>
+<h3>Remove TSigs from Selected Area</h3>
+<p>Remove time signatures from the selected area.</p>
+<p>This will shift any time signatures after the selected area towards the start, by the number of bars in the selected area.</p>
+
+</line>
+<line>
+<h3>Insert TSig in Selected Area</h3>
+<p>Insert a new time signature at the start of the selected area. The time signature of the new bars is selected from a drop-down list.</p>
+<p>This will shift any time signatures after the selected area towards the end, by the number of bars in the selected area. Any time signatures moved beyond the end will be deleted.</p>
+
+</line>
+<line>
+<h3>Change Song Length</h3>
+<p>Brings up a window to change the length of the song.</p>
+<p>This will only be active if there is no MidiFile associated with the project.</p>
+</line>
+</ul>
+
+<h2>Notes</h2>
+<p>Time signature changes can be undone or redone using the <b>Undo</b> and <b>Redo</b> <i>Buttons</i> at the top of the window.</p>
+
+<p>The position of chords (midi ticks) will not be changed after updating the time signatures. This means if a chord was aligned to a bar, it may no longer be aligned after updating a time signature. Regenerating the chords may produce a better alignment to the new bars.</p>
+
+<p> Any lyrics or audio synchronisation that has already been done for the current project will need to be redone if a time signature is changed.</p>
+  

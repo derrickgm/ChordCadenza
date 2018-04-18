@@ -1,0 +1,69 @@
+﻿MULTICHORDS
+-----------
+
+allow for choice from list of chords at any one time
+assume all chords start and end on a beat boundary
+
+create from
+  chord generation 
+    top (4) chords, within a score or aggscore range
+  manual addition
+
+play
+  new option checked 
+    only in keyboard mode and KBChord switched on
+    or chordmode???
+
+  constant number of notes in chord (nud)
+    3 or 4
+    use diff between top and bottom to determine which chord is played
+      min diff = first chord
+    no need to wait for timeout, just wait for last note to be played
+
+edit
+  remove chords that are no good
+  add new chord
+
+frmShowChords
+  use large beat height to see multiple chords in text column
+  chord text column
+    show all chords for each beat that is different from previous beat
+    *   *  *     C  (wider text column required)
+    *   *  * *   C6
+      *  * *   * G7 
+    d r mf s l t
+
+.ch1 file (maybe)
+  new format
+  line for each beat
+    bbt (notes) (notes) ... 
+    root note first in chord note list
+    chordname not required, and may not be accurate
+    bass note not supported
+
+  program
+    read .chp (temp - to convert all)
+    read .ch1
+    write .ch1
+  #params
+    tpqn xxx
+    beatmarrgindd xx
+    etc.
+  #ksigs
+    1 C major
+    20 A minor
+  #tsigs
+    1 4/4
+    20 3/4
+  #chords
+    1.1 (C E G)
+    1.2 (C E G) 
+    1.3 (C E G) 
+    1.4 (C E G) 
+    2.1 (C E G) (C E G A)
+    ...
+
+initial coding
+  use chord generate (not .ch1 file yet)
+  update frmShowChords
+  try out play

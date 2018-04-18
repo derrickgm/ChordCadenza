@@ -1,0 +1,74 @@
+﻿TSIGS
+-----
+
+new format (.cht)
+  no comments
+  header
+    nn/dd tpqn keyroot keyscale maxticks
+  mod
+    ticks keyroot keyscale
+  tsig
+    ticks nn/dd
+  section
+    ticks label.lo
+    ticks label.hi
+  param
+    as before
+    excl transpose
+  chord
+    ticks note note ...  .chord
+
+sections
+  Dictionary<string, int> TicksLo, TicksHi 
+   
+clsMTime.clsBBT
+  
+
+update tsig(s)
+  close all forms except frmStart, frmSections, frmMultiMap
+  change tsig(s) in frmSections
+    recreate MTime.TSigs
+  recreate sections from TicksLo/TicksHi
+  refresh frmSections
+
+load midi without .chp/.cht
+  get ticksperqnote, maxticks, tsigs, keys from .mid
+  dynamic tsigs
+  save as .cht
+
+load midi with .cht
+  load .cht before .mid
+  get ticksperqnote, maxticks, tsigs, keys from .cht
+  dynamic tsigs
+  no frmNoteMap, frmShowChords, frmCalcKeys
+  open frmSections
+
+load midi with .chp (legacy)
+  not supported
+
+load .cht
+  load .cht before .mid
+  get ticksperqnote, maxticks, tsigs, keys from .cht
+  static tsigs
+
+load .chp (legacy)
+  load .mid before .chp
+  get ticksperqnote, maxticks, tsigs, keys from .mid
+  load .chp
+  change keys (.chp)
+  static tsigs
+
+dynamic tsigs
+  bbt classes
+    abstract class clsBBT
+      internal clsBBT New(params) {
+        if (dyn) return new clsBBTDyn(params); else return new clsBBTStatic(params);
+      }
+    class clsBBTstatic : clsBBT
+    class clsBBTdyn : clsBBT
+    clsBBT bbt = clsBBT.New(params)
+      will need to change all code using new clsMTime.clsBBT
+  sections
+    use TicksLo, TicksHi to recreate after tsig change
+  frmNoteMap, frmShowChords, frmCalcKeys
+    not supported during dynamic tsigs

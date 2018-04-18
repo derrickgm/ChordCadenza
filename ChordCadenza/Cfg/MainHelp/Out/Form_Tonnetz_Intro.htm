@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_Tonnetz_Intro</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>Tonnetz Window</h1>
+
+<p>The Tonnetz window can be used to show and play chords. It is based on
+the Tonnetz (Tone Network) diagram first described by Leonhard Euler in 1739.</p>
+
+<p>Each node of the diagram represents a note of the chromatic scale. Each row contains notes separated by a perfect fifth interval. The notes on the diagonals are a major third and a minor third apart.</p>
+
+<p>Major chords are represented as a triangle pointing up. A minor chord is a triangle pointing down. Augmented chords are 3 nodes on a diagonal (lower left to upper right). A diminished chord is repesented by 3 nodes on diagonal (upper left to lower right). Chords with 4 notes are also represented by connected nodes.</p>
+
+<p>Notes that are diatonic to the current key are shown with a bold font. Chromatic notes are shown with a normal font.</p>
+
+<p>As the program plays a MidiFile, the diagram is updated to show the chords present in the <b>ChordMap</b>. It shows chords that are approaching, chords that are currently active, and chords that are about to be ended. This allows you to see what is happening, or about to happen, in real time.</p>
+
+<p>If you click on somewhere in the diagram, it will change the current chord. This will allow you to play a different chord on the Midi Keyboard to the current chord.</p>
+
+<p>Clicking with the left mouse button on an inactive node will add that node to the current chord. Clicking with the right mouse button on an inactive node will replace a note in the current chord with the clicked note. The note replaced is selected by an algorithm as the most dissonant or chromatic note.</p>
+
+<p>Clicking on an active node will remove that note from the curent chord.</p>
+
+<p>Clicking with the left mouse button in between nodes will change the chord to a major or minor chord, consisting of the nearest 3 nodes to the clicked position. Clicking with the right nouse button in between nodes will play an augmented chord or a diminished seventh chord, depending on which diagonal is nearest.</p>
+
+<p>To take full advantage of the play features of the Tonnetz display, you should set KBChord mode on, or set the <b>Play Mode</b> to <b>Chord</b>.</p>
+
+<p>KBChord can be used by setting the switch key <b>KBChord</b> (see <a href="HowTo_KeySwitches.htm">Setting Switch Keys</a>.) It is best to use the sustain pedal as a switch key, which can be combined with the normal sustain function. Alternatively, you can set the <b>KBChord During Play</b> <i>CheckBox</i> to keep <b>KBChord</b> mode permamnently on.</p>
+
+<p><b>Chord Play Mode</b> can be set using the <b>Chords</b> <i>Option Button</i> in the <b>Play Mode</b> panel of the <b>PlayMap</b>.</p>
+
+
+
+
+
+
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_Misc_Timers</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>Miscellaneous Configurations - Timers</h1>
+
+<p>These are all <i>Numeric Inputs</i></p>
+
+<h3>Sustain</h3>
+<p>The time (in milliseconds) to wait for notes to be considered to be part of the same chord.</p>
+<p>This is used by the emulated sustain functions - see <a href="Sustain.htm">Sustain Types</a>.</p>
+
+<h3>Stream Resolution</h3>
+<p>This is the resolution used to play Midi events from a midifile. It is expressed as a number of milliseconds.</p>
+<p>Increasing it will use less computer memory and CPU. A decrease will make the midi playing more accurate.</p>
+<p>The recommended value is 5.</p>
+<p>A Project reload is required to effect any change in this value.</p>
+
+<h3>Syncopation</h3>
+<p>The time interval before the actual chord time when the chord becomes active during playing.</p>
+<p>This is to allow the chord to be played just before a beat or bar, and also allows for any keyboard latencies.</p>
+<p>The time is expressed as a fraction of a midi note. The default value is 1/16. Heavily syncopated music may require more syncopation (e.g. 1/8).</p>
+<p>This value is saved in the application ini file (ChordCadenza.ini). It is the default used if not overriden by the <b>ChordFile</b>.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

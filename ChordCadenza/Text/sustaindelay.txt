@@ -1,0 +1,13 @@
+﻿nudchecked && playexists
+  pedalup 
+    pedaldown = false
+    if (nudDelay) 
+      delay = true
+    else
+      sustainedoff()
+  pedaldown
+    pedaldown = true
+  
+  midion
+    if (pedaldown || delay) sustainedoff()
+    delay = false

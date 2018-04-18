@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_PlayMap_Ctls_NumUpDown</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>PlayMap Numeric Controls</h2>
+  <h3>Syncopation</h3>
+  <p>Syncopation Numerator (NN) and Denominator (DD).<p>
+  <p>Chord played NN/DD notes before the beat to allow for
+  syncopation and keyboard delay.</p>
+  <p>This value is saved in the <b>ChordFile</b>, and overrides the default value from the <b>Miscellaneous Configuration</b> Window</p> 
+
+  <h3>Start Bar</h3>
+  <p>Set bar to start playing from</p>
+
+  <h3>Beat Height</h3>
+  <p>Set beat height in pixels</p>
+
+  <h3>Octaves</h3>
+  <p>Set number of octaves to display.</p>
+  <p>Should match the number of playable octaves on midi keyboard, but may be limited by screen width.</p>
+  <p>May need to resize <b>PlayMap</b> window after changing this.</p>
+
+  <h3>Channel Number</h3>
+  <p>Midi channel number to use for midi keyboard output (1 - 16).</p>
+  <p>If the <b>Midi Keyboard Output Port</b> is the same as the <b>Midi Streaming Port</b>, this should be an unused midi channel.</p>
+  <p>Otherwise any channel should be OK.</p>
+
+  <h3>Octave Transposition: KBPitch</h3>
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+  <h3>Octave Transposition: Keyboard</h3>
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+  <h3>Octave Transposition: Display</h3>
+  <p>Transpose the displayed notes by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This will only have an affect if <b>Show Tracks</b> is checked.</p>
+
+  <h3>Semitone Transposition: KBPitch</h3>
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+  <h3>Semitone Transposition: Keyboard</h3>
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+  <h3>Semitone Transposition: Stream Pitch</h3>
+  <p>Transpose the <b>MidiFile</b> play stream by this number of semitones.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

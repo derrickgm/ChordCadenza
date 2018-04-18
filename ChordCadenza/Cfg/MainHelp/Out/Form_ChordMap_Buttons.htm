@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_ChordMap_Buttons</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>ChordMap Buttons</h1>
+  <h3>New Project</h3>
+<p>Brings up a <a href = "Form_NewProject_Intro.htm"> dialog</a> to create a new <span>Project</span>.</p>
+
+  <h3>Load Project</h3>
+  <p>Load all <span>Project</span> files from the containing folder that have the same qualifier as the selected file.</p>
+  <p><b>ChordFiles</b> can have the qualifier .chp0 to .chp9 inclusively. If there is more than one of these files present in the directory, a dialog will be shown to allow you to select which <b>ChordFile</b> you want to load.</p>
+  <p>You can also load a <span>Project</span> by dragging and dropping a file or folder onto the <b>PlayMap, ChordMap, or TrackMap</b>.</p>
+
+  <h3>Save Project</h3>
+<p>Save all of the files in a <span>Project</span> to disk.</p>
+<p>Click with right mouse button to show what files will be saved.</p>
+
+  <h3>Save Project As...</h3>
+<p>Save all of the files in a <span>Project</span> to a new location on disk.</p>
+
+  <h3>GoTo Start</h3>
+  <p>Set Start Bar to start of <b>MidiFile</b></p>
+
+  <h3>Play Midi</h3>
+  <p>Play the <b>MidiFile</b> from Start Bar</p>
+
+  <h3>Play Audio / Play Audio NoSyn</h3>
+  <p>Play the <b>AudioFile</b>.</p>
+  <p>If synchronisation data is available, the button will show <b>Play Audio</b>, and the the cursor will move according to the synchronisation data in the AudioSync file.</p>
+  <p>Otherwise, the button will show <b>Play Audio NoSyn</b>. Synchronisation can still be done manually using the <b>Next Beat SwitchKey</b>.</p>
+
+  <h3>Sync Audio</h3>
+  <p>Play <b>AudioFile</b> and wait for sync <b>SwitchKey</b></p>
+
+  <h3>Play & Sync Audio</h3>
+  <p>Play <b>AudioFile</b> using synchronisation from the <b>AudioSyncFile</b> until reaching the <span>SyncBar</span>, and then wait for the sync <b>SwitchKey</b></p>
+  <p>This will allow you to continue a partially sync'ed audiofile.</p>
+
+  <h3>Stop Play</h3>
+  <p>Stop playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  <h3>Pause Play</h3>
+  <p>Pause playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  <h3>! (Panic)</h3>
+  <p>Panic!</p>
+  <p>Switch off all midi events</p>
+  <p>Useful if midi pitch is continuously sounding</p>
+
+  <h3>Track Map</h3>
+  <p>Show the <a href="Form_TrackMap_Intro.htm">TrackMap Window</a></p>
+
+  <h3>Audio Sync Config</h3>
+  <p>Show <a href="Form_AudioSync_Intro.htm">AudioSync Window</a></p>
+  <p>You can use this to manage audio sync data.</p>
+
+  <h3>Show Summ</h3>
+  <p>Show <b>MidiFile</b> summary for each track.</p>
+  <p>Options to show preconfigured chord names
+  and <b>MidiFile</b> time signatures, tempos and keys</p>
+
+  <h3>Edit Lyrics</h3>
+<p>Opens up a <a href="Form_Lyrics.htm">Window</a> with a simple text editor for updating the <b>Lyrics File</b>.</p>
+  <p>The easiest way to enter lyrics is to copy and paste the text from an online source into the editor. You can then use the editor window to match each bar with the lyrics.</p>
+  <p>The <b>Lyrics File (*.chl)</b> in the <span>Project</span> folder can also be edited by any text editor. It is advisable to switch on line numbering to display bar numbers whilst editing.</p>
+  
+  <h3>Save Chords As...</h3>
+  <p>Opens a <b>Dialog</b> to save the <b>ChordFile</b> with a filename extension chosen from a list.</p>
+
+  <h3>Reload Midi Tracks</h3>
+  <p>Reload the <b>MidiFile</b>, using selected tracks from the <a href="Form_TrackMap_Intro.htm">TrackMap</a>.</p>
+  <p>May be useful if you want to use a different selection of tracks to generate the chords from.</p>
+
+  <h3>Select All</h3>
+  <p>Set the selected area to the whole song.</p>
+  <p>This is used for generating chords, and by <b>Insert Bars, Delete Bars, Cut, Copy, Paste,</b> and <b>Paste Special.</b></p>
+
+  <h3>Select None</h3>
+  <p>Set the selected area to nothing.</p>
+  <p>If <b>Generate Chords</b> is clicked, this will cover the whole song.</p>
+
+  <h3>Insert Bars</h3>
+  <p>Insert empty bars at the current cursor.</p> 
+  <p>The number of bars will be the same as the number of bars in the selected area</p>
+  <p>This will only affect the chords - not the MidiFile or Lyrics.</p>
+  <p>All chords after the selected area will be moved to the right.</p>
+  <p>Notes in the MidiFile will remain the same, but the time signatures may change.</p>
+  <p>Caution: Any chords that run off the end will be removed!</p>
+
+  <h3>Delete Bars</h3>
+  <p>Delete bars in the selected area.</p>
+  <p>All chords after the selected area will be moved to the left.</p>
+  <p>Notes in the MidiFile will remain the same, but the time signatures may change.</p>
+
+  <h3>Cut</h3>
+  <p>Copy chords, keys, and time signatures from the selected area to the Copy Buffer, and clear chords from the selected area.</p>
+  <p>Shortcut key is Ctrl/X.</p>
+
+  <h3>Copy</h3>
+  <p>Copy chords, keys, and time signatures from the selected area to the Copy Buffer.</p>
+  <p>Shortcut key is Ctrl/C.</p>
+
+  <h3>Paste</h3>
+  <p>This will open up a new window with options for pasting data from the Copy Buffer.</p>
+  <p>Shortcut key is Ctrl/V.</p>
+
+  <h3>Trans Select</h3>
+  <p>This will transpose all the chords in the selected area by the interval entered in the accompanying dialog.</p>
+  
+
+  <h3>Undo</h3>
+  <p>Undo last change.</p>
+  <p>Shortcut key is Ctrl/Z.</p>
+  <p>This will undo any changes to the chords, keys, time signatures, or song length.</p>
+
+  <h3>Redo</h3>
+  <p>Redo last undone change.</p>
+  <p>Shortcut key is Ctrl/Y.</p>
+  <p>This will redo any changes to the chords, keys, time signatures, or song length.</p>
+
+  <h3>Play Midi This</h3>
+  <p>Play the <b>MidiFile</b> using the tracks in the <b>ChordMap</b></p>
+  
+  <h3>Colours</h3>
+  <p>Open the <a href="Form_ColoursNM.htm">ChordMap Colours Configuration Window.</a></p>
+
+  <h3>Calc Keys</h3>
+  <p>Open the <a href="Form_CalcKeys_Intro.htm">CalcKeys Window.</a></p>
+  <p>This will allow you to generate keys from the MidiFile or  ChordFile.</p>
+  <p>A dialog will be shown if there are multiple choices of where to generate the keys from.</p>
+
+  <h3>Generate Chords</h3>
+  <p>Generate chords using the current <b>Chord Div</b> settings (Bar, Bar/2, Beat, or Auto).</p>
+  <p>This will create new chords in the <b>Chord Notes</b> panel, based on the minimum time interval selected with the <b>Chord Div</b> option.</p>
+
+  <h3>"+" <i>Button</i> in Horizontal Group</h3>
+  <p>Click to increase the track width</p>
+
+  <h3>"-" <i>Button</i> in Horizontal Group</h3>
+  <p>Click to decrease the track width</p>
+
+  <h3>"+" <i>Button</i> in Vertical Group</h3>
+  <p>Click to increase the track height</p>
+
+  <h3>"-" <i>Button</i> in Vertical Group</h3>
+  <p>Click to decrease the track height</p>
+
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

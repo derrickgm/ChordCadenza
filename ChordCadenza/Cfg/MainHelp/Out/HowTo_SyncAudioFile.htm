@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>HowTo_SyncAudioFile</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>How To Sync to an AudioFile</h2>
+
+<p>This explains how to sync to an <b>AudioFile</b> that will be played by this program.</p>
+
+<h3>Load a <span>Project</span></h3>
+<p>This should contain at least a <b>ChordFile</b> (*.chp) and an <b>AudioFile</b> ( *.mp1, *.mp2, *.mp3, *.wav, *.riff, *.aiff, or *.ogg).</p>
+
+<p>The <b>AudioFile</b> should be an approximate match to the <b>ChordFile</b>. This means it should have the same rhythm and structure, but doesn't need to be in the same key.</p>
+
+<p>The <b>ChordFile</b> can be created from a <b>MidiFile</b> (see <a href="HowTo_GenerateChords.htm">How To Generate Chords from a MidiFile)</a>, or an external source (see <a href="HowTo_InsertChords.htm">How To Insert Chords from an External Source</a>.</p>
+
+<h3>Setup the Sync <b>SwitchKey</b></h3>
+<p>Goto <b>PlayMap Menu > Configure > <b>SwitchKeys</b>/Pedal.</b> </p>
+
+<p>Set the <b>Sync</b> dropdown box to a <b>SwitchKey</b> or Pedal.</p>
+
+<h3>Position the <b>ChordFile</b> to a Cue Point </h3>
+<p>You can use the <b>TrackMap</b> or <b>ChordMap</b> to do this. However, you will need to cue to somewhere you will recognise in the song (e.g. when a solo or vocal starts) that is on a barline.</p>
+
+<p>If you have created a lyric file (*.chl), you can use the <b>TrackMap</b> or <b>ChordMap</b> to show the lyrics, and use them to help find a good cue point.</p>
+
+<p>Otherwise, it's usually easier to use a solo track on the <b>TrackMap</b> to find a cue point.</p>
+
+<p>Set the current cursor (vertical bar) in the <b>TrackMap</b> (click in any <b>Track</b> pane) or <b>ChordMap</b> (click in body of <b>Midi</b> pane) to wherever you want the song to start playing (usually at the start). The bar will be highlighted in red.</p>
+
+<p>Click inside the <b>Bar Pane</b> of the <b>TrackMap</b> or <b>ChordMap</b> with the left mouse button to set the cue position. This is where you will start synchronising from. This must be somewhere after where you set the song to start playing from.</p>
+
+<h3>Sync to the AudioFile</h3>
+<p>Click the <b>Record Audio</b> <i>Button</i> on the <b>TrackMap</b> or <b>ChordMap</b> to start playing the AudioFile. Then hit the <b>Sync</b> <b>SwitchKey</b> (or Pedal) when the cue point is reached.</p> 
+
+<p>Continue to hit the key on every beat until the end.</p>
+
+<p>Hit the <b>Stop Play</b> <i>Button</i> to end the sync.</p>
+
+<p>The sync data will be saved in the <b>AudioSync Record Track.</b>  The <b>Play Track</b> will not be updated until you use <b>Copy</b> or <b>Merge</b> from the <b>AudioSync</b> window.</p>
+
+<h3>Save the Sync Data</h3>
+<p>The <b>AudioSync Record Track</b> contains the last sync that you recorded.</p>
+
+<p>If you want to save or play this, you will need to merge or copy it into the <b>AudioSync Play Track.</b> </p>
+
+<p>Open the <b>AudioSync</b> window from <b>PlayMap Menu > File > Show AudioSync Window</b></p>
+
+<p>Click the <b>Merge Record To Play</b> <i>Button</i>. If you get an error message, it means you are trying to merge data that is not in sequence. You will have to either use <b>Copy Record To Play</b> or re-record the sync data.</p>
+
+<p>You can the use the <b>Save Play to File</b> <i>Button</i> to save the sync data to a .chtc file.</p>
+
+<h3>Partial Synchronisation</h3>
+<p>If you want to synchronise from somewhere other than the start (e.g. to correct a mistake, or continue from where you left off), you can set the current cursor on the <b>TrackMap</b> or <b>ChordMap</b> to a bar that has alreay been synchronised. You should then set the Bar Pane cursor (left mouse button) to somewhere after this, but in a region that has still been synchronised. Then click the <b>P & R Audio</b> <i>Button</i> on the <b>TrackMap</b> or <b>ChordMap</b>.</p>
+
+<p>This will start playing from the current cursor position, but pause when you reach the Bar Pane cursor to allow you to use the synchronize switch key to start synchronising.</p>
+
+<h3>Bar Pane Cursors</h3>
+<p>This is normally set by clicking the left mouse button over the <b>Bar Pane</b> in the <b>TrackMap</b> or <b>ChordMap</b>. However, you can also use the right mouse button to set a different cursor.</p>
+
+<p>If set, this will be used to set the set the position in the MidiFile after hitting the <b>Sync Switchkey</b> during playing with <b>P & R Audio</b>. This has the effect of jumping the MidiFile posiion during audio play. This is useful if there are bars in the MidiFile that are not present in the AudioFile.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

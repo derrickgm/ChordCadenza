@@ -1,0 +1,456 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <title>The PlayMap</title>
+  <style>@import url(coUA.css);</style>
+  <link disabled rel="stylesheet" href="htmlhelp.css">
+  <script language="JavaScript" src="master.js"></script>
+  <script src="Popups.js"></script>
+</head>
+
+<body>
+<h1>The PlayMap</h1>
+
+  <p>The PlayMap is the first screen you should see after starting the application (and after closing the Initial Configuration window).</p>
+  <p>Closing the PlayMap will close the application. (You will be prompted before the application closes.)</p>
+  <p>The top part of the PlayMap contains the menu, command buttons, and various options.</p>
+  <p>The main panel below this shows the chord notes, spread across a keyboard. The keyboard can be configured to 1 - 4 octaves long</p>
+  <p>Resizing the PlayMap window horizontally does not change the number of octaves displayed, but can be used to match the scale of a real midi keyboard.</p>
+  <p>You can also resize the PlayMap window vertically. This will allow more or less of the midifile chords to be displayed. The bottom line of chords represent the current midifile position, with lines above representing later chords.</p>
+  <p>The bottom panel shows the current major or minor key scale notes. </p>
+  <p>The left-hand panel show bar numbers, and the right-hand panel shows chord names.</p>
+  <p>The chord notes are updated as a midifile is played. Each time a beat is reached, the notes move down.</p>
+
+<h1>Menus</h1>
+<h2>File Menu</h2>
+  <h3>New</h3>
+  <p>Load an empty <span>Song</span></p>
+
+
+  <h3>Load Song</h3>
+  <p>Load all files in the same directory, with the same qualifier as the selected file.</p>
+  <p>This will load the following files (if present):</p>
+  <ul>
+    <li>chordfile (*.chp)</li>
+    <li>midifile (*.mid)</li>
+    <li>lyrics file (*.chl)</li>
+    <li>audiosync file (*.chtc or *.chtx)</li>
+    <li>audio file (*.mp3 etc)</li>
+  </ul>
+  <p>Any combination of these files can be present.</p>
+
+
+  <h3>Save Chord File (*.chp)</h3>
+  <p>Saves the <A HREF="ChordFile.htm"><b>ChordFile</b></A> with the same name and in the same directory as previously loaded or saved.</p>
+
+
+  <h3>Save Chord File As... (*.chp)</h3>
+  <p>Saves the <A HREF="ChordFile.htm"><b>ChordFile</b></A> with a different name or location.</p>
+
+
+  <h3>Save AudioSync File (</h3>
+  <p>Saves the <A HREF="AudioSyncFile.htm">AudioSync File</A></p>
+
+
+  <h3>Save Settings</h3>
+  <p>Save Global Configuration Parameters</p>  
+  <p>Saves any changes made to various global parameters (as opposed to parameters only associated with the current song).</p>
+  <p>This involves saving the following files in the application directory:</p>
+
+  <ul>
+    <li><b>Expression.ini</b> (the main config file)</li>
+    <li><b>Switch.ini</b> (key switches)</li>
+    <li><b>frmNMColors.ini</b> (ChordMap colours)</li>
+    <li><b>frmSCColors.ini</b> (PlayMap colours)</li>
+    <li><b>ChordCfg.ini</b> (Chord generation parameters)</li>
+  </ul>
+
+
+  <h3>Exit Application</h3>
+  <p>Terminate the application.</p>
+  <p>A prompt will be displayed giving the option to:</p>
+  <ul>
+    <li>Save Settings and Exit Program</li>
+    <li>Exit Program without Saving Settings</li>
+    <li>Continue (cancel exit)</li>
+  </ul>
+  <p>The same prompt will be displayed if you click the Close button on the PlayMap.</p>
+
+
+<h2>Configure Menu</h2>
+  <h3>Audio Devices</h3>
+  <p>Show <a href="Configure_Audio.htm">Configure Audio Devices Window</a></p>
+
+
+  <h3>Midi Devices</h3>
+  <p>Show <a href="Configure_MidiDevices.htm">Configure Midi Devices Window</a></p>
+
+
+  <h3>Bezier</h3>
+  <p>Open Submenu Items:</p>
+    <h3>Velocity Bezier</h3>
+  <p>Show <a href="Configure_Bezier.htm">Velocity Bezier Window</a></p>
+
+
+    <h3>Aftertouch Bezier</h3>
+  <p>Show <a href="Configure_Bezier.htm">AfterTouch Bezier Window</a></p>
+
+
+  <h3>KeySwitches/Pedal</h3>
+  <p>Show <a href="Configure_KeySwitches.htm">KeySwitches/Pedal Window</a></p>
+
+
+  <h3>Paths</h3>    
+  <p>Open Submenu Items:</p>
+    <h3>Song</h3>
+  <p>Show <a href="Configure_Paths.htm">Song Paths Window</a></p>
+
+
+    <h3>SoundFonts</h3>
+  <p>Show <a href="Configure_Paths.htm">SoundFonts Paths Window</a></p>
+
+
+  <h3>Midi Keyboard Ranges</h3>
+  <p>Show <a href="Configure_XXX.htm">Midi Keyboard Ranges Window</a></p>
+
+
+  <h3>Miscellaneous</h3>
+  <p>Show <a href="Configure_XXX.htm">Miscellaneous Configurations Window</a></p>
+
+
+  <h3>Show AudioSync Window</h3>      
+  <p>Show <a href="Configure_XXX.htm">Show AudioSync Window</a></p>
+
+
+  <p>
+    The submenu items are:
+    <ul>
+      <li><a href="Configure_Audio.htm">Audio Devices</a></li>
+      <li><a href="Configure_MidiDevices.htm">Midi Devices</a></li>
+      <li><a href="Configure_Bezier.htm">Bezier</a></li>
+      <li><a href="Configure_KeySwitches.htm">KeySwitches/Pedal</a></li>
+      <li><a href="Configure_Paths.htm">Paths</a></li>
+      <li><a href="Configure_XXX.htm">Midi Keyboard Ranges</a></li>
+      <li><a href="Configure_XXX.htm">Miscellaneous</a></li>
+      <li><a href="Configure_XXX.htm">Show AudioSync Window</a></li>
+    </ul>
+  </p>  
+
+<h2>Help Menu</h2>
+  <h3>Contents</h3>
+  <p>Show Help Contents Page</p>
+
+
+  <h3>Show Initial Screen</h3>
+  <p>Show Start-Up Screen</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Buttons</h2>
+  <h3>Load Song</h3>
+  <p>Load all files in the same directory, with the same qualifier as the selected file.</p>
+  <p>This will load the following files (if present):</p>
+  <ul>
+    <li>chordfile (*.chp)</li>
+    <li>midifile (*.mid)</li>
+    <li>lyrics file (*.chl)</li>
+    <li>audiosync file (*.chtc or *.chtx)</li>
+    <li>audio file (*.mp3 etc)</li>
+  </ul>
+  <p>Any combination of these files can be present.</p>
+
+
+  <h3>GoTo Start</h3>
+  <p>Set Start Bar to start of song</p>
+
+
+  <h3>Play Midi</h3>
+  <p>Play the Midi File from Start Bar</p>
+
+
+  <h3>Play Audio</h3>
+  <p>Play Audio File and synchronise using the audiosync file</p>
+
+
+  <h3>Stop Play</h3>
+  <p>Stop playing midi or audio file</p>
+
+
+  <h3>Pause Play</h3>
+  <p>Pause playing midifile</p>
+
+
+  <h3>Sync Audio</h3>
+  <p>Play Audio file and wait for sync switch key</p>
+
+
+  <h3>! (Panic)</h3>
+  <p>Panic!</p>
+  <p>Switch off all midi events</p>
+  <p>Useful if midi pitch is continuously sounding</p>
+
+
+  <h3>Switch A</h3>
+  <p>Action switch key assigned to midi keyboard note 'A'.</p>
+  <p>Disabled if no switch key association.</p>
+
+  
+  <h3>Switch B</h3>
+  <p>Action switch key assigned to midi keyboard note 'B'.</p>
+  <p>Disabled if no switch key association.</p>
+
+  
+  <h3>Switch C</h3>
+  <p>Action switch key assigned to midi keyboard note 'C'.</p>
+  <p>Disabled if no switch key association.</p>
+
+
+  <h3>Switch Pedal</h3>
+  <p>Action switch key assigned to sustain pedal.</p>
+  <p>Disabled if no switch key association.</p>
+
+
+  <h3>Show Summ</h3>
+  <p>Show midifile summary for each track.</p>
+  <p>Options to show preconfigured chord names
+  and midifile time signatures, tempos and keys</p>
+
+
+  <h3>Chord Map</h3>  
+  <p>Show the ChordMap</p>
+  <p>If no chordfile has been loaded, this will display an option to initialize a new chordfile</p>
+
+<!------------------------------------------------------------ -->
+
+
+  <h3>Track Map</h3>
+  <p>Show the TrackMap</p>
+
+
+  <h3>Note Font</h3>
+  <p>Configure font used to show note names or solfa names</p>
+
+  
+  <h3>Chord Font</h3>
+  <p>Configure font used to show chord names</p>
+
+  
+  <h3>Colours</h3>
+  <p>Configure Colours</p>
+
+
+<h2>Selection Lists</h2>
+  <h3>Play Style</h3>
+  <p>Mute any midi tracks that match this Play Style (e.g. Melody, Bass)</p>
+  <p>Set patch t\o match first muted track </p>
+  <p>octave transposition </p>
+
+
+  <h3>First Note</h3>
+  <p>Sets first note of chord to be displayed on chordname panel.</p>
+  <p>Applies only if Show Chord Notes option is set.</p>
+  <p>May be useful when playing chords manually</p>
+
+
+  <h3>Patch</h3>
+  <p>Midi Patch (Program Change) to use on the midi keyboard output channel.</p>
+  <p>This sets the instrument to play according to the General Midi specification.</p>
+  <p>Set to blank to leave it unchanged.</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Numeric Controls</h2>
+  <h3>Syncoption</h3>
+  <p>Syncopation Numerator (NN) and Denominator (DD).<p>
+  <p>Chord played NN/DD beats before the beat to allow for
+  syncopation and keyboard delay.</p>
+
+
+  <h3>Start Bar</h3>
+  <p>Set bar to start playing from</p>
+
+
+  <h3>Beat Height</h3>
+  <p>Set beat height</p>
+
+
+  <h3>Octaves</h3>
+  <p>Set number of ocatves to display.</p>
+  <p>Should match the number of playable octaves on midi keyboard, but may be limited by screen width.</p>
+  <p>May need to resize PlayMap window after changing this.</p>
+
+
+  <h3>Channel Number</h3>
+  <p>Midi channel number to use for midi keyboard output (1 - 16).</p>
+  <p>If the midi keyboard output port is the same as the streaming port, this should be an unused midi channel.</p>
+  <p>Otherwise any channel should be OK.</p>
+
+
+  <h3>Octave Transposition: KBPitch</h3>
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+
+  <h3>Octave Transposition: Keyboard</h3>
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+
+  <h3>Octave Transposition: Display</h3>
+  <p>Transpose the displayed notes by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This will only have an affect if "Show Tracks" is checked.</p>
+
+
+  <h3>Semitone Transposition: KBPitch</h3>
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+
+  <h3>Semitone Transposition: Keyboard</h3>
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+
+  <h3>Semitone Transposition: Stream Pitch</h3>
+  <p>Transpose the midifile play stream by this number of semitones.</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Check Boxes</h2>
+  <h3>Capitalize Root Notes</h3>
+  <p>Show root note of chord with caplital letter</p>
+
+
+  <h3>Auto Capitalize Root Notes</h3>
+  <p>Capitalize chord root note only if ChordMode set</p>
+
+
+  <h3>Show Beats</h3>
+  <p>Show beats as dotted lines</p>
+
+
+  <h3>Show Chord Names</h3>
+  <p>Show chord names on the right-hand pane</p>
+
+
+  <h3>Show Chord Notes</h3>
+  <p>Show chord notes on the right-hand pane</p>
+
+
+  <h3>Show Tracks</h3>
+  <p>Show notes from tracks selected on the TrackMap.</p>
+  <p>May be useful for playing bass or melodies.</p>
+  <p>Advisable to select only one track.</p>
+
+
+  <h3>Show Chords</h3>
+  <p>Show chords on main window.</p>
+  <p>Usually checked.</p>
+
+
+  <h3>Note Display - Run Notes Across Chords</h3>
+  <p>Choose whether to run notes across chords.</p>
+  <p>Setting this means the note name is only displayed when the note changes.</p>
+  <p>Unsetting it means that all note names are displayed for every new chord.</p>
+  <p>It is recommended to leave this unset unless you are playing chords manually.</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Option Buttons</h2>
+  <h3>PlayMode - Chords</h3>
+  <p>Set playmode to ChordMode.</p>
+  <p>Play white midi keyboard keys assigned to current chord notes.</p>
+
+
+  <h3>PlayMode - Keyboard</h3>
+  <p>Set Playmode to KeyboardMode.</p>
+  <p>Play normal midi keyboard pitches, subject to any active transposition.</p>
+
+
+  <h3>NoteDisplay - Solfa</h3>
+  <p>Show solfa notation (d r m f s l t d) on main panel.</p>
+
+
+  <h3>NoteDisplay - Note Name</h3>
+  <p>Show actual note names (C, C#, ... Bb, B) on main panel</p>
+
+
+  <h3>NoteDisplay - None</h3>
+  <p>Don't show any note names on main panel.</p>
+  <p>May be useful if you want to practise working out the note names from chord name mentally.</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Track Bars</h2>
+  <h3>KBChVol</h3>
+  <p>Midi volume level on midi keyboard output channel</p>
+
+
+  <h3>KBChPan</h3>
+  <p>Midi pan setting on midi keyboard output channel</p>
+
+
+  <h3>Tempo</h3>
+  <p>Set the tempo at which midi files are played</p>
+  <p>Midipoint is the midifile tempo</p>
+  <p>Values away from the midpoint will be slower or faster than the midifile tempo</p> 
+
+
+  <h3>Tempo "R" Button</h3>
+  <p>Reset tempo to current midifile (midpoint)</p>
+
+
+<!------------------------------------------------------------ -->
+
+<h2>Displays</h2>
+  <h3>Right of Menu Bar</h3>
+  <p> Show current audio sync type - either Sync: Internal or Sync: External</p>
+
+  <p>Shows Mode and Track Display Pitch Range.</p>
+
+
+  <h3>Next Key</h3>
+  <p>Show next key after current position</p>
+
+
+  <h3>This Key</h3>
+  <p>Show current key</p>
+
+
+  <h3>Bar Number</h3>
+  <p>Panel on the left-hand side of the window, showing the bar number.</p>
+
+  <h3>Chords</h3>
+  <p>The main panel of the window, showing chords.</p>
+  <p>This will also show tracks if the <b>Show Tracks</b> box is checked.</p>
+
+  <h3>Chord Names</h3>
+  <p>The panel on the right-hand side of the window.</p>
+  <p>It shows absolute chord names (e.g. C, Amin) or relative chord names (e.g. I VImin) depending on the setting of <b>Show Relative Chords</b> in the <b>General</b> panel of the <b>Miscellaneous Configuration</b> window.</p>
+
+  <h3>Keyboard Display</h3>
+  <p>The bottom panel of the window shows the current notes that will be played by the midi keyboard.</p>
+
+  <h3>Current Chord</h3>
+  <p>The bottom right-hand panel shows the current chord being played</p>
+
+<object
+  id=HHCTRL type="application/x-oleobject"
+  classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+  
+</body>
+</html>

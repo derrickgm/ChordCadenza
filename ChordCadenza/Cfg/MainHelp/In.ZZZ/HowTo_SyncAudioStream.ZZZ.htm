@@ -1,0 +1,54 @@
+<h2>How To Synchronise to an Audio Stream</h2>
+
+<p>This explains how to sync to an audio stream played by an external source.</p>
+
+<p style="color:red;">This is similar to synchronising to an <b>AudioFile</b>, but with some important differences, highlighted in red.</p>
+
+<h3>Load a <span>Project</span></h3> 
+
+<p>This should contain at least a <b>ChordFile</b> (*.chp) that is an approximate match to the audio stream that you will be playing. (This means it should have the same rhythm and structure, but doesn't need to be in the same key.)</p>
+
+<h3>Setup the Sync <b>SwitchKey</b></h3>
+<p>Goto <b>PlayMap Menu > Configure > <b>SwitchKeys</b>/Pedal.</b> </p>
+
+<p>Set the <b>Sync</b> dropdown box to a <b>SwitchKey</b> or Pedal.</p>
+  
+<h3>Position the <b>ChordFile</b> to a Cue Point </h3>
+<p>You can use the <b>TrackMap</b> or <b>ChordMap</b> to do this. However, you will need to cue to somewhere you will recognise in the song (e.g. when a solo or vocal starts) that is on a barline.</p>
+
+<p>If you have created a lyric file (*.chl), you can use the <b>TrackMap</b> or <b>ChordMap</b> to show the lyrics, and use them to help find a good cue point.</p>
+
+<p>Otherwise, it's usually easier to use a solo track on the <b>TrackMap</b> to find a cue point.</p>
+
+<p>Set the normal cursor (vertical line) in the <b>TrackMap</b> (click in any track pane) or <b>ChordMap</b> (click in body of <b>Midi</b> pane) to set the cue position. This is where you will start synchronising from. This must be somewhere after where you set the song to start playing from.</p>
+
+<h3>Sync to the Audio Stream</h3>
+<p>Click the <b>Sync Audio</b> <i>Button</i> on any playable window (<b>TrackMap, ChordMap or PlayMap</b>) and start playing the audio stream. Hit the <b>Sync</b> <b>SwitchKey</b> (or Pedal) when the cue point is reached.</p> 
+
+<p>The <b>Sync Audio</b> <i>Button</i> on the <b>PlayMap</b> should turn red. Continue to hit the key on every beat until the end.</p>
+
+<p>Hit the <b>Stop Play</b> <i>Button</i> to end the sync.</p>
+
+<p>If you don't get to the end, you can start again from the same or a different cue point and start point.</p>
+
+<p style="color:red;">If you start from a different cue point that overlaps the existing <b>Play Track,</b> it will continue from where you left off. Otherwise, it will set a new start point, and a warning message will be issued.</p>
+
+<p>The sync data will be saved in the <b>AudioSync Record Track.</b> The <b>Play Track</b> will not be updated until you use <b>Copy</b> or <b>Merge</b> from the <b>AudioSync</b> window.</p>
+  
+<h3>Save the Sync Data</h3>
+<p>The <b>AudioSync Record Track</b> contains the last sync that you recorded.</p>
+
+<p>If you want to save or play this, you will need to merge or copy it into the <b>AudioSync Play Track.</b> </p>
+
+<p>Open the <b>AudioSync</b> window from <b>PlayMap Menu > File > Show AudioSync Window</b> </p>
+
+<p>Click the <b>Merge Record To Play</b> <i>Button</i>. If you get an error message, it means you are trying to merge data that is not in sequence. You will have to either use <b>Copy Record To Play</b> or re-record the sync data.</p>
+
+<p style="color:red;">You can the use the <b>Save Play to File</b> <i>Button</i> to save the sync data to a .chtx file.</p>
+
+<h3>Set Start Time (Optional)</h3>
+<p style="color:red;">You can set the time of the starting cue point using the <i>Numeric Input</i> controls in the <b>AudioSync Window</b>. This should be copied from the external audio player (assuming it contains a time display).</p>
+<p style="color:red;">This can be useful for repositioning to somewhere in the audio stream after the start cue point. Clicking in the <b>Bar Pane</b> on the <b>TrackMap</b> or <b>ChordMap</b> will show the approximate elapsed time, provided the starting cue point time has been entered. You can then use this to reposition the external audio player.</p> 
+
+<h3>Partial Synchronisation (Optional)</h3>
+<p>If you want to synchronise from somewhere other than the start (e.g. to correct a mistake, or continue from where you left off), you should position a few seconds before a cue point. This should overlap, or be at the end of an existing synchronisation. You can then do the synchronisation as before to add or replace the sync times.</p>

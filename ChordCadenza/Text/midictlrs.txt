@@ -1,0 +1,58 @@
+MIDICTLR STUFF
+--------------
+
+midictlr table 
+	clsMap[ctlr, portchan] [129, 32]
+	ctlr: 0-127
+	patch: 128
+	portchan = port * 16 + chan
+	functions 
+	  return val for ticks (map[ctlr, portchan][ticks]
+		return initial val (or default)
+	load from midifile
+	set defaults
+	no tracks involved (ctlrs set irrespective of trk mute)
+	send ctlrs on locate from table (except PVP if source mm)
+
+patch, pan, vol
+  P.F.Chan[trk] from midifile - ignore Chan line in .chp
+	--> P.F.TracksByPortChan[portchan]
+  P.F.Patch[portchan], P.F.Vol[portchan], P.F.Pan[portchan]
+  if frmStart chkloadppv checked, load .chp PPV lines into P.F.PPV arrays
+	override midictlr table entry if P.F.PPV[portchan] valid (>=0) 
+	set P.F.PPV[portchan] if:
+	  load .chp && chkloadppv checked
+		frmMM trkbar/cmbbox changed	(by mouse - not programatically) 
+	set frmMM trkbar/cmbbox from midictlr table with overrides
+	  on loading frmMM  
+		on loading .chp file (if frmMM loaded) - not normally the case
+	  must reflect what will be played
+		set all tracks associated with a portchan 
+		  usually one trk, but multiple is possible and OK
+		patch
+		  if no override and multiple patches, show no selection  
+  save .chp
+	  always save PPV arrays 
+		  -1 if entry not set
+			no line if array not set
+	
+summary
+  show midictlr table
+	  totals by portchan & midictlr
+		expand totals to show details		
+
+track/portchan
+  P.F.PortChan[trk]
+	  created on loadmidifile - not updated
+		could have one portchan over multiple tracks
+		if track contains more than one chan
+		  msgbox show warning
+			pick one portchan
+		use GetChan()) to get chans from midifile
+		ignore channel line in .chp file (not required)
+
+streamplay
+  locate
+	  use midictlr table for midictlrs and patches
+	play
+	  use strm, but bypass midictlr/patch if overriden	  

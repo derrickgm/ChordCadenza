@@ -1,0 +1,1826 @@
+$$Generic.$mnuNew
+$$Generic.$cmdNew
+<p>Brings up a <a href = "Form_NewProject_Intro.htm"> dialog</a> to create a new <span>Project</span>.</p>
+
+$$Generic.$mnuSaveProject
+<p>Save all of the files in a <span>Project</span> to disk.</p>
+
+$$Generic.$cmdSaveProject
+<p>Save all of the files in a <span>Project</span> to disk.</p>
+<p>Click with right mouse button to show what files will be saved.</p>
+
+$$Generic.$mnuSaveProjectAs
+$$Generic.$cmdSaveProjectAs
+<p>Save all of the files in a <span>Project</span> to a new location on disk.</p>
+
+$$Generic.$cmdUpdateLyrics
+<p>Opens up a <a href="Form_Lyrics.htm">Window</a> with a simple text editor for updating the <b>Lyrics File</b>.</p>
+
+$$Generic.$mnuSaveSettings
+$$Generic.$cmdSaveSettings
+  <p>Save Global Configuration Parameters</p>  
+  <p>Saves any changes made to various global parameters (as opposed to parameters only associated with the current <span>Project</span>).</p>
+  <p>This involves saving the following files in the application directory:</p>
+
+  <ul>
+    <li><b>ChordCadenza.ini</b> (the main config file)</li>
+    <li><b>Switch.ini</b> (SwitchKeys)</li>
+    <li><b>frmNMColors.ini</b> (ChordMap colours)</li>
+    <li><b>frmSCColors.ini</b> (PlayMap colours)</li>
+    <li><b>ChordCfg.ini</b> (Chord generation parameters)</li>
+    <li><b>Chords.Ranks.ini</b> (Chord Rank values)</li>
+  </ul>
+
+  $$Generic.$cmdSaveChordFile
+  $$Generic.$mnuSaveChordFile
+  <p>Saves the <A HREF="ChordFile.htm">ChordFile</A> with the same name and in the same directory as previously loaded or saved.</p>
+
+  $$Generic.$mnuCfgAudio
+  <p>Show <a href="Form_ConfigBass_Intro.htm">Configure Audio Devices Window</a></p>
+
+  $$Generic.$mnuCfgMidi
+  <p>Show <a href="Form_MidiDevs_Intro.htm">Configure Midi Devices Window</a></p>
+
+  $$Generic.$mnuCfgBezierVelocity
+  <p>Show <a href="Form_ConfigBezier_Intro.htm">Velocity Bezier Window</a></p>
+
+  $$Generic.$mnuCfgBezierAfterTouch
+  <p>Show <a href="Form_ConfigBezier_Intro.htm">AfterTouch Bezier Window</a></p>
+
+  $$Generic.$mnuCfgSwitch
+  <p>Show <a href="Form_SwitchKeys_Intro.htm"><b>SwitchKeys</b>/Pedal Window</a></p>
+
+  $$Generic.$mnuPathProject
+  <p>Show <a href="Configure_Paths.htm">Project Paths Window</a></p>
+
+  $$Generic.$mnuPathSoundFonts
+  <p>Show <a href="Configure_Paths.htm">SoundFonts Paths Window</a></p>
+
+  $$Generic.$mnuPathMidiFiles
+  <p>Show <a href="Configure_Paths.htm">MidiFiles Paths Window</a></p>
+
+  $$Generic.$mnuPathAudioFiles
+  <p>Show <a href="Configure_Paths.htm">AudioFiles Paths Window</a></p>
+
+  $$Generic.$mnuKeyboardRanges
+  <p>Show <a href="Configure_Ranges.htm">Midi Keyboard Ranges Window</a></p>
+
+  $$Generic.$mnuManChordSync
+  <p>Show <a href="Form_ManChordSync_Intro.htm">Man Chord Sync Window</a></p>
+
+  $$Generic.$mnuCfgMisc
+  <p>Show <a href="Form_Misc_Intro.htm">Miscellaneous Configurations Window</a></p>
+
+  $$Generic.$mnuShowAudioSyncWindow
+  $$Generic.$cmdShowAudioSyncWindow
+  <p>Show <a href="Form_AudioSync_Intro.htm">AudioSync Window</a></p>
+  <p>You can use this to manage audio sync data.</p>
+
+  $$Generic.$cmdMultiMap
+  <p>Show the <a href="Form_TrackMap_Intro.htm">TrackMap Window</a></p>
+
+  $$Generic.$cmdClose
+  <p>Close this window</p>
+    
+  $$Generic.$cmdHelp
+  <p>Show help documentation for this window</p>
+
+  $$Generic.$cmdLoadProject
+  $$Generic.$mnuLoadProject
+  <p>Load all <span>Project</span> files from the containing folder that have the same qualifier as the selected file.</p>
+  <p><b>ChordFiles</b> can have the qualifier .chp0 to .chp9 inclusively. If there is more than one of these files present in the directory, a dialog will be shown to allow you to select which <b>ChordFile</b> you want to load.</p>
+  <p>You can also load a <span>Project</span> by dragging and dropping a file or folder onto the <b>PlayMap, ChordMap, or TrackMap</b>.</p>
+
+  $$Generic.$cmdGoToStart
+  <p>Set Start Bar to start of <b>MidiFile</b></p>
+
+  $$Generic.$cmdPlayMidi
+  <p>Play the <b>MidiFile</b> from Start Bar</p>
+
+  $$Generic.$cmdPlayAudio
+  <p>Play the <b>AudioFile</b>.</p>
+  <p>If synchronisation data is available, the button will show <b>Play Audio</b>, and the the cursor will move according to the synchronisation data in the AudioSync file.</p>
+  <p>Otherwise, the button will show <b>Play Audio NoSyn</b>. Synchronisation can still be done manually using the <b>Next Beat SwitchKey</b>.</p>
+
+  $$Generic.$cmdSyncAudio
+  <p>Play <b>AudioFile</b> and wait for sync <b>SwitchKey</b></p>
+
+  $$Generic.$cmdPlayAndRecordAudio
+  <p>Play <b>AudioFile</b> using synchronisation from the <b>AudioSyncFile</b> until reaching the <span>SyncBar</span>, and then wait for the sync <b>SwitchKey</b></p>
+  <p>This will allow you to continue a partially sync'ed audiofile.</p>
+
+  $$Generic.$cmdStopPlay
+  <p>Stop playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  $$Generic.$cmdPausePlay
+  <p>Pause playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  $$Generic.$cmdPanic
+  <p>Panic!</p>
+  <p>Switch off all midi events</p>
+  <p>Useful if midi pitch is continuously sounding</p>
+
+  $$Generic.$cmdShowSumm
+  <p>Show <b>MidiFile</b> summary for each track.</p>
+  <p>Options to show preconfigured chord names
+  and <b>MidiFile</b> time signatures, tempos and keys</p>
+
+  $$Generic.$cmdChordMap
+  <p>Show the <a href="Form_ChordMap_Intro.htm">ChordMap Window.</a>.</p>
+  <p>If no <b>ChordFile</b> has been loaded, this will display an option to initialize a new <b>ChordFile</b></p>
+
+  $$Generic.$cmdSummary
+  <p>Open the <a href="Form_Summary_Intro.htm">MidiFile Summary</a> Window.</p>
+
+  //*$$Generic.$picBars
+  $$Generic.$lblBarsLit
+  <p>Shows bar numbers. MouseClick can be used when synchronising to an <b>AudioFile</b> to set the sync position - see help topic: <a href="HowTo_SyncAudioFile.htm">How To Sync to an AudioFile.</a></p>
+  <p>Any bars that have been synchronised to an audio file will be highlighted in yellow.</p>
+
+  $$Generic.$cmdYPos
+  <p>Click to increase the track height</p>
+
+  $$Generic.$cmdYNeg
+  <p>Click to decrease the track height</p>
+
+  $$Generic.$cmdXPos
+  <p>Click to increase the track width</p>
+
+  $$Generic.$cmdXNeg
+  <p>Click to decrease the track width</p>
+
+  $$Generic.$cmdUndo
+  <p>Undo last change.</p>
+  <p>Shortcut key is Ctrl/Z.</p>
+
+  $$Generic.$cmdRedo
+  <p>Redo last undone change.</p>
+  <p>Shortcut key is Ctrl/Y.</p>
+
+  $$Generic.$cmdTonnetz
+  <p>Show the <a href="Form_Tonnetz_Intro.htm">Tonnetz Window</a></p>
+
+  $$frmInitial.$cmdCopyHTML
+  $$frmInitial.$label4
+  $$frmInitial.$textBox4
+  $$frmInitial.$label3
+  $$frmInitial.$textBox3
+  $$frmInitial.$label2
+  $$frmInitial.$textBox2
+  $$frmInitial.$label1
+  $$frmInitial.$textBox1
+  *
+
+  $$frmInitial.$cmdCloseFinal
+    <p>Close this window and don't show again</p>
+
+  $$frmInitial.$cmdMidiDevs
+    <p>Configure Midi Input (Keyboard) and Output (Keyboard and <b>MidiFile</b> Player) Devices</p>
+    <p>Choose <b>SoundFont</b> file</p>
+    <p>Adjust Volume and Fine Tuning</p>
+    <p>Configure Special Effects (FX)</p> 
+
+  $$frmInitial.$cmdKBRanges
+    <p>Set Highest and Lowest playable notes on the Midi Keyboard</p>
+    <p>Set <a href="Form_PlayMap_Intro.htm">PlayMap</a> display range</p>
+
+  $$frmInitial.$cmdAudioDevs
+    <p>Configure <span>ASIO</span> and <b>non_ASIO</b> Soundcards</p>
+
+  $$frmInitial.$cmdIntro
+    <p>Show Introduction Help screen.</p>
+
+
+  $$frmCfgBezier.$lblLitIn
+  $$frmCfgBezier.$lblLitOut
+  *
+
+  $$frmCfgBezier.$cmdLoadDflts
+    <p>Load default profile - a straight line representing no change in <b>Velocity</b> or <b>Aftertouch</b>.</p>
+
+  $$frmCfgBezier.$pic
+    <p>Graph showing the <b>Velocity Profile</b> or <b>Aftertouch Profile</b>.</p>
+    <p>The horizontal axis is the <b>Velocity</b> or <b>Aftertouch</b> value output by the midi keyboard.</p>
+    <p>The vertical axis is the <b>Velocity</b> or <b>Aftertouch</b> value sent to the midi output.</p>
+    <p>The red circles at the end of the straight line can be dragged by the mouse to change the curve.</p>
+
+  $$frmConfigBass.$groupBox1
+  $$frmConfigBass.$grpSetParams
+  *
+
+  $$frmConfigBass.$lblCurrent
+  $$frmConfigBass.$lblLitCurrent
+    <p>Shows the audio device that is currently connected.</p>
+    <p>This will be used by any midi output ports set to <b>BuiltIn Synth</b>, and by the <b>AudioFile</b> player.</p>
+    <p>It may or may not be the same as the selected device in the dropdown box.</p>
+
+  $$frmConfigBass.$cmbAudioOutput
+  $$frmConfigBass.$lblAudioOutPut
+  <p>Selected audio output device.</p>
+  <p>Use this to select a new device. You may need to click the <b>Disconnect</b> Button before selecting a new device.</p>
+  <p>When selected, the <b>Device Characteristics</b> fields should be updated.</p>
+  <p>Click the <b>Connect</b> <i>Button</i> to make the device the current connection.</p>
+
+  $$frmConfigBass.$chkAsio
+  <p>Use <span>ASIO</span> driver.</p>
+  <p>Check if you have an <span>ASIO</span> soundcard or third party driver.</p>
+
+  $$frmConfigBass.$cmdAsioPanel
+  <p>Show <span>ASIO</span> Control Panel (as supplied by the <span>ASIO</span> driver)</p>
+
+  $$frmConfigBass.$cmdApply
+  <p>Connect the audio device selected on the <b>Audio Output DropdownList</b>.</p>
+  <p>If you want to use any <b>BuiltIn Synthesizer</b> Midi ports, these will need to be connected using the <a href="Form_MidiDevs_Intro.htm">Midi Devices Configuration Window</a>.</p>
+  <p>Alternatively, you can click the <b>Connect Audio & BuiltIn MidiOut</b> <i>Button</i> to connect any <b>BuiltIn Synthesizer</b> Midi ports.</p>
+
+  $$frmConfigBass.$cmdConnectAll
+  <p>Connect the audio device selected on the <b>Audio Output DropdownList</b>.</p>
+  <p>This will also connect any <b>BuiltIn Synthesizer</b> Midi ports.</p>
+
+  $$frmConfigBass.$cmdDisconnect
+  <p>Disconnect the audio device selected in the <b>Audio Output DropdownList.</b></p>
+  <p>You may need to click this before selecting a new device.</p>
+  <p>This may be useful if you want to start another audio application that needs exclusive access to a soundcard.</p>
+  <p>This will also disconnect any <b>BuiltIn Synthesizer</b> Midi ports.</p>
+
+  $$frmConfigBass.$lblLatency
+  $$frmConfigBass.$lblLatencyLit
+  $$frmConfigBass.$lblLatencyMS
+  <p>Shows the delay (in milliseconds) between sending an audio signal, and hearing it, as estimated from the soundcard.</p>
+
+  $$frmConfigBass.$lblMinBuf
+  $$frmConfigBass.$lblMinBufLit
+  $$frmConfigBass.$lblMinBufMS
+  <p>Shows the minimum buffer size (in milliseconds) required, as reported from the soundcard.</p>
+
+  $$frmConfigBass.$nudBuffer
+  $$frmConfigBass.$nudBufferLit
+  $$frmConfigBass.$nudBufferMS
+  <p>Set the Buffer Size (in milliseconds) that will be used when the soundcard is connected.</p>
+  <p>Decreasing this should decrease the latency, but with the risk of sound distortion or drop-outs.</p>
+  <p>Values should be in the range 11 to 5000 milliseconds.</p>
+
+  $$frmConfigBass.$nudUpdatePeriod
+  $$frmConfigBass.$nudUpdatePeriodLit
+  $$frmConfigBass.$nudUpdatePeriodMS
+  <p>Set the Update Period in milliseconds.</p>
+  <p>This will be sent to the soundcard when connected.</p>
+  <p>You may need to lower this to support a smaller buffer size, but this will use more CPU.</p>
+  <p>Values should be in the range 5 to 100 milliseconds.</p>
+
+  $$frmConfigBass.$cmdCalcBuffer
+  <p>Calculate the <b>Buffer Size</b> from the <b>Update Period</b>.</p>
+  <p>This is done using a simple formula to calculate a minmum buffersize, using the device's <b>Min Buffer</b> setting.</p>
+  <p>It is not guaranteed to give a satisfactory result, but can act as a starting point for further experimentation.</p>
+
+  $$frmConfigBass.$nudLatencyMidiPlay
+  $$frmConfigBass.$lblLatencyMidiPlay
+  $$frmConfigBass.$lblLatencyMidiPlayMS
+  <p>Set a delay (in milliseconds) before updating the play cursor whilst playing a midifile.</p>
+  <p>This can be useful if the audio driver has a significant latency.</p>
+  <p>The default is zero, meaning the play cursor will be updated as soon as the bar or beat in the midifile is reached.</p>
+  <p>Any changes have immediate effect - there is no need to reconnect the device.</p>
+
+  $$frmConfigBass.$cmdLatencyMidiPlay
+  <p>Set the MidiPlay Delay to the latency from the audio device driver.</p>
+  <p>If the latency is low (less than 50 ms), it is not normally necessary to set this.</p>
+
+  $$frmConfigBass.$cmdLatencyMidiPlayZero
+  <p>Set the MidiPlay Delay to zero.</p>
+
+  $$frmConfigBass.$nudLatencyKB
+  $$frmConfigBass.$lblLatencyKB
+  $$frmConfigBass.$lblLatencyKBMS
+  <p>Set the delay before moving on to the next chord in the <b>ChordMap</b>.</p>
+  <p>This will be added to the syncopation time, which is set from the <b>PlayMap</b>.</p>
+  <p>Any changes have immediate effect - there is no need to reconnect the device.</p>
+
+  $$frmConfigBass.$cmdLatencyKB
+  <p>Set the Midi Keyboard Delay to the latency from the audio device driver.</p>
+  <p>If the latency is low (less than 50 ms), it is not normally necessary to set this.</p>
+
+  $$frmConfigBass.$cmdLatencyKBZero
+  <p>Set the Midi Keyboard Delay to zero.</p>
+
+  $$frmSC.$vScrollBar1
+  $$frmSC.$cmdAlign
+  $$frmSC.$nudOctTransposeMulti
+  $$frmSC.$lblKBDisplacement
+  $$frmSC.$nudKBDisplacement
+  $$frmSC.$chkAlignKB
+  $$frmSC.$mnuShowDebugInfo
+  $$frmSC.$mnuMonitorStats
+  $$frmSC.$mnuMonitorTimeline
+  $$frmSC.$mnuMonitor
+  $$frmSC.$grpNoteDisplay
+  $$frmSC.$grpOctTrans
+  $$frmSC.$grpCapitalizeRoots
+  $$frmSC.$grpMisc
+  $$frmSC.$grpPlayMode
+  $$frmSC.$grpSemitoneTrans
+  $$frmSC.$grpKBChan
+  $$frmSC.$optShowPCKBChar
+  $$frmSC.$mnuLoadMultiMidi
+  $$frmSC.$nudKeyVel
+  $$frmSC.$lblKeyVel
+  $$frmSC.$mnuRestart
+  $$frmSC.$txtChordBottom
+  $$frmSC.$grpSustainAction
+  $$frmSC.$cmdResetPlay
+  $$frmSC.$mnuShowFrmConsole
+  *
+
+  $$frmSC.$lstTrks
+  <p>Shows the tracks present in the MidiFile (if present).</p>
+  <p>Click to select or deselect a track.</p>
+  <p>Multiple selections can be made using the Shift or Control keys.</p>
+
+  $$frmSC.$lblRangeVis
+  $$frmSC.$lbllblRangeVis
+  <p>Shows visible pitch range.</p>
+
+  $$frmSC.$lblRangeTrk
+  $$frmSC.$lbllblRangeTrk
+  <p>Shows track pitch range.</p>
+
+  $$frmSC.$mnuRecent
+  <p>Shows up to 10 recently loaded projects.</p>
+  <p>Select a project to load it.</p>
+
+  $$frmSC.$mnuReloadProject
+  <p>Reload the current project.</p>
+  <p>Can be useful if you have added a file manually and want to reload the project.</p>
+
+  $$frmSC.$mnuSaveMidiFileAs
+  <p>Save the MidiFile at a given location with a given filename.</p>
+  <p>Displays the <a href="Form_SaveMidiFileAs_Intro.htm">Save MidiFile Dialog</a> to allow a chord track to be saved in the MidiFile.</p>
+
+  $$frmSC.$mnuExit
+  <p>Terminate the application.</p>
+  <p>The current settings will be saved, unless the option <b>Prompt to Save Settings on Exit</b> is set from the <b>Miscellaneous Configurations</b> Window.</p>
+  <p>Clicking the Close <i>Button</i> from the PlayMap will have the same effect.</p>
+
+  $$frmSC.$mnuHelpContents
+  <p>Show Help Contents Page</p>
+
+  $$frmSC.$mnuShowInitialScreen
+  <p>Show Start-Up Screen</p>
+
+  $$frmSC.$mnuAbout
+  <p>Shows information about the program.</p>
+
+  $$frmSC.$mnuMap
+  <p>If checked, the top area of the <b>PlayMap</b> will show the bar numbers, lyrics (if present), chord names, and MidiFile notes (if present).</p>
+  <p>This can be useful when playing unsynchronised audio files - see <a href="HowTo_PlayLiveAudio.htm">How To Play Along with Live Audio</a>.</p>
+
+  $$frmSC.$mnuControls
+  <p>If checked, a window containing various controls is shown.</p>
+  <p>This should normally be checked, but it may be useful to uncheck it if you want to see more of the keyboard displays at the bottom.</p> 
+
+  $$frmSC.$chkScroll
+  <p>Check to scroll the map displays whenever the current position changes. Otherwise, only scroll when the left or right margin has been reached.</p>
+
+  $$frmSC.$picBarsX
+  <p>Shows bar numbers.</p>
+  <p>Any bars that have been synchronised to an audio file will be highlighted in yellow.</p>
+
+  $$frmSC.$dgvLyrics
+  <p>Shows the lyrics of the music, if present.</p>
+
+  $$frmSC.$picChordNamesX
+  <p>Shows the chord names in the music, with the current chord highlighted in blue.</p> 
+
+  $$frmSC.$picNoteMap
+  <p>Shows the notes in the tracks selected in the window on the left.</p>
+  <p>This will only be shown if a MidiFile is present.</p>
+  <p>This can be used to help locate where you are in the music.</p>
+  <p>Selecting a melodic track is usually a good option.</p>
+
+  $$frmSC.$chkSwitchSustain
+  <p>Check to emulate the Sustain SwichKey. This will also show the current status of the Sustain SwitchKey if assigned to the keyboard or pedal.</p>
+
+  $$frmSC.$chkSwitchKBChord
+  <p>Check to emulate the KBChord SwichKey. This will also show the current status of the KBChord SwitchKey if assigned to the keyboard or pedal.</p>
+
+  $$frmSC.$chkManSyncChord
+  <p>If checked, the chord positioning functions can be used from the Midi Keyboard.</p>
+  <p>Otherwise, unsynchronised audio play can be achieved using the <b>NextBeat</b>, <b>NextBar</b>, or <b>NextChord</b> SwitchKeys.</p>
+
+  $$frmSC.$cmdNoteFont
+  <p>Configure font used to show note names or solfa names</p>
+
+  $$frmSC.$cmdChordFont
+  <p>Configure font used to show chord names</p>
+
+  $$frmSC.$cmdColours
+  <p>Configure Colours using <a href="Form_ColoursSC.htm">PlayMap Colours Configuration</a></p>
+
+  $$frmSC.$lblnudSyncopation
+  $$frmSC.$lblnudSyncopationSlash
+  $$frmSC.$lblnudSyncopationNote
+  $$frmSC.$nudSyncopationNN
+  $$frmSC.$nudSyncopationDD
+  <p>Syncopation Numerator (NN) and Denominator (DD).<p>
+  <p>Chord played NN/DD notes before the beat to allow for
+  syncopation and keyboard delay.</p>
+  <p>This value is saved in the <b>ChordFile</b>, and overrides the default value from the <b>Miscellaneous Configuration</b> Window</p> 
+
+  $$frmSC.$cmbFirstNote
+  $$frmSC.$lblcmbFirstNote
+  <p>Sets first note of chord to be displayed on chordname panel.</p>
+  <p>Applies only if <b>Show Chord Notes</b> option is set.</p>
+  <p>May be useful when playing chords manually</p>
+
+  $$frmSC.$cmbKBChanPatch
+  $$frmSC.$lblcmbKBChanPatch
+  <p>Midi Patch (Program Change) to use on the <b>Midi Keyboard Output Channel</b>.</p>
+  <p>This sets the instrument to play according to the General Midi specification.</p>
+  <p>Set to blank to leave it unchanged.</p>
+
+  $$frmSC.$optSustainReplay
+  <p>Emulate sustain by leaving all chord notes switched on until the sustain pedal or <b>SwitchKey</b> is released, or a new chord is played.</p>
+  <p>A chord is defined as any number of notes played within the time interval specified with the <b>Sustain</b> <i>Numeric Input</i> in this window.</p>
+
+  $$frmSC.$optSustainCarryOver
+  <p>Same as <b>Replay</b>, but carries over any notes that are also in the next chord.</p>
+  <p>This has the effect of making chord changes smoother for non-percussive instruments.</p>
+
+  $$frmSC.$optSustainSendCtlr
+  <p>Same as <b>Replay</b>, but uses <b>Midi Sustain On/Off</b> messages instead of <b>Midi Note On/Off</b> messages.</p>
+  <p>It is recommended to only use this if you are having problems with the normal <b>Replay</b>.</p>
+
+  $$frmSC.$optSustainNormal
+  <p>Use the normal Midi Sustain function. This will send <b>Midi Sustain On/Off</b> messages in response to the sustain pedal or <b>SwitchKey</b>.</p>
+
+  $$frmSC.$chkSustainAuto
+  <p>Use the midi patch (instrument) to choose the optimal sustain type.</p>
+
+  $$frmSC.$nudStartBar
+  $$frmSC.$lblnudStartBar
+  <p>Set bar to start playing from</p>
+
+  $$frmSC.$nudBeatHeight
+  $$frmSC.$lblnudBeatHeight
+  <p>Set beat height in pixels</p>
+
+  $$frmSC.$nudOctaves
+  $$frmSC.$lblnudOctaves
+  <p>Set number of octaves to display.</p>
+  <p>Should match the number of playable octaves on midi keyboard, but may be limited by screen width.</p>
+  <p>May need to resize <b>PlayMap</b> window after changing this.</p>
+
+  $$frmSC.$nudKBChanOut
+  $$frmSC.$lblnudKBChanOut
+  <p>Midi channel number to use for midi keyboard output (1 - 16).</p>
+  <p>If the <b>Midi Keyboard Output Port</b> is the same as the <b>Midi Streaming Port</b>, this should be an unused midi channel.</p>
+  <p>Otherwise any channel should be OK.</p>
+
+  $$frmSC.$nudOctTransposeKBPitch
+  $$frmSC.$lblnudOctTransposeKBPitch
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+  $$frmSC.$nudOctTransposeKB
+  $$frmSC.$lblnudOctTransposeKB
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+  $$frmSC.$nudOctTransposeDisplay
+  $$frmSC.$lblnudOctTransposeDisplay
+  <p>Transpose the displayed notes by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 12 semitones (1 octave).</p>
+  <p>This will only have an affect if <b>Show Tracks</b> is checked.</p>
+
+  $$frmSC.$nudTransposeKBPitch
+  $$frmSC.$lblnudTransposeKBPitch
+  <p>Transpose the midi keyboard pitch by this number of semitones.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>This does not affect where the currently played keyboard keys are displayed.</p> 
+
+  $$frmSC.$nudTransposeKB
+  $$frmSC.$lblnudTransposeKB
+  <p>Transpose the midi keyboard display by this number of semitones.</p>
+  <p>This does not affect the midi pitch that is actually sounded.</p>
+  <p>Clicking the control will increment or decrement the value by 1 semitone.</p>
+  <p>(This will change the position of the currently played keyboard key(s) at the bottom of the main window.)</p>
+
+  $$frmSC.$nudTransposeStreamPitch
+  $$frmSC.$lblnudTransposeStreamPitch
+  <p>Transpose the <b>MidiFile</b> play stream by this number of semitones.</p>
+
+  $$frmSC.$chkCapitalizeRoots
+  <p>Show root note of chord with caplital letter</p>
+
+  $$frmSC.$chkAutoCapitalize 
+  <p>Capitalize chord root note only if <span>ChordMode</span> set</p>
+
+  $$frmSC.$chkShowBeats
+  <p>Show beats as dotted lines</p>
+
+  $$frmSC.$chkShowChordNames
+  <p>Show chord names on the right-hand pane</p>
+
+  $$frmSC.$chkShowChordNotes
+  <p>Show chord notes on the right-hand pane</p>
+
+  $$frmSC.$chkShowTracks
+  <p>Show notes from tracks selected on the <b>TrackMap</b>.</p>
+  <p>May be useful for playing bass or melodies.</p>
+  <p>Advisable to select only one track.</p>
+
+  $$frmSC.$chkShowChords
+  <p>Show chords on main window.</p>
+  <p>Usually checked.</p>
+
+  $$frmSC.$chkShowChordsRel
+  <p>If checked, relative chord names (e.g. I, IIImin) will be shown in the <b>Chord Names Panel</b> of the <a href="Form_PlayMap_Intro.htm">PlayMap</a>.</p>
+  <p>Otherwise, absolute chord names will be displayed (e.g. C, Emin).</p>
+
+  $$frmSC.$chkRunChordNotes
+  <p>Choose whether to run notes across chords in Keyboard Mode.</p>
+  <p>Setting this means the note name is only displayed when the note changes.</p>
+  <p>Unsetting it means that all note names are displayed for every new chord.</p>
+  <p>It is recommended to leave this unset unless you are playing chords manually.</p>
+
+  $$frmSC.$optModeChords
+  <p>Set playmode to <span>ChordMode</span>.</p>
+  <p>Play white midi keyboard keys assigned to current chord notes.</p>
+
+  $$frmSC.$optModeKB
+  <p>Set Playmode to <b>KeyboardMode</b>.</p>
+  <p>Play normal midi keyboard pitches, subject to any active transposition.</p>
+
+  $$frmSC.$optShowSolfa
+  <p>Show solfa notation (d r m f s l t d) on main panel.</p>
+
+  $$frmSC.$optShowNoteName
+  <p>Show actual note names (C, C#, ... Bb, B) on main panel</p>
+
+  $$frmSC.$optShowNone
+  <p>Don't show any note names on main panel.</p>
+  <p>May be useful if you want to practise working out the note names from chord names mentally.</p>
+
+  $$frmSC.$trkKBChanVol
+  $$frmSC.$lbltrkKBChanVol
+  <p>Midi volume level on <b>Midi Keyboard Output Channel</b></p>
+
+  $$frmSC.$trkKBChanPan
+  $$frmSC.$lbltrkKBChanPan
+  <p>Midi pan setting on <b>Midi Keyboard Output Channel</b></p>
+
+  $$frmSC.$trkAudioVol
+  $$frmSC.$lbltrkAudioVol
+  <p>Adjust <b>AudioFile</b> volume level.</p>
+
+  $$frmSC.$trkAudioPan
+  $$frmSC.$lbltrkAudioPan
+  <p>Adjust <b>AudioFile</b> panning (balance).</p>
+
+  $$frmSC.$trkStreamVol
+  $$frmSC.$lbltrkStreamVol
+  <p>Adjust volume for the <b>Sequencer Stream Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+  $$frmSC.$trkStreamPan
+  $$frmSC.$lbltrkStreamPan
+  <p>Adjust panning (balance) for the <b>Sequencer Stream Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+  $$frmSC.$trkKBVol
+  $$frmSC.$lbltrkKBVol
+  <p>Adjust volume for the <b>Midi Keyboard Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+  $$frmSC.$trkKBPan
+  $$frmSC.$lbltrkKBPan
+  <p>Adjust panning (balance) for the <b>Midi Keyboard Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+  $$frmSC.$trkTempo
+  $$frmSC.$lbltrkTempo
+  <p>Set the tempo at which midi files are played</p>
+  <p>Midipoint is the <b>MidiFile</b> tempo</p>
+  <p>Values away from the midpoint will be slower or faster than the <b>MidiFile</b> tempo</p> 
+
+  $$frmSC.$lblTempo
+  <p>Tempo Display in Beats per Minute</p>
+
+  $$frmSC.$cmdTempoReset
+  <p>Reset tempo to current <b>MidiFile</b> (midpoint)</p>
+
+  $$frmSC.$lblKeyNext
+  $$frmSC.$lbllblKeyNext
+  <p>Shows next key after current position</p>
+
+  $$frmSC.$lblKeyThis
+  $$frmSC.$lbllblKeyThis
+  <p>Shows current key</p>
+
+  $$frmSC.$picBars
+  <p>Shows Bar Number</p>
+
+  $$frmSC.$picChords
+  <p>Shows chords, and also also shows tracks if the <b>Show Tracks</b> box is checked.</p>
+
+  $$frmSC.$picChordNames
+  <p>It shows absolute chord names (e.g. C, Amin) or relative chord names (e.g. I, VImin) depending on the setting of <b>Show Relative Chords</b> in the <b>General</b> panel of the <b>Miscellaneous Configuration</b> window.</p>
+
+  $$frmSC.$picBottom
+  <p>Shows the current notes that will be played by the midi keyboard.</p>
+
+  $$frmTrackMap.$picBars
+  $$frmTrackMap.$dgvLyrics
+  $$frmTrackMap.$cmdDeleteNotes
+  $$frmTrackMap.$cmdAddTrack
+  *
+
+  $$frmTrackMap.$optPan
+  <p>Click to set track controls to adjust midi pan (balance) value</p>
+
+  $$frmTrackMap.$optVol
+  <p>Click to set track controls to adjust midi volume value</p>
+
+  $$frmTrackMap.$cmdAllUp
+  <p>Click to increase midi pan or volume on all selected tracks</p>
+
+  $$frmTrackMap.$cmdAllDown
+  <p>Click to decrease midi pan or volume on all selected tracks</p>
+
+  $$frmTrackMap.$cmdCheckAll
+  <p>Click to Select all tracks.</p>
+  <p>Tracks can be unselected individually in the main display.</p>
+  <p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p>
+  <p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+  $$frmTrackMap.$cmdUncheckAll
+  <p>Click to Deselect all tracks.</p>
+  <p>Tracks can be selected individually in the main display.</p>
+  <p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p> 
+  <p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+  $$frmTrackMap.$cmdClear
+  <p>Clear the <b>Mute</b> and <b>Solo</b> CheckBoxes on all tracks</p>
+
+  $$frmTrackMap.$cmdTrkStyles
+  <p>Displays a window to allow groups of tracks to be selected, muted, hidden, or collapsed.</p>
+  <p>The tracks are grouped by <a href="Styles.htm">Style</a>.</p>
+
+  $$frmTrackMap.$cmdCalcKeys
+  <p>Open the <a href="Form_CalcKeys_Intro.htm">CalcKeys Window.</a></p>
+  <p>This will allow you to generate keys from the MidiFile or  ChordFile.</p>
+  <p>A dialog will be shown if there are multiple choices of where to generate the keys from.</p>
+
+  $$frmTrackMap.$cmdSaveMidi
+  <p>Save the MidiFile at a given location with a given filename.</p>
+  <p>Displays the <a href="Form_SaveMidiFileAs_Intro.htm">Save MidiFile Dialog</a> to allow various options to be set before saving the MidiFile.</p>
+
+  $$frmTrackMap.$cmdCollapseAll
+  </p>Collapse (hide) all tracks.
+
+  $$frmTrackMap.$cmdUncollapseAll
+  </p>Uncollapse (show) all tracks.
+
+  $$frmTrackMap.$chkShowLyrics
+  <p>Display Lyrics Panel, using data from the <a href="LyricsFile.htm">LyricsFile</a>.</p>
+  <p>Similar to the <b>Lyrics Panel</b> in the <a href="Form_ChordMap_Intro.htm">ChordMap.</a>, but not editable.</p>
+
+  $$frmTrackMap.$chkEvenSpacing
+  <p>If checked, each track will be about the same height, but the pitch scale will vary.</p>
+  <p>If unchecked, the pitch scale will be constant, but the track height will vary.</p> 
+  <p>Changing this will reset the scale to its default value.</p>
+
+  $$frmTrackMap.$chkShowBeats
+  <p>Check to display beat lines as well as bar lines for each track.</p>
+
+  $$frmTrackMap.$chkShowKB
+  <p>Check to show midi keyboard black notes (default colour grey) for each track.</p>
+
+  $$frmTrackMap.$chkOneOctave
+  <p>If checked, will show notes condensed into one octave. This can make it easier to recognise chords.</p>
+  <p>Otherwise, actual pitches will be shown over whatever range each track uses.</p> 
+
+  $$frmTrackMap.$lblTicks
+  $$frmTrackMap.$lblLitTicks
+  <p>Shows the midi ticks for the current bar (when clicked with the mouse).</p>
+
+    //*$$frmTrackMap.$dgvLyrics
+  $$frmTrackMap.$lblLyricsLit
+  <p>Show Lyrics, using data from the <a href="LyricsFile.htm">LyricsFile</a>.</p>
+
+  $$frmTrackMap.$Trk:chk
+  <p><i>CheckBox</i> for selecting the track.</p>
+  <p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p> 
+  <p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+  $$frmTrackMap.$Trk:chkcollapse
+  <p>Collapse the track.</p>
+
+  $$frmTrackMap.$Trk:mute
+  <p>Mute the track.</p>
+  <p>Colour changes from grey to red when muted.</p>
+  
+  $$frmTrackMap.$Trk:solo
+  <p>Solo the track.</p>
+  <p>Mute all tracks except any that are solo'ed.</p>
+  <p>Colour changes from grey to blue when solo'ed.</p>
+
+  $$frmTrackMap.$Trk:lbltrk
+  <p>Shows the Midi Track Number preceded by 'T'.</p>
+  <p>If the track contains pitchbent notes, the text will be surrounded by a border.</p>
+
+  $$frmTrackMap.$Trk:trkbar
+  <p>Adjust Midi Volume or Pan level.</p>
+  <p>Use <b>Pan</b> and <b>Vol</b> buttons on main display to select whether volume or pan level is adjusted.</p>
+  
+  $$frmTrackMap.$Trk:lblchan
+  <p>Show the midi channel number (C1 - C16).</p>
+  
+  $$frmTrackMap.$Trk:cmb
+  <p>List for displaying and selecting the General Midi Instrument.</p>
+
+  $$frmTrackMap.$Trk:txttitle
+  <p>Displays the Midi Track Description or Title.</p>
+  <p>If this is updated, it will be saved in the MidiFile.</p>
+  
+  $$frmTrackMap.$Trk:lbltrktype
+  <p>Displays the Track <a href = "Styles.htm">Style</a></p>
+
+  $$frmTrackMap.$Trk:pic  
+  <p>This is where the track notes are displayed.</p>
+  <p>Notes are displayed with the lowest 'C' at the bottom.</p> 
+  <p>Any pitches that have had midi pitchbend applied are shown in blue.</p>
+
+  $$frmChordMap.$cmdAdvanced
+  $$frmChordMap.$cmdPicQuantToFile
+  $$frmChordMap.$grpCopyOptions
+  $$frmChordMap.$cmdConfigChords  
+  $$frmChordMap.$chkOptChordsNone
+  $$frmChordMap.$chkShowQuant
+  $$frmChordMap.$picNoteMapMidi
+  $$frmChordMap.$picNoteMapFile
+  $$frmChordMap.$picNoteMapQuant
+  $$frmChordMap.$picBars
+  $$frmChordMap.$picModNames
+  $$frmChordMap.$picModNotes
+  $$frmChordMap.$picTSig
+  $$frmChordMap.$picMargins
+  $$frmChordMap.$lblQI
+  $$frmChordMap.$lblLitQI
+  $$frmChordMap.$lblTicks
+  $$frmChordMap.$lblLitTicks
+  $$frmChordMap.$cmdChordinate
+  $$frmChordMap.$lblTracksSelected
+  $$frmChordMap.$optReplace
+  $$frmChordMap.$optMerge
+  $$frmChordMap.$optCopyToEmpty
+  $$frmChordMap.$cmdTest
+  $$frmChordMap.$grpTransposeDisplay
+  $$frmChordMap.$grpTransposeNotes
+  $$frmChordMap.$DGV
+  $$frmChordMap.$dgvLyrics
+  *
+
+  //*$$frmChordMap.$picNoteMapMidi
+  $$frmChordMap.$lblMidiLit
+  <p>This shows the <b>MidiFile</b> notes from tracks selected in the <a href="Form_TrackMap_Intro.htm">TrackMap</a>.</p>
+  <p>Click with any Mouse Button to set the current cursor position.</p>
+  <p>Shift/Click with the left mouse button to set the start of the selected area.</p>
+  <p>Shift/Right click to set the end of the selected area.</p>
+  <p>The selected area will always be aligned to a bar.</p>
+
+  //*$$frmChordMap.$picNoteMapFile
+  $$frmChordMap.$lblChordsLit
+  <p>This shows the <b>ChordFile</b> notes.</p>
+  <p>Click with the Left Mouse Button to set the current cursor position.</p>
+  <p>Right click in the main body of the window to insert or delete chord notes.</p>
+  <p>Shift/Click with the left mouse button to set the start of the selected area.</p>
+  <p>Shift/Right click to set the end of the selected area.</p>
+  <p>The selected area will always be aligned to a bar.</p>
+  <p>You can use the <b>Snap To</b> <i>DropDownList</i> to control the duration of the deleted or inserted note.</p>
+
+  $$frmChordMap.$lblKeyNotesLit
+  <p>Shows and updates the midi keys, as applied to the <b>Chord Notes</b> pane. (Click to display update menu.)</p>
+  <p>See <a href="HowTo_UpdateKeys.htm">HowTo Update Keys</a>.</p> 
+
+  $$frmChordMap.$lblKeyNamesLit
+  <p>Shows and updates the midi keys, as applied to the <b>Chord Names</b> pane. (Click to display update menu.)</p>
+  <p>See <a href="HowTo_UpdateKeys.htm">HowTo Update Keys</a>.</p> 
+
+  //*$$frmChordMap.$picTSig
+  $$frmChordMap.$lblTSigLit
+  <p>Shows and updates the midi time signatures. (Click to display update menu.)</p>
+  <p>See <a href="HowTo_UpdateTSigs.htm">HowTo Update Time Signatures</a>.</p> 
+  <p>You can also change the song length from here when there is no MidiFile loaded.</p> 
+
+  //*$$frmChordMap.$picMargins
+  $$frmChordMap.$lblMarginLit
+  <p>Set scroll margins.</p>
+  <p>Click the mouse to set regions where scrolling is forced by the current cursor.</p>
+
+  //*$$frmChordMap.$DGV
+  $$frmChordMap.$lblChordNamesLit
+  <p>This allows the chordnames to be displayed and updated.</p>
+  <p>Type in a chordname (e.g. C, Am, Fdim) and press enter to update.</p>
+  <p>Chord notes will also be updated in the <b>Chord Notes</b> panel.</p>
+
+  //*$$frmChordMap.$dgvLyrics
+  $$frmChordMap.$lblLyricsLit
+  <p>Show Lyrics, using data from the <a href="LyricsFile.htm">LyricsFile</a>.</p>
+
+  $$frmChordMap.$cmdLoadMidi
+  <p>Reload the <b>MidiFile</b>, using selected tracks from the <a href="Form_TrackMap_Intro.htm">TrackMap</a>.</p>
+  <p>May be useful if you want to use a different selection of tracks to generate the chords from.</p>
+
+  //*$$frmChordMap.$cmdChordinate
+  //*<p>Check chords in the selected area, and convert to standard chords where possible.</p>
+  //*<p>This is not necessary if the chords have been generated using the <b>Generate Chords</b> <i>Button</i>, unless they have been subsequently edited manually.</p>
+  //*<p>Any non-standard chords can still be used to play-along with etc.</p>
+
+  $$frmChordMap.$cmdSaveAs
+  <p>Opens a <b>Dialog</b> to save the <b>ChordFile</b> with a filename extension chosen from a list.</p>
+
+  $$frmChordMap.$cmdSelectAll
+  <p>Set the selected area to the whole song.</p>
+  <p>This is used for generating chords, and by <b>Insert Bars, Delete Bars, Cut, Copy, Paste,</b> and <b>Paste Special.</b></p>
+
+  $$frmChordMap.$cmdSelectNone
+  <p>Set the selected area to nothing.</p>
+  <p>If <b>Generate Chords</b> is clicked, this will cover the whole song.</p>
+
+  $$frmChordMap.$cmdCut
+  <p>Copy chords, keys, and time signatures from the selected area to the Copy Buffer, and clear chords from the selected area.</p>
+  <p>Shortcut key is Ctrl/X.</p>
+
+  $$frmChordMap.$cmdCopy
+  <p>Copy chords, keys, and time signatures from the selected area to the Copy Buffer.</p>
+  <p>Shortcut key is Ctrl/C.</p>
+
+  $$frmChordMap.$cmdInsertBars
+  <p>Insert empty bars at the current cursor.</p> 
+  <p>The number of bars will be the same as the number of bars in the selected area</p>
+  <p>This will only affect the chords - not the MidiFile or Lyrics.</p>
+  <p>All chords after the selected area will be moved to the right.</p>
+  <p>Notes in the MidiFile will remain the same, but the time signatures may change.</p>
+  <p>Caution: Any chords that run off the end will be removed!</p>
+
+  $$frmChordMap.$cmdDeleteBars
+  <p>Delete bars in the selected area.</p>
+  <p>All chords after the selected area will be moved to the left.</p>
+  <p>Notes in the MidiFile will remain the same, but the time signatures may change.</p>
+
+  $$frmChordMap.$cmdPasteSpecial
+  <p>This will open up a new window with options for pasting data from the Copy Buffer.</p>
+  <p>Shortcut key is Ctrl/V.</p>
+
+  $$frmChordMap.$cmdTransposeSelected
+  <p>This will transpose all the chords in the selected area by the interval entered in the accompanying dialog.</p>
+  
+  $$frmChordMap.$cmdColours
+  <p>Open the <a href="Form_ColoursNM.htm">ChordMap Colours Configuration Window.</a></p>
+
+  $$frmChordMap.$cmdCalcKeys
+  <p>Open the <a href="Form_CalcKeys_Intro.htm">CalcKeys Window.</a></p>
+  <p>This will allow you to generate keys from the MidiFile or  ChordFile.</p>
+  <p>A dialog will be shown if there are multiple choices of where to generate the keys from.</p>
+
+  $$frmChordMap.$cmdExec
+  <p>Generate chords using the current <b>Chord Div</b> settings (Bar, Bar/2, Beat, or Auto).</p>
+  <p>This will create new chords in the <b>Chord Notes</b> panel, based on the minimum time interval selected with the <b>Chord Div</b> option.</p>
+
+  $$frmChordMap.$grpChordsDiv
+  $$frmChordMap.$optChordsBar
+  $$frmChordMap.$optChordsHalfBar
+  $$frmChordMap.$optChordsBeat
+  $$frmChordMap.$optChordsAuto
+  <p>Set the <b>Chord Div</b> value. This is used when generating chords to determine the time value to generate chords into.</p>
+  <p>A setting of <b>Auto</b> will analyse the chords and decide on an optimum value dynamically.</p>
+
+  $$frmChordMap.$cmdPlayMidiThis
+  <p>Play the <b>MidiFile</b> using the tracks in the <b>ChordMap</b></p>
+
+  $$frmChordMap.$txtCHPDesc
+  $$frmChordMap.$lblCHPDescLit
+  <p>Shows the <b>ChordFile</b> Description.</p>
+  <p>This can be updated here, and will be saved with the <b>ChordFile</b>.</p>
+  
+  $$frmChordMap.$chkOneOct
+  <p>If checked, displays Midi Window reduced to one octave. Else displays actual note pitches.</p>
+
+  $$frmChordMap.$cmbSnapTo
+  $$frmChordMap.$lblSnapTo
+  <p>Set <b>Snap To</b> interval. This can be Notes, Selected, Bar, HalfBar, or Beat).</p>
+  <p>Controls what to snap to when inserting or deleting pitches in the <b>Chords Panel</b>.</p>
+  
+  $$frmChordMap.$chkShowBeats
+  <p>Show beat lines as well as bar lines.</p>
+
+  $$frmChordMap.$chkShowKB
+  <p>Show black notes of the midi keyboard (default colour grey) in <b>Midi Panel</b> and <b>Chords Panel</b>.</p>
+
+  $$frmChordMap.$lblTransposeChordNames
+  $$frmChordMap.$nudTransposeChordNames
+  <p>Transpose the <b>Chord Names</b> pane, but not the <b>Chord Notes</b> pane, by this number of semitones.</p>
+  <p>This will allow you to type in chord names in the <b>Chord Names</b> pane that are a transposition of the notes in the <b>ChordNotes</b> pane.</p>
+  <p>When the chordfile is saved, it will use the notes in the <b>Chord Notes</b> pane, and adjust the chord names if necessary.</p>
+
+  $$frmChordMap.$lblTransposeChordNotes
+  $$frmChordMap.$cmdTransposeChordNotesPos
+  $$frmChordMap.$cmdTransposeChordNotesNeg
+  <p>Transpose the <b>Chord Notes</b> pane, but not the <b>Chord Names</b> pane, up or down.</p>
+  <p>This will allow you to change the notes in the <b>Chord Notes</b> pane, whilst keeping the names of the chords in the <b>Chord Names</b> pane the same.</p>
+  <p>When the chordfile is saved, it will use the notes in the <b>Chord Notes</b> pane, and adjust the chord names if necessary.</p>
+
+  $$frmChordMap.$lblTransposeChordNotesAndKeys
+  $$frmChordMap.$cmdTransposeChordNotesAndKeysPos
+  $$frmChordMap.$cmdTransposeChordNotesAndKeysNeg
+  <p>Transpose the <b>Chord Notes</b> pane, but not the <b>Chord Names</b> pane, up or down.</p>
+  <p>This will allow you to change the notes and keys in the <b>Chord Notes</b> pane, whilst keeping the names of the chords in the <b>Chord Names</b> pane the same.</p>
+  <p>When the chordfile is saved, it will use the notes and keys in the <b>Chord Notes</b> pane, and adjust the chord names if necessary.</p>
+
+  $$frmChordMap.$lblTransposeKeys
+  $$frmChordMap.$cmdTransposeKeysPos
+  $$frmChordMap.$cmdTransposeKeysNeg
+  <p>Transpose all keys in the ChordMap up or down.</p>
+  <p>The key chosen will have the minimum number of sharps or flats in the key signature.</p>
+
+  $$frmColoursNM.$trackBar4
+  $$frmColoursNM.$pictureBox5
+  $$frmColoursNM.$pictureBox6
+  $$frmColoursNM.$trackBar3
+  $$frmColoursNM.$pictureBox7
+  $$frmColoursNM.$pictureBox8
+  $$frmColoursNM.$trackBar1
+  $$frmColoursNM.$pictureBox1
+  $$frmColoursNM.$pictureBox2
+  $$frmColoursNM.$picChordNote
+  $$frmColoursNM.$label2
+  $$frmColoursNM.$label1
+  *
+
+  $$frmColoursNM.$cmdBackground 
+  <p>The main background colour.</p>
+  <p>This may be combined with the colour of the <b>Selected Area</b>.</p>
+
+  $$frmColoursNM.$cmdPlayCsr
+  <p>The colour of the vertical line representing the current play cursor.</p>
+
+  $$frmColoursNM.$cmdSelectedArea
+  <p>The colour of the selected area.</p>
+  <p>This may be combined with the <b>Background Colour</b>.</p>
+
+  $$frmColoursNM.$cmdKB
+  <p>The colour of the black keys on the midi keynoard.</p>
+
+  $$frmColoursNM.$cmdCommon
+  <p>Chord is of rank 1 or 2 according to the chords database (<b>Chords.ini</b> file).</p>
+
+  $$frmColoursNM.$cmdSetDefaults
+  <p>Reset colours back to values set during program installation.</p>
+
+  $$frmColoursSC.$label6
+  $$frmColoursSC.$label5
+  $$frmColoursSC.$groupBox1
+  $$frmColoursSC.$label3
+  $$frmColoursSC.$label4
+  $$frmColoursSC.$trackBar8
+  $$frmColoursSC.$pictureBox15
+  $$frmColoursSC.$pictureBox16
+  $$frmColoursSC.$trackBar5
+  $$frmColoursSC.$pictureBox9
+  $$frmColoursSC.$pictureBox10
+  $$frmColoursSC.$trackBar3
+  $$frmColoursSC.$pictureBox5
+  $$frmColoursSC.$pictureBox6
+  $$frmColoursSC.$trackBar10
+  $$frmColoursSC.$pictureBox19
+  $$frmColoursSC.$pictureBox20
+  $$frmColoursSC.$trackBar9
+  $$frmColoursSC.$pictureBox17
+  $$frmColoursSC.$pictureBox18
+  $$frmColoursSC.$trackBar4
+  $$frmColoursSC.$pictureBox7
+  $$frmColoursSC.$pictureBox8
+  $$frmColoursSC.$trackBar2
+  $$frmColoursSC.$pictureBox3
+  $$frmColoursSC.$pictureBox4
+  $$frmColoursSC.$trackBar1
+  $$frmColoursSC.$pictureBox1
+  $$frmColoursSC.$pictureBox2
+  $$frmColoursSC.$trkChordNote
+  $$frmColoursSC.$picChordNote
+  $$frmColoursSC.$picChordNoteTrans
+  $$frmColoursSC.$label2
+  $$frmColoursSC.$label1
+  *
+
+  $$frmColoursSC.$cmdMainBackground 
+  <p>The main background colour.</p>
+
+  $$frmColoursSC.$cmdBlackKey
+  <p>Colour representing a black key on the midi keyboard.</p>
+  
+  $$frmColoursSC.$cmdChordNote
+  <p>Fill colour for a note that is part of the chord.</p>
+
+  $$frmColoursSC.$cmdRoot
+  <p>Fill colour for the root note of the chord.</p>
+  <p>This is only used if <b>Capitalize Root Notes</b> option is set.</p>
+
+  $$frmColoursSC.$cmdDominant
+  <p>Fill colour for the dominant note of the chord.</p>
+  <p>This is only used if <b>Capitalize Root Notes</b> option is set.</p>
+
+  $$frmColoursSC.$cmdNote
+  <p>Note text (Solfa or Pitch) colour.</p> 
+
+  $$frmColoursSC.$cmdTrack
+  <p>Fill colour for a track note (as opposed to chord note).</p>
+
+  $$frmColoursSC.$cmdBottomBackground
+  <p>Background colour of bottom row (scale notes).</p>
+
+  $$frmColoursSC.$cmdPlayed
+  <p>Colour of filled circle showing currently played note or notes.</p>
+
+  $$frmColoursSC.$cmdCurrentBackground
+  <p>Background colour of current note row.</p>
+
+  $$frmColoursSC.$cmdScale
+  <p>Scale text colour (bottom row).</p>
+
+  $$frmColoursSC.$chkBottom
+  <p>Show current note or notes on bottom row.</p> 
+
+  $$frmColoursSC.$cmdSetDefaults
+  <p>Reset colours back to values set during program installation.</p>
+
+  $$frmAutoSync.$lblDelimTime
+  $$frmAutoSync.$lblDelimBytes
+  $$frmAutoSync.$txtTitle
+  $$frmAutoSync.$clbEla
+  $$frmAutoSync.$mnuInterpolatePlay
+  $$frmAutoSync.$mnuInterpolateRecord
+  $$frmAutoSync.$mnuInsertHoleNew
+  $$frmAutoSync.$mnuRemoveCloseHoleNew
+  *
+
+  $$frmAutoSync.$cmdShow
+  <p>Updates the display with the current data.</p>
+
+  $$frmAutoSync.$cmdMerge
+  <p>Merge the <b>Record Track</b> into the <b>Play Track</b></p>
+  <p>If there is any inconsistency in the merged data, a message will be shown.</p>
+
+  $$frmAutoSync.$cmdMoveActive
+  <p>Clear the <b>Play Track</b> and move the <b>Record Track</b> to the <b>Play Track</b></p>
+
+  $$frmAutoSync.$cmdResetActive
+  <p>Clear the <b>Record Track</b>.</p>
+
+  $$frmAutoSync.$cmdReset
+  <p>Clear the <b>Record Track</b> and the <b>Play Track</b>.</p>
+
+  $$frmAutoSync.$cmdOffsetTimes
+  <p>Display a window to enter the time (in milliseconds) to change each beat by.</p>
+  <p>This will cause the play cursor to be displayed later if the time is positive, or earlier if negative.</p>
+  <p>This is usually only required if you are playing the audio file with a soundcard that has a latency that is significantly different from the one that was used when the synchronisation file (*.chtc) was created.</p>
+
+  $$frmAutoSync.$cmdOffsetBeats
+  <p>Display a window to enter the number of beats to move the synchronisation points by.</p>
+  <p>This can be a postive or a negative number.</p>
+
+  $$frmAutoSync.$cmdSave
+  <p>Save the <b>Play Track</b> to the synchronisation file.</p>
+
+  $$frmAutoSync.$trkPos
+  $$frmAutoSync.$lbltrkPos
+  <p>Set the start position in the <b>AudioFile</b>, or display current position.</p>
+
+  $$frmAutoSync.$chkStartRecPos
+  <p>Check to use the <b>Position</b> <i>Slider</i> setting as the start position.</p>
+
+  $$frmAutoSync.$lblPosTime
+  <p>Shows the current position in the <b>AudioFile</b> in minutes and seconds.</p>
+
+  $$frmAutoSync.$lblLenTime
+  <p>Shows the length of the <b>AudioFile</b> in minutes and seconds.</p>
+
+  $$frmAutoSync.$lblPosBytes
+  <p>Shows the current position in the <b>AudioFile</b> in bytes.</p>
+
+  $$frmAutoSync.$lblLenBytes
+  <p>Shows the length of the <b>AudioFile</b> in bytes.</p>
+
+  $$frmAutoSync.$mnuSave
+  <p>Save audio synchronisation data in the <span>Project</span> directory with extension .chtc</p>
+  
+  $$frmAutoSync.$mnuSelRemoveRecord
+  <p>Clear the <b>Record Track</b> from the synchronisation data.</p>
+
+  $$frmAutoSync.$mnuSelRemovePlay
+  <p>Clear the <b>Play Track</b> from the synchronisation data.</p>
+  
+  $$frmAutoSync.$mnuSelCopy
+  <p>Clear the <b>Play Track</b> and copy all data in the <b>Record Track</b> to the <b>Play Track</b></p>.
+
+  //*$$frmAutoSync.$mnuInterpolatePlay
+  //*<p>Calculate beats in the <b>Play Track</b> to be evenly distributed over the selected range.</p>
+  //*<p>This will smooth out any unintended irregularities in the data.</p>
+
+  //*$$frmAutoSync.$mnuInterpolateRecord
+  //*<p>Calculate beats in the <b>Record Track</b> to be evenly distributed over the selected range.</p>
+  //*<p>This will smooth out any unintended irregularities in the data.</p>
+
+  //*$$frmAutoSync.$mnuInsertHoleNew
+  //*<p>Move data after the selected area in the <b>Play Track</b> forwards by the selected area size, and clear the selected area.</p>
+  
+  //*$$frmAutoSync.$mnuRemoveCloseHoleNew
+  //*<p>Remove data in the selected area in the <b>Play Track</b>, and move any data after the selected area backwards by the selected area size.</p>
+
+
+$$frmCalcKeys.$lvMod
+$$frmCalcKeys.$grpProfile
+$$frmCalcKeys.$optProfileDefault
+$$frmCalcKeys.$optProfileJazz
+$$frmCalcKeys.$optProfileSpecial
+$$frmCalcKeys.$grpAlgorithm
+$$frmCalcKeys.$grpInertia
+$$frmCalcKeys.$grpMinorKeyType
+$$frmCalcKeys.$chkUseHighestMinorKeyType
+$$frmCalcKeys.$lblTotSpecial
+$$frmCalcKeys.$lblTotMelDown
+$$frmCalcKeys.$lblTotMelUp
+$$frmCalcKeys.$lblTotHarmonic
+$$frmCalcKeys.$lblMinorSpecial
+$$frmCalcKeys.$lblMinorMelDown
+$$frmCalcKeys.$lblMinorMelUp
+$$frmCalcKeys.$lblMinorHarmonic
+$$frmCalcKeys.$lblTracksSelected
+*
+
+$$frmCalcKeys.$optAlgFlat
+<p>Give equal weight to all selected notes present in the <b>MidiFile</b> (excluding percussion and pitchbent notes.)</p>
+
+$$frmCalcKeys.$optAlgWeighted
+<p>Weight the notes according to the number of tracks that contain the note.</p> 
+
+$$frmCalcKeys.$optPenalty0
+<p>No <b>Inertia</b> - set the key for a bar independently of other bars.</p>
+
+$$frmCalcKeys.$optPenalty50
+$$frmCalcKeys.$optPenalty70
+$$frmCalcKeys.$optPenalty90
+$$frmCalcKeys.$optPenalty110
+$$frmCalcKeys.$optPenalty30
+<p>Set <b>Inertia</b> - the greater the <b>Inertia</b>, the less often the key will change.</p>
+
+
+$$frmCalcKeys.$cmdApply
+<p>Apply the calculated keys to the <b>MidiFile</b>, using the selected <b>Inertia</b>.</p>
+
+$$frmCalcKeys.$cmdOK
+<p>Apply the <b>CalcKeys</b> algorithm to the <b>MidiFile</b> and close this window.</p>
+
+$$frmCalcKeys.$chkLoadTxt
+<p>Load keys from the <b>ChordFile</b>. Used to compare calculated keys with.</p>
+
+$$frmCalcKeys.$chkChordFile
+<p>Check to calculate keys from the <b>ChordFile</b> chords.</p>
+<p>This is only useful if you have don't have a midifile. It is likely to be less accurate than using a midifile, but can be useful if you have created a <b>ChordFile</b> manually.</p>
+
+$$frmCalcKeys.$cmdCalculate
+<p>Calculate the keys for all <b>Inertias</b> and display the results in the main panel.</p>
+
+$$frmFX.$grpFreeverb
+*
+
+$$frmFX.$chkEnableFreeverb
+<p>Check to activate FX on a midi port using the <b>BuiltIn Synth</b>.</p>
+
+$$frmFX.$cmdResetFreeverb
+<p>Click to set all values back to their default values.</p>
+
+$$frmFX.$trkDryMix
+$$frmFX.$lblDryMix
+<p>Set the gain of the original sound in the final mix.</p>
+
+$$frmFX.$trkWetMix
+$$frmFX.$lblWetMix
+<p>Set the gain of sound with FX effects applied in the final mix.</p>
+
+$$frmFX.$trkRoomSize
+$$frmFX.$lblRoomSize
+<p>Set size of the reverberation chamber.</p>
+
+$$frmFX.$trkDamp
+$$frmFX.$lblDamp
+<p>Set degree of damping.</p>
+
+$$frmFX.$trkWidth
+$$frmFX.$lblWidth
+<p>Set the stereo width (how much the reverb part from left and right channels mix.)</p>
+
+$$frmMidiDevs.$lblSyncIn
+$$frmMidiDevs.$cmbInSync
+$$frmMidiDevs.$lblSyncMsg
+$$frmMidiDevs.$grpMidiIn
+$$frmMidiDevs.$grpMidiOut
+$$frmMidiDevs.$grpTuningOutKB
+$$frmMidiDevs.$grpTuningOutStream
+$$frmMidiDevs.$grpOutKB
+$$frmMidiDevs.$grpOutStream
+*
+
+$$frmMidiDevs.$cmbInKB
+$$frmMidiDevs.$lblcmbInKB
+<p>Select Midi Keyboard Input device.</p>
+<p>Click <b>Connect</b> to action any change.</p>
+
+$$frmMidiDevs.$lblCurrentAudio
+$$frmMidiDevs.$lblLitCurrent
+<p>Shows the current audio connection (if any).</p>
+
+$$frmMidiDevs.$cmbOutStream
+$$frmMidiDevs.$lblcmbOutStream
+<p>Select Midi Output device for streaming midi (<b>MidiFile</b> playing).</p>
+<p>Either a real midi device (software or hardware), or the synthesizer supplied by this application (<b>BuiltIn Synth</b>).</p>
+<p>Click <b>Connect</b> to action any change.</p>
+
+$$frmMidiDevs.$cmbOutKB
+$$frmMidiDevs.$lblcmbOutKB
+<p>Select Midi Output device for midi keyboard.</p>
+<p>Either a real midi device (software or hardware), 
+or the synthesizer supplied by this application (<b>BuiltIn Synth</b>).</p>
+<p>Click <b>Connect</b> to action any change.</p>
+
+$$frmMidiDevs.$cmbFontStream
+$$frmMidiDevs.$lblcmbFontStream
+<p>Select soundFont for <b>Sequencer Stream Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+<p>See <a href="Configure_MidiDevices.htm">Midi Devices Configuration</a> for information about downloading and installing soundfonts.</p>
+
+$$frmMidiDevs.$cmbFontKB
+$$frmMidiDevs.$lblcmbFontKB
+<p>Select soundFont for <b>Midi Keyboard Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+<p>See <a href="Configure_MidiDevices.htm">Midi Devices Configuration</a> for information about downloading and installing soundfonts.</p>
+
+
+$$frmMidiDevs.$trkMidiStreamFineTuning
+$$frmMidiDevs.$lbltrkMidiStreamFineTuning
+$$frmMidiDevs.$lblMidiStreamFineTuning
+<p>Adjust tuning for the <b>Sequencer Stream Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+<p>Tuning interval is plus or minus one semitone.</p>
+<p>Supported by <b>BuiltIn Synth</b>, and any external synth that responds to Midi RPN 1 (Fine Tuning).</p>
+
+$$frmMidiDevs.$trkMidiOutKBFineTuning
+$$frmMidiDevs.$lbltrkMidiOutKBFineTuning
+$$frmMidiDevs.$lblMidiOutKBFineTuning
+<p>Adjust tuning for the <b>Midi Keyboard Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+<p>Tuning interval is plus or minus one semitone.</p>
+<p>Supported by BuiltIn Synth, and any external synth that responds to Midi RPN 1 (Fine Tuning).</p>
+
+$$frmMidiDevs.$cmdFXStream
+<p>Open the <a href="Form_FX.htm">FX (Effects) Window</a> for the <b>Midi Sequencer</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+$$frmMidiDevs.$cmdFXKB
+<p>Open the <a href="Form_FX.htm">FX (Effects) Window</a> for the <b>Midi Keyboard Output</b> using the <b>BuiltIn Synthesizer</b>.</p>
+
+$$frmMidiDevs.$cmdExecInKB
+<p>Connect or disconnect the Midi keyboard input port.</p>
+
+$$frmMidiDevs.$cmdExecOutKB
+<p>Connect or disconnect the Midi keyboard output port.</p>
+
+$$frmMidiDevs.$cmdExecOutStream
+<p>Connect or disconnect the Midi stream output port. This is used for playing MidiFiles.</p>
+
+$$frmStart.$grpMisc
+$$frmStart.$grpTimers
+$$frmStart.$grpChordPlay
+$$frmStart.$grpMidi
+$$frmStart.$grpMidiPlayAdvanced
+$$frmStart.$grpChordSetMinorKey
+$$frmStart.$grpMidiPos
+$$frmStart.$chkIgnoreNullChords
+$$frmStart.$nudAutoSyncChordDelay
+$$frmStart.$lblAutoSyncChordDelay
+$$frmStart.$chkDelaySustain
+$$frmStart.$chkFilterMidiBank
+$$frmStart.$chkKBChordMatch
+$$frmStart.$chkAutoRecChan
+$$frmStart.$optMinorHarmonic
+$$frmStart.$optMinorMelodicUp
+$$frmStart.$optMinorMelodicDown
+$$frmStart.$optMinorSpecial
+$$frmStart.$chkMidiSPP
+$$frmStart.$chkMidiStartStop
+$$frmStart.$lblReload
+$$frmStart.$lblAutoSyncChordDelayMS
+$$frmStart.$lblnudSyncopationNote
+$$frmStart.$lblnudTimerSustainMS
+$$frmStart.$lblnudSyncopationSlash
+$$frmStart.$chkPCKB
+$$frmStart.$nudMinChordSize
+$$frmStart.$lblnudMinChordSize
+$$frmStart.$nudMaxChordSize
+$$frmStart.$lblnudMaxChordSize
+$$frmStart.$nudTPDI
+$$frmStart.$lblnudTPDI
+$$frmStart.$grpOther
+$$frmStart.$lbllitSyncopation
+*
+
+$$frmStart.$grpFiles
+$$frmStart.$lblAudLoad
+$$frmStart.$lblLyrLoad
+$$frmStart.$lblChtLoad
+$$frmStart.$lblMidLoad
+$$frmStart.$lblChpLoad
+$$frmStart.$lblAudLoadLit
+$$frmStart.$lblLyrLoadLit
+$$frmStart.$lblChtLoadLit
+$$frmStart.$lblMidLoadLit
+$$frmStart.$lblChpLoadLit
+<p>This shows the file extension of all <span>Project</span> files, if that file is active. Otherwise, shows blank.</p>
+
+$$frmStart.$chkLoadMM
+<p>If checked, the <a href="Form_TrackMap_Intro.htm">TrackMap</a> will be displayed after loading a <span>Project</span> containing a <b>MidiFile</b>.</p>
+
+$$frmStart.$chkAllNotesOffAfterSustain
+<p>This is normally unchecked. However, if you find some notes are not switched off after releasing the sustain pedal or <b>SwitchKey</b>, you can set this to send a midi AllNotesOff message to the synthesizer.</p>
+
+$$frmStart.$chkNoAudioSync
+<p>Check to disable automatic audio synchronisation.</p>
+<p>This will allow you to use manual chord or bar/beat synchronisation on a synchronised audio (.mp3) file.</p> 
+
+$$frmStart.$nudUndoRedoCapacity
+$$frmStart.$lblUndoRedoCapacity
+<p>Sets the maximum number of events allowed in the Undo or Redo stacks.</p>
+<p>When this limit is reached, the oldest event will be removed.</p>
+<p>This change will be effected when:</p>
+<p>ChordMap Undo/Redo: ChordMap is reloaded.</p>
+<p>AudioSync Undo/Redo: Project is reloaded.</p>
+<p>Lyrics Undo/Redo: Lyrics window is reloaded.</p>
+ 
+//*$$frmStart.$nudMinChordSize
+//*$$frmStart.$lblnudMinChordSize
+//*<p>The minimum number of notes that count as being a chord.</p>
+//*<p>Any "chord" that is generated or loaded with less than this number of notes will be set as a null chord.</p>
+//*<p>The normal value is 2, but it can be set any value between 1 and 3.</p>
+
+//*$$frmStart.$nudMaxChordSize
+//*$$frmStart.$lblnudMaxChordSize
+//*<p>The maximum number of notes that count as being a chord.</p>
+//*<p>Any "chord" that is generated or loaded with more than this number of notes will be set as a null chord.</p>
+//*<p>The normal value is 4, but it can be set any value between 3 and 7.</p>
+
+$$frmStart.$nudDIdd
+$$frmStart.$lblnudDIdd
+<p>This is the resolution used by the display windows (<b>TrackMap</b>, <b>PlayMap</b>, and <b>ChordMap</b>).</p>
+<p>It is expressed as the number of intervals in a whole note. The recommended value is 32.</p>
+<p>Decreasing it will use less computer memory and CPU.</p>
+<p>A increase will make the midi files displays more accurate.</p>
+<p>Change effected on Project reload.</p>  
+
+//*($$frmStart.$nudTPDI
+//*$$frmStart.$lblnudTPDI
+//*<p>This is the resolution used by the display windows <b>TrackMap</b>, <b>PlayMap</b>, and <b>ChordMap</b>).</p>
+//*<p>If it is set to zero, the <b>ShowInt/Note</b> value is used instead.</p>
+//*<p>It is expressed as the number of midi ticks in a display interval.</p>
+//*<p>Increasing it will use less computer memory and CPU.</p>
+//*<p>A decrease will make the midi files displays more accurate.</p>
+
+$$frmStart.$nudPlayResolution
+$$frmStart.$lblnudPlayResolution
+$$frmStart.$lblnudPlayResolutionMS
+<p>This is the resolution used to play Midi events from a midifile. It is expressed as a number of milliseconds.</p>
+<p>Increasing it will use less computer memory and CPU. A decrease will make the midi playing more accurate.</p>
+<p>The recommended value is 5.</p>
+<p>A Project reload is required to effect any change in this value.</p>
+
+$$frmStart.$nudDefaultSongLength
+$$frmStart.$lblnudDefaultSongLength
+<p>Used to set the default song length in whole notes when there is no MidiFile.</p>
+<p>The song length can be changed later by clicking on the <b>TSig</b> Window in the <b>ChordMap</b>.</p> 
+
+$$frmStart.$nudTimerSustain
+$$frmStart.$lblnudTimerSustain
+<p>The time (in milliseconds) to wait for notes to be considered to be part of the same chord.</p>
+<p>This is used by the emulated sustain functions - see <a href="Sustain.htm">Sustain Types</a>.</p>
+
+$$frmStart.$lblnudSyncopation
+<p>The time interval before the actual chord time when the chord becomes active during playing.</p>
+<p>This is to allow the chord to be played just before a beat or bar, and also allows for any keyboard latencies.</p>
+<p>The time is expressed as a fraction of a midi note. The default value is 1/16. Heavily syncopated music may require more syncopation (e.g. 1/8).</p>
+<p>This value is saved in the application ini file (ChordCadenza.ini). It is the default used if not overriden by the <b>ChordFile</b>.</p>
+
+$$frmStart.$nudSyncopationNN
+<p>The numerator of the syncopaton value expressed as a fraction of a midi note.</p>
+
+$$frmStart.$nudSyncopationDD
+<p>The denominator of the syncopaton value expressed as a fraction of a midi note.</p>
+
+$$frmStart.$chkTTActive
+<p>If checked, <b>ToolTips</b> will be shown over window components.</p>
+<p>Note: This will take effect immediately, except for menu items that require the application to be restarted.</p>
+
+//*$$frmStart.$optLiveNextBeat
+//*<p>Set <b>Sync <b>SwitchKey</b></b> to move to the next beat when pressed during live audio play.</p>
+//*<p>See <a href="HowTo_PlayLiveAudio.htm">How To Play Live Audio</a></p>
+
+//*$$frmStart.$optLiveNextChord
+//*<p>Set <b>Sync <b>SwitchKey</b></b> to move to the next chord when pressed during live audio play.</p>
+//*<p>See <a href="HowTo_PlayLiveAudio.htm">How To Play Live Audio</a></p>
+
+$$frmStart.$nudNotesPerChordDisplay
+$$frmStart.$lblnudNotesPerChordDisplay
+<p>Set the number of notes to display for each chord in ChordMode.</p>
+<p>Only active if adjacent <b><i>CheckBox</i></b> is checked.</p>
+
+$$frmStart.$chkConstantChordDisplay
+<p>Activate the <b>Display Notes per Chord</b> number.</p>
+<p><b>PlayMap</b> will show this number of notes for each chord in ChordMode.</p>
+<p>The chord display will be padded out or truncated to fit.</p>
+
+$$frmStart.$nudNotesPerChordPlay
+$$frmStart.$lblnudNotesPerChordPlay
+<p>Set the number of notes to play for each chord.</p>
+<p>Only active if adjacent <b><i>CheckBox</i></b> is checked.</p>
+
+$$frmStart.$chkConstantChordPlay
+<p>Activate the <b>Play Notes per Chord</b> number.</p>
+<p><span>ChordMode</span> and <span>KBChord</span> will play this number of notes when a single midi keyboard key is pressed.</p>
+<p>This is in contrast to the normal play method for <span>ChordMode</span> or <span>KBChord</span> that plays only one note for each midi keyboard key press.</p>
+
+$$frmStart.$cmdResetPlay
+<p>Stop midiplay.</p>
+<p>Should only be used if normal midiplay stop is not working.</p>
+
+$$frmStart.$cmdRenameIni
+<p>This will rename all Ini files to Ini.BU, overwriting any existing Ini.BU files.</p>
+<p>It will then restart the application, using default values.</p>
+<p>You should use this if you want to reset all global parameters to their default values.</p>
+
+$$frmStart.$cmdRestoreIni
+<p>This will rename all Ini.BU files to Ini, overwriting any existing Ini files.</p>
+<p>It will then restart the application, using the new Ini files</p>
+<p>You should use this if you want to restore all global parameters from a copy saved after the last time they were set to their default values.</p>
+
+$$frmStart.$chkExitPrompt
+<p>Check to show a window with options to save or not save the .ini configuration files. Otherwise, the ini files are always saved.</p>
+
+$$frmStart.$cmdChordCfg
+<p>Open a window to configure the chord generation parameters.</p>
+<p>This is an advanced feature that you normally do not need to use, but you are welcome to try changing some of these parameters to see what effect it has!</p>
+<p>Any changes can be saved to the ChotdCfg.ini file, and you can always reset back to the default values (factory settings).</p>
+
+$$frmStart.$cmdChordRanks
+<p>Configure chord ranks. These are weightings that usually favour simple chords over complex chords in the chord generation process.</p>
+
+$$frmSummary.$cmdShowCtlrTots
+$$frmSummary.$cmdShowCtlrDetails
+$$frmSummary.$clbTrk
+$$frmSummary.$cmdShowNoteMap
+$$frmSummary.$cmdShowStrm
+*
+
+$$frmSummary.$cmdChordList
+<p>Click to show a list of all the chords defined in the <b>Chords.ini</b> file.</p>
+<p>Shows</p>
+<ul>
+  <li><b>Chord Name</b></li>
+  <li><b>Rank</b> (the lower the rank, the more common the chord)</li> 
+  <li><b>Notes</b> (for root note 'C')</li>
+</ul>
+
+$$frmSummary.$cmdShowTSigs
+<p>Click to show time signatures.</p>
+
+$$frmSummary.$cmdShowTempos
+<p>Click to show the tempos.</p>
+<p>Shows <b>Tempo</b> in Beats per Minute, <b>MidiTempo</b> in Microseconds per Midi Quarternote, and <b>MSecsPerQI</b> as Milliseconds per Quantize (Display) Interval</p>
+
+$$frmSummary.$cmdShowKeys
+<p>Click to show the keys.</p>
+
+$$frmSummary.$cmdShowAttributes
+<p>Click to show some global values.</p>
+
+$$frmSummary.$lblTk
+<p>Track Number (1 - 32).</p>
+
+$$frmSummary.$lblCh
+<p>Midi Channel Number (1-16).</p>
+
+$$frmSummary.$lblCount
+<p>Number of Midi On events.</p>
+
+$$frmSummary.$lblMinChar
+<p>Minimum pitch (Notename and Octave).</p>
+
+$$frmSummary.$lblMaxChar
+<p>Maximum pitch (Notename and Octave).</p>
+
+$$frmSummary.$lblMinNum
+<p>Minimum pitch (midi pitch value)</p>
+
+$$frmSummary.$lblMaxNum
+<p>Maximum pitch (midi pitch value)</p>
+
+$$frmSummary.$lblRng
+<p>Pitch Range (maximum midi pitch - minimum midi pitch).</p>
+
+$$frmSummary.$lblStyle
+<p>The Track <a href="Styles.htm">Style</a>.</p>
+
+$$frmSummary.$lblPoly
+<p>Degree of polyphony (average simultaneous notes played.)</p>
+
+$$frmSummary.$lblPatch
+<p>General Midi Instrument</p>
+
+$$frmSummary.$lblTitle
+<p>Track Description</p>
+
+$$frmSwitch.$grpSwitchKeys
+$$frmSwitch.$lblManChords
+$$frmSwitch.$cmbManChords
+$$frmSwitch.$lblAutoChords
+$$frmSwitch.$cmbAutoChords
+*
+
+$$frmSwitch.$cmbKBChord
+$$frmSwitch.$lblcmbKBChord
+<p>Play the nearest chord note to the played note whilst <b>SwitchKey</b> is down.</p>
+<p>If nearest note is already sounding, play the next chord note up or down.</p>
+<p>Allows chords to be played more easily.</p>
+
+$$frmSwitch.$cmbSustain
+$$frmSwitch.$lblcmbSustain
+<p>Activate <b>Sustain</b> whilst <b>SwitchKey</b> is down.</p>
+<p>This is the normal action for the sustain pedal.</p>
+<p><b>Sustain</b> can be configured to be the normal <b>Midi Sustain</b>, or one of the emulated <a href="Sustain.htm">Sustain Types</a>.</p>
+
+$$frmSwitch.$cmbAutoSync
+$$frmSwitch.$lblcmbAutoSync
+<p>The <b>Sync</b> <b>SwitchKey</b> - used for synchronizing the chords to an audio source.</p>
+
+$$frmSwitch.$cmbPrevBeat
+$$frmSwitch.$lblcmbPrevBeat
+<p>Move backwards to previous beat.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmSwitch.$cmbNextBeat
+$$frmSwitch.$lblcmbNextBeat
+<p>Move forward to next beat.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmSwitch.$cmbPrevBar
+$$frmSwitch.$lblcmbPrevBar
+<p>Move backwards to previous bar.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmSwitch.$cmbNextBar
+$$frmSwitch.$lblcmbNextBar
+<p>Move forward to next bar.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmSwitch.$cmbPrevChord
+$$frmSwitch.$lblcmbPrevChord
+<p>Move backwards to previous chord.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmSwitch.$cmbNextChord
+$$frmSwitch.$lblcmbNextChord
+<p>Move forward to next chord.</p>
+<p>This is used whilst playing to an unsynchronised audio source.</p>
+
+$$frmNewProject.$lblCopyMidiFile
+$$frmNewProject.$lblCopyMidiFileMsg
+$$frmNewProject.$txtMidiFilePath
+<p>Location to copy a <b>MidiFile</b> from.</p>
+<p>The file will be copied to the <span>Project</span> folder, and renamed to <i>Project_Name</i>.mid.</p>
+
+$$frmNewProject.$cmdMidiPath
+<p>Click to display a <b>File Explorer</b> window to select a <b>MidiFile</b>.</p>
+<p>This will be used to copy the selected file into the <span>Project</span> folder.</p>
+<p>The file will be renamed to <i>Project_Name</i>.mid.</p>
+
+$$frmNewProject.$lblCopyAudioFile
+$$frmNewProject.$lblCopyAudioFileMsg
+$$frmNewProject.$txtAudioFilePath
+<p>Location to copy an <b>AudioFile</b> from.</p>
+<p>The file will be copied to the <span>Project</span> folder, and renamed to <i>Project_Name</i>.<i>ext</i>, where <i>ext</i> is the extension of the original <b>AudioFile</b> (e.g. mp3).</p>
+
+$$frmNewProject.$cmdAudioPath
+<p>Click to display a <b>File Explorer</b> window to select an <b>AudioFile</b>.</p>
+<p>This will be used to copy the selected file into the <span>Project</span> folder.</p>
+<p>The file will be renamed to <i>Project_Name</i>.<i>ext</i>, where <i>ext</i> is the extension of the original <b>AudioFile</b> (e.g. mp3).</p>
+
+$$frmNewProject.$txtProjectLocation
+$$frmNewProject.$lblProjectLocation
+<p>Location on disk of the <span>Project</span></p>
+
+$$frmNewProject.$chkAddNameToLocation
+<p>Check to add the <b>Project Name</b> as a subdirectory to the <b>Project Location</b>.</p>
+<p>This is useful for keeping all files associated with a <span>Project</span> in one folder.</p>
+
+$$frmNewProject.$cmdProjectLocation
+<p>Click to display a <b>File Explorer</b> window to select the location on disk of the <span>Project</span>.</p>
+
+$$frmNewProject.$txtProjectName
+$$frmNewProject.$lblProjectName
+$$frmNewProject.$lblProjectNameMsg
+<p>The name of the <span>Project</span>.</p>
+<p>This will be used to create the filename qualifier of the various files that make up the <span>Project</span>.</p> 
+<p>If the <b>Add Name Subdirectory to Location</b> <i>CheckBox</i> is checked, it will also be added as a subdirectory to the <b>Project Location</b>.</p>
+
+$$frmNewProject.$cmdUseMidi
+<p>Click to set the <b>Project Name</b> to the <b>MidiFile</b> qualifier.</p>
+
+$$frmNewProject.$cmdUseAudio
+<p>Click to set the <b>Project Name</b> to the <b>AudioFile</b> qualifier.</p>
+
+$$frmNewProject.$cmdOK
+<p>Click to create the new <span>Project</span>.</p>
+<p>If the <span>Project</span> location (including the <span>Project</span> subdirectory) already exists, you will get a warning message.</p>
+
+$$frmNewProject.$cmdCancel
+<p>Close the window without making any changes.</p>
+
+$$frmSaveAs.$lblProjectLocation
+$$frmSaveAs.$txtProjectLocation
+<p>Location on disk of the <span>Project</span></p>
+
+$$frmSaveAs.$txtProjectName
+$$frmSaveAs.$lblProjectName
+$$frmSaveAs.$lblProjectNameMsg
+<p>The name of the <span>Project</span>.</p>
+<p>This will be used to create the filename qualifier of the various files that make up the <span>Project</span>.</p> 
+<p>If the <b>Add Name Subdirectory to Location</b> <i>CheckBox</i> is checked, it will also be added as a subdirectory to the <b>Project Location</b>.</p>
+
+$$frmSaveAs.$chkAddNameToLocation
+<p>Check to add the <b>Project Name</b> as a subdirectory to the <b>Project Location</b>.</p>
+<p>This is useful for keeping all files associated with a <span>Project</span> in one folder.</p>
+
+$$frmSaveAs.$cmdProjectLocation
+<p>Click to display a <b>File Explorer</b> window to select the location on disk of the <span>Project</span>.</p>
+
+$$frmSaveAs.$cmdOK
+<p>Click to save the <span>Project</span> using the new location and name .</p>
+<p>If the <span>Project</span> location (including the <span>Project</span> subdirectory) already exists, you will get a warning message.</p>
+
+$$frmSaveAs.$cmdCancel
+<p>Close the window without saving the <span>Project</span>.</p>
+
+$$frmCHP.$cmdHelp
+*
+
+$$frmCHP.$clbCHPList
+<p>Shows a list of <b>ChordFile</b> filename extensions present on disk associated with the <span>Project</span>.</p>
+<p>Selected name will be used as the loaded <b>ChordFile</b>.</p>
+<p>Click <b>Load File</b> <i>Button</i>, or doubleclick the selected filename, to load a <span>Project</span> containing the selected filename.</p>
+
+$$frmCHP.$cmdDelete
+<p>Click to delete the selected file.</p>
+
+$$frmCHP.$cmdLoad
+<p>Click to load a <span>Project</span> containing the selected filename, or to save the <b>ChordFile</b> to the selected filename.</p>
+
+$$frmCHP.$cmdCancel
+<p>Close this Window without taking any action.</p>
+
+$$frmSaveMidiFileAs.$chkSaveMutedTrks
+<p>Save muted tracks along with non-muted tracks.</p>
+
+$$frmSaveMidiFileAs.$chkSaveChordLabels
+<p>Save chord names as midi labels.</p>
+
+$$frmSaveMidiFileAs.$chkSaveChordTrack
+<p>Save generated chords as a midi track.</p>
+
+$$frmSaveMidiFileAs.$chkChordRoot
+<p>Save chords in root position.</p>
+
+$$frmSaveMidiFileAs.$nudChordChan
+$$frmSaveMidiFileAs.$lblnudChordChan
+<p>The midi channel number to use for the chord track.</p>
+
+$$frmSaveMidiFileAs.$lblChordTrackTitle
+$$frmSaveMidiFileAs.$txtChordTrackTitle
+<p>Text associated with the chord track in the MidiFile. If nothing is entered, "Chords" will be used.</p>
+
+$$frmSaveMidiFileAs.$cmdOK
+<p>Show the <b>Save File Dialog</b> to allow the MidiFile location and filename to be entered before saving the MidiFile with the options in this window.</p>
+
+$$frmSaveMidiFileAs.$cmdCancel
+<p>Close the window without saving the MidiFile.</p>
+
+$$frmTonnetz.$picPC
+*
+$$frmTonnetz.$grpCirclePen
+$$frmTonnetz.$cmdThicker
+$$frmTonnetz.$cmdThinner
+<p>Adjusts the width of the circular outline on each node.</p>
+
+$$frmTonnetz.$grpSpace
+$$frmTonnetz.$cmdSpaceMore
+$$frmTonnetz.$cmdSpaceLess
+<p>Adjusts the spacing between nodes.</p>
+
+$$frmTonnetz.$grpDiameter
+$$frmTonnetz.$cmdDiameterMore
+$$frmTonnetz.$cmdDiameterLess
+<p>Adjusts the size of the nodes.</p>
+
+$$frmTonnetz.$nudLookAhead
+$$frmTonnetz.$lblLookAhead
+$$frmTonnetz.$lblLookAheadBeats
+<p>Set the number of beats to look ahead. Affects the display of circular rings for approaching chord notes, and chord notes that are about to finish.</p>
+
+$$frmTonnetz.$cmdColours
+<p>Opens a <a href="Form_ColoursTonnetz.htm">Dialog</a> to set various colours on this window.</p>
+
+$$frmTonnetz.$lblThisChord
+$$frmTonnetz.$lblThisChordLit
+<p>Shows the current chordname and qualifier from the <b>ChordMap</b>.</p>
+
+$$frmTonnetz.$lblNewChord
+$$frmTonnetz.$lblNewChordLit
+<p>Shows the chordname and qualifier selected by the mouse on the Tonnetz display.</p>
+
+$$frmTonnetz.$lblNextChord
+$$frmTonnetz.$lblNextChordLit
+<p>Show the next chordname and qualifier to be played from the <b>ChordMap</b>.</p>
+
+$$frmTonnetz.$lblKey
+$$frmTonnetz.$lblKeyLit
+<p>Shows the current key.</p>
+
+$$frmColoursTonnetz.$cmdBackground
+<p>Change colour of Tonnetz background.</p>
+
+$$frmColoursTonnetz.$cmdDiatonic
+<p>Change colour of font used for diatonic notes.</p>
+
+$$frmColoursTonnetz.$cmdChromatic
+<p>Change colour of font used for chromatic notes.</p>
+
+$$frmColoursTonnetz.$cmdActive
+<p>Change colour of nodes representing currently active notes in the <b>ChordMap</b>.</p>
+
+$$frmColoursTonnetz.$cmdInactive
+<p>Change colour of nodes representing currently inactive notes in the <b>ChordMap</b>.</p>
+
+$$frmColoursTonnetz.$cmdPlayed
+<p>Change colour of nodes selected by a mouse click.</p>
+
+$$frmColoursTonnetz.$cmdNewActive
+<p>Change colour of nodes representing notes that are about to become active (using look ahead function).</p>
+
+$$frmColoursTonnetz.$cmdOldActive
+<p>Change colour of nodes representing notes that are about to become inactive (using look ahead function).</p>
+
+$$frmColoursTonnetz.$cmdSetDefaults
+<p>Reset colours back to values set during program installation.</p>
+
+$$frmManChordSync.$grpAll
+$$frmManChordSync.$grpSingleBlack
+$$frmManChordSync.$grpSingleWhite
+$$frmManChordSync.$chkNoSkipAfterReloc
+*
+
+$$frmManChordSync.$optSingleBlackPlay
+<p>Take no action when a single black key is played.</p>
+
+$$frmManChordSync.$optSingleBlackNext
+<p>Move the current position forward by one chord when a single black key is played.</p>
+<p>The position is moved when the midi key is released.</p>
+
+$$frmManChordSync.$optSingleBlackPrev
+<p>Move the current position backward by one chord when a single black key is played.</p>
+<p>The position is moved when the midi key is released.</p>
+
+$$frmManChordSync.$optSingleWhitePlay
+<p>Take no action when a single white key is played.</p>
+
+$$frmManChordSync.$optSingleWhiteNext
+<p>Move the current position forward by one chord when a single white key is played.</p>
+<p>The position is moved when the midi key is released.</p>
+
+$$frmManChordSync.$optSingleWhitePrev
+<p>Move the current position backward by one chord when a single white key is played.</p>
+<p>The position is moved when the midi key is released.</p>
+
+$$frmManChordSync.$chkNextBlack
+<p>If checked, move the current position forward by one chord if 2 or more black notes are played on the keyboard.</p>
+<p>The position is moved when the 2nd. midi key is played.</p>
+
+$$frmManChordSync.$chkNextWhite
+<p>If checked, move the current position forward by one chord if 2 or more white notes are played on the keyboard.</p>
+<p>The position is moved when the 2nd. midi key is played.</p>
+
+//*$$frmManChordSync.$chkNoSkipAfterReloc
+//*<p>If checked, avoid moving the next chord forward after relocating the current position.</p>
+//*<p>This could be after playing a single note action key, or setting a new location (e.g. clicking to a new position).</p>
+//*<p>This will also move the position forward by 2 chords when a single action key is played.</p>
+//*<p>This may make the playing easier, but is really a matter of personal preference. It's easier to try this than to actually explain it!</p>
+

@@ -1,0 +1,68 @@
+﻿ENHANCED RECORDING
+------------------
+
+red button on frmTracks
+  record
+  only one existing track allowed
+  after MidiOFF, if record active
+    update NoteMap 
+      will become out of sync with stream (temporarily)
+      update TrkMinPitch[trk] TrkMaxPitch[trk]
+    refresh TrackMap (one track only)
+  on StopPlay, if record active 
+    no need to do notemap, onoof, oo
+    recreate notemap.OnOffPairs (used by trim())
+    update stream 
+    refresh frmSC (if chkShowTracks)
+    refresh ChordMap
+    summary may be out-of-date
+    
+new track
+  load midifile 
+    add one empty track at end (by default)  
+    could record into this
+  save midifile 
+    option to not save empty track(s) already present
+
+NumTrks
+  32
+  hide empty trks (by default)
+    cmd to show empty track(s)
+  anything referring to NumTrks
+
+RECORDING
+  red button on track
+    checked - output to MidiStream (not MidiKB)
+      use channel on track
+        nud
+        need to update all evs in strm on the track
+      use/update P.F.Patch, P.F.Pan, P.F.Vol on track (MidiCtlr Override)
+        savemidifile - this is already used in SaveMidiFile (and strm values are ignored)
+        play - use overrides (already done), but need to skip over strm controller midi (update required)
+        
+*******************************************
+
+NewTrack
+  empty chan, patch, vol, pan
+  if strm has no Trk evs
+    set P.F.Chan from OutMKB / other tracks (not using chan)
+    set P.F.Patch, P.F.Vol, P.F.Pan from OutMKB
+      update frmTracks
+      sendmsg outmstream 
+      XXX add patch, vol, pan to start of recstrm (NOT REQUIRED)
+    notemap.PropagatePWTrk[rectrk, 8192]
+
+Record on
+  init recstrm
+  SetOctaves (24 - 84)
+      
+Record off
+  resetoctaves
+
+MidiPlay
+  remove initrecstrm code
+
+End MidiPlay/Record
+  merge recstrm to strm
+      
+

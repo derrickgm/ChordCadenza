@@ -1,0 +1,33 @@
+﻿TRANSPOSE_FILE
+  remove
+
+CHORDTRANSPOSE
+  CHP file
+    header
+	    (corrected) untransposed midikey
+	  chordkey param (new)
+	    initial key to transpose chords to
+	  key params
+	    modulations (no change)
+
+  clsCF
+    ChordTrans
+	    initial chordkey - midikey
+		  0-11 (pitches not changed) 
+
+  frmNoteMap
+	  lblKey
+	    untransposed current key (no change)
+	  lblKeyChordTrans
+	    transposed current key (new)
+	  cmbChordKey
+	    initial key to display chordboxes and lblKeyChordTrans
+		  used to calculate clsCF.ChordTrans
+
+  frmStart
+	  old
+	    chkSyncTranspose (remove - one ref)
+	    nudTranspose (remove - one ref)
+
+  OTHER TRANPOSITIONS
+    investigate later

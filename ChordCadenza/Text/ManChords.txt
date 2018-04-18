@@ -1,0 +1,52 @@
+﻿MANUAL CHORDS
+-------------
+
+play root note and optional modifier(s)
+
+if no mod
+  major key
+		C  I 
+		D  IIm
+		E  IIIm
+		F  IV
+		G  V
+		A  VIm
+		B  VIIdim
+	minor key (natural scale)
+		C  Im
+		D  IIdim
+		Eb III
+		F  IVm
+		G  Vm
+		Ab VI
+		B  VII
+
+assume root C
+	CD  Cm
+	CDE Cm6
+	CDF Cm7
+	CE  C
+	CEF C6
+	CEG C7
+	CEA Cmaj7
+	CF  Cdim
+	CFG Cdim7
+	CG  Caug   
+	CDb Csus2  (C Db G)
+	CEb Csus   (C F G)
+
+general
+	1 = root
+	2 = min/maj/dim/aug
+	3 = 6/7/Maj7
+
+other roots
+  white notes displaced
+
+no midifile or chpfile
+frmSC - bottom and current chord/scale only
+switch keys - pedal and frmSC buttons only 
+play root (low) and modifier(s) (high) on bottom 2 octaves of kb
+	replace switchkeys octave
+
+

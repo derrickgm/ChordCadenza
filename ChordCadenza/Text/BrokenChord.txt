@@ -1,0 +1,65 @@
+﻿BROKEN CHORD PLAY
+-----------------
+
+part of chordmode
+
+.chp file
+  use chord in .chp like normal chord, 
+  but ;<chordname> instead of .<chordname>
+    play broken chord if ;<chordname> and checkbox checked 
+    single chord may span multiple bars
+  parameter
+    brokenchordtrack
+      only one track allowed - manually mute any other tracks that get in the way
+      (mute automatically during brokenchord)
+  
+class clsBrokenChord
+  play using beat as delimiter
+    use midioutKB (not midioutstream) 
+    subchord = note or chord within the broken beat
+  keep track of which chordnotes are currently sounding 
+  APlayOn(pitch) 
+    play if chordnote not already sounding and 
+      kb key is down
+      or beat sustained
+    don't play non-chord notes 
+  APlayOff(pitch)
+    play off if note is sounding  
+  MPlayOn(key)
+    Subchord Method
+      play next subchord when it occurs
+      or play previous subchord if has just occurred
+    Beat Method
+      play next beat when it occurs
+      or play previous beat if it has just occurred
+    (continue playing until end of beat)
+  MlayOff
+    no sustain
+      signal to stop playing at end of beat
+    sustain
+      no action (keep playing until keyup/sustainup
+  Sustain Up
+    stop playing at end of beat
+  velocity
+    use kb velocity to replace midi file velocity
+
+Inversions
+  Pitch Mode relative to original (as played)
+    play as in file if root position played 
+    double up if same note played at different octaves
+    treble up to switch same pitch classes
+  Pitch mode absolute
+    play pitches without reference to original
+    doubles - default upwards arpeggio
+    treble up to go down arpeggio
+  Sequence Mode
+    change sequencing of notes in broken chord...
+
+CF events
+  like a normal chord, but with indBrokenChord true
+
+autoplay (not using Microsoft streaming)
+  if track = chordtrack, BrokenChord.APlay(pitch) instead of MidiOut(pitch)
+  autoplay stop/pause
+    switch off all notes
+   

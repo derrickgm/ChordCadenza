@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>HowTo_PlayChords</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>How To Play Chords along with a <b>MidiFile</b></h2>
+<p>If you haven't already done so, load a <span>Project</span> containing a <b>MidiFile</b> and a <b>ChordFile</b></p>
+
+<p>(See <a href="HowTo_GenerateChords.htm">How to Generate Chords from a <b>MidiFile</b></a> or <a href="HowTo_InsertChords.htm">How To Insert Keys and Chords from An External Source</a> to find out how to create a <b>ChordFile</b>.)</p>
+
+<h3>Open The PlayMap</h3>
+<p>This shows the current position in the <b>MidiFile</b> in a display that shows the generated chords rolling downwards as the music progresses. This makes it easier to improvise and play along with the <b>MidiFile</b>.</p>
+
+<p>If possible, you should try to locate your keyboard below your computer screen, and resize the <b>PlayMap</b> so that your keyboard keys match the <b>PlayMap</b> display.</p> 
+
+<h3>Choose which Method you want to use</h3>
+<p>There are 3 ways you can play chords: <b>KeyboardMode, ChordMode,</b> and the <b>KBChord</b> <b>SwitchKey</b>. These are explained below.</p>
+
+<p>Whichever method you choose to use, you should click the <b>Play Midi</b> <i>Button</i> on the <b>PlayMap</b> to start playing the <b>MidiFile</b>, or the <b>Play Audio</b> <i>Button</i> to start playing a synchronised audio file. You can then use the midi keyboard to play along to it. </p>
+
+<h3>Play Chords using KeyboardMode</h3>
+<p>With <b>KeyboardMode,</b> the pitches that would normally play on a midi keyboard are played, subject to any transposition that may be set.</p>
+
+<h3>Play Chords using ChordMode</h3>
+<p>With <b>ChordMode,</b> the white notes of the keyboard are mapped to the current chord notes. This is easier to play, but does not allow non-chord notes to be played.</p>
+
+<p>The current chord changes as the <b>MidiFile</b> is played. If a null chord is found, it will play the previous chord (if present).</p>
+
+<p>If the first chord in the <b>ChordFile</b> is a null, nothing will sound until a non-null chord is reached.</p> 
+
+<h3>Play Chords using KBChord <b>SwitchKey</b></h3>
+<p>Set the <span>Mode</span> to <b>Keyboard Mode.</b> Then go to the <b>PlayMap Menu > Configure > <b>SwitchKeys</b>/Pedal.</b> </p>
+
+<p>This will open up the <b><b>SwitchKeys</b></b> window. Here, you can select the dropdown menu <span>KBChord</span> and set it to a <b>SwitchKey</b> or sustain pedal. <b>SwitchKeys</b> are actioned from the bottom octave of your Midi keyboard, or the sustain pedal.</p>
+
+<p>When the <b>SwitchKey</b> or sustain pedal is pressed down,  your Midi keyboard will play the nearest chord note to the note played. If you are already playing the nearest chord note, it will play the next one up or down.</p>
+
+<p>You can play block chords or arpeggios. However, if you play an arpeggio, you should keep the midi keys pressed down until you have finished playing the chord.</p>
+
+<p>This will allow you to play chords when the <b>SwitchKey</b> is down, or non-chord notes when it is up.</p>
+
+<p>The current chord changes as the <b>MidiFile</b> is played. If a null chord is found, it will play the previous chord (if present).</p>
+
+<p>If the first chord in the <b>ChordFile</b> is a null, it will play the keyboard notes without change.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

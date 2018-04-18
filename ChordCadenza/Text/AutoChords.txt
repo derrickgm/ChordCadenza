@@ -1,0 +1,38 @@
+﻿AUTOCHORDS
+----------
+
+save in <name>.ach
+  lines
+    <bbt> [*]<chordname> <score> [[*]<chordname <score> ...]
+      * = active
+  frmShowChords - button to load after loading .chp 
+  could also load from param in .chp file
+
+generate
+  selection area
+    section of song
+  segment size
+    beat
+    bar/2 (3/4: beat)
+    bar
+  max chord rank
+  similar formula as before, but take account of:
+    % segment occupied by pc
+    pc continues after segment (+ve)
+    pc starts before segment (-ve)
+  chorddb
+    #notes
+    rank
+  
+  frmNoteMap
+    show generated chords and scores
+    DGV
+      not directly updateable
+      show currently used chords
+        one or none highlighted for each segment
+      change current chord
+        with undo/redo 
+        
+  ChordPlay/KBPlay(chords)
+    select chord by switchkey (no switchkey: default)
+    record and listen later to grade        

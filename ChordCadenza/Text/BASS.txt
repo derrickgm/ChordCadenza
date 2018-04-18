@@ -1,0 +1,52 @@
+﻿un4seen.BASS
+------------
+BassIn - should not be needed (same as MidiIn)
+
+interface iOutM
+  MidiOut
+	BassOut
+
+interface iInM
+  MidiIn
+	QWERTY
+	touchscreen
+
+Config Midi
+  MidiOutKBs
+	  list MidiOuts and BassOuts
+	MidiOutStream
+	  MidiOuts and BassOuts
+		
+Config Bass
+  soundfont directory
+
+Config BassOut - defer for now 
+	BassOut name
+  soundfont name
+	FX (reverb) params
+	num channels (1(KB) or 16(stream))
+  bitrate (44100)
+	soundfont bits (8/16/..)
+
+Sync
+  may have to use BASS sync 
+		better if currentticks could be retrieved (like midipos)
+
+trackmutes
+  channel volume 0
+	  will affect all tracks using the channel
+		not quite same as trackmute
+
+trackvol/pan
+  channel vol/pan
+	same as current implementation?
+
+track patch
+  channel patch
+	same as current implementation?
+
+tempo
+  BASS tempo...
+
+"device" volume
+  should work better with BASS!

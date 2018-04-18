@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_MidiDevs_Intro</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>Midi Devices Configuration</h1>
+
+<p>This is used to configure the midi devices (ports) used by this application.</p>
+
+<p>
+  There are three devices that can be configured here:
+  <ul>
+    <li><b>Midi Keyboard Input</b></li>
+    <li><b>Sequencer Stream Output</b></li>
+    <li><b>Midi Keyboard Output</b></li>
+  </ul>
+</p>  
+
+<p>The <b>Midi Keyboard Input</b> should be set to your midi keyboard</p>
+
+<p>The output devices can be set to a midi synthesizer that is external to this application, or to the <b>BuiltIn Synth</b> that is provided by this application.</p>
+
+<p>If you set the output devices to the same external synthesizer, you will have to ensure that the <b>Midi Keyboard Output</b> is set to a midi channel not used by the <b>Sequencer Stream Output</b>. If you set the output devices to the BuiltIn synthesizer, they will use different ports, so all channels can be used on both devices.</p>
+
+<p>The synth packaged with Windows (Microsoft GS Wavetable Synth or similar) is not recommended. This is poor quality, and introduces a latency (delay) that will be noticeable even if the sound card delay is small.</p>
+
+<p>If you use the <b>BuiltIn Synth</b>, and the audiocard is connected, a panel will be displayed to allow the soundfont, volume, tuning and FX effects to be set.</p> 
+
+<p>The <b>Soundfont DropdownList</b> shows all the soundfont files found in the soundfonts path. The list can be changed using <b>PlayMap Menu > Configure > Paths > SoundFonts</b>. You will need to redisplay the <b>Midi Devices Configuration</b> window for the update to take effect.</p>
+
+<p>The selected soundfont will be loaded when the <b>Connect</b> Button is clicked. If there are no soundfont files found, you will be prompted to select a new soundfonts path.</p>
+
+<p>Changes will be actioned after one of the the <b>Connect</b> or <b>Disconnect</b> <i><i>Buttons</i></i> are clicked, and will be saved using the <b>PlayMap Menu > File > Save Settings</b>, or clicking <b>Save Settings and Exit Program</b> option when exiting the application.</p>
+
+<p>A description of the controls used in the Midi Devices Configuration Window can be found <a href="Form_MidiDevs_Ctls.htm">here</a>.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

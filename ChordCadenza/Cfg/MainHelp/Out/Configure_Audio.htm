@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Configure_Audio</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>Configure Audio</h2>
+<p>The <a href="Form_ConfigBass_Intro.htm">Audio Configuration Window</a> is used to configure the application's audio device.</p> 
+
+<p>It only needs to be configured if you are using this application's built-in midi synthesizer, or audio file player. All audio output is mixed down to one stereo channel, which is output to whatever audio device has been configured.</p>
+
+<p>The top line Shows the current connection, if there is one.</p>
+
+<p>Below that is a dropdown list showing available soundcard drivers on your system. You should select wahatever device you intend to use.</p> 
+
+<p>The checkbox below that is to set ASIO on or off. ASIO is a sound card driver specified by Steinberg Media Technologies GmbH. It is generally supported on high-end sound cards, and provides low latency. This is important for real time music applications like this, as you generally want to minimize any delays between playing a note and actually hearing it. If you are only going to use the soundcard for playing audio files, it doesn't really matter if you use ASIO or not.</p>
+
+<p>If your soundcard does not support ASIO, you should leave the box unchecked, or download an Asio driver. <a href="http://www.asio4all.com/" target="_blank">ASIO4All</a> by Michael Tippach is an excellent driver that appears to work with most soundcards.</p>
+
+<p>The general idea is that you should minimize the latency, but without distorting the sound output. If the latency is too low, you will get sound dropouts or no sound at all. If the latency is too high, there will be a discernable delay between playing a note on the midi keyboard, and actually hearing it.</p>
+
+<h3>Configuring ASIO Drivers</h3>
+<p>If the <b>ASIO checkbox</b> is checked, you should see a list of ASIO devices in the <b>Audio Output dropdown box.</b> Select the device that you want to output to.</p>
+
+<p> Clicking the <b>ASIO Panel command button</b> should show the ASIO control panel from the ASIO driver. If the device is not connected, you should be able to adjust the settings on the ASIO panel and reconnect.</p>
+
+<p>You should try to find the lowest latency time that does not cause distortion of the sound. Once you have found a good value, you can save the settings using the <b>PlayMap Menu > File > Save Settings</b>, or click <b>Save Settings and Exit Program</b> option when exiting the application.</p>
+
+<h3>Configuring Non-ASIO Drivers</h3>
+
+<p>If the <b>ASIO checkbox</b> is unchecked, you should see a list of non-ASIO devices in the <b>Audio Output dropdown box.</b> Select the device that you want to output to.</p>
+
+<p>There should be a panel in the bottom left quadrant of the window showing <b>Device Characteristics, Current Settings</b>, and <b>Set Device Variable</b>.
+
+<p>The <b>Device Characteristics</b> panel shows the latency and minimum buffer size, as reported from the sound card selected in the Audio Output dropdown box. If you update the <b>Set Device Variable</b> fields, and click the <b>Reconnect command button</b>, this should update the <b>Current Settings</b> and <b>Device Characteristics</b> panels. After reconnecting, you should be able to try out the audio card (assuming you have set a midi port to <b>Built_In Synth</b> on the <A HREF="Configure_MidiDevices.htm">Midi Devices Configration Window</A>).</p>
+
+<p>Adjusting these parameters is somewhat hit and miss, and the reported values from the sound card may not always be accurate. You just have to use some trial and error to find what works. Once you have found some values that work, don't forget to save the settings using <b>PlayMap Menu > File > Save Settings</b>, or click <b>Save Settings and Exit Program</b> option when exiting the application.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

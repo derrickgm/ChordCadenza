@@ -1,0 +1,76 @@
+﻿CHORD SYMBOLS
+
+frmNoteMap top panel
+  row of text boxes (one box per bar)
+    chord symbols
+	delimiters
+	  . halfbar (not triple time)
+	  , beat  
+	transposition
+	  transpose displayed/entered data (option)
+	    new transpose param in .chp file
+	  always save in original midi key
+	source of chord symbols
+	  loaded .chp file (transposed)
+	  typed-in data
+	    update notemapfile bar with new chord(s)
+	  edited picNoteMapFile (transposed)
+	    overwrite whole bar
+		create chordsymbol(s) for whole bar
+	load .chp
+	  as now, but also display (transposed) chord symbols
+	    get from notemap (not .chp file lines)
+	save .chp
+	  as now
+	repeated sections
+	  not yet
+  
+  Beat Sequences 
+	Action on entering 2nd string from entered bar (may not be same as displayed on load)
+
+	*** = unaligned chord(s) 
+	??? = unrecognisable chord
+	"" = repeat previous beat
+	null = no chord
+	chord = valid chord
+	xxx = other chars
+
+	no reverse propagation required
+	no forward propagation required
+
+	  ""    ""			repeat any(first) qi of first beat
+	  chord ""      repeat any(first) qi of first beat
+	  ???   ""      repeat any(first) qi of first beat
+	  ***   ""      invalid RED - treat as null
+	  null  ""      repeat null (or any(first) qi of first beat)
+
+	  ""    chord   insert chord
+	  chord chord   insert chord
+	  ???   chord   insert chord
+	  ***   chord   insert chord
+	  null  chord   insert chord
+
+	  ""    ???			no action (OK)
+	  chord ???     no action (OK)
+	  ???   ???     no action (OK)
+	  ***   ???     no action (OK)
+	  null  ???     no action (OK)
+
+	  ""    ***     no action (OK)
+	  chord ***     no action (OK)
+	  ???   ***			no action (OK)
+	  ***   ***			no action (OK)
+	  null  ***			no action (OK)
+
+	  ""    null    no chord
+	  chord null		no chord
+	  ???   null		no chord
+	  ***   null		no chord
+	  null  null		no chord (invalid, but doesn't matter)
+
+		xxx		invalid	RED (treat as null)
+
+	if first beat of next bar is ""
+	  
+	  
+

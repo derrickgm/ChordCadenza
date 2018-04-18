@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_TrackMap_Buttons</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h2>TrackMap Buttons</h2>
+  <h3>New Project</h3>
+<p>Brings up a <a href = "Form_NewProject_Intro.htm"> dialog</a> to create a new <span>Project</span>.</p>
+
+  <h3>Load Project</h3>
+  <p>Load all <span>Project</span> files from the containing folder that have the same qualifier as the selected file.</p>
+  <p><b>ChordFiles</b> can have the qualifier .chp0 to .chp9 inclusively. If there is more than one of these files present in the directory, a dialog will be shown to allow you to select which <b>ChordFile</b> you want to load.</p>
+  <p>You can also load a <span>Project</span> by dragging and dropping a file or folder onto the <b>PlayMap, ChordMap, or TrackMap</b>.</p>
+
+  <h3>Save Project</h3>
+<p>Save all of the files in a <span>Project</span> to disk.</p>
+<p>Click with right mouse button to show what files will be saved.</p>
+
+  <h3>Save Project As...</h3>
+<p>Save all of the files in a <span>Project</span> to a new location on disk.</p>
+
+  <h3>GoTo Start</h3>
+  <p>Set Start Bar to start of <b>MidiFile</b></p>
+
+  <h3>Play Midi</h3>
+  <p>Play the <b>MidiFile</b> from Start Bar</p>
+
+  <h3>Play Audio / Play Audio NoSyn</h3>
+  <p>Play the <b>AudioFile</b>.</p>
+  <p>If synchronisation data is available, the button will show <b>Play Audio</b>, and the the cursor will move according to the synchronisation data in the AudioSync file.</p>
+  <p>Otherwise, the button will show <b>Play Audio NoSyn</b>. Synchronisation can still be done manually using the <b>Next Beat SwitchKey</b>.</p>
+
+  <h3>Sync Audio</h3>
+  <p>Play <b>AudioFile</b> and wait for sync <b>SwitchKey</b></p>
+
+  <h3>Play & Sync Audio</h3>
+  <p>Play <b>AudioFile</b> using synchronisation from the <b>AudioSyncFile</b> until reaching the <span>SyncBar</span>, and then wait for the sync <b>SwitchKey</b></p>
+  <p>This will allow you to continue a partially sync'ed audiofile.</p>
+
+  <h3>Stop Play</h3>
+  <p>Stop playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  <h3>Pause Play</h3>
+  <p>Pause playing <b>MidiFile</b> or <b>AudioFile</b></p>
+
+  <h3>! (Panic)</h3>
+  <p>Panic!</p>
+  <p>Switch off all midi events</p>
+  <p>Useful if midi pitch is continuously sounding</p>
+
+  <h3>Chord Map</h3>  
+  <p>Show the <a href="Form_ChordMap_Intro.htm">ChordMap Window.</a>.</p>
+  <p>If no <b>ChordFile</b> has been loaded, this will display an option to initialize a new <b>ChordFile</b></p>
+
+  <h3>Audio Sync Config</h3>
+  <p>Show <a href="Form_AudioSync_Intro.htm">AudioSync Window</a></p>
+  <p>You can use this to manage audio sync data.</p>
+
+  <h3>Show Summ</h3>
+  <p>Show <b>MidiFile</b> summary for each track.</p>
+  <p>Options to show preconfigured chord names
+  and <b>MidiFile</b> time signatures, tempos and keys</p>
+
+  <h3>Edit Lyrics</h3>
+<p>Opens up a <a href="Form_Lyrics.htm">Window</a> with a simple text editor for updating the <b>Lyrics File</b>.</p>
+  <p>The easiest way to enter lyrics is to copy and paste the text from an online source into the editor. You can then use the editor window to match each bar with the lyrics.</p>
+  <p>The <b>Lyrics File (*.chl)</b> in the <span>Project</span> folder can also be edited by any text editor. It is advisable to switch on line numbering to display bar numbers whilst editing.</p>
+  
+  <h3>Check All</h3>
+  <p>Click to Select all tracks.</p>
+  <p>Tracks can be unselected individually in the main display.</p>
+  <p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p>
+  <p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+  <h3>Uncheck All</h3>
+  <p>Click to Deselect all tracks.</p>
+  <p>Tracks can be selected individually in the main display.</p>
+  <p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p> 
+  <p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+  <h3>Clear Mutes & Solos</h3>
+  <p>Clear the <b>Mute</b> and <b>Solo</b> CheckBoxes on all tracks</p>
+
+  <h3>Track Styles</h3>
+  <p>Displays a window to allow groups of tracks to be selected, muted, hidden, or collapsed.</p>
+  <p>The tracks are grouped by <a href="Styles.htm">Style</a>.</p>
+
+  <h3>Calc Keys</h3>
+  <p>Open the <a href="Form_CalcKeys_Intro.htm">CalcKeys Window.</a></p>
+  <p>This will allow you to generate keys from the MidiFile or  ChordFile.</p>
+  <p>A dialog will be shown if there are multiple choices of where to generate the keys from.</p>
+
+  <h3>Save MidiFile As...</h3>
+  <p>Save the MidiFile at a given location with a given filename.</p>
+  <p>Displays the <a href="Form_SaveMidiFileAs_Intro.htm">Save MidiFile Dialog</a> to allow various options to be set before saving the MidiFile.</p>
+
+  <h3>"+" <i>Button</i> in Vertical Group</h3>
+  <p>Click to increase the track height</p>
+
+  <h3>"-" <i>Button</i> in Vertical Group</h3>
+  <p>Click to decrease the track height</p>
+
+  <h3>"+" <i>Button</i> in Horizontal Group</h3>
+  <p>Click to increase the track width</p>
+
+  <h3>"-" <i>Button</i> in Horizontal Group</h3>
+  <p>Click to decrease the track width</p>
+
+  <h3>[Up Arrow] <i>Button</i></h3>
+  </p>Collapse (hide) all tracks.
+
+  <h3>[Down Arrow] <i>Button</i></h3>
+  </p>Uncollapse (show) all tracks.
+
+  <h3>"Pan"</h3>
+  <p>Click to set track controls to adjust midi pan (balance) value</p>
+
+  <h3>"Vol"</h3>
+  <p>Click to set track controls to adjust midi volume value</p>
+
+  <h3>"+" <i>Button</i> to Right of Vol/Pan Buttons</h3>
+  <p>Click to increase midi pan or volume on all selected tracks</p>
+
+  <h3>"-" <i>Button</i> to Right of Vol/Pan Buttons</h3>
+  <p>Click to decrease midi pan or volume on all selected tracks</p>
+
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

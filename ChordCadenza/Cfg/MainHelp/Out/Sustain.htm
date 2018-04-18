@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Sustain</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>Sustain Types</h1>
+
+<h3>Normal</h3>
+  <p>Use the normal Midi Sustain function. This will send <b>Midi Sustain On/Off</b> messages in response to the sustain pedal or <b>SwitchKey</b>.</p>
+
+<h3>Replay</h3>
+  <p>Emulate sustain by leaving all chord notes switched on until the sustain pedal or <b>SwitchKey</b> is released, or a new chord is played.</p>
+  <p>A chord is defined as any number of notes played within the time interval specified with the <b>Sustain</b> <i>Numeric Input</i> in this window.</p>
+
+<h3>Carry Over</h3>
+  <p>Same as <b>Replay</b>, but carries over any notes that are also in the next chord.</p>
+  <p>This has the effect of making chord changes smoother for non-percussive instruments.</p>
+
+<h3>Send Ctlr</h3>
+  <p>Same as <b>Replay</b>, but uses <b>Midi Sustain On/Off</b> messages instead of <b>Midi Note On/Off</b> messages.</p>
+  <p>It is recommended to only use this if you are having problems with the normal <b>Replay</b>.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

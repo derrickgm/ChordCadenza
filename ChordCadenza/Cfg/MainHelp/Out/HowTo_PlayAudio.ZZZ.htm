@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+  content="text/html; charset=iso-8859-1">
+  <title>How To Play along with an Audio File, Audio Stream, or Live Audio</title>
+  <style>@import url(coUA.css);</style>
+  <link disabled rel="stylesheet" href="htmlhelp.css">
+  <script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+
+<h2>How To Play along with an Audio File, Audio Stream, or Live Audio</h2>
+<p>You can play along to an audio file (MP3 etc) or an audio stream in a similar way to a midifile, but with some important differences:</p>
+
+<p><ul>
+    <li>You can't create a <b>ChordFile</b> directly from an audio file - you will need to do this from a midifile that approximately matches the audio file, or from sheet music.</li>
+    <li>You can't mute tracks as you can with a midifile. However, you can download backing tracks that usually allow you to mute or solo audio tracks.</li>
+    <li>You will need to synchronize the midi data (chords) to the audio file using the synchronisation function, or synchronise as you play along.</li>
+</ul</p>
+
+
+<p><ul>
+<li>nd dsknsdkdsv sdvknsdkndsv</li>
+<li>dfvkdfk dfkfdlkdflj kjkh</li>
+<li>djhds <a href="HowTo_PlayMelody.htm">qwerty</a> dndjkn dfsjkdjksd xzcksdck</li>
+
+<h3>Choose a Synchronisation Method</h3>
+<p>You can synchronise to the audio stream in one of three ways:</p>
+
+<p><ul>
+    <li>File Synchronisation</li>
+    <li>Stream Synchronisation</li>
+    <li>Live Synchronisation</li>
+</ul</p>
+
+<p>Use the <b>How to Sync to an Audio Source</b> window to choose between the three methods above.</p>
+
+<p>If you choose the Live Syncronisation, you should go to the <b>HowTo Play along to Live Audio</b> window, otherwise continue here.</p>
+
+<h3>Setup the Sync SwitchKey</h3>
+<p>Goto <b>PlayMap Menu > Configure > KeySwitches/Pedal.</b> </p>
+
+<p>Set the <b>Sync</b> dropdown box to a SwitchKey or Pedal.</p>
+
+<fgfgf>
+<h3>Load a Song</h3>
+<p>If you have already created a SyncFile (.chtc or .chtx), this will be loaded as part of the Song.</p>
+
+<p>Creating a SyncFile is covered in another HowTo ( <b>How To Sync to an Audio Source</b> ).</p>
+
+<p>After loading a Song, the <b>Play Audio</b> button on all playable windows ( <b>TrackMap, ChordMap and PlayMap</b> ) will be activated if a SyncFile has also been automatically loaded.</p>
+
+<h3>Start Sync Play</h3>
+<p>Click The <b>Play Audio</b> button on any playable window ( <b>PlayMap, TrackMap, or ChordMap</b> ).</p>
+
+<p>If you are using an audio file, it will start playing from the current cursor position, or from the last recorded sync point before this.</p>
+
+<p>Otherwise, if you are using an audio stream, you will need to start it at some point before the current cursor position, and hit the sync key when it reaches the current cursor position.</p>
+
+<p>(If the AudioSync window is open and the option to <b>Start from Position Time</b> is enabled and checked, it will start from the Time on the <b>Position</b> slider.)</p>
+
+<p>The position will be updated on all visible playable windows as the audio file plays, and you should be able to use the <b>ChordMap</b> to play along with it in the same way as you play along with a midifile.</p>
+
+<OBJECT
+  id=HHCTRL type="application/x-oleobject"
+  classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</OBJECT>
+
+<script src="../SongPopups.js"></script>
+<script src="popups.js"></script>
+
+</body>
+</html>
