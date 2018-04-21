@@ -1,5 +1,5 @@
 # ChordCadenza
-This program will allow you to improvise and play along with a midi file or other audio source using a midi keyboard. It does not require midi keyboard skills or the ability to read mnusic. 
+This program will help you to improvise and play along with a midi file or other audio source using a midi keyboard. It does not require midi keyboard skills or the ability to read music. 
 
 ## Main Features
 
