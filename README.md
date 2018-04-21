@@ -3,21 +3,21 @@ This program can help you to improvise and play along with a midi file or other 
 
 ## Main Features
 
-Midi Sequencer with track display, mute, solo, patch, vol, pan, etc.
+* Midi Sequencer with track display, mute, solo, patch, vol, pan, etc.
 
-Extract keys, modulations, and chords from a midifile
+* Extract keys, modulations, and chords from a midifile
 
-Display chords on a vertical piano roll to facilitate playing and improvisation
+* Display chords on a vertical piano roll to facilitate playing and improvisation
 
-Display solfa or pitch notation
+* Display solfa or pitch notation
 
-Output to ASIO or non-ASIO soundcard (using soundfonts) or to a midi synth (hardware or software)
+* Output to ASIO or non-ASIO soundcard (using soundfonts) or to a midi synth (hardware or software)
 
-Multiple playmodes to allow for different levels of midi keyboard skills
+* Multiple playmodes to allow for different levels of midi keyboard skills
 
-Synchronise and play along with midi files (.mid) or audio files (.mp3)
+* Synchronise and play along with midi files (.mid) or audio files (.mp3)
 
-Play along with any audio stream or other musicians.
+* Play along with any audio stream or other musicians.
 
 ## Programming
 
@@ -29,7 +29,7 @@ It uses the BASS audio library from un4seen.com and Bass.NET at bass.radio42.com
 
 ## Installation
 
-The program can be installed using the downloadable executable at chordcadenza.org. This is a Nullsoft installation package that will install a 32-bit or 64-bit version of the program.
+The program can be installed using the downloadable executable at [ChordCadenza.org](http://chordcadenza.org) chordcadenza.org. This is a Nullsoft installation package that will install a 32-bit or 64-bit version of the program.
 
 
 ## License
