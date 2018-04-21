@@ -25,7 +25,16 @@ The program was developed in C# using Visual Studio Community Edition 2015.
 
 It requires .NET 4.0 or later, and has been tested on Windows 7 and Windows 10. There are currently no ports to any other OS.
 
-It uses the BASS audio library from [un4seen.com](https://un4seen.com) and Bass.NET at [bass.radio42.com](http://bass.radio42.com).
+This project uses:
+* Un4Seen Audio Library (aka. BASS) http://www.un4seen.com
+	copyright © 2003-2018 un4seen developments. all rights reserved.
+	BASS is free for non-commercial use.
+* BASS Add-Ons
+	All trademarks and other registered names contained in the BASS.NET package are the property of their respective owners.
+	See www.un4seen.com for details!
+* BASS.NET API
+	Copyright 2005-2018 by radio42, Author: Bernd Niedergesaess  (bn@radio42.com). All rights reserved. 
+	BASS.NET is the property of radio42 and is protected by copyright laws and international copyright treaties. BASS.NET is not sold, it is licensed.
 
 ## Installation
 
