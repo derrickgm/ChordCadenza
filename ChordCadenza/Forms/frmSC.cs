@@ -197,7 +197,7 @@ namespace ChordCadenza.Forms {
       #endif
 
       //CmdsEnable(true);
-      Un4seen.Bass.BassNet.Registration("dd76063@hotmail.com", "2X991019312422");
+      Un4seen.Bass.BassNet.Registration("xxx@yyy.zzz", "XXX");
 
       //P.Forms.Add(this);
       P.frmStart = new Forms.frmStart();
