@@ -35,6 +35,12 @@ This project uses:
 * BASS.NET API
 	Copyright 2005-2018 by radio42, Author: Bernd Niedergesaess  (bn@radio42.com). All rights reserved. 
 	BASS.NET is the property of radio42 and is protected by copyright laws and international copyright treaties. BASS.NET is not sold, it is licensed.
+	
+You will need to download the following BASS libraries (version 2.4) from [un4seen.com](http://www.un4seen.com):
+
+	bass.dll, bass_fx.dll, bassasio.dll, bassmidi.dll, bassmix.dll, bass.net.dll, bass.net.xml  
+	
+You should place these files in the same directory as the executable application file (e.g. .../bin/Debug X64/)
 
 ## Installation
 
@@ -51,3 +57,5 @@ I developed the program in order to help me to play along with midi and audio fi
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+Please note: The required BASS libraries have their own licensing, and are only free for non-commercial use.
