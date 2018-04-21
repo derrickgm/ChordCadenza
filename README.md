@@ -38,9 +38,11 @@ This project uses:
 	
 You will need to download the following BASS libraries (version 2.4) from [un4seen.com](http://www.un4seen.com):
 
-	bass.dll, bass_fx.dll, bassasio.dll, bassmidi.dll, bassmix.dll, bass.net.dll, bass.net.xml  
+	bass.dll, bass_fx.dll, bassasio.dll, bassmidi.dll, bassmix.dll
 	
 You should place these files in the same directory as the executable application file (e.g. .../bin/Debug X64/)
+
+You will also need to download bass.net.dll and bass.net.xml from www.un4seen.com and register them at http://www.bass.radio42.com. These should be placed in the C:\Program Files (x86) directory.
 
 ## Installation
 
