@@ -25,12 +25,19 @@ The program was developed in C# using Visual Studio Community Edition 2015.
 
 It requires .NET 4.0 or later, and has been tested on Windows 7 and Windows 10. There are currently no ports to any other OS.
 
-It uses the BASS audio library from un4seen.com and Bass.NET at bass.radio42.com.
+It uses the BASS audio library from [un4seen.com](https://un4seen.com) and Bass.NET at [bass.radio42.com](http://bass.radio42.com).
 
 ## Installation
 
-The program can be installed using the downloadable executable at [ChordCadenza.org](http://chordcadenza.org) chordcadenza.org. This is a Nullsoft installation package that will install a 32-bit or 64-bit version of the program.
+The program can be installed using the downloadable executable at [ChordCadenza.org](http://chordcadenza.org/#loc_download). This is a Nullsoft installation package that will install a 32-bit or 64-bit version of the program.
 
+## Source Files
+
+The files contained here should include all of the source code necessary to compile and build the program. It also contains the Nullsoft installation script, and the files used to create the Windows Help file (ChordCadenza.chm)
+
+## Development
+
+I developed the program in order to help me to play along with midi and audio files using a midi keyboard, having struggled for many years to master improvisiation. If you have any comments, feedback, ideas, or questions, please contact me at support@chordcadenza.org.
 
 ## License
 
