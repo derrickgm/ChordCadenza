@@ -36,11 +36,11 @@ This project uses:
 	Copyright 2005-2018 by radio42, Author: Bernd Niedergesaess  (bn@radio42.com). All rights reserved. 
 	BASS.NET is the property of radio42 and is protected by copyright laws and international copyright treaties. BASS.NET is not sold, it is licensed.
 	
-You will need to download the following BASS libraries (version 2.4) from [un4seen.com](http://www.un4seen.com):
+You will need to download 32-bit or 64-bit versions (or both) of the following BASS libraries (version 2.4) from [un4seen.com](http://www.un4seen.com):
 
 	bass.dll, bass_fx.dll, bassasio.dll, bassmidi.dll, bassmix.dll
 	
-You should place these files in the same directory as the executable application file (e.g. .../bin/Debug X64/)
+You should place these files in the same directory as the executable application file (e.g. 32-bit in .../bin/Debug/ and 64-bit in .../bin/Debug X64/)
 
 You will also need to download and register bass.net.dll and bass.net.xml (version 2.4) from http://www.bass.radio42.com. These files should be placed in the C:\Program Files (x86) directory. The registration key should be inserted in the Un4seen.Bass.BassNet.Registration line in the source file frmSC.cs, near the start of the frmSC constructor.
 
