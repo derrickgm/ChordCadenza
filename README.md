@@ -42,7 +42,7 @@ You will need to download the following BASS libraries (version 2.4) from [un4se
 	
 You should place these files in the same directory as the executable application file (e.g. .../bin/Debug X64/)
 
-You will also need to download and register bass.net.dll and bass.net.xml from http://www.bass.radio42.com. These files should be placed in the C:\Program Files (x86) directory. The registration key should be inserted in the Un4seen.Bass.BassNet.Registration line in the source file frmSC.cs, near the start of the frmSC constructor.
+You will also need to download and register bass.net.dll and bass.net.xml (version 2.4) from http://www.bass.radio42.com. These files should be placed in the C:\Program Files (x86) directory. The registration key should be inserted in the Un4seen.Bass.BassNet.Registration line in the source file frmSC.cs, near the start of the frmSC constructor.
 
 ## Installation
 
