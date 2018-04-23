@@ -196,8 +196,7 @@ namespace ChordCadenza.Forms {
         P.frmConsole = new Forms.frmConsole();
       #endif
 
-      //CmdsEnable(true);
-      Un4seen.Bass.BassNet.Registration("dd76063@hotmail.com", "2X991019312422");
+      Un4seen.Bass.BassNet.Registration("xxx@yyy.zzz", "xxx");
 
       //P.Forms.Add(this);
       P.frmStart = new Forms.frmStart();
@@ -293,7 +292,7 @@ namespace ChordCadenza.Forms {
       panMaps.Visible = mnuMap.Checked;
       MapsEnabled(mnuMap.Checked);
 
-      #if !ADVANCED
+#if !ADVANCED
         chkAlignKB.Hide();
         lblKBDisplacement.Hide();
         nudKBDisplacement.Hide();
@@ -310,7 +309,7 @@ namespace ChordCadenza.Forms {
         nudKeyVel.Hide();
         mnuRestart.Visible = false;
         cmdResetPlay.Hide();  //Panic should do the same, and more 
-      #endif
+#endif
 
       //PopulateCmbFirstNote();
 
@@ -4133,9 +4132,9 @@ namespace ChordCadenza.Forms {
     }
 
     private void mnuShowFrmConsole_Click(object sender, EventArgs e) {
-      #if ADVANCED
+#if ADVANCED
         P.frmConsole.Show();
-      #endif
+#endif
     }
 
     private void mnuReloadProject_Click(object sender, EventArgs e) {

@@ -48,6 +48,7 @@ namespace ChordCadenza {
     internal static string FrmTonnetzColoursIniFilePath;
     internal static string SoundFontsPath;
     internal static string ChordNamesDatFilePath;
+    internal static string GeneralMidiDatFilePath;
     internal static string ChordNamesRankIniFilePath;
     internal static string InitialScreenDatFilePath;
     internal static string RecentProjectsLines;
@@ -140,10 +141,11 @@ namespace ChordCadenza {
       AudioFilesPath = UserMusicPath; //overridden by .ini setting
       //DebugPath = CfgPath + @"\DumpChords";
       DebugPath = Path.GetTempPath() + @"\DumpChords";
-      HelpFilePath = Cfg.CfgPath + "\\ChordCadenza.chm";
-      ToolTipsFilePath = Cfg.CfgPath + "\\ToolTips.html";
-      LicenseFilePath = Cfg.CfgPath + "\\License.txt";
+      HelpFilePath = CfgPath + "\\ChordCadenza.chm";
+      ToolTipsFilePath = CfgPath + "\\ToolTips.html";
+      LicenseFilePath = CfgPath + "\\License.txt";
       ChordNamesDatFilePath = CfgPath + @"\Chords.dat";  //always present
+      GeneralMidiDatFilePath = CfgPath + @"\GeneralMidi.dat";  //always present
       ChordNamesRankIniFilePath = CfgPath + @"\Chords.Ranks.ini";  
       InitialScreenDatFilePath = CfgPath + @"\InitialScreen.dat";  //present only if initial screen wanted
       RecentProjectsLines = CfgPath + @"\RecentProjects.ini";

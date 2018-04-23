@@ -14,7 +14,6 @@ using static ChordCadenza.clsBassOutMidi;  //CheckOK etc.
 namespace ChordCadenza {
   internal abstract class clsBASSOutDev {
     static clsBASSOutDev() {
-      //BassNet.Registration("dd76063@hotmail.com", "2X991019312422");
       //Debug.WriteLine("{0:X8} {1:X8}", BassFx.BASS_FX_GetVersion(), BassFx.BASSFXVERSION);
       Debug.WriteLine("BASS version: {0:X8} {1:X8}", BassFx.BASS_FX_GetVersion(), BassFx.BASSFXVERSION);
       //int versionA = BassFx.BASS_FX_GetVersion();

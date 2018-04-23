@@ -21,7 +21,7 @@
 ;!include WinMessages.nsh
 
 !define PRODUCT_VERSION "0.0.0.0" 
-;!define PRODUCT_VERSION "1.13.5.0" 
+;!define PRODUCT_VERSION "1.13.6.0" 
 ;!define CFG_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin\Cfg"
 !define CFG_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\Cfg"
 !define BIN_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin"
@@ -169,8 +169,7 @@ Section "Chord Cadenza" Desc_Chord_Cadenza
   !endif
   
   SetOutPath "$APPDATA\${PRODUCT_NAME}"
-  File "${CFG_BUILD_DIR}\InitialScreen.dat"
-  File "${CFG_BUILD_DIR}\Chords.dat"
+  File "${CFG_BUILD_DIR}\*.dat"
   File "${CFG_BUILD_DIR}\License.txt"
   File "${CFG_BUILD_DIR}\ToolTips.html"
   File "${CFG_BUILD_DIR}\ChordCadenza.chm"
