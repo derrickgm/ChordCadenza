@@ -102,7 +102,7 @@
       // cmdYNeg
       // 
       this.cmdYNeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdYNeg.Location = new System.Drawing.Point(634, 89);
+      this.cmdYNeg.Location = new System.Drawing.Point(650, 89);
       this.cmdYNeg.Name = "cmdYNeg";
       this.cmdYNeg.Size = new System.Drawing.Size(29, 27);
       this.cmdYNeg.TabIndex = 4;
@@ -113,7 +113,7 @@
       // cmdYPos
       // 
       this.cmdYPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdYPos.Location = new System.Drawing.Point(634, 62);
+      this.cmdYPos.Location = new System.Drawing.Point(650, 62);
       this.cmdYPos.Name = "cmdYPos";
       this.cmdYPos.Size = new System.Drawing.Size(29, 27);
       this.cmdYPos.TabIndex = 3;
@@ -459,7 +459,7 @@
       this.panEdit.Controls.Add(this.cmdUndo);
       this.panEdit.Controls.Add(this.cmdAddTrack);
       this.panEdit.Controls.Add(this.cmdDeleteNotes);
-      this.panEdit.Location = new System.Drawing.Point(421, 62);
+      this.panEdit.Location = new System.Drawing.Point(331, 62);
       this.panEdit.Name = "panEdit";
       this.panEdit.Size = new System.Drawing.Size(205, 48);
       this.panEdit.TabIndex = 34;
@@ -741,7 +741,7 @@
       this.panMisc.Controls.Add(this.cmdCalcKeys);
       this.panMisc.Location = new System.Drawing.Point(220, 62);
       this.panMisc.Name = "panMisc";
-      this.panMisc.Size = new System.Drawing.Size(157, 48);
+      this.panMisc.Size = new System.Drawing.Size(106, 48);
       this.panMisc.TabIndex = 249;
       // 
       // panFiles
@@ -786,7 +786,7 @@
       // 
       this.cmdUncollapseAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.cmdUncollapseAll.Image = global::ChordCadenza.Properties.Resources.GlyphDown_16x;
-      this.cmdUncollapseAll.Location = new System.Drawing.Point(714, 89);
+      this.cmdUncollapseAll.Location = new System.Drawing.Point(573, 72);
       this.cmdUncollapseAll.Name = "cmdUncollapseAll";
       this.cmdUncollapseAll.Size = new System.Drawing.Size(29, 27);
       this.cmdUncollapseAll.TabIndex = 255;
@@ -797,7 +797,7 @@
       // 
       this.cmdCollapseAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.cmdCollapseAll.Image = global::ChordCadenza.Properties.Resources.GlyphUp_16x;
-      this.cmdCollapseAll.Location = new System.Drawing.Point(683, 89);
+      this.cmdCollapseAll.Location = new System.Drawing.Point(542, 72);
       this.cmdCollapseAll.Name = "cmdCollapseAll";
       this.cmdCollapseAll.Size = new System.Drawing.Size(29, 27);
       this.cmdCollapseAll.TabIndex = 254;

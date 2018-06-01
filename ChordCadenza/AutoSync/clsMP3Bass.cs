@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Mix;
+//using Un4seen.Bass;
+//using Un4seen.Bass.AddOn.Mix;
+using ManagedBass;
 using System.IO;
 using static ChordCadenza.clsBassOutMidi;  //CheckOK etc.
 
@@ -97,8 +98,8 @@ namespace ChordCadenza {
     }
 
     internal int StreamHandle;
-    private SYNCPROC delegOnEnd;
-    private SYNCPROC delegOnPos;
+    private SyncProcedure delegOnEnd;
+    private SyncProcedure delegOnPos;
     internal string FilePath;
     internal long StartPosBytes = 0;
 
@@ -113,8 +114,8 @@ namespace ChordCadenza {
       AudioSync = autosync;
       FilePath = filepath;
       OpenStream();
-      delegOnEnd = new SYNCPROC(OnEnd);
-      delegOnPos = new SYNCPROC(OnPos);
+      delegOnEnd = new SyncProcedure(OnEnd);
+      delegOnPos = new SyncProcedure(OnPos);
       P.frmSC.panTrkAudio.Enabled = true;
       Vol = P.frmSC.trkAudioVol.Value;
       Pan = P.frmSC.trkAudioPan.Value;
@@ -183,20 +184,21 @@ namespace ChordCadenza {
     //* record
     private void PlayFile(double startposseconds, long? sigposbytes) { 
       if (startposseconds < 0) return;
-      StartPosBytes = Bass.BASS_ChannelSeconds2Bytes(StreamHandle, startposseconds);
+      StartPosBytes = Bass.ChannelSeconds2Bytes(StreamHandle, startposseconds);
       PlayFile(startposseconds, -1, sigposbytes);
     }
 
     private void PlayFile(double startposseconds, long startposbytes, long? sigposbytes) {
       //StreamHandle = clsBassOut.CheckHandle(Bass.BASS_StreamCreateFile(FilePath, 0, 0, BASSFlag.BASS_STREAM_PRESCAN));
       if (startposbytes >= 0) {
-        CheckOK(Bass.BASS_ChannelSetPosition(StreamHandle, startposbytes));
+        CheckOK(Bass.ChannelSetPosition(StreamHandle, startposbytes));
       } else if (startposseconds >= 0) {
-        CheckOK(Bass.BASS_ChannelSetPosition(StreamHandle, startposseconds));
+        long bytes = Bass.ChannelSeconds2Bytes(StreamHandle, startposseconds);
+        CheckOK(Bass.ChannelSetPosition(StreamHandle, bytes));
       }
       if (P.BASSOutDev is clsBASSOutDevAsio) {  //ASIO
       } else { //non-ASIO
-        CheckOK(Bass.BASS_ChannelPlay(StreamHandle, false));
+        CheckOK(Bass.ChannelPlay(StreamHandle, false));
       }
 
       SetEndSync();
@@ -207,7 +209,7 @@ namespace ChordCadenza {
       //* return false if playing, paused, or stalled
       get {
         if (StreamHandle == 0) return false;
-        return (Bass.BASS_ChannelIsActive(StreamHandle) == BASSActive.BASS_ACTIVE_STOPPED);
+        return (Bass.ChannelIsActive(StreamHandle) == PlaybackState.Stopped);
       }
     }
 
@@ -216,7 +218,7 @@ namespace ChordCadenza {
         Debug.WriteLine("clsMP3Bass.StopPlay: Error: StreamHandle is zero");
         return;
       }
-      CheckOK(Bass.BASS_ChannelStop(StreamHandle));
+      CheckOK(Bass.ChannelStop(StreamHandle));
     }
 
     public void PausePlay() {
@@ -225,7 +227,7 @@ namespace ChordCadenza {
         Debug.WriteLine("clsMP3Bass.PausePlay: Error: StreamHandle is zero");
         return;
       }
-      CheckOK(Bass.BASS_ChannelPause(StreamHandle));
+      CheckOK(Bass.ChannelPause(StreamHandle));
     }
 
     public bool IsPaused() {
@@ -233,63 +235,64 @@ namespace ChordCadenza {
         Debug.WriteLine("clsMP3Bass.PausePlay: Error: StreamHandle is zero");
         return false;
       }
-      BASSActive active = Bass.BASS_ChannelIsActive(StreamHandle);
-      return (active == BASSActive.BASS_ACTIVE_PAUSED);
+      PlaybackState active = Bass.ChannelIsActive(StreamHandle);
+      return (active == PlaybackState.Paused);
     }
 
     public double GetPosSeconds() {
       if (StreamHandle == 0) return 0;
-      long bytes = Bass.BASS_ChannelGetPosition(StreamHandle);
-      return Bass.BASS_ChannelBytes2Seconds(StreamHandle, bytes);  //may be approximate
+      long bytes = Bass.ChannelGetPosition(StreamHandle);
+      return Bass.ChannelBytes2Seconds(StreamHandle, bytes);  //may be approximate
     }
 
     public long GetPosBytes() {  //bytes
       if (StreamHandle == 0) return 0;
-      return Bass.BASS_ChannelGetPosition(StreamHandle);
+      return Bass.ChannelGetPosition(StreamHandle);
     }
 
     public long GetSeconds2Units(double secs) {  //seconds to bytes
-      return Bass.BASS_ChannelSeconds2Bytes(StreamHandle, secs);  //may be approximate
+      return Bass.ChannelSeconds2Bytes(StreamHandle, secs);  //may be approximate
     }
 
     public double GetUnits2Seconds(long bytes) {  //bytes to seconds
-      return Bass.BASS_ChannelBytes2Seconds(StreamHandle, bytes);  //may be approximate
+      return Bass.ChannelBytes2Seconds(StreamHandle, bytes);  //may be approximate
     }
 
     public void SetPosSeconds(double secs) {
       if (StreamHandle == 0) return;
-      if (Bass.BASS_ChannelIsActive(StreamHandle) == BASSActive.BASS_ACTIVE_PLAYING) return;
+      if (Bass.ChannelIsActive(StreamHandle) == PlaybackState.Playing) return;
       if (secs > GetDurationSeconds()) return;
-      CheckOK(Bass.BASS_ChannelSetPosition(StreamHandle, secs));
-      CheckOK(Bass.BASS_ChannelStop(StreamHandle));
+      long bytes = Bass.ChannelSeconds2Bytes(StreamHandle, secs);
+      CheckOK(Bass.ChannelSetPosition(StreamHandle, bytes));
+      CheckOK(Bass.ChannelStop(StreamHandle));
     }
 
     public double GetDurationSeconds() {  //seconds
       if (StreamHandle == 0) return 0;
-      long bytes = Bass.BASS_ChannelGetLength(StreamHandle);
-      return Bass.BASS_ChannelBytes2Seconds(StreamHandle, bytes);
+      long bytes = Bass.ChannelGetLength(StreamHandle);
+      return Bass.ChannelBytes2Seconds(StreamHandle, bytes);
     }
 
     public long GetDurationBytes() {  //seconds
       if (StreamHandle == 0) return 0;
-      return Bass.BASS_ChannelGetLength(StreamHandle);
+      return Bass.ChannelGetLength(StreamHandle);
     }
 
     internal int GetSampleRate() {
       if (StreamHandle == 0) return 0;
-      BASS_CHANNELINFO info = Bass.BASS_ChannelGetInfo(StreamHandle);
-      return info.freq;
+      ChannelInfo info = Bass.ChannelGetInfo(StreamHandle);
+      return info.Frequency;
     }
 
     public int Vol {  //0-100
       set {
         if (StreamHandle == 0) return;
-        Bass.BASS_ChannelSetAttribute(StreamHandle, BASSAttribute.BASS_ATTRIB_VOL, (float)value / 100);
+        Bass.ChannelSetAttribute(StreamHandle, ChannelAttribute.Volume, (float)value / 100);
       }
       get {
         float val = 1.0f;
         if (StreamHandle == 0) return 50;
-        CheckOK(Bass.BASS_ChannelGetAttribute(StreamHandle, BASSAttribute.BASS_ATTRIB_VOL, ref val));
+        CheckOK(Bass.ChannelGetAttribute(StreamHandle, ChannelAttribute.Volume, out val));
         return (int)(val * 100);
       }
     }
@@ -297,13 +300,13 @@ namespace ChordCadenza {
     public int Pan {  //-50 - +50
       set {
         if (StreamHandle == 0) return;
-        Bass.BASS_ChannelSetAttribute(StreamHandle, BASSAttribute.BASS_ATTRIB_PAN, (float)value / 50
+        Bass.ChannelSetAttribute(StreamHandle, ChannelAttribute.Pan, (float)value / 50
           );
       }
       get {
         float val = 0f;
         if (StreamHandle == 0) return 0;
-        CheckOK(Bass.BASS_ChannelGetAttribute(StreamHandle, BASSAttribute.BASS_ATTRIB_PAN, ref val));
+        CheckOK(Bass.ChannelGetAttribute(StreamHandle, ChannelAttribute.Pan, out val));
         return (int)(val * 50);
       }
     }
@@ -311,8 +314,8 @@ namespace ChordCadenza {
     public void Free() {
       RemovePosSync();
       RemoveEndSync();
-      clsBassOutMidi.CheckOKSoft(Bass.BASS_ChannelStop(StreamHandle));
-      clsBassOutMidi.CheckOKSoft(Bass.BASS_StreamFree(StreamHandle));
+      clsBassOutMidi.CheckOKSoft(Bass.ChannelStop(StreamHandle));
+      clsBassOutMidi.CheckOKSoft(Bass.StreamFree(StreamHandle));
       StreamHandle = 0;
     }
 

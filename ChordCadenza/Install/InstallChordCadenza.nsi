@@ -10,9 +10,7 @@
 !define VSNAME "ChordCadenza"  ;same as visual studio
 !define PRODUCT_PUBLISHER "ChordCadenza"
 !define PRODUCT_WEB_SITE "http://www.chordcadenza.org"
-!define STARTERSOUNDFONT_BUILD_DIR "D:\Software New\SoundFonts"
-;!define OUTDIR "D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\WebSite\Live\Downloads"
-!define  OUTDIR "D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\bin\Downloads"
+!define  OUTDIR "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\bin\Downloads"
 
 !include LogicLib.nsh
 !include "x64.nsh" 
@@ -21,12 +19,11 @@
 ;!include WinMessages.nsh
 
 !define PRODUCT_VERSION "0.0.0.0" 
-;!define PRODUCT_VERSION "1.13.6.0" 
-;!define CFG_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin\Cfg"
-!define CFG_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\Cfg"
-!define BIN_BUILD_DIR "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin"
-!define BUILD_DIR_64  "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin\Release X64"
-!define BUILD_DIR_32  "D:\D2\Dev\CS.Express\${VSNAME}\${VSNAME}\bin\Release"
+;!define PRODUCT_VERSION "2.0.4.2" 
+!define CFG_BUILD_DIR "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\AppCfg"
+!define BIN_BUILD_DIR "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\bin"
+!define BUILD_DIR_64  "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\bin\Release X64"
+!define BUILD_DIR_32  "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\bin\Release"
 
 !getdllversion "${BUILD_DIR_64}\${VSNAME}.exe" VS64V_
 !getdllversion "${BUILD_DIR_32}\${VSNAME}.exe" VS32V_
@@ -54,15 +51,15 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${PRODUCT_VERSION}"
 
 !ifdef STARTERSOUNDFONT 
   !ifdef X32
-    OutFile "${OUTDIR}\Setup ${PRODUCT_NAME}_${PRODUCT_VERSION}_32.exe"
+    OutFile "${OUTDIR}\Setup_${PRODUCT_NAME}_${PRODUCT_VERSION}_32.exe"
   !else
-    OutFile "${OUTDIR}\Setup ${PRODUCT_NAME}_${PRODUCT_VERSION}.exe"
+    OutFile "${OUTDIR}\Setup_${PRODUCT_NAME}_${PRODUCT_VERSION}.exe"
   !endif
 !else
   !ifdef X32
-    OutFile "${OUTDIR}\Setup ${PRODUCT_NAME}_${PRODUCT_VERSION}_NoSoundFont_32.exe"
+    OutFile "${OUTDIR}\Setup_${PRODUCT_NAME}_${PRODUCT_VERSION}_NoSoundFont_32.exe"
   !else
-    OutFile "${OUTDIR}\Setup ${PRODUCT_NAME}_${PRODUCT_VERSION}_NoSoundFont.exe"
+    OutFile "${OUTDIR}\Setup_${PRODUCT_NAME}_${PRODUCT_VERSION}_NoSoundFont.exe"
   !endif
 !endif  
 
@@ -150,7 +147,7 @@ Section "Chord Cadenza" Desc_Chord_Cadenza
   SetOverwrite ifnewer
   SetOutPath $INSTDIR
   
-  !insertmacro CheckNetFramework 40Client
+  !insertmacro CheckNetFramework 45
 
   !ifdef X32
     DetailPrint "32-bit system forced"
@@ -168,7 +165,7 @@ Section "Chord Cadenza" Desc_Chord_Cadenza
     ${EndIf}
   !endif
   
-  SetOutPath "$APPDATA\${PRODUCT_NAME}"
+  ;SetOutPath "$APPDATA\${PRODUCT_NAME}"
   File "${CFG_BUILD_DIR}\*.dat"
   File "${CFG_BUILD_DIR}\License.txt"
   File "${CFG_BUILD_DIR}\ToolTips.html"
@@ -198,7 +195,7 @@ SectionEnd
   Section "SoundFont" Desc_SoundFont
     CreateDirectory "$MUSIC\SoundFonts"
     SetOutPath "$MUSIC\SoundFonts"
-    File "${STARTERSOUNDFONT_BUILD_DIR}\TimGM6mb.sf2"
+    File "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\Soundfonts\TimGM6mb.sf2"
   SectionEnd
 !endif  
 
@@ -206,7 +203,7 @@ Section "Sample Projects" Desc_Sample_Projects
   ;separate section to show option on install components screen
   CreateDirectory "$MUSIC\${PRODUCT_NAME} Projects\Samples"
   SetOutPath "$MUSIC\${PRODUCT_NAME} Projects\Samples"
-  File /r "${BIN_BUILD_DIR}\Samples\*.*"
+  File /r "D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\Samples\*.*"
 SectionEnd
 
 Section -Post
@@ -278,7 +275,7 @@ Function .onInit
   
 /*
   ;check .NET
-  ReadRegDWORD $0 HKLM "SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" "Release"
+  ReadRegDWORD $0 HKLM "SOFTWARE\Microsoft\NET Framework_Setup\NDP\v4\Full" "Release"
   IntCmp "$0" "${ReleaseDotNet45}" DotNetInstalled DotNetNotInstalled DotNetInstalled  
   
   DotNetNotInstalled:

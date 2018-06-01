@@ -17,6 +17,8 @@ namespace ChordCadenza {
   internal enum eLogicError : int {
     X999 = 0,
 
+    X166,
+    X165,
     X164,
     X163,
     X162,

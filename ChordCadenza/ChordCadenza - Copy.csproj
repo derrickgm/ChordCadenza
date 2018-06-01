@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E908947F-AD2C-4CFB-BEEB-A37324605788}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChordCadenza</RootNamespace>
+    <AssemblyName>ChordCadenza</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Expression\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ChordCadenza.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug X64\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ADVANCED</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\Release X64\</OutputPath>
+    <DefineConstants>APPDATAPATH UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>68DA8A2362D4F12A3D20CE2D27C6F220C71C8010</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Expression_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ADVANCED</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>APPDATAPATH UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cadenza150.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ManagedBass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.2.0.4\lib\net45\ManagedBass.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Asio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Asio.2.0.0\lib\netstandard1.4\ManagedBass.Asio.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Fx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Fx.2.0.1\lib\netstandard1.4\ManagedBass.Fx.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Midi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Midi.2.0.0\lib\net45\ManagedBass.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Mix, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Mix.2.1.0\lib\netstandard1.4\ManagedBass.Mix.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoSync\BASSSyncProcs.cs" />
+    <Compile Include="AutoSync\clsAudioSyncBeat.cs" />
+    <Compile Include="AutoSync\clsMP3Bass.cs" />
+    <Compile Include="Bezier.cs" />
+    <Compile Include="Cfg.cs" />
+    <Compile Include="clsBar.cs" />
+    <Compile Include="clsCF\clsCF.clsEv.cs" />
+    <Compile Include="clsCF\clsUndoRedoEvs.cs" />
+    <Compile Include="clsColors.cs" />
+    <Compile Include="clsBeatChords.cs" />
+    <Compile Include="clsLyrics.cs" />
+    <Compile Include="clsMap.cs" />
+    <Compile Include="clsPlay\clsManChords.cs" />
+    <Compile Include="clsPCKB.cs" />
+    <Compile Include="clsSustain.cs" />
+    <Compile Include="AutoSync\clsAudioSync.cs" />
+    <Compile Include="clsTrkArray.cs" />
+    <Compile Include="clsTT.cs" />
+    <Compile Include="clsWaitPlay.cs" />
+    <Compile Include="Forms\Colours\frmColours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColours.Designer.cs">
+      <DependentUpon>frmColours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursNM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursNM.Designer.cs">
+      <DependentUpon>frmColoursNM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursSC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursSC.Designer.cs">
+      <DependentUpon>frmColoursSC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursTonnetz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Colours\frmColoursTonnetz.Designer.cs">
+      <DependentUpon>frmColoursTonnetz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgAbout.Designer.cs">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgCalcKeysOpts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgCalcKeysOpts.Designer.cs">
+      <DependentUpon>dlgCalcKeysOpts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmConsole.Designer.cs">
+      <DependentUpon>frmConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmManChordSync.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmManChordSync.Designer.cs">
+      <DependentUpon>frmManChordSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAutoSync.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAutoSync.Designer.cs">
+      <DependentUpon>frmAutoSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCfgChords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCfgChords.Designer.cs">
+      <DependentUpon>frmCfgChords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgChangeSongLength.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgChangeSongLength.Designer.cs">
+      <DependentUpon>dlgChangeSongLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmChordRanks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChordRanks.Designer.cs">
+      <DependentUpon>frmChordRanks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgNud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgNud.Designer.cs">
+      <DependentUpon>dlgNud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgExit.Designer.cs">
+      <DependentUpon>dlgExit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInitial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInitial.Designer.cs">
+      <DependentUpon>frmInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgCHP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgCHP.Designer.cs">
+      <DependentUpon>dlgCHP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgInsertBars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgInsertBars.Designer.cs">
+      <DependentUpon>dlgInsertBars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLyrics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLyrics.Designer.cs">
+      <DependentUpon>frmLyrics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgPasteSpecial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgPasteSpecial.Designer.cs">
+      <DependentUpon>dlgPasteSpecial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTrackStyles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTrackStyles.Designer.cs">
+      <DependentUpon>frmTrackStyles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgSaveProjectAs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgSaveProjectAs.Designer.cs">
+      <DependentUpon>dlgSaveProjectAs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgSaveMidiFileAs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgSaveMidiFileAs.Designer.cs">
+      <DependentUpon>dlgSaveMidiFileAs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSC.Designer.cs">
+      <DependentUpon>frmSC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmChordMapAdv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChordMapAdv.Designer.cs">
+      <DependentUpon>frmChordMapAdv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgSCAlign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgSCAlign.Designer.cs">
+      <DependentUpon>dlgSCAlign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSCOctaves.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSCOctaves.Designer.cs">
+      <DependentUpon>frmSCOctaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSwitch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSwitch.Designer.cs">
+      <DependentUpon>frmSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgNewProject.Designer.cs">
+      <DependentUpon>dlgNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTonnetz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTonnetz.Designer.cs">
+      <DependentUpon>frmTonnetz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogicError.cs" />
+    <Compile Include="Forms\frmConfigBass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmConfigBass.Designer.cs">
+      <DependentUpon>frmConfigBass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFX.Designer.cs">
+      <DependentUpon>frmFX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCfgBezier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCfgBezier.Designer.cs">
+      <DependentUpon>frmCfgBezier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MidiFile\clsSaveMidiFile.cs" />
+    <Compile Include="clsCF\clsCF.cs" />
+    <Compile Include="ChordAnalysis.cs" />
+    <Compile Include="clsChordDB.cs" />
+    <Compile Include="clsMidiCtlrs.cs" />
+    <Compile Include="clsPlay\clsChordPlayEvent.cs" />
+    <Compile Include="clsPlay\clsPlayChords.cs" />
+    <Compile Include="clsPlay\clsPlayKeyboard.cs" />
+    <Compile Include="clsPlay\clsKBPitch.cs" />
+    <Compile Include="clsKeyAlg.cs" />
+    <Compile Include="clsKeys.cs" />
+    <Compile Include="clsMTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="clsMute.cs" />
+    <Compile Include="Lists\MidiCtlrList.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Forms\frmMidiDevs..cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMidiDevs..Designer.cs">
+      <DependentUpon>frmMidiDevs..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmShowList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmShowList.Designer.cs">
+      <DependentUpon>frmShowList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MidiFile\clsFileStream.cs" />
+    <Compile Include="Forms\frmCalcKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCalcKeys.Designer.cs">
+      <DependentUpon>frmCalcKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\GeneralMidiList.cs" />
+    <Compile Include="MidiFile\clsLoadMidiFile.cs" />
+    <Compile Include="MidiIO\clsBASSOutMidi.cs" />
+    <None Include="ClassDiagram1.cd" />
+    <Compile Include="MidiIO\clsBASSOutDev.cs" />
+    <Compile Include="NoteMap\clsChordSegs.cs" />
+    <Compile Include="NoteMap\clsNoteMap.cs" />
+    <Compile Include="clsLoadCSV.cs" />
+    <Compile Include="clsPlay\clsPlay.cs" />
+    <Compile Include="Forms\frmChordMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChordMap.Designer.cs">
+      <DependentUpon>frmChordMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmStart.Designer.cs">
+      <DependentUpon>frmStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTrackMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTrackMap.Designer.cs">
+      <DependentUpon>frmTrackMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MidiIO\clsMidiInOut.cs" />
+    <Compile Include="MidiIO\clsSync.cs" />
+    <Compile Include="MidiFile\clsFileStream_clsPlay.cs" />
+    <Compile Include="MidiIO\MidiStructs.cs" />
+    <Compile Include="NoteMap\clsNoteMapCF.cs" />
+    <Compile Include="NoteMap\clsNoteMapMidi.cs" />
+    <Compile Include="NoteMap\clsOnOff.cs" />
+    <Compile Include="NoteName.cs" />
+    <Compile Include="Forms\frmSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSummary.Designer.cs">
+      <DependentUpon>frmSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clsPicNoteMap.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="clsCF\clsCF.derived.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Forms\Colours\frmColoursNM.resx">
+      <DependentUpon>frmColoursNM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Colours\frmColoursSC.resx">
+      <DependentUpon>frmColoursSC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Colours\frmColoursTonnetz.resx">
+      <DependentUpon>frmColoursTonnetz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgAbout.resx">
+      <DependentUpon>dlgAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgCalcKeysOpts.resx">
+      <DependentUpon>dlgCalcKeysOpts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmConsole.resx">
+      <DependentUpon>frmConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmManChordSync.resx">
+      <DependentUpon>frmManChordSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAutoSync.resx">
+      <DependentUpon>frmAutoSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCalcKeys.resx">
+      <DependentUpon>frmCalcKeys.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Colours\frmColours.resx">
+      <DependentUpon>frmColours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCfgChords.resx">
+      <DependentUpon>frmCfgChords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgChangeSongLength.resx">
+      <DependentUpon>dlgChangeSongLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChordRanks.resx">
+      <DependentUpon>frmChordRanks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmConfigBass.resx">
+      <DependentUpon>frmConfigBass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgNud.resx">
+      <DependentUpon>dlgNud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgExit.resx">
+      <DependentUpon>dlgExit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFX.resx">
+      <DependentUpon>frmFX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCfgBezier.resx">
+      <DependentUpon>frmCfgBezier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInitial.resx">
+      <DependentUpon>frmInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgCHP.resx">
+      <DependentUpon>dlgCHP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgInsertBars.resx">
+      <DependentUpon>dlgInsertBars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLyrics.resx">
+      <DependentUpon>frmLyrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgPasteSpecial.resx">
+      <DependentUpon>dlgPasteSpecial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTrackStyles.resx">
+      <DependentUpon>frmTrackStyles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgSaveProjectAs.resx">
+      <DependentUpon>dlgSaveProjectAs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgSaveMidiFileAs.resx">
+      <DependentUpon>dlgSaveMidiFileAs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSC.resx">
+      <DependentUpon>frmSC.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChordMapAdv.resx">
+      <DependentUpon>frmChordMapAdv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgSCAlign.resx">
+      <DependentUpon>dlgSCAlign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSCOctaves.resx">
+      <DependentUpon>frmSCOctaves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSummary.resx">
+      <DependentUpon>frmSummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMidiDevs..resx">
+      <DependentUpon>frmMidiDevs..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChordMap.resx">
+      <DependentUpon>frmChordMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmShowList.resx">
+      <DependentUpon>frmShowList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmStart.resx">
+      <DependentUpon>frmStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTonnetz.resx">
+      <DependentUpon>frmTonnetz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTrackMap.resx">
+      <DependentUpon>frmTrackMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSwitch.resx">
+      <DependentUpon>frmSwitch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgNewProject.resx">
+      <DependentUpon>dlgNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Text\Sync.ods" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Headers\MMSystem.h" />
+    <None Include="Text\midictlrs.txt" />
+    <None Include="Text\Multichords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cadenza150.ico" />
+    <None Include="Resources\GlyphUp_16x.png" />
+    <None Include="Resources\GlyphDown_16x.png" />
+    <Content Include="Text\EnhancedRec.txt" />
+    <Content Include="Text\ManChords.txt" />
+    <Content Include="Text\StepMode.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MediaPlayer">
+      <Guid>{22D6F304-B0F6-11D0-94AB-0080C74C7E95}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)' == 'x86'">
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x86\bass.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass_FX WinStore\Windows 8\x86\bass_fx.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x86\bassmidi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x86\bassmix.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)' == 'x64'">
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x64\bass.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass_FX WinStore\Windows 8\x64\bass_fx.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x64\bassmidi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x64\bassmix.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\libs\Bass WinStore\Windows 8\x64\basswv.test.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -256,6 +256,7 @@ namespace ChordCadenza {
         if (!MP3Player.CheckCmdSync()) return;
       }
       if (P.frmSC.Play != null) P.frmSC.Play.BBTSwitch = null;
+      Forms.frmSC.ShowfrmPCKBIn();
       lock (this) {
         _indMP3Playing = true;
         StartBar = P.F.CurrentBBT.Bar;
@@ -270,7 +271,7 @@ namespace ChordCadenza {
       if (!MP3Player.CheckCmdSync()) return;
       if (P.frmSC.Play != null) P.frmSC.Play.BBTSwitch = null;
       if (Forms.frmSC.MenuMonitor) clsPlay.InitStopwatch();
-
+      Forms.frmSC.ShowfrmPCKBIn();
       lock (this) {
         _indMP3Playing = true;
         StartBar = P.F.CurrentBBT.Bar;
@@ -286,7 +287,7 @@ namespace ChordCadenza {
       if (!MP3Player.CheckCmdSync()) return;
       if (P.frmSC.Play != null) P.frmSC.Play.BBTSwitch = null;
       if (Forms.frmSC.MenuMonitor) clsPlay.InitStopwatch();
-
+      Forms.frmSC.ShowfrmPCKBIn();
       lock (this) {
         _indMP3Playing = true;
         StartBar = P.F.CurrentBBT.Bar;
@@ -368,6 +369,7 @@ namespace ChordCadenza {
       //if (P.F.frmAutoSync != null) {
       //P.F.frmAutoSync.BeginInvoke(
       //  new delegUpdatePos(P.F.frmAutoSync.UpdatePos), MP3Player.GetStartPosUnits());
+      P.frmPCKBIn?.Invoke(new clsSync.delegClosefrmPCKBIn(P.frmPCKBIn.Close));
       if (indpause) {
         if (Elapsed.Play.Count - 1 >= CurrentBBT.Beats) {
           long pos = Elapsed.Play[CurrentBBT.Beats];

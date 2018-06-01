@@ -40,6 +40,7 @@ namespace ChordCadenza.Forms {
       bool indsavesave = (P.F.CF == null) ? false : P.F.CF.indSave;
       try {
         InitializeComponent();
+        Forms.frmSC.ZZZSetPCKBEvs(this);
 
         VFactor = InitialVFactor;  //should be overridden later with Static...
         //VFactor = (chkEvenSpacing.Checked) ? 6 : 3; 
@@ -56,6 +57,12 @@ namespace ChordCadenza.Forms {
       finally {
         if (P.F.CF != null) P.F.CF.indSave = indsavesave;
       }
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     private int InitialVFactor {
@@ -2014,7 +2021,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_TrackMap_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_TrackMap_Intro.htm");
     }
 
     private void cmdTonnetz_Click(object sender, EventArgs e) {

@@ -28,6 +28,7 @@ namespace ChordCadenza {
       P.frmSC.cmdSaveProjectAs.Enabled = true;
       P.frmSC.mnuSaveProjectAs.Enabled = true;
       P.frmSC.mnuReloadProject.Enabled = true;
+      P.frmSC.mnuImport.Enabled = true;
     }
 
     internal clsProject(clsProject project, string projectpath, string name) {  //clone (Save As...)
@@ -43,6 +44,7 @@ namespace ChordCadenza {
       P.frmSC.cmdSaveProjectAs.Enabled = true;
       P.frmSC.mnuSaveProjectAs.Enabled = true;
       P.frmSC.mnuReloadProject.Enabled = true;
+      P.frmSC.mnuImport.Enabled = true;
     }
 
     internal clsProject(string filename, string chpext) {
@@ -54,6 +56,7 @@ namespace ChordCadenza {
       P.frmSC.cmdSaveProjectAs.Enabled = true;
       P.frmSC.mnuSaveProjectAs.Enabled = true;
       P.frmSC.mnuReloadProject.Enabled = true;
+      P.frmSC.mnuImport.Enabled = true;
     }
 
     private void SetFrmTitles() {
@@ -243,6 +246,9 @@ namespace ChordCadenza {
     internal static Forms.frmSC frmSC_Temp;  //used during Cfg initialisation
     internal static Forms.frmSC frmSC;
     internal static clsPCKB PCKB;
+    internal static Forms.frmPCKBCfg frmPCKB;
+    internal static Forms.frmPCKBIn frmPCKBIn;
+
     #if ADVANCED
       internal static Forms.frmConsole frmConsole;
     #endif
@@ -408,32 +414,37 @@ namespace ChordCadenza {
     }
 
     internal static void OpenMidiDev(clsMidiInOut.eType type, string name, bool bassonly) {
-      if (!bassonly && type == clsMidiInOut.eType.InSync) OpenMidiInSync(name);
-      if (!bassonly && type == clsMidiInOut.eType.InKB) OpenMidiInKB(name);
-      if (type == clsMidiInOut.eType.OutStream) OpenMidiOutStream(name, bassonly);
-      if (type == clsMidiInOut.eType.OutKB) OpenMidiOutKB(name, bassonly);
+      if (!bassonly && type == clsMidiInOut.eType.InSync) OpenMidiInSync(name, true);
+      if (!bassonly && type == clsMidiInOut.eType.InKB) OpenMidiInKB(name, true);
+      if (type == clsMidiInOut.eType.OutStream) OpenMidiOutStream(name, true, bassonly);
+      if (type == clsMidiInOut.eType.OutKB) OpenMidiOutKB(name, true, bassonly);
       PostOpenMidi();
     }
 
-    internal static void OpenMidiDevs(string inkb, string insync, string outstream, string outkb, bool bassonly) {
-      OpenMidiInSync(insync);
-      OpenMidiInKB(inkb);
-      OpenMidiOutStream(outstream, bassonly);
-      OpenMidiOutKB(outkb, bassonly);
-      PostOpenMidi();
+    internal static void OpenMidiDevs(string inkb, string insync, string outstream, string outkb,
+      bool midiinkbconnected, 
+      bool midiinsyncconnected, 
+      bool midioutkbconnected, 
+      bool midioutstreamconnected) {
+        OpenMidiInKB(inkb, midiinkbconnected);
+        OpenMidiInSync(insync, midiinsyncconnected);
+        OpenMidiOutKB(outkb, midioutkbconnected, bassonly: false);
+        OpenMidiOutStream(outstream, midioutstreamconnected, bassonly: false);
+        PostOpenMidi();
     }
 
     internal static void OpenMidiDevs(bool bassonly) {
       OpenMidiDev(null, bassonly);
     }
 
-    private static void OpenMidiInSync(string insync) {
+    private static void OpenMidiInSync(string insync, bool act) {
       if (insync == "" || insync == "None") return;
       clsMidiIn.MidiDevNameInSync = insync;
-      OpenMidiInSync();
+      if (act) OpenMidiInSync();
     }
 
     private static void OpenMidiInSync() {
+      MidiInSync = null;
       string insync = clsMidiIn.MidiDevNameInSync;
       clsMDevsIn midiindevs = new clsMDevsIn();
       if (insync == "***") {  //default
@@ -457,39 +468,52 @@ namespace ChordCadenza {
       PlayableForms.CmdState_Set();
     }
 
-    private static void OpenMidiInKB(string inkb) {
+    private static void OpenMidiInKB(string inkb, bool act) {
       if (inkb == "" || inkb == "None") return;
       clsMidiIn.MidiDevNameInKB = inkb;
-      OpenMidiInKB();
+      if (act) {
+        OpenMidiInKB();
+      } else {
+        if (P.PCKB == null) P.PCKB = clsPCKB.NewPCKB(); 
+      }
     }
 
     private static void OpenMidiInKB() {
-      string inkb = clsMidiIn.MidiDevNameInKB;
-      clsMDevsIn midiindevs = new clsMDevsIn();
-      if (inkb == "***") {  //default
-        if (midiindevs.Devs.Length > 0) inkb = midiindevs.Devs[0]; else inkb = "None";
-        clsMidiIn.MidiDevNameInKB = inkb;
-      } else {
-        if (!midiindevs.Devs.Contains(inkb)) return;
-      } 
+      MidiInKB = null;  
       try {
+        string inkb = clsMidiIn.MidiDevNameInKB;
+        clsMDevsIn midiindevs = new clsMDevsIn();
+        if (inkb == "***") {  //default
+          if (midiindevs.Devs.Length > 0) inkb = midiindevs.Devs[0]; else inkb = "None";
+          clsMidiIn.MidiDevNameInKB = inkb;
+        } else {
+          if (!midiindevs.Devs.Contains(inkb)) return;
+        }
         if (inkb != "") {
           MidiInKB = new clsMidiInKB(midiindevs.Devs, inkb);
-          if (MidiInKB.Handle == IntPtr.Zero) MidiInSync = null;
+          if (MidiInKB.Handle == IntPtr.Zero) MidiInKB = null;
         }
       }
       catch (MidiIOException exc) {
         MessageBox.Show("MidiIOException opening MidiInKB: " + exc.Message);
       }
+      finally {
+        if (MidiInKB != null) {
+          clsPCKB.NullifyPCKB();
+        } else {
+          if (P.PCKB == null) P.PCKB = clsPCKB.NewPCKB();
+        }
+      }
     }
 
-    private static void OpenMidiOutStream(string outstream, bool bassonly) {
+    private static void OpenMidiOutStream(string outstream, bool act, bool bassonly) {
       if (!IsBuiltIn(outstream) && bassonly) return;
       clsBassMidiInOut.MidiDevNameOutStream = outstream;
-      OpenMidiOutStream(bassonly);
+      if (act) OpenMidiOutStream(bassonly);
     }
 
     private static void OpenMidiOutStream(bool bassonly) {
+      OutMStream = null;
       string outstream = clsBassMidiInOut.MidiDevNameOutStream;
       if (!IsBuiltIn(outstream) && bassonly) return;
       if (outstream == "" || outstream == "None") {
@@ -526,13 +550,14 @@ namespace ChordCadenza {
       }
     }
 
-    private static void OpenMidiOutKB(string outkb, bool bassonly) {
+    private static void OpenMidiOutKB(string outkb, bool act, bool bassonly) {
       if (!IsBuiltIn(outkb) && bassonly) return;
       clsBassMidiInOut.MidiDevNameOutKB = outkb;
-      OpenMidiOutKB(bassonly);
+      if (act) OpenMidiOutKB(bassonly);
     }
 
     private static void OpenMidiOutKB(bool bassonly) {
+      OutMKB = null;
       string outkb = clsBassMidiInOut.MidiDevNameOutKB;
       if (!IsBuiltIn(outkb) && bassonly) return;
       if (outkb == "" || outkb == "None") {
@@ -562,6 +587,7 @@ namespace ChordCadenza {
             OutMKB = new clsMidiOut(midioutdevs.Devs, outkb, clsMidiInOut.eType.OutKB);
           }
         }
+        MidiMon.Reset();
       }
       catch (MidiIOException exc) {
         MessageBox.Show("MidiIOException opening MidiOutKB: " + exc.Message);
@@ -1285,10 +1311,13 @@ namespace ChordCadenza {
 
     internal void Panic() {
       //* all notes off, stop stream play
+
+      //if (P.F.AudioSync != null) P.F.AudioSync.Stop();
+      MidiPlay.Sync.Stop();
+
       clsPlay.clsSustain.PlayPedalStatic(false);
       MidiPlay.OutMKB.AllNotesOff();
       if (MidiPlay.OutMStream != null) MidiPlay.OutMStream.AllNotesOff();
-      if (P.F.AudioSync != null) P.F.AudioSync.Stop();
 
       //foreach (clsMidiOutStream m in MidiPlay.MidiOutStreams) {
       //  if (m != null) m.AllNotesOff();

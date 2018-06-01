@@ -8,10 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Un4seen.Bass;
+//using Un4seen.Bass;
 //using Un4seen.Bass.AddOn.Midi;
-using Un4seen.Bass.Misc;
-using Un4seen.BassAsio;
+//using Un4seen.Bass.Misc;
+//using Un4seen.BassAsio;
+using ManagedBass;
+using ManagedBass.Midi;
+using ManagedBass.Asio;
 
 namespace ChordCadenza.Forms {
   internal partial class frmConfigBass : Form, IFormStream, ITT {
@@ -60,12 +63,12 @@ namespace ChordCadenza.Forms {
       clsTT.LoadToolTips(this);
 
       //* get midi device info
-      SetStates();
       if (P.BASSOutDev == null) {
         chkAsio.Checked = clsBASSOutDev.indAsio;
       } else {
         chkAsio.Checked = (P.BASSOutDev is clsBASSOutDevAsio);
       }
+      SetStates();
 
       SetInterface();
       PopulatecmbAudioDevs();
@@ -73,6 +76,20 @@ namespace ChordCadenza.Forms {
 
       nudLatencyKB.Value = Cfg.LatencyKB;
       nudLatencyMidiPlay.Value = Cfg.LatencyMidiPlay;
+
+      if (clsBASSOutDevNonAsio.BufferSize == 0) {  //not set from .ini file
+        cmdCalcBuffer_Click(null, null);
+      }
+
+      if (P.BASSOutDev == null || P.BASSOutDev is clsBASSOutDevAsio) { //non-asio inact
+        //* check if nuffer/update set in .ini file
+        if (clsBASSOutDevNonAsio.BufferSize > 0 && clsBASSOutDevNonAsio.UpdatePeriod > 0) { 
+          nudBuffer.Value = clsBASSOutDevNonAsio.BufferSize;
+          nudUpdatePeriod.Value = clsBASSOutDevNonAsio.UpdatePeriod;
+        } else {
+          cmdCalcBuffer_Click(null, null);
+        }
+      }
 
       //* show devlog
       //txtDevLog.Text = DevLog;
@@ -85,8 +102,9 @@ namespace ChordCadenza.Forms {
       cmbAudioOutput.Enabled = (P.BASSOutDev == null);
       if (!clsBASSOutDevAsio.DevsExist || !clsBASSOutDevNonAsio.DevsExist) chkAsio.Enabled = false;
       grpSetParams.Enabled = (P.BASSOutDev == null);
-      cmdApply.Enabled = (P.BASSOutDev == null);
-      cmdConnectAll.Enabled = (P.BASSOutDev == null);
+      bool devsexist = (chkAsio.Checked) ? clsBASSOutDevAsio.DevsExist : clsBASSOutDevNonAsio.DevsExist;
+      cmdApply.Enabled = (P.BASSOutDev == null && devsexist);
+      cmdConnectAll.Enabled = (P.BASSOutDev == null && devsexist);
       cmdDisconnect.Enabled = (P.BASSOutDev != null);
     }
 
@@ -168,6 +186,8 @@ namespace ChordCadenza.Forms {
         if (P.F != null && P.F.AudioSync != null && P.F.AudioSync.MP3Player != null) {
           if (P.F.AudioSync.MP3Player is clsMP3Bass) {
             P.BASSOutDev.ConnectFile((clsMP3Bass)P.F.AudioSync.MP3Player);
+            P.F.AudioSync.MP3Player.Vol = P.frmSC.trkAudioVol.Value;
+
           }
         }
         //MidiPlay.OpenMidiDevs(true);  //non-audio already open 
@@ -274,39 +294,41 @@ namespace ChordCadenza.Forms {
     private class clsAsio : clsInterface {
       internal clsAsio(frmConfigBass frm)
         : base(frm) {
-#if NOASIODEVS
-        DevInfos = null;
-#else
-        DevInfos = BassAsio.BASS_ASIO_GetDeviceInfos();
-#endif
-        if (DevInfos == null) DevInfos = new BASS_ASIO_DEVICEINFO[0];
+        //DevInfos = BassAsio.BASS_ASIO_GetDeviceInfos();
+        List<AsioDeviceInfo> listdevinfos = new List<AsioDeviceInfo>();
+        AsioDeviceInfo devinfo;
+        for (int i = 0; BassAsio.GetDeviceInfo(i, out devinfo); i++) {
+          listdevinfos.Add(devinfo);
+        }
+        DevInfos = listdevinfos.ToArray();
+
+        Frm.trkAsiodB.Value = Cfg.AsiodB;
         Frm.panNonAsio.Visible = false;
-        Frm.panNonAsio.Enabled = false;
+        Frm.lblAsiodB.Visible = true;
+        Frm.trkAsiodB.Visible = true;
         if (DevInfos.Length > 0) {
           Frm.cmdAsioPanel.Visible = true;
-          Frm.cmdAsioPanel.Enabled = true;
         } else {
           Frm.cmdAsioPanel.Visible = false;
-          Frm.cmdAsioPanel.Enabled = false;
           Frm.cmdApply.Enabled = false;
           Frm.cmdConnectAll.Enabled = false;
         }
       }
 
-      private BASS_ASIO_DEVICEINFO[] DevInfos;
+      private AsioDeviceInfo[] DevInfos;
 
       internal override void ShowAsioPanel() {
         int tmp = -1;  //device to init temporarily
         int sel = Frm.cmbAudioOutput.SelectedIndex;
-        int dev = BassAsio.BASS_ASIO_GetDevice();
+        int dev = BassAsio.CurrentDevice;
         if (sel >= 0) {
           if (sel != dev) {
             tmp = sel;
-            BassAsio.BASS_ASIO_Init(tmp, BASSASIOInit.BASS_ASIO_DEFAULT);  //(asiodev, flags)
+            BassAsio.Init(tmp, AsioInitFlags.None);  //(asiodev, flags)
           }
-          clsBassOutMidi.CheckOK(BassAsio.BASS_ASIO_ControlPanel());
+          clsBassOutMidi.CheckOK(BassAsio.ControlPanel());
         }
-        if (tmp >= 0) BassAsio.BASS_ASIO_Free();
+        if (tmp >= 0) BassAsio.Free();
       }
 
       internal override void PopulatecmbAudioDevs(ComboBox cmb) {
@@ -314,7 +336,7 @@ namespace ChordCadenza.Forms {
           cmb.SelectedIndex = -1;
         } else {
           for (int n = 0; n < DevInfos.Length; n++) {
-            cmb.Items.Add(DevInfos[n]);
+            cmb.Items.Add(DevInfos[n].Name);
           }
           cmb.SelectedIndex = clsBASSOutDevAsio.AsioDevNum;
         }
@@ -333,35 +355,35 @@ namespace ChordCadenza.Forms {
         : base(frm) {
         //DevInfos = Bass.BASS_GetDeviceInfos();
         Frm.panNonAsio.Visible = true;
-        Frm.panNonAsio.Enabled = true;
         Frm.cmdAsioPanel.Visible = false;
-        Frm.cmdAsioPanel.Enabled = false;
+        Frm.lblAsiodB.Visible = false;
+        Frm.trkAsiodB.Visible = false;
       }
 
 
       internal override void PopulatecmbAudioDevs(ComboBox cmb) {
         for (int n = 1; n < clsBASSOutDevNonAsio.DevInfos.Length; n++) {  //ignore dev 0 - nosound
-          cmb.Items.Add(clsBASSOutDevNonAsio.DevInfos[n]);
+          cmb.Items.Add(clsBASSOutDevNonAsio.DevInfos[n].Name);
         }
         int index = clsBASSOutDevNonAsio.AudioDevNum - 1;  //dfltdev: index = -2
         if (index < cmb.Items.Count && index >= 0) cmb.SelectedIndex = clsBASSOutDevNonAsio.AudioDevNum - 1;
-        else cmb.SelectedIndex = -1;  //no selection
+        else cmb.SelectedIndex = (cmb.Items.Count > 0) ? 0 : -1;  //no selection
       }
 
       internal override void GetBassNonAsioInfo() {
         bool ok = true;
         bool temp = true;
-        Bass.BASS_SetDevice(Frm.cmbAudioOutput.SelectedIndex + 1);
+        //Bass.CurrentDevice = Frm.cmbAudioOutput.SelectedIndex + 1;
 
 #if NOAUDIODEVS
         temp = false; 
         ok = false;  
         clsBASSOutDev.Disconnected = true; 
 #else
-        if (!Bass.BASS_Init(Frm.cmbAudioOutput.SelectedIndex + 1, 44100, BASSInit.BASS_DEVICE_LATENCY, P.frmSC.Handle)) {
+        if (!Bass.Init(Frm.cmbAudioOutput.SelectedIndex + 1, 44100, DeviceInitFlags.Latency, P.frmSC.Handle)) {
           temp = false;
-          BASSError error = Bass.BASS_ErrorGetCode();
-          if (error != BASSError.BASS_ERROR_ALREADY) {
+          Errors error = Bass.LastError;
+          if (error != Errors.Already) {
             ok = false;
             clsBASSOutDev.Disconnected = true;
           }
@@ -369,7 +391,7 @@ namespace ChordCadenza.Forms {
 #endif
 
         if (ok) clsBASSOutDevNonAsio.SetConfig();
-        if (temp) Bass.BASS_Free();  //close if used in this method only
+        if (temp) Bass.Free();  //close if used in this method only
       }
 
       //internal override void GetBassNonAsioInfo() {
@@ -433,23 +455,23 @@ namespace ChordCadenza.Forms {
         try {
           Frm.Bypass_Event = true;
 
-          int buffer = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_BUFFER);
+          int buffer = Bass.GetConfig(Configuration.PlaybackBufferLength);
           if (buffer >= Frm.nudBuffer.Minimum && buffer <= Frm.nudBuffer.Maximum) {
             Frm.nudBuffer.Value = buffer;
           }
 
-          int updateperiod = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD);
+          int updateperiod = Bass.GetConfig(Configuration.UpdatePeriod);
           if (updateperiod >= Frm.nudBuffer.Minimum && updateperiod <= Frm.nudBuffer.Maximum) {
             Frm.nudUpdatePeriod.Value = updateperiod;
           }
 
-          BASS_INFO info = new BASS_INFO();
-          if (Bass.BASS_GetInfo(info)) clsBASSOutDevNonAsio.BassInfo = info;
-          if (clsBASSOutDevNonAsio.BassInfo.latency > 0) {
-            Frm.lblLatency.Text = clsBASSOutDevNonAsio.BassInfo.latency.ToString();
+          BassInfo info = new BassInfo();
+          if (Bass.GetInfo(out info)) clsBASSOutDevNonAsio.BassInfo = info;
+          if (clsBASSOutDevNonAsio.BassInfo.Latency > 0) {
+            Frm.lblLatency.Text = clsBASSOutDevNonAsio.BassInfo.Latency.ToString();
           }
-          if (clsBASSOutDevNonAsio.BassInfo.minbuf > 0) {
-            Frm.lblMinBuf.Text = clsBASSOutDevNonAsio.BassInfo.minbuf.ToString();
+          if (clsBASSOutDevNonAsio.BassInfo.MinBufferLength > 0) {
+            Frm.lblMinBuf.Text = clsBASSOutDevNonAsio.BassInfo.MinBufferLength.ToString();
           }
         }
         finally {
@@ -464,7 +486,7 @@ namespace ChordCadenza.Forms {
 
     private void cmdHelp_Click(object sender, EventArgs e) {
       HelpNavigator navigator = HelpNavigator.Topic;
-      Help.ShowHelp(this, Cfg.HelpFilePath, navigator, "Form_ConfigBass_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, navigator, "Form_ConfigBass_Intro.htm");
     }
 
     private void nudLatencyMidiPlay_ValueChanged(object sender, EventArgs e) {
@@ -482,15 +504,15 @@ namespace ChordCadenza.Forms {
 
     private void SetLatencyFromDevice(NumericUpDown nud) {
       if (clsBASSOutDev.indAsio) {
-        double rate = BassAsio.BASS_ASIO_GetRate();
-        int latency = BassAsio.BASS_ASIO_GetLatency(false);
+        double rate = BassAsio.Rate;
+        int latency = BassAsio.GetLatency(false);
         int ms = (int)(latency * 1000 / rate);
         if (ms <= 5) ms = 0;  //not worth using timer delay
         nud.Value = ms;
       } else {  //non-ASIO
-        BASS_INFO info = new BASS_INFO();
-        if (Bass.BASS_GetInfo(info)) clsBASSOutDevNonAsio.BassInfo = info;
-        if (clsBASSOutDevNonAsio.BassInfo.latency > 0) nud.Value = clsBASSOutDevNonAsio.BassInfo.latency;
+        BassInfo info = new BassInfo();
+        if (Bass.GetInfo(out info)) clsBASSOutDevNonAsio.BassInfo = info;
+        if (clsBASSOutDevNonAsio.BassInfo.Latency > 0) nud.Value = clsBASSOutDevNonAsio.BassInfo.Latency;
       }
     }
 
@@ -500,10 +522,10 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdCalcBuffer_Click(object sender, EventArgs e) {
-      BASS_INFO info = new BASS_INFO();
-      if (Bass.BASS_GetInfo(info)) clsBASSOutDevNonAsio.BassInfo = info;
-      if (clsBASSOutDevNonAsio.BassInfo.minbuf > 0) {
-        nudBuffer.Value = (int)nudUpdatePeriod.Value + clsBASSOutDevNonAsio.BassInfo.minbuf + clsBASSOutDevNonAsio.BufferMargin;
+      BassInfo info = new BassInfo();
+      if (Bass.GetInfo(out info)) clsBASSOutDevNonAsio.BassInfo = info;
+      if (clsBASSOutDevNonAsio.BassInfo.MinBufferLength > 0) {
+        nudBuffer.Value = (int)nudUpdatePeriod.Value + clsBASSOutDevNonAsio.BassInfo.MinBufferLength + clsBASSOutDevNonAsio.BufferMargin;
       }
     }
 
@@ -525,6 +547,12 @@ namespace ChordCadenza.Forms {
 
     private void cmdLatencyKBZero_Click(object sender, EventArgs e) {
       nudLatencyKB.Value = 0;
+    }
+
+    private void trkAsiodB_Scroll(object sender, EventArgs e) {
+      Cfg.AsiodB = trkAsiodB.Value;
+      if (BassAsio.ChannelIsActive(false, 0) == AsioChannelActive.Disabled) return;
+      clsBASSOutDevAsio.SetdB();
     }
   }
 }

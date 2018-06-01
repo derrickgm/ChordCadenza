@@ -158,6 +158,7 @@ namespace ChordCadenza {
     //private System.Threading.Timer StopTimeOut;
     internal Object TimerLock = new Object();
     //private bool PlayCmdOn = false;
+    internal delegate void delegClosefrmPCKBIn();
 
     private void DebugPlay() {
       LogicError.Throw(eLogicError.X999);
@@ -192,8 +193,10 @@ namespace ChordCadenza {
       if (/*clsPlay.PlayExists() &&*/ Forms.frmSC.MenuMonitor) {
         clsPlay.InitStopwatch();
       }
+      Forms.frmSC.ShowfrmPCKBIn();
       if (P.frmSC.Play != null) {
         P.frmSC.Play.BBTSwitch = null;
+        P.frmSC.Play.NewReset();
       }
       ShowGCCollectionCounts("Start Play");
       P.F.WaitPlay = new clsWaitPlay(filestream, MidiPlay.OutMStream, mute);
@@ -247,8 +250,8 @@ namespace ChordCadenza {
 
       if (P.frmSC != null) P.frmSC.nudStartBar.Value = 
           Math.Max(0, Math.Min(P.frmSC.nudStartBar.Maximum - 1, P.F.CurrentBBT.Bar + 1));
-      //if (P.frmStart.chkPlaySustain.Checked) clsPlay.clsSustain.PlayPedalStatic(false);
-      //if (P.frmStart.chkPlayKBChord.Checked) clsPlayKeyboard.PlayNearestChordNote = true;
+
+      P.frmPCKBIn?.Invoke(new delegClosefrmPCKBIn(P.frmPCKBIn.Close));
       ShowGCCollectionCounts("Stop Play");
       //CheckMarkAndSave();
     }
@@ -269,10 +272,13 @@ namespace ChordCadenza {
           P.F.WaitPlay = null;
         //}
       }
+
       if (P.F.AudioSync != null) {
         P.F.AudioSync.Stop();
         //P.frmStart.StreamPlayOffAll();
       }
+
+      //P.frmPCKBIn?.Invoke(new delegClosefrmPCKBIn(P.frmPCKBIn.Close));
       ShowGCCollectionCounts("Stop Play");
     }
 

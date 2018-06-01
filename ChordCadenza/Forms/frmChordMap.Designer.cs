@@ -1862,7 +1862,7 @@
     private System.Windows.Forms.Button cmdGoToStart;
     internal System.Windows.Forms.PictureBox picNoteMapFile;
     //internal System.Windows.Forms.Panel panNoteMap;
-    internal PanelNoScrollOnFocus panNoteMap;
+    internal ChordCadenza.PanelNoScrollOnFocus panNoteMap;
     internal System.Windows.Forms.NumericUpDown nudTransposeChordNames;
     internal System.Windows.Forms.PictureBox picNoteMapQuant;
     private System.Windows.Forms.Button cmdColours;
@@ -1912,7 +1912,7 @@
     internal System.Windows.Forms.Button cmdCopy;
     internal System.Windows.Forms.Button cmdPlayAndRecordAudio;
     //private System.Windows.Forms.Panel panMain;
-    private PanelNoScrollOnFocus panMain;
+    private ChordCadenza.PanelNoScrollOnFocus panMain;
     internal System.Windows.Forms.Button cmdInsertBars;
     internal System.Windows.Forms.Button cmdDeleteBars;
     private System.Windows.Forms.Button cmdShowSumm;

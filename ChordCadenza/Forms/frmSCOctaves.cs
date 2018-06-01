@@ -21,7 +21,14 @@ namespace ChordCadenza.Forms {
 
     internal frmSCOctaves(Forms.frmSC frmsc) {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       frmSC = frmsc;
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     public void FormStreamOnOff(bool on) {
@@ -39,18 +46,13 @@ namespace ChordCadenza.Forms {
 
     private void frmOctaves_Load(object sender, EventArgs e) {
       BackColor = Utils.SetBackColor(Forms.frmSC.Mtx, BackColor);
-      #if !ADVANCED
+#if !ADVANCED
         lblPlayHiC.Hide();
         cmbPlayHiC.Hide();
-      #endif
+#endif
 
-      //cmbLowShowC.Items.AddRange(CArray);
-      //cmbPlayLoC.Items.AddRange(CArray);
-      //cmbPlayHiC.Items.AddRange(CArray);
-
-      //cmbLowShowC.SelectedIndex = (Forms.frmSC.valShowLowCDflt / 12) - 1;  //24 -> 0 etc.
-      //cmbPlayLoC.SelectedIndex = (Forms.frmSC.valPlayLoC / 12) - 1;
-      //cmbPlayHiC.SelectedIndex = (Forms.frmSC.valPlayHiC / 12) - 1;
+      if (P.PCKB != null) cmbPlayLoC.Enabled = false;
+      if (P.PCKB != null) lblPlayLoC.Enabled = false;
 
       PopulateCmb(cmbLowShowC, Forms.frmSC.valShowLowCDflt, 1, 8);
       PopulateCmb(cmbPlayLoC, Forms.frmSC.valPlayLoC, 1, 8);
@@ -138,6 +140,12 @@ namespace ChordCadenza.Forms {
     private void cmb_SelectedIndexChanged(object sender, EventArgs e) {
       if (Bypass_Event) return;
       indChanged = true;
+    }
+
+    internal void SetNoteName(int note) {
+      string txt = NoteName.MidiToNoteNameAndOctave(note);
+      txt += " (" + note + ")";
+      P.frmSCOctaves.lblNoteName.Text = txt;
     }
   }
 }

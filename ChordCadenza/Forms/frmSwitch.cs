@@ -18,25 +18,46 @@ namespace ChordCadenza.Forms {
       set { _TT = value; }
     }
 
-    //internal static bool indLoaded = false;  //set if this has ever been loaded/shown
-    //internal static bool FileLoaded = false;  //ini file loaded
     internal delegate void delegAction(bool down);
     private delegate void delegSwitchSyncopation();
     private delegate void delegVoid();
-    //private delegate void delegShowChord(int[] chord);
+
+    private delegate void delegSetPCKBVel(int val);
+    private static delegSetPCKBVel dSetPCKBVelfrmSC;
+    private static delegSetPCKBVel dSetPCKBVelfrmPCKBIn;
+
+    internal delegate void delegSetChkSwitch(CheckBox chk, bool down);
+    internal static delegSetChkSwitch dSetChkSwitch;
+
     internal static SortedList<string, delegAction> Delegs = new SortedList<string, delegAction>();
+    internal static SortedList<string, bool> KeyDowns = new SortedList<string, bool>();
     internal static SortedList<string, string> ActionToKey = new SortedList<string, string>();
-    //internal static List<delegAction>[] KeyToActions = new List<delegAction>[13];   //[key][actionseq]
     internal static List<string>[] KeyToActions = new List<string>[13];   //[key][actionseq]
-    //internal static bool frmSCSwitch = false;
+    internal static string[] CmbItems;
+    private static string Fmt = "{0,-5}     {1,-3}";
 
     internal static void InitStatic() {
+      CmbItems = new string[13];
+      NoteName.MajKeyNames.CopyTo(CmbItems, 0);
+      for (int i = 0; i < 12; i++) {
+        CmbItems[i] = string.Format(Fmt, NoteName.MajKeyNames[i], "F" + (i + 1));
+        CmbItems[i] = CmbItems[i].TrimEnd();
+      }
+      CmbItems[12] = string.Format(Fmt, "Pedal", "Space");
+      //CmbItems[0] = "C/Shift";
+      //CmbItems[2] = "D/Alt";
+      //CmbItems[12] = "Pedal/Ctrl"; 
       InitDelegs();
+      InitKeyDowns();
       LoadData();
+      dSetPCKBVelfrmSC = new delegSetPCKBVel(SetPCKBVelfrmSC);
+      dSetPCKBVelfrmPCKBIn = new delegSetPCKBVel(SetPCKBVelfrmPCKBIn);
+      dSetChkSwitch = new delegSetChkSwitch(SetChkSwitch);
     }
 
     public frmSwitch() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       #if !ADVANCED
         cmbAutoChords.Hide();
         lblAutoChords.Hide();
@@ -46,8 +67,50 @@ namespace ChordCadenza.Forms {
       #endif
     }
 
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
+    }
+
     internal static List<string> KeyToActionsPedal {
       get { return KeyToActions[12]; }
+    }
+
+    private static void InitKeyDowns() {
+      foreach (KeyValuePair<string, delegAction> pair in Delegs) {
+        KeyDowns.Add(pair.Key, false);  //assume keyup initially 
+      }
+    }
+
+    internal static void ExecSwitch(int keyswitch, bool down) {
+      foreach (string action in KeyToActions[keyswitch]) {
+        if (action != "") {
+          if (CheckRepeatedState(action, down)) continue;
+          Delegs[action](down);
+          if (action == "Sustain") {
+            P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchSustain, down);
+          } else if (action == "KB Chord") {
+            P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchKBChord, down);
+          }
+        }
+      }
+    }
+
+    internal static bool CheckRepeatedState(string action, bool down) {
+      //* return true if unwanted repeated key
+      bool repeat = (P.PCKB != null 
+        && down 
+        && !action.StartsWith("PCKB Vel") 
+        && KeyDowns[action]);
+      KeyDowns[action] = down;
+      return repeat;  //not repeated key on PCKB (except velocity key)
+    }
+
+    internal static void SetChkSwitch(CheckBox chk, bool down) {
+      P.frmSC.Bypass_Event = true;
+      chk.Checked = down;
+      P.frmSC.Bypass_Event = false;
     }
 
     private static void InitDelegs() {
@@ -59,16 +122,10 @@ namespace ChordCadenza.Forms {
       Delegs["Sustain"] = delegate (bool down) {
         //if (P.frmStart.chkPlaySustain.Checked) return;
         clsPlay.clsSustain.PlayPedalStatic(down);
+        MidiMon.Sustain(down);
+        if (!down) MidiMon.CheckAllOff();
       };
       ActionToKey.Add("Sustain", "");
-
-      //Delegs["Mode"] = delegate(bool down) {
-      //  if (P.F == null || P.frmSC?.Play == null) return;
-      //  if (!frmSCSwitch && !down) return;
-      //  P.frmSC.SwitchPlayMode();
-      //  P.frmSC.BeginInvoke(new clsPlay.delegResizeForm(P.frmSC.ResizeForm));
-      //};
-      //ActionToKey.Add("Mode", "");
 
       Delegs["Auto Chords"] = delegate (bool down) {
         //if (!(P.frmSC.Play is clsPlayKeyboard)) return;
@@ -117,6 +174,33 @@ namespace ChordCadenza.Forms {
         if (P.frmSC.Play != null) P.frmSC.Play.NextSwitch(clsPlay.eSwitchInterval.Chord, down);
       };
       ActionToKey.Add("Next Chord", "");
+
+      Delegs["PCKB Vel Down"] = delegate (bool down) {
+        if (down) SetPCKBVelUpDown(-4);
+      };
+      ActionToKey.Add("PCKB Vel Down", "");
+
+      Delegs["PCKB Vel Up"] = delegate (bool down) {
+        if (down) SetPCKBVelUpDown(+4);
+      };
+      ActionToKey.Add("PCKB Vel Up", "");
+    }
+
+    private static void SetPCKBVelUpDown(int incr) {
+      if (P.PCKB == null) return;  //only if PCKB switch key (function key)
+      Cfg.PCKBVel += incr;
+      //* set range 1 - 127 (0 may be confused with OFF ev)
+      Cfg.PCKBVel  = Math.Min(127, Math.Max(1, Cfg.PCKBVel)); 
+      P.frmSC.BeginInvoke(dSetPCKBVelfrmSC, Cfg.PCKBVel);
+      P.frmPCKBIn?.BeginInvoke(dSetPCKBVelfrmPCKBIn, Cfg.PCKBVel);
+    }
+
+    private static void SetPCKBVelfrmSC(int val) {
+      P.frmSC.trkPCKBVel.Value = val;
+    }
+
+    private static void SetPCKBVelfrmPCKBIn(int val) {
+      P.frmPCKBIn.trkVel.Value = val;
     }
 
     private static void NewManChords(bool down, bool playactual) {
@@ -139,16 +223,12 @@ namespace ChordCadenza.Forms {
     }
 
     private static void LoadData() {
-      //* populate 
+      SetDefaults();
       string filename = Cfg.SwitchIniFilePath;
-      if (Cfg.NoIni) {
-        SetDefaults();
-      } else {
+      if (!Cfg.NoIni) {
         //* Read ini file
         List<string> lines = Utils.ReadLinesIgnoreComments(filename);
-        if (lines == null) {
-          SetDefaults();
-        } else {
+        if (lines != null) {
           char[] delimeq = new char[] { '=' };
           int linenum;
           for (linenum = 0; linenum < lines.Count; linenum++) {
@@ -163,12 +243,14 @@ namespace ChordCadenza.Forms {
     }
 
     private static void SetDefaults() {
-      InitAction("Sustain", "Pedal");
-      InitAction("KB Chord", "Pedal");
-      InitAction("Next Beat", "G");
-      InitAction("Next Bar", "A");
-      InitAction("Next Chord", "B");
-      InitAction("Sync", "D");
+      InitAction("Sustain", string.Format(Fmt, "Pedal", "Space"));
+      InitAction("KB Chord", string.Format(Fmt, "Pedal", "Space"));
+      InitAction("Next Beat", string.Format(Fmt, "G", "F8"));
+      InitAction("Next Bar", string.Format(Fmt, "A", "F10"));
+      InitAction("Next Chord", string.Format(Fmt, "B", "F12"));
+      InitAction("Sync", string.Format(Fmt, "D", "F3"));
+      InitAction("PCKB Vel Down", string.Format(Fmt, "A", "F10"));
+      InitAction("PCKB Vel Up", string.Format(Fmt, "Bb", "F11"));
     }
 
     private static void InitAction(string actiondesc, string key) {
@@ -181,7 +263,7 @@ namespace ChordCadenza.Forms {
         return;
       }
       if (key == "None") key = "";
-      ActionToKey[actiondesc] = key;
+      ActionToKey[actiondesc] = key.TrimEnd();
     }
 
     private void PopulateCmbSwitchKeys(GroupBox grp) {
@@ -189,8 +271,7 @@ namespace ChordCadenza.Forms {
         if (ctl is ComboBox) {
           ComboBox cmb = (ComboBox)ctl;
           cmb.Items.Add("None");
-          cmb.Items.AddRange(NoteName.MajKeyNames);
-          cmb.Items.Add("Pedal");
+          cmb.Items.AddRange(CmbItems);
           string actiondesc = (string)cmb.Tag;
           if (actiondesc.Length > 0) cmb.SelectedItem = ActionToKey[actiondesc];  
         }
@@ -266,7 +347,8 @@ namespace ChordCadenza.Forms {
       }
       foreach (KeyValuePair<string, string> pair in ActionToKey) {
         if (pair.Value.Length == 0) continue;
-        int key = (pair.Value == "Pedal") ? 12 : Array.IndexOf(NoteName.MajKeyNames, pair.Value);
+        //int key = (pair.Value == "Pedal") ? 12 : Array.IndexOf(NoteName.MajKeyNames, pair.Value);
+        int key = Array.IndexOf(CmbItems, pair.Value);
         if (key < 0) {  //string not found
           LogicError.Throw(eLogicError.X072);
           key = 12;  //pedal
@@ -280,13 +362,13 @@ namespace ChordCadenza.Forms {
       Close();
     }
 
-    private void cmdSave_Click(object sender, EventArgs e) {
-      string msg = SaveSwitchIniFile();
-      //if (msg == "") MessageBox.Show("Switch File Saved");
-      //else MessageBox.Show("Save Switch.ini failed: " + msg);
-    }
+    //private void cmdSave_Click(object sender, EventArgs e) {
+    //  string msg = SaveIniFile();
+    //  //if (msg == "") MessageBox.Show("Switch File Saved");
+    //  //else MessageBox.Show("Save Switch.ini failed: " + msg);
+    //}
 
-    internal static string SaveSwitchIniFile() {
+    internal static string SaveIniFile() {
       //if (P.IgnoreIni) return "";
       return Utils.SaveFile(Cfg.SwitchIniFilePath, SaveFileSub);
     }
@@ -304,7 +386,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_SwitchKeys_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_SwitchKeys_Intro.htm");
     }
 
     //private void cmdLoad_Click(object sender, EventArgs e) {

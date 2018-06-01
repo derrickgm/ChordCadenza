@@ -1,0 +1,14 @@
+<h1>CalcKeys</h1>
+
+<p>This is used to calculate the keys in a <span>Project</span> from the <b>MidiFile</b>. 
+
+<p>In order to do this, each bar of the <b>MidiFile</b> is analysed. Once this has been done, all the bars are examined together in order to find the optimum keys for the music as a whole. This involves using an <b>Inertia</b> value - the higher the <b>Inertia</b>, the less often the key is likely to change.</p>
+
+<p>CalcKeys can use the tracks selected in the <b>TrackMap</b>, or all tracks, or the chords as input.</p> 
+
+<p>Any percussion tracks (midi channel 10) or pitchbent notes are omitted from the algorithms used by CalcKeys.</p>
+
+<p>When the <b>CalcKeys</b> window is displayed, it calculates the keys for all valid <b>Inertias</b>. This can be repeated with the same or different parameters using the <b>Recalculate</b> <i>Button</i>.
+The <b>Apply</b> or <b>Apply and Close</b> buttons can then be used to apply the calculated keys to the current <b>MidiFile</b>, using the selected <b>Inertia</b>.</p>
+
+<p>The only part of the <b>CalcKeys</b> window that you really need to use is the <b>Apply and Close</b> <i>Button</i>. The other controls you can experiment with if you wish, but it isn't normally necessary to change any of the values they contain.</p>

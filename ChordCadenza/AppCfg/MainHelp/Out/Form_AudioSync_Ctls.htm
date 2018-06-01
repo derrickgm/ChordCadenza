@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_AudioSync_Ctls</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>AudioSync Components</h1>
+<h3>Update Display <i>Button</i></h3>
+<p>Updates the display with the current data.</p>
+
+<h3>Merge Record To Play <i>Button</i></h3>
+<p>Merge the <b>Record Track</b> into the <b>Play Track</b></p>
+<p>If there is any inconsistency in the merged data, a message will be shown.</p>
+
+<h3>Clear Play and Move Record To Play <i>Button</i></h3>
+<p>Clear the <b>Play Track</b> and move the <b>Record Track</b> to the <b>Play Track</b></p>
+
+<h3>Clear Record <i>Button</i></h3>
+<p>Clear the <b>Record Track</b>.</p>
+
+<h3>Clear All <i>Button</i></h3>
+<p>Clear the <b>Record Track</b> and the <b>Play Track</b>.</p>
+
+<h3>Offset Times <i>Button</i></h3>
+<p>Display a window to enter the time (in milliseconds) to change each beat by.</p>
+<p>This will cause the play cursor to be displayed later if the time is positive, or earlier if negative.</p>
+<p>This is usually only required if you are playing the audio file with a soundcard that has a latency that is significantly different from the one that was used when the synchronisation file (*.chtc) was created.</p>
+
+<h3>Offset Beats <i>Button</i></h3>
+<p>Display a window to enter the number of beats to move the synchronisation points by.</p>
+<p>This can be a postive or a negative number.</p>
+
+<h3>Undo <i>Button</i></h3>
+<p>Undo last change.</p>
+<p>Shortcut key is Ctrl/Z.</p>
+
+<h3>Redo <i>Button</i></h3>
+<p>Redo last undone change.</p>
+<p>Shortcut key is Ctrl/Y.</p>
+
+<h3>Save Play To File <i>Button</i></h3>
+<p>Save the <b>Play Track</b> to the synchronisation file.</p>
+
+<h3>Position <i>Slider</i></h3>
+<p>Set the start position in the <b>AudioFile</b>, or display current position.</p>
+
+<h3>Start from Position Time <i>CheckBox</i></h3>
+<p>Check to use the <b>Position</b> <i>Slider</i> setting as the start position.</p>
+
+<h3>Numeric Display in Lower Right Corner of Window</h3>
+<p>This shows the current position in the <b>AudioFile</b>. The format of the display is:</p>
+<ul>
+<li>Position in minutes:seconds / Length in minutes:seconds</li>
+<li>Position in bytes / Length in bytes</li>
+</ul>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

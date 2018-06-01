@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Fx;
+//using Un4seen.Bass;
+//using Un4seen.Bass.AddOn.Fx;
+using ManagedBass;
+using ManagedBass.Fx;
 
 namespace ChordCadenza.Forms {
   internal partial class frmFX : Form, IFormStream, ITT {
@@ -27,8 +29,8 @@ namespace ChordCadenza.Forms {
     }
 
     private clsBassOutMidi.eOutType Type;
-    private BASS_DX8_REVERB ReverbDefaults = new BASS_DX8_REVERB();
-    private BASS_BFX_FREEVERB FreeverbDefaults = new BASS_BFX_FREEVERB();
+    //private BASS_DX8_REVERB ReverbDefaults = new BASS_DX8_REVERB();
+    private ReverbParameters FreeverbDefaults = new ReverbParameters();
 
     private clsBassOutMidi BassOut {
       get {
@@ -45,7 +47,7 @@ namespace ChordCadenza.Forms {
     //  get { return clsBassOut.Reverb[(int)Type]; }
     //}
 
-    private BASS_BFX_FREEVERB CurrentFreeverb {
+    private ReverbParameters CurrentFreeverb {
       get {
         if (BassOut == null) return null;
         return clsBassOutMidi.Freeverb[(int)Type]; 
@@ -101,7 +103,7 @@ namespace ChordCadenza.Forms {
     //  trkHFRT.Value = FXToTrk(reverb.fHighFreqRTRatio, ReverbMinMax.HFRTMin, ReverbMinMax.HFRTMax);
     //}
 
-    private void LoadFreeverb(BASS_BFX_FREEVERB freeverb) {
+    private void LoadFreeverb(ReverbParameters freeverb) {
       trkDryMix.Value = FXToTrk(freeverb.fDryMix, FreeverbMinMax.DryMixMin, FreeverbMinMax.DryMixMax);
       trkWetMix.Value = FXToTrk(freeverb.fWetMix, FreeverbMinMax.WetMixMin, FreeverbMinMax.WetMixMax);
       trkRoomSize.Value = FXToTrk(freeverb.fRoomSize, FreeverbMinMax.RoomSizeMin, FreeverbMinMax.RoomSizeMax);
@@ -109,13 +111,13 @@ namespace ChordCadenza.Forms {
       trkWidth.Value = FXToTrk(freeverb.fWidth, FreeverbMinMax.WidthMin, FreeverbMinMax.WidthMax);
     }
 
-    private int FXToTrk(float fx, float min, float max) {
+    private int FXToTrk(double fx, float min, float max) {
       //* convert FX val to trkbar val
       //* trkbar range: 0 - 100
       //* FX range: min to max
       if (fx == min) return 0;
       if (fx == max) return 100;
-      float trk = (fx - min) * 100f / (max - min);
+      float trk = (float)((fx - min) * 100f / (max - min));
       return (int)(Math.Min(Math.Max(trk, 0), 100));
     }
 
@@ -224,7 +226,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_FX.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_FX.htm");
     }
   }
 }

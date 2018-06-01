@@ -34,13 +34,14 @@
       this.chkAddNameToLocation = new System.Windows.Forms.CheckBox();
       this.fbd = new System.Windows.Forms.FolderBrowserDialog();
       this.cmdHelp = new System.Windows.Forms.Button();
+      this.ofd = new System.Windows.Forms.OpenFileDialog();
       this.SuspendLayout();
       // 
       // cmdCancel
       // 
       this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
       this.cmdCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdCancel.Location = new System.Drawing.Point(506, 196);
+      this.cmdCancel.Location = new System.Drawing.Point(506, 192);
       this.cmdCancel.Name = "cmdCancel";
       this.cmdCancel.Size = new System.Drawing.Size(75, 33);
       this.cmdCancel.TabIndex = 49;
@@ -50,7 +51,7 @@
       // cmdOK
       // 
       this.cmdOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdOK.Location = new System.Drawing.Point(423, 196);
+      this.cmdOK.Location = new System.Drawing.Point(423, 192);
       this.cmdOK.Name = "cmdOK";
       this.cmdOK.Size = new System.Drawing.Size(75, 33);
       this.cmdOK.TabIndex = 48;
@@ -131,7 +132,7 @@
       // cmdHelp
       // 
       this.cmdHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdHelp.Location = new System.Drawing.Point(15, 196);
+      this.cmdHelp.Location = new System.Drawing.Point(15, 192);
       this.cmdHelp.Name = "cmdHelp";
       this.cmdHelp.Size = new System.Drawing.Size(75, 33);
       this.cmdHelp.TabIndex = 53;
@@ -139,13 +140,13 @@
       this.cmdHelp.UseVisualStyleBackColor = true;
       this.cmdHelp.Click += new System.EventHandler(this.cmdHelp_Click);
       // 
-      // frmSaveAs
+      // dlgSaveProjectAs
       // 
       this.AcceptButton = this.cmdOK;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cmdCancel;
-      this.ClientSize = new System.Drawing.Size(607, 238);
+      this.ClientSize = new System.Drawing.Size(607, 239);
       this.Controls.Add(this.cmdHelp);
       this.Controls.Add(this.chkAddNameToLocation);
       this.Controls.Add(this.cmdCancel);
@@ -159,7 +160,7 @@
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
-      this.Name = "frmSaveAs";
+      this.Name = "dlgSaveProjectAs";
       this.Text = "Save Project As - Chord Cadenza";
       this.Load += new System.EventHandler(this.frmSaveAs_Load);
       this.ResumeLayout(false);
@@ -180,5 +181,6 @@
     private System.Windows.Forms.CheckBox chkAddNameToLocation;
     private System.Windows.Forms.FolderBrowserDialog fbd;
     private System.Windows.Forms.Button cmdHelp;
+    private System.Windows.Forms.OpenFileDialog ofd;
   }
 }

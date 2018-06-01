@@ -45,6 +45,7 @@ namespace ChordCadenza.Forms {
     internal frmCalcKeys(clsTrks.Array<bool> trkselect) {
       //* load and show frmCalcKeys
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       chkChordFile.Checked = false;
       FileName = P.F.Project.MidiPath;
       TrkSelect = trkselect;
@@ -62,6 +63,12 @@ namespace ChordCadenza.Forms {
       ShowDialog();
       EnableApply(true);
       WindowState = FormWindowState.Normal;
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     //internal frmCalcKeys(clsFileStream fs, clsTrks.Array<bool> trkselect, int inertia) {
@@ -494,7 +501,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_CalcKeys_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_CalcKeys_Intro.htm");
     }
 
     private void chkChordFile_CheckedChanged(object sender, EventArgs e) {

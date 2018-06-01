@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Form_TrackMap_Tracks</title>
+<style>@import url(coUA.css);</style>
+<link disabled rel="stylesheet" href="htmlhelp.css">
+<script language="JavaScript" src="master.js"></script>
+</head>
+<body>
+<h1>TrackMap Tracks</h1>
+
+<p>Each track of the <b>TrackMap</b> contains a <b>Control Panel</b> and a <b>Display Panel</b>.</p>
+
+<h2>The Control Panel</h2>
+<p>This shows basic information about the track, and also allows various properties to be changed.</p>
+
+<p>It contains these controls:</p>
+
+<h2>Top Row</h2>
+
+<h3>Up or Down Arrow</h3>
+<p>Collapse the track.</p>
+
+<h3>Track Description</h3>
+<p>Displays the Midi Track Description or Title.</p>
+<p>If this is updated, it will be saved in the MidiFile.</p>
+
+<h3>Style Display</h3>
+<p>Displays the Track <a href="Styles.htm">Style</a></p>
+
+
+<h2>Middle Row</h2>
+<h3>Channel Number Display</h3>
+<p>Show the midi channel number (C1 - C16).</p>
+
+<h3>Instrument Name</h3>
+<p>List for displaying and selecting the General Midi Instrument.</p>
+
+
+<h2>BottomRow</h2>
+
+<h3>Check Box</h3>
+<p><i>CheckBox</i> for selecting the track.</p>
+<p>Selected tracks are used when the <a href="Form_ChordMap_Intro.htm">ChordMap</a> is loaded.</p>
+<p>They are also the tracks that will be shown in the <a href="Form_PlayMap_Intro.htm">PlayMap</a> if the <b>Show Tracks</b> <i>CheckBox</i> is checked in the <a href="Form_PlayMap_Intro.htm">PlayMap.</a></p>
+
+<h3>'M' <i>Button</i></h3>
+<p>Mute the track.</p>
+<p>Colour changes from grey to red when muted.</p>
+
+<h3>'S' <i>Button</i></h3>
+<p>Solo the track.</p>
+<p>Mute all tracks except any that are solo'ed.</p>
+<p>Colour changes from grey to blue when solo'ed.</p>
+
+<h3>Track Number Display</h3>
+<p>Shows the Midi Track Number preceded by 'T'.</p>
+<p>If the track contains pitchbent notes, the text will be surrounded by a border.</p>
+
+<h3><i>Slider</i></h3>
+<p>Adjust Midi Volume or Pan level.</p>
+<p>Use <b>Pan</b> and <b>Vol</b> buttons on main display to select whether volume or pan level is adjusted.</p>
+
+<h2>The Trk Panel</h2>
+<p>This is where the track notes are displayed.</p>
+<p>Notes are displayed with the lowest 'C' at the bottom.</p>
+<p>Any pitches that have had midi pitchbend applied are shown in blue.</p>
+
+<script src="Popups.js"></script>
+<object
+id=HHCTRL type="application/x-oleobject"
+classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11" >
+</object>
+
+</body>
+</html>

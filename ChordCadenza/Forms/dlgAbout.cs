@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-
 using System.Reflection;
 using System.Runtime.InteropServices;
+using DesktopBridge;
 
 namespace ChordCadenza.Forms {
   public partial class dlgAbout : Form {
@@ -18,6 +18,9 @@ namespace ChordCadenza.Forms {
     }
 
     private void frmAbout_Load(object sender, EventArgs e) {
+#if !DESKTOP
+      panLinks.Hide();
+#endif
       lblVRMF.Text = "Chord Cadenza " + Application.ProductVersion;
       BackColor = Utils.SetBackColor(Forms.frmSC.Mtx, BackColor);
       txtInfo.SelectionStart = 0;
@@ -26,7 +29,9 @@ namespace ChordCadenza.Forms {
 #if DEBUG
       lblVRMF.Text += " (Debug)";
 #endif
-      //* license locations
+      Helpers UWPHelpers = new Helpers();
+      lblVRMF.Text += (UWPHelpers.IsRunningAsUwp()) ? " (UWP)" : " (Native Desktop)" ;
+       //* license locations
       //* -----------------
       //* here
       //* NSIS install directory (MIT, freeware)
@@ -40,11 +45,15 @@ namespace ChordCadenza.Forms {
     }
 
     private void lnkHomePage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+#if DESKTOP
       Process.Start("http://" + lnkHomePage.Text);
+#endif
     }
 
-    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+    private void lnkEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+#if DESKTOP
       Process.Start("mailto:" + lnkEmail.Text);
+#endif
     }
   }
 }

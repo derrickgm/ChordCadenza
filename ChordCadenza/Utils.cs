@@ -9,11 +9,17 @@ using System.Drawing;
 using System.Reflection;
 using System.Linq;
 
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Midi;
-using Un4seen.Bass.Misc;
-using Un4seen.BassAsio;
-using Un4seen.Bass.AddOn.Mix;
+//using Un4seen.Bass;
+//using Un4seen.Bass.AddOn.Midi;
+//using Un4seen.Bass.Misc;
+//using Un4seen.BassAsio;
+//using Un4seen.Bass.AddOn.Mix;
+
+using ManagedBass;
+using ManagedBass.Midi;
+using ManagedBass.Asio;
+using ManagedBass.Fx;
+using ManagedBass.Mix;
 
 namespace ChordCadenza {
   //internal static class Env {
@@ -327,10 +333,33 @@ namespace ChordCadenza {
       frm.Location = Rect.Location;
       frm.Size = Rect.Size;
       if (IsMaximized) frm.WindowState = FormWindowState.Maximized;
+      bool ok = false;
+      foreach (Screen screen in Screen.AllScreens) {
+        if (screen.WorkingArea.IntersectsWith(Rect)) {
+          ok = true;
+          break;
+        }
+      }
+      if (!ok) frm.Location = new Point(0, 0);
     }
   }
 
   internal static class Utils {
+    //* stop help window always being on top
+    private static Form frmDummyHelp;  
+
+    internal static void ShowHelp(Form frm, string url, HelpNavigator command, string topic) {
+      //* frm not used, but included for compatability
+      if (frmDummyHelp == null) frmDummyHelp = new Form();
+      Help.ShowHelp(frmDummyHelp, url, command, topic);
+    }
+
+    internal static void ShowHelp(Form frm, string url, HelpNavigator command) {
+      //* frm not used, but included for compatability
+      if (frmDummyHelp == null) frmDummyHelp = new Form();
+      Help.ShowHelp(frmDummyHelp, url, command);
+    }
+
     internal static string GetFileVersion() {
       //* D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\bin\Release X64\ChordCadenza.exe
       //* D:\GoogleDrive\Expression BU\ChordCadenza 01.11.00\ChordCadenza\bin\Release X64\ChordCadenza.exe
@@ -401,6 +430,14 @@ namespace ChordCadenza {
 
       //* return any error msg
       try {
+#if DEBUG
+        using (FileStream st = new FileStream(filepath, FileMode.Create, FileAccess.Write, FileShare.Write)) {   //() initial capacity in bytes
+          using (StreamWriter xsw = new StreamWriter(st)) {  //memory stream
+            savesub(xsw);
+            xsw.Close();
+          }
+        }
+#else
         using (MemoryStream st = new MemoryStream(3000)) {   //() initial capacity in bytes
           using (StreamWriter xsw = new StreamWriter(st)) {  //memory stream
             savesub(xsw);
@@ -411,6 +448,7 @@ namespace ChordCadenza {
             }
           }
         }
+#endif
       }
       catch (Exception exc) {
         MessageBox.Show("Error saving file " + filepath + ". " + exc.Message);

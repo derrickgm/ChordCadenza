@@ -125,6 +125,8 @@ namespace ChordCadenza.Forms {
 
     internal frmChordMap(clsFileStream csvfileconv) {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
+
       VPixPerNote = 10;  //should be overridden later with Static...
       bool indsavesave = (P.F.CF == null) ? false : P.F.CF.indSave;
       try {
@@ -198,6 +200,12 @@ namespace ChordCadenza.Forms {
         if (P.F.CF != null) P.F.CF.indSave = indsavesave;
       }
     }
+
+    //protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+    //  bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+    //  if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+    //  return ret.Value;
+    //}
 
     internal static IntDiv InitQIPerNote() {
       if (P.F.QIPerNote <= 16) return new IntDiv(4, 1);
@@ -2918,7 +2926,7 @@ namespace ChordCadenza.Forms {
     //}
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ChordMap_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ChordMap_Intro.htm");
     }
 
     private void chkOptChordsNone_CheckedChanged(object sender, EventArgs e) {
@@ -3768,7 +3776,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void mnuTSigHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "HowTo_UpdateTSigs.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "HowTo_UpdateTSigs.htm");
     }
 
     private void frmNoteMap_DragEnter(object sender, DragEventArgs e) {

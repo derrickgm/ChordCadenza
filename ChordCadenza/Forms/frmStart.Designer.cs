@@ -25,7 +25,8 @@
     /// </summary>
     private void InitializeComponent() {
       this.grpChordPlay = new System.Windows.Forms.GroupBox();
-      this.chkConstantChordPlay = new System.Windows.Forms.CheckBox();
+      this.chkConstantChordPlayPCKB = new System.Windows.Forms.CheckBox();
+      this.chkConstantChordPlayMidiKB = new System.Windows.Forms.CheckBox();
       this.nudNotesPerChordPlay = new System.Windows.Forms.NumericUpDown();
       this.lblnudNotesPerChordPlay = new System.Windows.Forms.Label();
       this.chkConstantChordDisplay = new System.Windows.Forms.CheckBox();
@@ -49,6 +50,7 @@
       this.chkMidiStartStop = new System.Windows.Forms.CheckBox();
       this.chkMidiSPP = new System.Windows.Forms.CheckBox();
       this.grpTimers = new System.Windows.Forms.GroupBox();
+      this.lbllitSyncopation = new System.Windows.Forms.Label();
       this.lblAutoSyncChordDelayMS = new System.Windows.Forms.Label();
       this.lblAutoSyncChordDelay = new System.Windows.Forms.Label();
       this.nudAutoSyncChordDelay = new System.Windows.Forms.NumericUpDown();
@@ -69,7 +71,6 @@
       this.chkAllNotesOffAfterSustain = new System.Windows.Forms.CheckBox();
       this.chkNoAudioSync = new System.Windows.Forms.CheckBox();
       this.chkLoadMM = new System.Windows.Forms.CheckBox();
-      this.chkPCKB = new System.Windows.Forms.CheckBox();
       this.chkIgnoreNullChords = new System.Windows.Forms.CheckBox();
       this.cmdResetPlay = new System.Windows.Forms.Button();
       this.grpChordSetMinorKey = new System.Windows.Forms.GroupBox();
@@ -84,7 +85,6 @@
       this.chkFilterMidiBank = new System.Windows.Forms.CheckBox();
       this.chkKBChordMatch = new System.Windows.Forms.CheckBox();
       this.chkAutoRecChan = new System.Windows.Forms.CheckBox();
-      this.chkDelaySustain = new System.Windows.Forms.CheckBox();
       this.cmdHelp = new System.Windows.Forms.Button();
       this.grpFiles = new System.Windows.Forms.GroupBox();
       this.lblAudLoad = new System.Windows.Forms.Label();
@@ -102,7 +102,7 @@
       this.cmdChordCfg = new System.Windows.Forms.Button();
       this.cmdChordRanks = new System.Windows.Forms.Button();
       this.grpOther = new System.Windows.Forms.GroupBox();
-      this.lbllitSyncopation = new System.Windows.Forms.Label();
+      this.chkDisablePCKB = new System.Windows.Forms.CheckBox();
       this.grpChordPlay.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.nudNotesPerChordPlay)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudNotesPerChordDisplay)).BeginInit();
@@ -129,32 +129,47 @@
       // 
       // grpChordPlay
       // 
-      this.grpChordPlay.Controls.Add(this.chkConstantChordPlay);
+      this.grpChordPlay.Controls.Add(this.chkConstantChordPlayPCKB);
+      this.grpChordPlay.Controls.Add(this.chkConstantChordPlayMidiKB);
       this.grpChordPlay.Controls.Add(this.nudNotesPerChordPlay);
       this.grpChordPlay.Controls.Add(this.lblnudNotesPerChordPlay);
       this.grpChordPlay.Controls.Add(this.chkConstantChordDisplay);
       this.grpChordPlay.Controls.Add(this.nudNotesPerChordDisplay);
       this.grpChordPlay.Controls.Add(this.lblnudNotesPerChordDisplay);
-      this.grpChordPlay.Location = new System.Drawing.Point(20, 143);
+      this.grpChordPlay.Location = new System.Drawing.Point(226, 150);
       this.grpChordPlay.Name = "grpChordPlay";
-      this.grpChordPlay.Size = new System.Drawing.Size(247, 65);
+      this.grpChordPlay.Size = new System.Drawing.Size(268, 83);
       this.grpChordPlay.TabIndex = 29;
       this.grpChordPlay.TabStop = false;
       this.grpChordPlay.Text = "ChordPlay";
       // 
-      // chkConstantChordPlay
+      // chkConstantChordPlayPCKB
       // 
-      this.chkConstantChordPlay.AutoSize = true;
-      this.chkConstantChordPlay.Location = new System.Drawing.Point(197, 42);
-      this.chkConstantChordPlay.Name = "chkConstantChordPlay";
-      this.chkConstantChordPlay.RightToLeft = System.Windows.Forms.RightToLeft.No;
-      this.chkConstantChordPlay.Size = new System.Drawing.Size(15, 14);
-      this.chkConstantChordPlay.TabIndex = 45;
-      this.chkConstantChordPlay.UseVisualStyleBackColor = true;
+      this.chkConstantChordPlayPCKB.AutoSize = true;
+      this.chkConstantChordPlayPCKB.Checked = true;
+      this.chkConstantChordPlayPCKB.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.chkConstantChordPlayPCKB.Location = new System.Drawing.Point(197, 61);
+      this.chkConstantChordPlayPCKB.Name = "chkConstantChordPlayPCKB";
+      this.chkConstantChordPlayPCKB.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.chkConstantChordPlayPCKB.Size = new System.Drawing.Size(57, 17);
+      this.chkConstantChordPlayPCKB.TabIndex = 237;
+      this.chkConstantChordPlayPCKB.Text = "PC KB";
+      this.chkConstantChordPlayPCKB.UseVisualStyleBackColor = true;
+      // 
+      // chkConstantChordPlayMidiKB
+      // 
+      this.chkConstantChordPlayMidiKB.AutoSize = true;
+      this.chkConstantChordPlayMidiKB.Location = new System.Drawing.Point(197, 42);
+      this.chkConstantChordPlayMidiKB.Name = "chkConstantChordPlayMidiKB";
+      this.chkConstantChordPlayMidiKB.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.chkConstantChordPlayMidiKB.Size = new System.Drawing.Size(62, 17);
+      this.chkConstantChordPlayMidiKB.TabIndex = 45;
+      this.chkConstantChordPlayMidiKB.Text = "Midi KB";
+      this.chkConstantChordPlayMidiKB.UseVisualStyleBackColor = true;
       // 
       // nudNotesPerChordPlay
       // 
-      this.nudNotesPerChordPlay.Location = new System.Drawing.Point(151, 39);
+      this.nudNotesPerChordPlay.Location = new System.Drawing.Point(151, 48);
       this.nudNotesPerChordPlay.Maximum = new decimal(new int[] {
             8,
             0,
@@ -177,7 +192,7 @@
       // lblnudNotesPerChordPlay
       // 
       this.lblnudNotesPerChordPlay.AutoSize = true;
-      this.lblnudNotesPerChordPlay.Location = new System.Drawing.Point(19, 41);
+      this.lblnudNotesPerChordPlay.Location = new System.Drawing.Point(19, 50);
       this.lblnudNotesPerChordPlay.Name = "lblnudNotesPerChordPlay";
       this.lblnudNotesPerChordPlay.Size = new System.Drawing.Size(107, 13);
       this.lblnudNotesPerChordPlay.TabIndex = 43;
@@ -494,10 +509,19 @@
       this.grpTimers.Controls.Add(this.nudTimerSustain);
       this.grpTimers.Location = new System.Drawing.Point(226, 6);
       this.grpTimers.Name = "grpTimers";
-      this.grpTimers.Size = new System.Drawing.Size(247, 135);
+      this.grpTimers.Size = new System.Drawing.Size(247, 138);
       this.grpTimers.TabIndex = 55;
       this.grpTimers.TabStop = false;
       this.grpTimers.Text = "Timers ";
+      // 
+      // lbllitSyncopation
+      // 
+      this.lbllitSyncopation.AutoSize = true;
+      this.lbllitSyncopation.Location = new System.Drawing.Point(18, 84);
+      this.lbllitSyncopation.Name = "lbllitSyncopation";
+      this.lbllitSyncopation.Size = new System.Drawing.Size(187, 13);
+      this.lbllitSyncopation.TabIndex = 78;
+      this.lbllitSyncopation.Text = "*only used if not overriden by PlayMap";
       // 
       // lblAutoSyncChordDelayMS
       // 
@@ -629,11 +653,6 @@
       // nudTimerSustain
       // 
       this.nudTimerSustain.Location = new System.Drawing.Point(152, 15);
-      this.nudTimerSustain.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
       this.nudTimerSustain.Minimum = new decimal(new int[] {
             10,
             0,
@@ -651,6 +670,7 @@
       // 
       // grpMisc
       // 
+      this.grpMisc.Controls.Add(this.chkDisablePCKB);
       this.grpMisc.Controls.Add(this.nudUndoRedoCapacity);
       this.grpMisc.Controls.Add(this.lblUndoRedoCapacity);
       this.grpMisc.Controls.Add(this.chkExitPrompt);
@@ -660,14 +680,14 @@
       this.grpMisc.Controls.Add(this.chkLoadMM);
       this.grpMisc.Location = new System.Drawing.Point(20, 6);
       this.grpMisc.Name = "grpMisc";
-      this.grpMisc.Size = new System.Drawing.Size(197, 133);
+      this.grpMisc.Size = new System.Drawing.Size(197, 157);
       this.grpMisc.TabIndex = 56;
       this.grpMisc.TabStop = false;
       this.grpMisc.Text = "General";
       // 
       // nudUndoRedoCapacity
       // 
-      this.nudUndoRedoCapacity.Location = new System.Drawing.Point(7, 104);
+      this.nudUndoRedoCapacity.Location = new System.Drawing.Point(7, 126);
       this.nudUndoRedoCapacity.Maximum = new decimal(new int[] {
             99,
             0,
@@ -691,7 +711,7 @@
       // 
       this.lblUndoRedoCapacity.AutoSize = true;
       this.lblUndoRedoCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblUndoRedoCapacity.Location = new System.Drawing.Point(53, 107);
+      this.lblUndoRedoCapacity.Location = new System.Drawing.Point(53, 129);
       this.lblUndoRedoCapacity.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
       this.lblUndoRedoCapacity.Name = "lblUndoRedoCapacity";
       this.lblUndoRedoCapacity.Size = new System.Drawing.Size(108, 13);
@@ -754,18 +774,6 @@
       this.chkLoadMM.Text = "Load TrackMap on .chp Load";
       this.chkLoadMM.UseVisualStyleBackColor = true;
       // 
-      // chkPCKB
-      // 
-      this.chkPCKB.AutoSize = true;
-      this.chkPCKB.ForeColor = System.Drawing.Color.Red;
-      this.chkPCKB.Location = new System.Drawing.Point(19, 96);
-      this.chkPCKB.Name = "chkPCKB";
-      this.chkPCKB.Size = new System.Drawing.Size(121, 17);
-      this.chkPCKB.TabIndex = 194;
-      this.chkPCKB.Text = "PC Keyboard Active";
-      this.chkPCKB.UseVisualStyleBackColor = true;
-      this.chkPCKB.CheckedChanged += new System.EventHandler(this.chkPCKB_CheckedChanged);
-      // 
       // chkIgnoreNullChords
       // 
       this.chkIgnoreNullChords.AutoSize = true;
@@ -780,7 +788,7 @@
       // cmdResetPlay
       // 
       this.cmdResetPlay.ForeColor = System.Drawing.Color.Red;
-      this.cmdResetPlay.Location = new System.Drawing.Point(550, 143);
+      this.cmdResetPlay.Location = new System.Drawing.Point(682, 194);
       this.cmdResetPlay.Name = "cmdResetPlay";
       this.cmdResetPlay.Size = new System.Drawing.Size(55, 39);
       this.cmdResetPlay.TabIndex = 74;
@@ -849,11 +857,10 @@
       this.grpMidiPlayAdvanced.Controls.Add(this.chkFilterMidiBank);
       this.grpMidiPlayAdvanced.Controls.Add(this.chkKBChordMatch);
       this.grpMidiPlayAdvanced.Controls.Add(this.chkAutoRecChan);
-      this.grpMidiPlayAdvanced.Controls.Add(this.chkDelaySustain);
       this.grpMidiPlayAdvanced.ForeColor = System.Drawing.Color.Red;
       this.grpMidiPlayAdvanced.Location = new System.Drawing.Point(803, 177);
       this.grpMidiPlayAdvanced.Name = "grpMidiPlayAdvanced";
-      this.grpMidiPlayAdvanced.Size = new System.Drawing.Size(203, 112);
+      this.grpMidiPlayAdvanced.Size = new System.Drawing.Size(203, 77);
       this.grpMidiPlayAdvanced.TabIndex = 189;
       this.grpMidiPlayAdvanced.TabStop = false;
       this.grpMidiPlayAdvanced.Text = "MidiPlay Advanced";
@@ -864,7 +871,7 @@
       this.chkFilterMidiBank.Checked = true;
       this.chkFilterMidiBank.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chkFilterMidiBank.ForeColor = System.Drawing.Color.Red;
-      this.chkFilterMidiBank.Location = new System.Drawing.Point(11, 54);
+      this.chkFilterMidiBank.Location = new System.Drawing.Point(16, 19);
       this.chkFilterMidiBank.Name = "chkFilterMidiBank";
       this.chkFilterMidiBank.Size = new System.Drawing.Size(169, 17);
       this.chkFilterMidiBank.TabIndex = 195;
@@ -877,7 +884,7 @@
       this.chkKBChordMatch.Checked = true;
       this.chkKBChordMatch.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chkKBChordMatch.ForeColor = System.Drawing.Color.Red;
-      this.chkKBChordMatch.Location = new System.Drawing.Point(11, 71);
+      this.chkKBChordMatch.Location = new System.Drawing.Point(16, 36);
       this.chkKBChordMatch.Name = "chkKBChordMatch";
       this.chkKBChordMatch.Size = new System.Drawing.Size(158, 17);
       this.chkKBChordMatch.TabIndex = 192;
@@ -890,27 +897,16 @@
       this.chkAutoRecChan.Checked = true;
       this.chkAutoRecChan.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chkAutoRecChan.ForeColor = System.Drawing.Color.Red;
-      this.chkAutoRecChan.Location = new System.Drawing.Point(11, 88);
+      this.chkAutoRecChan.Location = new System.Drawing.Point(16, 53);
       this.chkAutoRecChan.Name = "chkAutoRecChan";
       this.chkAutoRecChan.Size = new System.Drawing.Size(185, 17);
       this.chkAutoRecChan.TabIndex = 193;
       this.chkAutoRecChan.Text = "Use First Free Recording Channel";
       this.chkAutoRecChan.UseVisualStyleBackColor = true;
       // 
-      // chkDelaySustain
-      // 
-      this.chkDelaySustain.AutoSize = true;
-      this.chkDelaySustain.ForeColor = System.Drawing.Color.Red;
-      this.chkDelaySustain.Location = new System.Drawing.Point(11, 19);
-      this.chkDelaySustain.Name = "chkDelaySustain";
-      this.chkDelaySustain.Size = new System.Drawing.Size(108, 17);
-      this.chkDelaySustain.TabIndex = 58;
-      this.chkDelaySustain.Text = "Delay Sustain Off";
-      this.chkDelaySustain.UseVisualStyleBackColor = true;
-      // 
       // cmdHelp
       // 
-      this.cmdHelp.Location = new System.Drawing.Point(550, 102);
+      this.cmdHelp.Location = new System.Drawing.Point(682, 153);
       this.cmdHelp.Name = "cmdHelp";
       this.cmdHelp.Size = new System.Drawing.Size(55, 39);
       this.cmdHelp.TabIndex = 190;
@@ -1020,7 +1016,7 @@
       // cmdRenameIni
       // 
       this.cmdRenameIni.ForeColor = System.Drawing.SystemColors.ControlText;
-      this.cmdRenameIni.Location = new System.Drawing.Point(489, 102);
+      this.cmdRenameIni.Location = new System.Drawing.Point(621, 153);
       this.cmdRenameIni.Name = "cmdRenameIni";
       this.cmdRenameIni.Size = new System.Drawing.Size(55, 39);
       this.cmdRenameIni.TabIndex = 240;
@@ -1031,7 +1027,7 @@
       // cmdRestoreIni
       // 
       this.cmdRestoreIni.ForeColor = System.Drawing.SystemColors.ControlText;
-      this.cmdRestoreIni.Location = new System.Drawing.Point(489, 143);
+      this.cmdRestoreIni.Location = new System.Drawing.Point(621, 194);
       this.cmdRestoreIni.Name = "cmdRestoreIni";
       this.cmdRestoreIni.Size = new System.Drawing.Size(55, 39);
       this.cmdRestoreIni.TabIndex = 241;
@@ -1041,7 +1037,7 @@
       // 
       // cmdChordCfg
       // 
-      this.cmdChordCfg.Location = new System.Drawing.Point(611, 143);
+      this.cmdChordCfg.Location = new System.Drawing.Point(743, 194);
       this.cmdChordCfg.Name = "cmdChordCfg";
       this.cmdChordCfg.Size = new System.Drawing.Size(55, 39);
       this.cmdChordCfg.TabIndex = 242;
@@ -1051,7 +1047,7 @@
       // 
       // cmdChordRanks
       // 
-      this.cmdChordRanks.Location = new System.Drawing.Point(611, 102);
+      this.cmdChordRanks.Location = new System.Drawing.Point(743, 153);
       this.cmdChordRanks.Name = "cmdChordRanks";
       this.cmdChordRanks.Size = new System.Drawing.Size(55, 39);
       this.cmdChordRanks.TabIndex = 243;
@@ -1064,7 +1060,6 @@
       this.grpOther.Controls.Add(this.lblnudMinChordSize);
       this.grpOther.Controls.Add(this.lblReload);
       this.grpOther.Controls.Add(this.nudTPDI);
-      this.grpOther.Controls.Add(this.chkPCKB);
       this.grpOther.Controls.Add(this.nudMaxChordSize);
       this.grpOther.Controls.Add(this.lblnudMaxChordSize);
       this.grpOther.Controls.Add(this.nudMinChordSize);
@@ -1078,21 +1073,23 @@
       this.grpOther.TabStop = false;
       this.grpOther.Text = "Other";
       // 
-      // lbllitSyncopation
+      // chkDisablePCKB
       // 
-      this.lbllitSyncopation.AutoSize = true;
-      this.lbllitSyncopation.Location = new System.Drawing.Point(18, 84);
-      this.lbllitSyncopation.Name = "lbllitSyncopation";
-      this.lbllitSyncopation.Size = new System.Drawing.Size(187, 13);
-      this.lbllitSyncopation.TabIndex = 78;
-      this.lbllitSyncopation.Text = "*only used if not overriden by PlayMap";
+      this.chkDisablePCKB.AutoSize = true;
+      this.chkDisablePCKB.Location = new System.Drawing.Point(7, 104);
+      this.chkDisablePCKB.Name = "chkDisablePCKB";
+      this.chkDisablePCKB.Size = new System.Drawing.Size(92, 17);
+      this.chkDisablePCKB.TabIndex = 238;
+      this.chkDisablePCKB.Text = "Disable PCKB";
+      this.chkDisablePCKB.UseVisualStyleBackColor = true;
+      this.chkDisablePCKB.CheckedChanged += new System.EventHandler(this.chkDisablePCKB_CheckedChanged);
       // 
       // frmStart
       // 
       this.AllowDrop = true;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(804, 211);
+      this.ClientSize = new System.Drawing.Size(1212, 240);
       this.Controls.Add(this.grpOther);
       this.Controls.Add(this.cmdChordRanks);
       this.Controls.Add(this.cmdChordCfg);
@@ -1180,7 +1177,7 @@
     private System.Windows.Forms.Label lblReload;
     private System.Windows.Forms.Button cmdResetPlay;
     internal System.Windows.Forms.CheckBox chkLoadMM;
-    internal System.Windows.Forms.CheckBox chkConstantChordPlay;
+    internal System.Windows.Forms.CheckBox chkConstantChordPlayMidiKB;
     internal System.Windows.Forms.NumericUpDown nudNotesPerChordPlay;
     private System.Windows.Forms.Label lblnudNotesPerChordPlay;
     private System.Windows.Forms.GroupBox grpChordSetMinorKey;
@@ -1200,7 +1197,6 @@
     internal System.Windows.Forms.CheckBox chkFilterMidiBank;
     internal System.Windows.Forms.CheckBox chkKBChordMatch;
     internal System.Windows.Forms.CheckBox chkAutoRecChan;
-    internal System.Windows.Forms.CheckBox chkDelaySustain;
     private System.Windows.Forms.Button cmdHelp;
     internal System.Windows.Forms.GroupBox grpFiles;
     internal System.Windows.Forms.Label lblAudLoad;
@@ -1216,7 +1212,6 @@
     internal System.Windows.Forms.CheckBox chkTTActive;
     private System.Windows.Forms.Button cmdRenameIni;
     private System.Windows.Forms.Button cmdRestoreIni;
-    internal System.Windows.Forms.CheckBox chkPCKB;
     internal System.Windows.Forms.NumericUpDown nudTPDI;
     private System.Windows.Forms.Label lblnudTPDI;
     internal System.Windows.Forms.NumericUpDown nudPlayResolution;
@@ -1231,5 +1226,7 @@
     private System.Windows.Forms.GroupBox grpOther;
     internal System.Windows.Forms.CheckBox chkNoAudioSync;
     private System.Windows.Forms.Label lbllitSyncopation;
+    internal System.Windows.Forms.CheckBox chkConstantChordPlayPCKB;
+    internal System.Windows.Forms.CheckBox chkDisablePCKB;
   }
 }

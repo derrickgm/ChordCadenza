@@ -11,6 +11,7 @@ namespace ChordCadenza.Forms {
   public partial class frmTrackStyles : Form {
     public frmTrackStyles() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       Chks = new CheckBox[4, NumStyles];  //[action, style]
       Counts = new int[NumStyles];  //[style]
     }
@@ -29,6 +30,12 @@ namespace ChordCadenza.Forms {
       }
       SetChks();
       UpdateCounts();
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     internal void UpdateCounts() {

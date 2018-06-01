@@ -184,7 +184,7 @@ namespace ChordCadenza {
     //}
 
     protected bool PlayMult() {
-      return P.frmStart.chkConstantChordPlay.Checked
+      return P.frmStart.indConstantChordPlay
         && PlayNearestChordNote
         && P.frmStart.chkKBChordMatch.Checked;
         //&& P.ChordsSets.ActiveSet == null;

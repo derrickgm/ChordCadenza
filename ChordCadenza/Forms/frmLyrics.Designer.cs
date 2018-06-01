@@ -250,7 +250,7 @@
     private System.Windows.Forms.Button cmdCancel;
     internal System.Windows.Forms.ToolTip toolTip1;
     //private System.Windows.Forms.Panel panLyrics;
-    private PanelNoScrollOnFocus panLyrics;
+    private ChordCadenza.PanelNoScrollOnFocus panLyrics;
     internal System.Windows.Forms.RichTextBox rtbLines;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label5;

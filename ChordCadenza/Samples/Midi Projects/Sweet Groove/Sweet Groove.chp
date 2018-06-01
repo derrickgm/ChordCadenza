@@ -1,0 +1,81 @@
+4/4 X E- major 
+MinorKeyType Harmonic
+SyncopationNN 1
+SyncopationDD 16
+TempoFactor 1
+Start Chords
+1.1.1    E- G  B-        .E-
+3.1.1    C  E- G         .Cm
+4.1.1    F  A  C  E-     .F7
+4.3.1    B- D  F  A-     .B-7
+5.1.1    F  A- C         .Fm
+6.1.1    B- D  F  A-     .B-7
+7.1.1    E- G  B-        .E-
+11.1.1   E- G  B- C      .E-6
+12.1.1   F  A  C  E-     .F7
+12.3.1   B- D  F  A-     .B-7
+13.1.1   F  A- C         .Fm
+14.1.1   B- D  F  A-     .B-7
+15.1.1   E- G  B-        .E-
+17.1.1   A- C  E- G-     .A-7
+19.1.1   E- G  B- D-     .E-7
+20.1.1   A- C  E-        .A-
+21.1.1   F  A  C  E-     .F7
+23.1.1   B- D  F  A-     .B-7
+25.1.1   E- G  B-        .E-
+27.3.1   C  E- G         .Cm
+28.1.1   F  A  C  E-     .F7
+28.3.1   B- D  F  A-     .B-7
+29.1.1   F  A- C         .Fm
+30.1.1   B- D  F  A-     .B-7
+31.1.1   E- G  B-        .E-
+35.3.1   C  E- G         .Cm
+36.1.1   F  A  C  E-     .F7
+36.3.1   B- D  F  A-     .B-7
+37.1.1   F  A- C         .Fm
+38.1.1   B- D  F  A-     .B-7
+39.1.1   E- G  B-        .E-
+43.1.1   E- G  B- C      .E-6
+44.1.1   F  A  C  E-     .F7
+44.3.1   B- D  F  A-     .B-7
+45.1.1   F  A- C         .Fm
+46.1.1   B- D  F  A-     .B-7
+47.1.1   E- G  B-        .E-
+49.1.1   A- C  E- G-     .A-7
+51.1.1   E- G  B- D-     .E-7
+52.1.1   A- C  E-        .A-
+53.1.1   F  A  C  E-     .F7
+55.1.1   B- D  F  A-     .B-7
+57.1.1   E- G  B-        .E-
+59.3.1   C  E- G         .Cm
+60.1.1   F  A  C  E-     .F7
+60.3.1   B- D  F  A-     .B-7
+61.1.1   F  A- C         .Fm
+62.1.1   B- D  F  A-     .B-7
+63.1.1   E- G  B-        .E-
+67.3.1   C  E- G         .Cm
+68.1.1   F  A  C  E-     .F7
+68.3.1   B- D  F  A-     .B-7
+69.1.1   F  A- C         .Fm
+70.1.1   B- D  F  A-     .B-7
+71.1.1   E- G  B-        .E-
+75.1.1   E- G  B- C      .E-6
+76.1.1   F  A  C  E-     .F7
+76.3.1   B- D  F  A-     .B-7
+77.1.1   F  A- C         .Fm
+78.1.1   B- D  F  A-     .B-7
+79.1.1   E- G  B-        .E-
+81.1.1   A- C  E- G-     .A-7
+83.1.1   E- G  B- D-     .E-7
+84.1.1   A- C  E-        .A-
+85.1.1   F  A  C  E-     .F7
+87.1.1   B- D  F  A-     .B-7
+89.1.1   E- G  B-        .E-
+91.3.1   C  E- G         .Cm
+92.1.1   F  A  C  E-     .F7
+92.3.1   B- D  F  A-     .B-7
+93.1.1   F  A- C         .Fm
+94.1.1   B- D  F  A-     .B-7
+95.1.1   E- G  B-        .E-
+97.1.1   B- D  F  G      .B-6
+99.1.1 end

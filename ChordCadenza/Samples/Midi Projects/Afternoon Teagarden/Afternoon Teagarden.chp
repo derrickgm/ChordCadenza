@@ -1,0 +1,151 @@
+4/4 X C major 
+MinorKeyType Harmonic
+SyncopationNN 1
+SyncopationDD 16
+TempoFactor 1
+Start Chords
+1.1.1    D  F  A         .Dm
+2.1.1    G  B  D  F      .G7
+2.3.1    D  F  A         .Dm
+3.1.1    C  E  G         .C
+3.3.1    A  D- E  G      .A7
+4.1.1    D  F  A         .Dm
+4.3.1    G  B  D  F      .G7
+5.1.1    C  E  G         .C
+5.3.1    A  D- E  G      .A7
+6.1.1    D  F  A         .Dm
+6.3.1    G  B  D  F      .G7
+7.1.1    C  E  G         .C
+7.3.1    A  D- E  G      .A7
+8.1.1    D  F  A         .Dm
+8.3.1    G  B  D  F      .G7
+9.1.1    D  F  A         .Dm
+10.1.1   G  B  D  F      .G7
+11.1.1   C  E  G         .C
+11.3.1   A  D- E  G      .A7
+12.1.1   D  F  A         .Dm
+12.3.1   G  B  D         .G
+13.1.1   C  E  G         .C
+13.3.1   A  D- E  G      .A7
+14.1.1   D  F  A         .Dm
+14.3.1   G  B  D  F      .G7
+15.1.1   C  E  G         .C
+15.3.1   A  D- E  G      .A7
+16.1.1   D  F  A         .Dm
+16.3.1   G  B  D  F      .G7
+17.1.1   C  E  G  B-     .C7
+19.1.1   F  A  C         .F
+21.1.1   D  F  A         .Dm
+22.1.1   G  B  D  F      .G7
+23.1.1   C  E  G         .C
+25.1.1   D  F  A         .Dm
+26.1.1   G  B  D  F      .G7
+27.1.1   C  E  G         .C
+27.3.1   A  D- E  G      .A7
+28.1.1   D  F  A         .Dm
+28.3.1   G  B  D         .G
+29.1.1   C  E  G         .C
+29.3.1   A  D- E  G      .A7
+30.1.1   D  F  A         .Dm
+30.3.1   G  B  D  F      .G7
+31.1.1   C  E  G         .C
+31.3.1   A  D- E  G      .A7
+32.1.1   D  F  A         .Dm
+32.3.1   G  B  D         .G
+33.1.1   D  F  A         .Dm
+34.1.1   G  B  D  F      .G7
+35.1.1   C  E  G         .C
+35.3.1   A  D- E  G      .A7
+36.1.1   D  F  A         .Dm
+36.3.1   G  B  D  F      .G7
+37.1.1   C  E  G         .C
+37.3.1   A  D- E  G      .A7
+38.1.1   D  F  A         .Dm
+38.3.1   G  B  D  F      .G7
+39.1.1   C  E  G         .C
+39.3.1   A  D- E  G      .A7
+40.1.1   D  F  A         .Dm
+40.3.1   G  B  D  F      .G7
+41.1.1   D  F  A         .Dm
+42.1.1   G  B  D  F      .G7
+43.1.1   C  E  G         .C
+43.3.1   A  D- E  G      .A7
+44.1.1   D  F  A         .Dm
+44.3.1   G  B  D  F      .G7
+45.1.1   C  E  G         .C
+45.3.1   A  D- E  G      .A7
+46.1.1   D  F  A         .Dm
+46.3.1   G  B  D  F      .G7
+47.1.1   C  E  G         .C
+47.3.1   A  D- E  G      .A7
+48.1.1   D  F  A         .Dm
+48.3.1   G  B  D  F      .G7
+49.1.1   C  E  G  B-     .C7
+51.1.1   F  A  C         .F
+53.1.1   D  F  A         .Dm
+54.1.1   G  B  D  F      .G7
+55.1.1   C  E  G         .C
+57.1.1   D  F  A         .Dm
+58.1.1   G  B  D  F      .G7
+59.1.1   C  E  G         .C
+59.3.1   A  D- E  G      .A7
+60.1.1   D  F  A         .Dm
+60.3.1   G  B  D  F      .G7
+61.1.1   C  E  G         .C
+61.3.1   A  D- E  G      .A7
+62.1.1   D  F  A         .Dm
+62.3.1   G  B  D  F      .G7
+63.1.1   C  E  G         .C
+63.3.1   A  D- E  G      .A7
+64.1.1   D  F  A         .Dm
+64.3.1   G  B  D  F      .G7
+65.1.1   D  F  A         .Dm
+66.1.1   G  B  D  F      .G7
+67.1.1   C  E  G         .C
+67.3.1   A  D- E         .A
+68.1.1   D  F  A         .Dm
+68.3.1   G  B  F         .G7
+69.1.1   C  E  G         .C
+69.3.1   A  D- E         .A
+70.1.1   D  F  A         .Dm
+70.3.1   G  B  F         .G7
+71.1.1   C  E  G         .C
+71.3.1   A  D- E         .A
+72.1.1   D  F  A         .Dm
+72.3.1   G  B  F         .G7
+73.1.1   D  F  A         .Dm
+74.1.1   G  B  F         .G7
+75.1.1   C  E  G         .C
+75.3.1   A  D- E         .A
+76.1.1   D  F  A         .Dm
+76.3.1   G  B  F         .G7
+77.1.1   C  E  G         .C
+77.3.1   A  D- E         .A
+78.1.1   D  F  A         .Dm
+78.3.1   G  B  F         .G7
+79.1.1   C  E  G         .C
+79.3.1   A  D- E         .A
+80.1.1   D  F  A         .Dm
+80.3.1   G  B  F         .G7
+81.1.1   C  E  G  B-     .C7
+83.1.1   F  A  C         .F
+85.1.1   D  F  A         .Dm
+86.1.1   G  B  D  F      .G7
+87.1.1   C  E  G         .C
+89.1.1   D  F  A         .Dm
+90.1.1   G  B  F         .G7
+90.3.1   G  B  D  F      .G7
+91.1.1   C  E  G         .C
+91.3.1   A  D- G         .A7
+92.1.1   D  F  A         .Dm
+92.3.1   G  B  F         .G7
+93.1.1   C  E  G         .C
+93.3.1   A  D- G         .A7
+94.1.1   D  F  A         .Dm
+94.3.1   G  B  F         .G7
+95.1.1   C  E  G         .C
+95.3.1   A  D- E         .A
+96.1.1   D  F  A         .Dm
+96.3.1   G  B  F         .G7
+97.1.1   C  E  G  B      .CMaj7
+99.1.1 end

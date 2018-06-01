@@ -21,13 +21,13 @@ namespace ChordCadenza {
       //  //ResetAllCtlrsTimer.Elapsed += ResetAllCtlrsTimer_Elapsed;
       //}
 
-      [DllImport("winmm.dll")]
-      private static extern int midiOutReset
-        (IntPtr hMidiOut);
+      //[DllImport("winmm.dll")]
+      //private static extern int midiOutReset
+      //  (IntPtr hMidiOut);
 
-      [DllImport("winmm.dll")]
-      private static extern int midiOutShortMsg
-        (IntPtr hMidiOut, int dwMsg);
+      //[DllImport("winmm.dll")]
+      //private static extern int midiOutShortMsg
+      //  (IntPtr hMidiOut, int dwMsg);
 
       //internal int SendDirect(int status, int msg, int data) {
       //  int xword = (((data << 8) | msg) << 8) | status;
@@ -47,9 +47,9 @@ namespace ChordCadenza {
       //  return SendDirect(b[0], b[1], b[2]);
       //}
 
-      [DllImport("winmm.dll")]
-      private static extern int midiOutSetVolume
-        (IntPtr hMidiOut, int dwMsg);
+      //[DllImport("winmm.dll")]
+      //private static extern int midiOutSetVolume
+      //  (IntPtr hMidiOut, int dwMsg);
 
       //private clsFileStream FileStream;
       //private clsMidiOutStream MidiStream;

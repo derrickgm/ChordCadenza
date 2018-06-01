@@ -34,7 +34,9 @@
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.lnkEmail = new System.Windows.Forms.LinkLabel();
+      this.panLinks = new System.Windows.Forms.Panel();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      this.panLinks.SuspendLayout();
       this.SuspendLayout();
       // 
       // pictureBox1
@@ -95,7 +97,7 @@
       // 
       this.cmdOK.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.cmdOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdOK.Location = new System.Drawing.Point(337, 490);
+      this.cmdOK.Location = new System.Drawing.Point(337, 492);
       this.cmdOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.cmdOK.Name = "cmdOK";
       this.cmdOK.Size = new System.Drawing.Size(82, 34);
@@ -108,7 +110,7 @@
       // 
       this.lnkHomePage.AutoSize = true;
       this.lnkHomePage.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lnkHomePage.Location = new System.Drawing.Point(143, 424);
+      this.lnkHomePage.Location = new System.Drawing.Point(86, 9);
       this.lnkHomePage.Name = "lnkHomePage";
       this.lnkHomePage.Size = new System.Drawing.Size(111, 16);
       this.lnkHomePage.TabIndex = 6;
@@ -120,7 +122,7 @@
       // 
       this.label1.AutoSize = true;
       this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(69, 424);
+      this.label1.Location = new System.Drawing.Point(12, 9);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(73, 16);
       this.label1.TabIndex = 7;
@@ -130,7 +132,7 @@
       // 
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.Location = new System.Drawing.Point(69, 451);
+      this.label2.Location = new System.Drawing.Point(12, 36);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(45, 16);
       this.label2.TabIndex = 9;
@@ -140,13 +142,24 @@
       // 
       this.lnkEmail.AutoSize = true;
       this.lnkEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lnkEmail.Location = new System.Drawing.Point(143, 451);
+      this.lnkEmail.Location = new System.Drawing.Point(86, 36);
       this.lnkEmail.Name = "lnkEmail";
       this.lnkEmail.Size = new System.Drawing.Size(188, 16);
       this.lnkEmail.TabIndex = 8;
       this.lnkEmail.TabStop = true;
       this.lnkEmail.Text = "appsupport@chordcadenza.org";
-      this.lnkEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+      this.lnkEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEmail_LinkClicked);
+      // 
+      // panLinks
+      // 
+      this.panLinks.Controls.Add(this.label1);
+      this.panLinks.Controls.Add(this.label2);
+      this.panLinks.Controls.Add(this.lnkHomePage);
+      this.panLinks.Controls.Add(this.lnkEmail);
+      this.panLinks.Location = new System.Drawing.Point(72, 414);
+      this.panLinks.Name = "panLinks";
+      this.panLinks.Size = new System.Drawing.Size(330, 71);
+      this.panLinks.TabIndex = 10;
       // 
       // dlgAbout
       // 
@@ -154,12 +167,9 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cmdOK;
-      this.ClientSize = new System.Drawing.Size(440, 558);
+      this.ClientSize = new System.Drawing.Size(440, 536);
       this.ControlBox = false;
-      this.Controls.Add(this.label2);
-      this.Controls.Add(this.lnkEmail);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.lnkHomePage);
+      this.Controls.Add(this.panLinks);
       this.Controls.Add(this.cmdOK);
       this.Controls.Add(this.txtInfo);
       this.Controls.Add(this.lblCopyright);
@@ -176,6 +186,8 @@
       this.TopMost = true;
       this.Load += new System.EventHandler(this.frmAbout_Load);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      this.panLinks.ResumeLayout(false);
+      this.panLinks.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -193,5 +205,6 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.LinkLabel lnkEmail;
+    private System.Windows.Forms.Panel panLinks;
   }
 }
