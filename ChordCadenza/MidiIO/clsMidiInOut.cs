@@ -440,10 +440,7 @@ namespace ChordCadenza {
   internal class clsMidiInKB : clsMidiIn {
     private delegate void delegRefresh();
 
-    internal object SwitchKeyLock = new object();  //manages sustain pedal/checkbox
-
-    private delegate void delegSetChkSwitch(CheckBox chk, bool down);
-    private delegSetChkSwitch dSetChkSwitch;
+    internal static object SwitchKeyLock = new object();  //manages sustain pedal/checkbox
 
     private delegate void delegSetNoteName(int note);
     private delegSetNoteName dSetNoteName;
@@ -453,7 +450,7 @@ namespace ChordCadenza {
 
     //internal bool Qwerty;
     internal static Bezier[] Beziers = new Bezier[Cfg.BezierName.Length];
-    internal long? Ticks = null;
+    //internal long? Ticks = null;
     private byte RunningStatus = 0x80;  //midi OFF
     private Stopwatch SW = new Stopwatch();
     private long? PrevEla = null;
@@ -465,7 +462,6 @@ namespace ChordCadenza {
 
     internal clsMidiInKB(string[] devs, string devname) : base(devs, devname, eType.InKB) {
       //InitBeziers();
-      dSetChkSwitch = new ChordCadenza.clsMidiInKB.delegSetChkSwitch(SetChkSwitch);
       SW.Start();
     }
 
@@ -605,7 +601,7 @@ namespace ChordCadenza {
         return;
       }
 
-      Ticks = clsPlay.GetTicks();
+      //Ticks = clsPlay.GetTicks();
       if (SustainPedal(b)) return;
       ApplyBezier(b);
       //if (P.F != null && P.frmSC != null && P.F.MidiFileLoaded) {
@@ -652,7 +648,7 @@ namespace ChordCadenza {
       //* set kb range using untransposed kb notes
       if (P.frmSCOctaves != null //kb ranges
       && on.HasValue && on.Value) { //ON ev  
-        dSetNoteName = new delegSetNoteName(SetNoteName);
+        dSetNoteName = new delegSetNoteName(P.frmSCOctaves.SetNoteName);
         P.frmSCOctaves.BeginInvoke(dSetNoteName, b[1]);
       }
     }
@@ -669,14 +665,6 @@ namespace ChordCadenza {
       int cnote = (note / 12) * 12;
       P.frmSC.SetRanges(cnote);
       P.frmSCAlign.Close();
-    }
-
-    private void SetNoteName(int note) {
-      string txt = NoteName.MidiToNoteNameAndOctave(note);
-      txt += " (" + note + ")";
-      P.frmSCOctaves.lblNoteName.Text = txt;
-      //P.frmSCOctaves.cmdSetLowShowC.Enabled = true;
-      //P.frmSCOctaves.cmdSetPlayLoC.Enabled = true;
     }
 
     private bool CheckBytes(byte[] b) {
@@ -709,45 +697,19 @@ namespace ChordCadenza {
       }
     }
 
-    private bool CheckSwitch(byte[] b) {  //return true if switchkey
+    internal static bool CheckSwitch(byte[] b) {  //return true if switchkey
       int keyswitch = CheckSwitchKey(b);
       if (keyswitch < 0) return false;
       lock (SwitchKeyLock) {
         int status = b[0] & 0xf0;
         bool down = false;
         if (status == 0x90 && b[2] > 0) down = true;   //note ON
-        foreach (string action in Forms.frmSwitch.KeyToActions[keyswitch]) {
-          if (action != "") {
-            Forms.frmSwitch.Delegs[action](down);
-            if (action == "Sustain") {
-              P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchSustain, down);
-            } else if (action == "KB Chord") {
-              P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchKBChord, down);
-            }
-          }
-        }
-        //CheckBox chk;
-        //switch (keyswitch) {
-        //  case 9:
-        //    chk = P.frmSC.chkSwitchA;
-        //    break;
-        //  case 11:
-        //    chk = P.frmSC.chkSwitchB;
-        //    break;
-        //  case 0:
-        //    chk = P.frmSC.chkSwitchC;
-        //    break;
-        //  default:
-        //    chk = null;
-        //    break;
-        //}
-        //if (chk != null) P.frmSC.BeginInvoke(dSetChkSwitch, chk, down);
-
+        Forms.frmSwitch.ExecSwitch(keyswitch, down);
         return true;
       }
     }
 
-    private int CheckSwitchKey(byte[] b) {  //return switchkey (0-11) or -1 (playable)
+    private static int CheckSwitchKey(byte[] b) {  //return switchkey (0-11) or -1 (playable)
       //* check if midiin (b) is a keyswitch note (0-11)
       if (P.F == null || P.frmSC == null) return -1;
       int status = b[0] & 0xf0;
@@ -777,21 +739,15 @@ namespace ChordCadenza {
           if (action != "") {
             Forms.frmSwitch.Delegs[action](down);
             if (action == "Sustain") {
-              P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchSustain, down);
+              P.frmSC.BeginInvoke(Forms.frmSwitch.dSetChkSwitch, P.frmSC.chkSwitchSustain, down);
             } else if (action == "KB Chord") {
-              P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchKBChord, down);
+              P.frmSC.BeginInvoke(Forms.frmSwitch.dSetChkSwitch, P.frmSC.chkSwitchKBChord, down);
             }
           }
         }
         //P.frmSC.BeginInvoke(dSetChkSwitch, P.frmSC.chkSwitchPedal, down);
         return true;
       }
-    }
-
-    private static void SetChkSwitch(CheckBox chk, bool down) {
-      P.frmSC.Bypass_Event = true;
-      chk.Checked = down;
-      P.frmSC.Bypass_Event = false;
     }
 
     internal static bool IsBlackKey(int zkeynum) {  //return true if zkeynum is black
@@ -801,6 +757,11 @@ namespace ChordCadenza {
           return true;
       }
       return false;
+    }
+
+    public override void Close() {
+      base.Close();   //clsMidiIn
+      if (P.PCKB == null) P.PCKB = clsPCKB.NewPCKB();
     }
   }
 
@@ -917,6 +878,7 @@ namespace ChordCadenza {
       //* not from QIPlay
       //* send midiout without channel change (2 or 3 bytes)
       if (Handle == IntPtr.Zero) return;
+      MidiMon.MidiOutShortMsg(status, msg, data);
       int xword = (((data << 8) | msg) << 8) | status;
       midiOutShortMsg(Handle, xword);
       if (P.F.FSTrackMap != null && MidiPlay.Sync.indPlayActive == clsSync.ePlay.MidiStream) {
@@ -967,6 +929,7 @@ namespace ChordCadenza {
     }
 
     public void AllNotesOff() {
+      MidiMon.Reset();
       for (int ch = 0; ch <= 15; ch++) {
         SendShortMsg(0xb0 | ch, 123, 0);  //allnotesoff
         SendShortMsg(0xb0 | ch, 64, 0);  //sustain off

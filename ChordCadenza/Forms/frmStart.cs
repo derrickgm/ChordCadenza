@@ -38,6 +38,7 @@ namespace ChordCadenza.Forms {
     internal frmStart() {
       //P.Forms.Add(this);
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       //chkSustainAuto.Checked = SustainAutoStatic;
 
       Text = "Miscellaneous Configuration";
@@ -47,6 +48,12 @@ namespace ChordCadenza.Forms {
 //#else
 //      //mnuDebug.Visible = false;
 //#endif
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     internal void PostInit() {
@@ -61,7 +68,7 @@ namespace ChordCadenza.Forms {
         chkKBChordMatch.Hide();
         chkAutoRecChan.Hide();
         chkIgnoreNullChords.Hide();
-        chkPCKB.Hide();
+        //chkPCKB.Hide();
         //nudChunksPerQNote.Hide();
         //lblnudChunksPerQNote.Hide();
         grpMidiPlayAdvanced.Hide();
@@ -83,6 +90,24 @@ namespace ChordCadenza.Forms {
 
       Syncopation = new clsNNDD(nudSyncopationNN, nudSyncopationDD);
       SetNudAndTag(nudSyncopationDD);
+    }
+
+    private void frmStart_Load(object sender, EventArgs e) {
+      BackColor = Utils.SetBackColor(Forms.frmSC.Mtx, BackColor);
+      Cfg.DictFormProps[Name].SetForm(this);
+#if ADVANCED
+      FormBorderStyle = FormBorderStyle.Sizable;
+#endif
+      //nudMaxBarsNoMidiFile.Value = clsF.DefaultSongLength;
+    }
+
+    internal bool indConstantChordPlay {
+      get {
+        if (P.frmSC.chkManSyncChord.Checked) return false;
+        return (P.PCKB == null) ? 
+          chkConstantChordPlayMidiKB.Checked : 
+          chkConstantChordPlayPCKB.Checked;
+      }
     }
 
     public void FormStreamOnOff(bool on) {
@@ -344,7 +369,8 @@ namespace ChordCadenza.Forms {
     internal static void SaveAllIni() {
       string msg = Cfg.WriteIniFile();
 
-      msg += Forms.frmSwitch.SaveSwitchIniFile();
+      msg += Forms.frmSwitch.SaveIniFile();
+      msg += clsPCKB.SaveIniFile();
       msg += P.ColorsNoteMap.SaveFile();
       msg += P.ColorsTonnetz.SaveFile();
       msg += P.ColorsShowChords.SaveFile();
@@ -585,10 +611,11 @@ namespace ChordCadenza.Forms {
         iform.FormStreamOnOff(streamon);
       }
 
-      //if (P.frmMidiDevs != null) {
-      //  P.frmMidiDevs.cmdApply.Enabled = !streamon;
-      //  P.frmMidiDevs.cmdDisconnect.Enabled = !streamon;
-      //}
+      if (P.frmMidiDevs != null) {
+        P.frmMidiDevs.cmdExecInKB.Enabled = !streamon;
+        P.frmMidiDevs.cmdExecOutStream.Enabled = !streamon;
+        P.frmMidiDevs.cmdExecOutKB.Enabled = !streamon;
+      }
       //Debug.WriteLine("elapsed time = " + stopwatch.ElapsedMilliseconds);
       stopwatch.Stop();
     }
@@ -717,7 +744,7 @@ namespace ChordCadenza.Forms {
     //}
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Misc_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Misc_Intro.htm");
     }
 
     private void chkTTActive_CheckedChanged(object sender, EventArgs e) {
@@ -762,6 +789,7 @@ namespace ChordCadenza.Forms {
         if (!RenameIni(Cfg.FrmNMColoursIniFilePath)) return;
         if (!RenameIni(Cfg.FrmSCColoursIniFilePath)) return;
         if (!RenameIni(Cfg.SwitchIniFilePath)) return;
+        if (!RenameIni(Cfg.PCKBIniFilePath)) return;
         if (!RenameIni(Cfg.ChordCfgIniFilePath)) return;
         if (!RenameIni(Cfg.ChordNamesRankIniFilePath)) return;
         if (!RenameIni(Cfg.FrmTonnetzColoursIniFilePath)) return;  //advanced only
@@ -794,6 +822,7 @@ namespace ChordCadenza.Forms {
         if (!RestoreIni(Cfg.FrmNMColoursIniFilePath)) return;
         if (!RestoreIni(Cfg.FrmSCColoursIniFilePath)) return;
         if (!RestoreIni(Cfg.SwitchIniFilePath)) return;
+        if (!RestoreIni(Cfg.PCKBIniFilePath)) return;
         if (!RestoreIni(Cfg.ChordCfgIniFilePath)) return;
         if (!RestoreIni(Cfg.ChordNamesRankIniFilePath)) return;
         if (!RestoreIni(Cfg.FrmTonnetzColoursIniFilePath)) return;
@@ -823,22 +852,17 @@ namespace ChordCadenza.Forms {
       if (!File.Exists(Cfg.FrmSCColoursIniFilePath + ".BU")) return false;
       //if (!File.Exists(Cfg.FrmTonnetzColoursIniFilePath + ".BU")) return false;
       if (!File.Exists(Cfg.SwitchIniFilePath + ".BU")) return false;
+      if (!File.Exists(Cfg.PCKBIniFilePath + ".BU")) return false;
       return true;
     }
 
-    private void frmStart_Load(object sender, EventArgs e) {
-      BackColor = Utils.SetBackColor(Forms.frmSC.Mtx, BackColor);
-      Cfg.DictFormProps[Name].SetForm(this);
-      //nudMaxBarsNoMidiFile.Value = clsF.DefaultSongLength;
-    }
-
-    private void chkPCKB_CheckedChanged(object sender, EventArgs e) {
-      P.PCKB = (chkPCKB.Checked) ? new clsPCKB() : null;
-      if (chkPCKB.Checked) {
-        chkConstantChordPlay.Checked = true;
-        P.frmSC.optShowPCKBChar.Checked = true;
-      }
-    }
+    //private void chkPCKB_CheckedChanged(object sender, EventArgs e) {
+    //  P.PCKB = (chkPCKB.Checked) ? new clsPCKB() : null;
+    //  if (chkPCKB.Checked) {
+    //    chkConstantChordPlayMidiKB.Checked = true;
+    //    P.frmSC.optShowPCKBChar.Checked = true;
+    //  }
+    //}
 
     private void cmdChordCfg_Click(object sender, EventArgs e) {
       Utils.FormAct(P.frmCfgChords);
@@ -851,6 +875,11 @@ namespace ChordCadenza.Forms {
 
     private void chkNoAudioSync_CheckedChanged(object sender, EventArgs e) {
       clsAudioSync.SetPlayAudioText(P.F?.AudioSync); 
+    }
+
+    private void chkDisablePCKB_CheckedChanged(object sender, EventArgs e) {
+      CheckBox chk = (CheckBox)sender;
+      if (chk.Checked) clsPCKB.NullifyPCKB(); else P.PCKB = clsPCKB.NewPCKB();
     }
 
     //private void chkSustainAuto_CheckedChanged_1(object sender, EventArgs e) {

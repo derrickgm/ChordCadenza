@@ -62,6 +62,8 @@
       this.nudLatencyMidiPlay = new System.Windows.Forms.NumericUpDown();
       this.panConnectDisconnect = new System.Windows.Forms.Panel();
       this.cmdConnectAll = new System.Windows.Forms.Button();
+      this.trkAsiodB = new System.Windows.Forms.TrackBar();
+      this.lblAsiodB = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.nudBuffer)).BeginInit();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.nudUpdatePeriod)).BeginInit();
@@ -71,6 +73,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.nudLatencyKB)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudLatencyMidiPlay)).BeginInit();
       this.panConnectDisconnect.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trkAsiodB)).BeginInit();
       this.SuspendLayout();
       // 
       // nudBuffer
@@ -301,7 +304,7 @@
       // 
       this.chkAsio.AutoSize = true;
       this.chkAsio.Enabled = false;
-      this.chkAsio.Location = new System.Drawing.Point(27, 81);
+      this.chkAsio.Location = new System.Drawing.Point(27, 84);
       this.chkAsio.Name = "chkAsio";
       this.chkAsio.Size = new System.Drawing.Size(51, 17);
       this.chkAsio.TabIndex = 19;
@@ -513,12 +516,35 @@
       this.cmdConnectAll.UseVisualStyleBackColor = true;
       this.cmdConnectAll.Click += new System.EventHandler(this.cmdConnectAll_Click);
       // 
+      // trkAsiodB
+      // 
+      this.trkAsiodB.AutoSize = false;
+      this.trkAsiodB.Location = new System.Drawing.Point(190, 77);
+      this.trkAsiodB.Maximum = 20;
+      this.trkAsiodB.Minimum = -20;
+      this.trkAsiodB.Name = "trkAsiodB";
+      this.trkAsiodB.Size = new System.Drawing.Size(329, 27);
+      this.trkAsiodB.TabIndex = 27;
+      this.trkAsiodB.TickFrequency = 20;
+      this.trkAsiodB.Scroll += new System.EventHandler(this.trkAsiodB_Scroll);
+      // 
+      // lblAsiodB
+      // 
+      this.lblAsiodB.AutoSize = true;
+      this.lblAsiodB.Location = new System.Drawing.Point(110, 85);
+      this.lblAsiodB.Name = "lblAsiodB";
+      this.lblAsiodB.Size = new System.Drawing.Size(77, 13);
+      this.lblAsiodB.TabIndex = 28;
+      this.lblAsiodB.Text = "ASIO dB Level";
+      // 
       // frmConfigBass
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cmdClose;
-      this.ClientSize = new System.Drawing.Size(774, 278);
+      this.ClientSize = new System.Drawing.Size(774, 280);
+      this.Controls.Add(this.lblAsiodB);
+      this.Controls.Add(this.trkAsiodB);
       this.Controls.Add(this.panConnectDisconnect);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.cmdHelp);
@@ -548,6 +574,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.nudLatencyKB)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudLatencyMidiPlay)).EndInit();
       this.panConnectDisconnect.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.trkAsiodB)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -558,7 +585,6 @@
     private System.Windows.Forms.Label nudBufferLit;
     private System.Windows.Forms.Label nudBufferMS;
     private System.Windows.Forms.Label lblAudioOutPut;
-    private System.Windows.Forms.ComboBox cmbAudioOutput;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.Label lblLatencyLit;
     private System.Windows.Forms.Button cmdClose;
@@ -594,5 +620,8 @@
     internal System.Windows.Forms.Button cmdDisconnect;
     internal System.Windows.Forms.CheckBox chkAsio;
     internal System.Windows.Forms.Button cmdHelp;
+    private System.Windows.Forms.TrackBar trkAsiodB;
+    private System.Windows.Forms.Label lblAsiodB;
+    internal System.Windows.Forms.ComboBox cmbAudioOutput;
   }
 }

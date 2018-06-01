@@ -49,6 +49,7 @@ namespace ChordCadenza.Forms {
 
     public frmCfgBezier(int seq, bool indvel) {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       //P.Forms.Add(this);
       Seq = seq;
       indVel = indvel;
@@ -56,6 +57,12 @@ namespace ChordCadenza.Forms {
       //HitDiameter = 2 * HitRadius;
       dRefresh = new delegRefresh(pic.Refresh);
       SetPoints();
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     private void SetPoints() {
@@ -190,7 +197,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ConfigBezier_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ConfigBezier_Intro.htm");
     }
 
     private void frmCfgBezier_FormClosed(object sender, FormClosedEventArgs e) {

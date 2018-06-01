@@ -26,11 +26,7 @@
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-      this.picBars = new System.Windows.Forms.PictureBox();
-      this.picChords = new System.Windows.Forms.PictureBox();
-      this.picChordNames = new System.Windows.Forms.PictureBox();
       this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-      this.picBottom = new System.Windows.Forms.PictureBox();
       this.txtChordBottom = new System.Windows.Forms.TextBox();
       this.fontDialog1 = new System.Windows.Forms.FontDialog();
       this.trkKBChanVol = new System.Windows.Forms.TrackBar();
@@ -58,15 +54,14 @@
       this.nudBeatHeight = new System.Windows.Forms.NumericUpDown();
       this.lbltrkKBChanPan = new System.Windows.Forms.Label();
       this.panControls = new System.Windows.Forms.Panel();
+      this.trkPCKBVel = new System.Windows.Forms.TrackBar();
       this.chkManSyncChord = new System.Windows.Forms.CheckBox();
       this.cmdResetPlay = new System.Windows.Forms.Button();
       this.chkShowChordsRel = new System.Windows.Forms.CheckBox();
       this.grpSustainAction = new System.Windows.Forms.GroupBox();
-      this.chkSustainAuto = new System.Windows.Forms.CheckBox();
       this.optSustainNormal = new System.Windows.Forms.RadioButton();
       this.optSustainSendCtlr = new System.Windows.Forms.RadioButton();
       this.optSustainReplay = new System.Windows.Forms.RadioButton();
-      this.optSustainCarryOver = new System.Windows.Forms.RadioButton();
       this.cmdTonnetz = new System.Windows.Forms.Button();
       this.lblRangeTrk = new System.Windows.Forms.Label();
       this.chkSwitchKBChord = new System.Windows.Forms.CheckBox();
@@ -75,6 +70,7 @@
       this.cmdChordFont = new System.Windows.Forms.Button();
       this.cmdColours = new System.Windows.Forms.Button();
       this.lbllblRangeTrk = new System.Windows.Forms.Label();
+      this.lblKeyVel = new System.Windows.Forms.Label();
       this.chkSwitchSustain = new System.Windows.Forms.CheckBox();
       this.panForms = new System.Windows.Forms.Panel();
       this.cmdChordMap = new System.Windows.Forms.Button();
@@ -95,8 +91,6 @@
       this.cmdSaveProjectAs = new System.Windows.Forms.Button();
       this.lblKeyNext = new System.Windows.Forms.Label();
       this.lblRangeVis = new System.Windows.Forms.Label();
-      this.lblKeyVel = new System.Windows.Forms.Label();
-      this.nudKeyVel = new System.Windows.Forms.NumericUpDown();
       this.lbllblRangeVis = new System.Windows.Forms.Label();
       this.panTrkStream = new System.Windows.Forms.Panel();
       this.lbltrkStreamVol = new System.Windows.Forms.Label();
@@ -118,7 +112,7 @@
       this.lbllblKeyThis = new System.Windows.Forms.Label();
       this.lblcmbFirstNote = new System.Windows.Forms.Label();
       this.grpNoteDisplay = new System.Windows.Forms.GroupBox();
-      this.optShowPCKBChar = new System.Windows.Forms.RadioButton();
+      this.chkShowPCKBChar = new System.Windows.Forms.CheckBox();
       this.chkRunChordNotes = new System.Windows.Forms.CheckBox();
       this.optShowNone = new System.Windows.Forms.RadioButton();
       this.optShowNoteName = new System.Windows.Forms.RadioButton();
@@ -127,7 +121,6 @@
       this.chkShowChordNotes = new System.Windows.Forms.CheckBox();
       this.cmdAlign = new System.Windows.Forms.Button();
       this.grpOctTrans = new System.Windows.Forms.GroupBox();
-      this.nudOctTransposeMulti = new System.Windows.Forms.NumericUpDown();
       this.lblnudOctTransposeKB = new System.Windows.Forms.Label();
       this.nudOctTransposeKB = new System.Windows.Forms.NumericUpDown();
       this.lblnudOctTransposeDisplay = new System.Windows.Forms.Label();
@@ -168,6 +161,7 @@
       this.mnuLoadProject = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuRecent = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuReloadProject = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuImport = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuLoadMultiMidi = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.mnuSaveProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,6 +185,7 @@
       this.mnuPathMidiFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuPathAudioFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuManChordSync = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuPCKBKeys = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuCfgMisc = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.mnuShowAudioSyncWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -211,6 +206,7 @@
       this.mnuMonitorStats = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuMonitorTimeline = new System.Windows.Forms.ToolStripMenuItem();
       this.mnuMonitor = new System.Windows.Forms.ToolStripMenuItem();
+      this.mnuTestMidiMon = new System.Windows.Forms.ToolStripMenuItem();
       this.fbd = new System.Windows.Forms.FolderBrowserDialog();
       this.helpProvider1 = new System.Windows.Forms.HelpProvider();
       this.panMaps = new System.Windows.Forms.Panel();
@@ -220,10 +216,10 @@
       this.picNoteMap = new System.Windows.Forms.PictureBox();
       this.dgvLyrics = new System.Windows.Forms.DataGridView();
       this.picBarsX = new System.Windows.Forms.PictureBox();
-      ((System.ComponentModel.ISupportInitialize)(this.picBars)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picChords)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picChordNames)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picBottom)).BeginInit();
+      this.picBottom = new System.Windows.Forms.PictureBox();
+      this.picChordNames = new System.Windows.Forms.PictureBox();
+      this.picChords = new System.Windows.Forms.PictureBox();
+      this.picBars = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.trkKBChanVol)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.trkKBChanPan)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudSyncopationNN)).BeginInit();
@@ -232,12 +228,12 @@
       ((System.ComponentModel.ISupportInitialize)(this.nudStartBar)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudBeatHeight)).BeginInit();
       this.panControls.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trkPCKBVel)).BeginInit();
       this.grpSustainAction.SuspendLayout();
       this.panDisplay.SuspendLayout();
       this.panForms.SuspendLayout();
       this.panPlay.SuspendLayout();
       this.panFiles.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.nudKeyVel)).BeginInit();
       this.panTrkStream.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trkStreamVol)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.trkStreamPan)).BeginInit();
@@ -249,7 +245,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.trkAudioPan)).BeginInit();
       this.grpNoteDisplay.SuspendLayout();
       this.grpOctTrans.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeMulti)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeKB)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeDisplay)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeKBPitch)).BeginInit();
@@ -271,40 +266,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.picNoteMap)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dgvLyrics)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBarsX)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBottom)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picChordNames)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picChords)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBars)).BeginInit();
       this.SuspendLayout();
-      // 
-      // picBars
-      // 
-      this.picBars.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.picBars.Location = new System.Drawing.Point(3, 492);
-      this.picBars.Name = "picBars";
-      this.picBars.Size = new System.Drawing.Size(48, 48);
-      this.picBars.TabIndex = 38;
-      this.picBars.TabStop = false;
-      this.picBars.Paint += new System.Windows.Forms.PaintEventHandler(this.picBars_Paint);
-      // 
-      // picChords
-      // 
-      this.picChords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.picChords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.picChords.Location = new System.Drawing.Point(56, 492);
-      this.picChords.Name = "picChords";
-      this.picChords.Size = new System.Drawing.Size(1342, 71);
-      this.picChords.TabIndex = 39;
-      this.picChords.TabStop = false;
-      this.picChords.Paint += new System.Windows.Forms.PaintEventHandler(this.picChords_Paint);
-      // 
-      // picChordNames
-      // 
-      this.picChordNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.picChordNames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.picChordNames.Location = new System.Drawing.Point(1404, 492);
-      this.picChordNames.Name = "picChordNames";
-      this.picChordNames.Size = new System.Drawing.Size(90, 71);
-      this.picChordNames.TabIndex = 40;
-      this.picChordNames.TabStop = false;
-      this.picChordNames.Paint += new System.Windows.Forms.PaintEventHandler(this.picChordNames_Paint);
       // 
       // vScrollBar1
       // 
@@ -315,17 +281,6 @@
       this.vScrollBar1.Size = new System.Drawing.Size(16, 71);
       this.vScrollBar1.TabIndex = 63;
       this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
-      // 
-      // picBottom
-      // 
-      this.picBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.picBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.picBottom.Location = new System.Drawing.Point(56, 570);
-      this.picBottom.Name = "picBottom";
-      this.picBottom.Size = new System.Drawing.Size(948, 41);
-      this.picBottom.TabIndex = 64;
-      this.picBottom.TabStop = false;
-      this.picBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.picBottom_Paint);
       // 
       // txtChordBottom
       // 
@@ -386,7 +341,7 @@
       this.chkShowChords.AutoSize = true;
       this.chkShowChords.Checked = true;
       this.chkShowChords.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkShowChords.Location = new System.Drawing.Point(400, 161);
+      this.chkShowChords.Location = new System.Drawing.Point(400, 157);
       this.chkShowChords.Name = "chkShowChords";
       this.chkShowChords.Size = new System.Drawing.Size(89, 17);
       this.chkShowChords.TabIndex = 147;
@@ -397,7 +352,7 @@
       // chkShowTracks
       // 
       this.chkShowTracks.AutoSize = true;
-      this.chkShowTracks.Location = new System.Drawing.Point(400, 144);
+      this.chkShowTracks.Location = new System.Drawing.Point(400, 140);
       this.chkShowTracks.Name = "chkShowTracks";
       this.chkShowTracks.Size = new System.Drawing.Size(89, 17);
       this.chkShowTracks.TabIndex = 111;
@@ -410,7 +365,7 @@
       this.chkShowChordNames.AutoSize = true;
       this.chkShowChordNames.Checked = true;
       this.chkShowChordNames.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkShowChordNames.Location = new System.Drawing.Point(400, 84);
+      this.chkShowChordNames.Location = new System.Drawing.Point(400, 80);
       this.chkShowChordNames.Name = "chkShowChordNames";
       this.chkShowChordNames.Size = new System.Drawing.Size(120, 17);
       this.chkShowChordNames.TabIndex = 110;
@@ -458,7 +413,7 @@
       this.chkShowBeats.AutoSize = true;
       this.chkShowBeats.Checked = true;
       this.chkShowBeats.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkShowBeats.Location = new System.Drawing.Point(400, 66);
+      this.chkShowBeats.Location = new System.Drawing.Point(400, 62);
       this.chkShowBeats.Name = "chkShowBeats";
       this.chkShowBeats.Size = new System.Drawing.Size(83, 17);
       this.chkShowBeats.TabIndex = 19;
@@ -563,7 +518,7 @@
       // lblnudOctaves
       // 
       this.lblnudOctaves.AutoSize = true;
-      this.lblnudOctaves.Location = new System.Drawing.Point(47, 98);
+      this.lblnudOctaves.Location = new System.Drawing.Point(166, 85);
       this.lblnudOctaves.Name = "lblnudOctaves";
       this.lblnudOctaves.Size = new System.Drawing.Size(47, 13);
       this.lblnudOctaves.TabIndex = 132;
@@ -571,7 +526,7 @@
       // 
       // nudOctaves
       // 
-      this.nudOctaves.Location = new System.Drawing.Point(4, 95);
+      this.nudOctaves.Location = new System.Drawing.Point(218, 83);
       this.nudOctaves.Maximum = new decimal(new int[] {
             4,
             0,
@@ -672,6 +627,7 @@
       // panControls
       // 
       this.panControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panControls.Controls.Add(this.trkPCKBVel);
       this.panControls.Controls.Add(this.chkManSyncChord);
       this.panControls.Controls.Add(this.cmdResetPlay);
       this.panControls.Controls.Add(this.chkShowChordsRel);
@@ -681,6 +637,7 @@
       this.panControls.Controls.Add(this.chkSwitchKBChord);
       this.panControls.Controls.Add(this.panDisplay);
       this.panControls.Controls.Add(this.lbllblRangeTrk);
+      this.panControls.Controls.Add(this.lblKeyVel);
       this.panControls.Controls.Add(this.chkSwitchSustain);
       this.panControls.Controls.Add(this.panForms);
       this.panControls.Controls.Add(this.lblKeyThis);
@@ -690,8 +647,6 @@
       this.panControls.Controls.Add(this.lblnudOctaves);
       this.panControls.Controls.Add(this.nudOctaves);
       this.panControls.Controls.Add(this.lblRangeVis);
-      this.panControls.Controls.Add(this.lblKeyVel);
-      this.panControls.Controls.Add(this.nudKeyVel);
       this.panControls.Controls.Add(this.lbllblRangeVis);
       this.panControls.Controls.Add(this.panTrkStream);
       this.panControls.Controls.Add(this.panTrkKB);
@@ -728,14 +683,31 @@
       this.panControls.Controls.Add(this.grpKBChan);
       this.panControls.Location = new System.Drawing.Point(4, 283);
       this.panControls.Name = "panControls";
-      this.panControls.Size = new System.Drawing.Size(1359, 204);
+      this.panControls.Size = new System.Drawing.Size(1355, 204);
       this.panControls.TabIndex = 0;
+      // 
+      // trkPCKBVel
+      // 
+      this.trkPCKBVel.AutoSize = false;
+      this.trkPCKBVel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+      this.trkPCKBVel.LargeChange = 16;
+      this.trkPCKBVel.Location = new System.Drawing.Point(151, 61);
+      this.trkPCKBVel.Maximum = 127;
+      this.trkPCKBVel.Minimum = 1;
+      this.trkPCKBVel.Name = "trkPCKBVel";
+      this.trkPCKBVel.Size = new System.Drawing.Size(109, 16);
+      this.trkPCKBVel.SmallChange = 4;
+      this.trkPCKBVel.TabIndex = 246;
+      this.trkPCKBVel.TabStop = false;
+      this.trkPCKBVel.TickFrequency = 16;
+      this.trkPCKBVel.Value = 80;
+      this.trkPCKBVel.Scroll += new System.EventHandler(this.trkPCKBVel_Scroll);
       // 
       // chkManSyncChord
       // 
       this.chkManSyncChord.AutoSize = true;
       this.chkManSyncChord.Enabled = false;
-      this.chkManSyncChord.Location = new System.Drawing.Point(77, 56);
+      this.chkManSyncChord.Location = new System.Drawing.Point(3, 97);
       this.chkManSyncChord.Name = "chkManSyncChord";
       this.chkManSyncChord.Size = new System.Drawing.Size(156, 17);
       this.chkManSyncChord.TabIndex = 253;
@@ -758,7 +730,7 @@
       // chkShowChordsRel
       // 
       this.chkShowChordsRel.AutoSize = true;
-      this.chkShowChordsRel.Location = new System.Drawing.Point(400, 180);
+      this.chkShowChordsRel.Location = new System.Drawing.Point(400, 176);
       this.chkShowChordsRel.Name = "chkShowChordsRel";
       this.chkShowChordsRel.Size = new System.Drawing.Size(131, 17);
       this.chkShowChordsRel.TabIndex = 251;
@@ -768,33 +740,20 @@
       // 
       // grpSustainAction
       // 
-      this.grpSustainAction.Controls.Add(this.chkSustainAuto);
       this.grpSustainAction.Controls.Add(this.optSustainNormal);
       this.grpSustainAction.Controls.Add(this.optSustainSendCtlr);
       this.grpSustainAction.Controls.Add(this.optSustainReplay);
-      this.grpSustainAction.Controls.Add(this.optSustainCarryOver);
-      this.grpSustainAction.Location = new System.Drawing.Point(269, 59);
+      this.grpSustainAction.Location = new System.Drawing.Point(271, 58);
       this.grpSustainAction.Name = "grpSustainAction";
-      this.grpSustainAction.Size = new System.Drawing.Size(119, 83);
+      this.grpSustainAction.Size = new System.Drawing.Size(119, 67);
       this.grpSustainAction.TabIndex = 250;
       this.grpSustainAction.TabStop = false;
       this.grpSustainAction.Text = "Sustain Action";
       // 
-      // chkSustainAuto
-      // 
-      this.chkSustainAuto.AutoSize = true;
-      this.chkSustainAuto.Location = new System.Drawing.Point(69, 63);
-      this.chkSustainAuto.Name = "chkSustainAuto";
-      this.chkSustainAuto.Size = new System.Drawing.Size(48, 17);
-      this.chkSustainAuto.TabIndex = 47;
-      this.chkSustainAuto.Text = "Auto";
-      this.chkSustainAuto.UseVisualStyleBackColor = true;
-      this.chkSustainAuto.CheckedChanged += new System.EventHandler(this.chkSustainAuto_CheckedChanged);
-      // 
       // optSustainNormal
       // 
       this.optSustainNormal.AutoSize = true;
-      this.optSustainNormal.Location = new System.Drawing.Point(6, 62);
+      this.optSustainNormal.Location = new System.Drawing.Point(6, 46);
       this.optSustainNormal.Name = "optSustainNormal";
       this.optSustainNormal.Size = new System.Drawing.Size(58, 17);
       this.optSustainNormal.TabIndex = 4;
@@ -805,11 +764,11 @@
       // optSustainSendCtlr
       // 
       this.optSustainSendCtlr.AutoSize = true;
-      this.optSustainSendCtlr.Location = new System.Drawing.Point(6, 46);
+      this.optSustainSendCtlr.Location = new System.Drawing.Point(6, 30);
       this.optSustainSendCtlr.Name = "optSustainSendCtlr";
-      this.optSustainSendCtlr.Size = new System.Drawing.Size(106, 17);
+      this.optSustainSendCtlr.Size = new System.Drawing.Size(96, 17);
       this.optSustainSendCtlr.TabIndex = 3;
-      this.optSustainSendCtlr.Text = "Send Sustain Ctlr";
+      this.optSustainSendCtlr.Text = "Sustain On/Off";
       this.optSustainSendCtlr.UseVisualStyleBackColor = true;
       this.optSustainSendCtlr.CheckedChanged += new System.EventHandler(this.optSustain_CheckedChanged);
       // 
@@ -819,23 +778,12 @@
       this.optSustainReplay.Checked = true;
       this.optSustainReplay.Location = new System.Drawing.Point(6, 14);
       this.optSustainReplay.Name = "optSustainReplay";
-      this.optSustainReplay.Size = new System.Drawing.Size(58, 17);
+      this.optSustainReplay.Size = new System.Drawing.Size(84, 17);
       this.optSustainReplay.TabIndex = 2;
       this.optSustainReplay.TabStop = true;
-      this.optSustainReplay.Text = "Replay";
+      this.optSustainReplay.Text = "Note On/Off";
       this.optSustainReplay.UseVisualStyleBackColor = true;
       this.optSustainReplay.CheckedChanged += new System.EventHandler(this.optSustain_CheckedChanged);
-      // 
-      // optSustainCarryOver
-      // 
-      this.optSustainCarryOver.AutoSize = true;
-      this.optSustainCarryOver.Location = new System.Drawing.Point(6, 30);
-      this.optSustainCarryOver.Name = "optSustainCarryOver";
-      this.optSustainCarryOver.Size = new System.Drawing.Size(75, 17);
-      this.optSustainCarryOver.TabIndex = 1;
-      this.optSustainCarryOver.Text = "Carry Over";
-      this.optSustainCarryOver.UseVisualStyleBackColor = true;
-      this.optSustainCarryOver.CheckedChanged += new System.EventHandler(this.optSustain_CheckedChanged);
       // 
       // cmdTonnetz
       // 
@@ -860,7 +808,7 @@
       // chkSwitchKBChord
       // 
       this.chkSwitchKBChord.AutoSize = true;
-      this.chkSwitchKBChord.Location = new System.Drawing.Point(3, 56);
+      this.chkSwitchKBChord.Location = new System.Drawing.Point(3, 62);
       this.chkSwitchKBChord.Name = "chkSwitchKBChord";
       this.chkSwitchKBChord.Size = new System.Drawing.Size(68, 17);
       this.chkSwitchKBChord.TabIndex = 203;
@@ -876,7 +824,7 @@
       this.panDisplay.Controls.Add(this.cmdColours);
       this.panDisplay.Location = new System.Drawing.Point(891, 2);
       this.panDisplay.Name = "panDisplay";
-      this.panDisplay.Size = new System.Drawing.Size(159, 48);
+      this.panDisplay.Size = new System.Drawing.Size(154, 48);
       this.panDisplay.TabIndex = 226;
       // 
       // cmdNoteFont
@@ -918,10 +866,20 @@
       this.lbllblRangeTrk.TabIndex = 248;
       this.lbllblRangeTrk.Text = "Track Range";
       // 
+      // lblKeyVel
+      // 
+      this.lblKeyVel.AutoSize = true;
+      this.lblKeyVel.ForeColor = System.Drawing.SystemColors.ControlText;
+      this.lblKeyVel.Location = new System.Drawing.Point(72, 63);
+      this.lblKeyVel.Name = "lblKeyVel";
+      this.lblKeyVel.Size = new System.Drawing.Size(75, 13);
+      this.lblKeyVel.TabIndex = 243;
+      this.lblKeyVel.Text = "PCKB Velocity";
+      // 
       // chkSwitchSustain
       // 
       this.chkSwitchSustain.AutoSize = true;
-      this.chkSwitchSustain.Location = new System.Drawing.Point(3, 73);
+      this.chkSwitchSustain.Location = new System.Drawing.Point(3, 79);
       this.chkSwitchSustain.Name = "chkSwitchSustain";
       this.chkSwitchSustain.Size = new System.Drawing.Size(61, 17);
       this.chkSwitchSustain.TabIndex = 202;
@@ -1133,40 +1091,6 @@
       this.lblRangeVis.TabIndex = 245;
       this.lblRangeVis.Text = "???";
       // 
-      // lblKeyVel
-      // 
-      this.lblKeyVel.AutoSize = true;
-      this.lblKeyVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-      this.lblKeyVel.Location = new System.Drawing.Point(1322, 29);
-      this.lblKeyVel.Name = "lblKeyVel";
-      this.lblKeyVel.Size = new System.Drawing.Size(44, 13);
-      this.lblKeyVel.TabIndex = 243;
-      this.lblKeyVel.Text = "Velocity";
-      // 
-      // nudKeyVel
-      // 
-      this.nudKeyVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-      this.nudKeyVel.Location = new System.Drawing.Point(1369, 27);
-      this.nudKeyVel.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-      this.nudKeyVel.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.nudKeyVel.Name = "nudKeyVel";
-      this.nudKeyVel.Size = new System.Drawing.Size(40, 20);
-      this.nudKeyVel.TabIndex = 242;
-      this.nudKeyVel.TabStop = false;
-      this.nudKeyVel.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
-      // 
       // lbllblRangeVis
       // 
       this.lbllblRangeVis.AutoSize = true;
@@ -1373,7 +1297,7 @@
       // 
       // cmdHelp
       // 
-      this.cmdHelp.Location = new System.Drawing.Point(1060, 2);
+      this.cmdHelp.Location = new System.Drawing.Point(1107, 2);
       this.cmdHelp.Name = "cmdHelp";
       this.cmdHelp.Size = new System.Drawing.Size(50, 48);
       this.cmdHelp.TabIndex = 236;
@@ -1394,7 +1318,7 @@
       // 
       this.lblcmbFirstNote.AutoSize = true;
       this.lblcmbFirstNote.Enabled = false;
-      this.lblcmbFirstNote.Location = new System.Drawing.Point(469, 123);
+      this.lblcmbFirstNote.Location = new System.Drawing.Point(469, 119);
       this.lblcmbFirstNote.Name = "lblcmbFirstNote";
       this.lblcmbFirstNote.Size = new System.Drawing.Size(52, 13);
       this.lblcmbFirstNote.TabIndex = 40;
@@ -1402,7 +1326,7 @@
       // 
       // grpNoteDisplay
       // 
-      this.grpNoteDisplay.Controls.Add(this.optShowPCKBChar);
+      this.grpNoteDisplay.Controls.Add(this.chkShowPCKBChar);
       this.grpNoteDisplay.Controls.Add(this.chkRunChordNotes);
       this.grpNoteDisplay.Controls.Add(this.optShowNone);
       this.grpNoteDisplay.Controls.Add(this.optShowNoteName);
@@ -1414,24 +1338,25 @@
       this.grpNoteDisplay.TabStop = false;
       this.grpNoteDisplay.Text = "Note Display";
       // 
-      // optShowPCKBChar
+      // chkShowPCKBChar
       // 
-      this.optShowPCKBChar.AutoSize = true;
-      this.optShowPCKBChar.ForeColor = System.Drawing.Color.Red;
-      this.optShowPCKBChar.Location = new System.Drawing.Point(19, 85);
-      this.optShowPCKBChar.Name = "optShowPCKBChar";
-      this.optShowPCKBChar.Size = new System.Drawing.Size(78, 17);
-      this.optShowPCKBChar.TabIndex = 39;
-      this.optShowPCKBChar.Text = "PCKB Char";
-      this.optShowPCKBChar.UseVisualStyleBackColor = true;
-      this.optShowPCKBChar.CheckedChanged += new System.EventHandler(this.optShowNote_CheckedChanged);
+      this.chkShowPCKBChar.AutoSize = true;
+      this.chkShowPCKBChar.Checked = true;
+      this.chkShowPCKBChar.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.chkShowPCKBChar.Location = new System.Drawing.Point(19, 69);
+      this.chkShowPCKBChar.Name = "chkShowPCKBChar";
+      this.chkShowPCKBChar.Size = new System.Drawing.Size(96, 17);
+      this.chkShowPCKBChar.TabIndex = 39;
+      this.chkShowPCKBChar.Text = "Keyboard Char";
+      this.chkShowPCKBChar.UseVisualStyleBackColor = true;
+      this.chkShowPCKBChar.CheckedChanged += new System.EventHandler(this.optShowNote_CheckedChanged);
       // 
       // chkRunChordNotes
       // 
       this.chkRunChordNotes.AutoSize = true;
       this.chkRunChordNotes.Checked = true;
       this.chkRunChordNotes.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkRunChordNotes.Location = new System.Drawing.Point(19, 68);
+      this.chkRunChordNotes.Location = new System.Drawing.Point(19, 87);
       this.chkRunChordNotes.Name = "chkRunChordNotes";
       this.chkRunChordNotes.Size = new System.Drawing.Size(94, 17);
       this.chkRunChordNotes.TabIndex = 38;
@@ -1493,7 +1418,7 @@
             "A",
             "Bb",
             "B"});
-      this.cmbFirstNote.Location = new System.Drawing.Point(400, 119);
+      this.cmbFirstNote.Location = new System.Drawing.Point(400, 115);
       this.cmbFirstNote.Name = "cmbFirstNote";
       this.cmbFirstNote.Size = new System.Drawing.Size(65, 21);
       this.cmbFirstNote.TabIndex = 39;
@@ -1502,7 +1427,7 @@
       // chkShowChordNotes
       // 
       this.chkShowChordNotes.AutoSize = true;
-      this.chkShowChordNotes.Location = new System.Drawing.Point(400, 101);
+      this.chkShowChordNotes.Location = new System.Drawing.Point(400, 97);
       this.chkShowChordNotes.Name = "chkShowChordNotes";
       this.chkShowChordNotes.Size = new System.Drawing.Size(115, 17);
       this.chkShowChordNotes.TabIndex = 229;
@@ -1523,7 +1448,6 @@
       // 
       // grpOctTrans
       // 
-      this.grpOctTrans.Controls.Add(this.nudOctTransposeMulti);
       this.grpOctTrans.Controls.Add(this.lblnudOctTransposeKB);
       this.grpOctTrans.Controls.Add(this.nudOctTransposeKB);
       this.grpOctTrans.Controls.Add(this.lblnudOctTransposeDisplay);
@@ -1537,31 +1461,10 @@
       this.grpOctTrans.TabStop = false;
       this.grpOctTrans.Text = "Octave Transposition";
       // 
-      // nudOctTransposeMulti
-      // 
-      this.nudOctTransposeMulti.BackColor = System.Drawing.SystemColors.Window;
-      this.nudOctTransposeMulti.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.nudOctTransposeMulti.ForeColor = System.Drawing.SystemColors.WindowText;
-      this.nudOctTransposeMulti.Location = new System.Drawing.Point(63, 39);
-      this.nudOctTransposeMulti.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.nudOctTransposeMulti.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-      this.nudOctTransposeMulti.Name = "nudOctTransposeMulti";
-      this.nudOctTransposeMulti.Size = new System.Drawing.Size(17, 44);
-      this.nudOctTransposeMulti.TabIndex = 118;
-      this.nudOctTransposeMulti.ValueChanged += new System.EventHandler(this.nudOctTransposeMulti_ValueChanged);
-      // 
       // lblnudOctTransposeKB
       // 
       this.lblnudOctTransposeKB.AutoSize = true;
-      this.lblnudOctTransposeKB.Location = new System.Drawing.Point(6, 44);
+      this.lblnudOctTransposeKB.Location = new System.Drawing.Point(27, 44);
       this.lblnudOctTransposeKB.Name = "lblnudOctTransposeKB";
       this.lblnudOctTransposeKB.Size = new System.Drawing.Size(52, 13);
       this.lblnudOctTransposeKB.TabIndex = 117;
@@ -1593,7 +1496,7 @@
       // lblnudOctTransposeDisplay
       // 
       this.lblnudOctTransposeDisplay.AutoSize = true;
-      this.lblnudOctTransposeDisplay.Location = new System.Drawing.Point(16, 64);
+      this.lblnudOctTransposeDisplay.Location = new System.Drawing.Point(37, 64);
       this.lblnudOctTransposeDisplay.Name = "lblnudOctTransposeDisplay";
       this.lblnudOctTransposeDisplay.Size = new System.Drawing.Size(41, 13);
       this.lblnudOctTransposeDisplay.TabIndex = 115;
@@ -1625,7 +1528,7 @@
       // lblnudOctTransposeKBPitch
       // 
       this.lblnudOctTransposeKBPitch.AutoSize = true;
-      this.lblnudOctTransposeKBPitch.Location = new System.Drawing.Point(9, 22);
+      this.lblnudOctTransposeKBPitch.Location = new System.Drawing.Point(30, 22);
       this.lblnudOctTransposeKBPitch.Name = "lblnudOctTransposeKBPitch";
       this.lblnudOctTransposeKBPitch.Size = new System.Drawing.Size(48, 13);
       this.lblnudOctTransposeKBPitch.TabIndex = 113;
@@ -2033,6 +1936,7 @@
             this.mnuLoadProject,
             this.mnuRecent,
             this.mnuReloadProject,
+            this.mnuImport,
             this.mnuLoadMultiMidi,
             this.toolStripSeparator1,
             this.mnuSaveProject,
@@ -2073,6 +1977,14 @@
       this.mnuReloadProject.Size = new System.Drawing.Size(197, 22);
       this.mnuReloadProject.Text = "Reload Project";
       this.mnuReloadProject.Click += new System.EventHandler(this.mnuReloadProject_Click);
+      // 
+      // mnuImport
+      // 
+      this.mnuImport.Enabled = false;
+      this.mnuImport.Name = "mnuImport";
+      this.mnuImport.Size = new System.Drawing.Size(197, 22);
+      this.mnuImport.Text = "Import Files";
+      this.mnuImport.Click += new System.EventHandler(this.mnuImport_Click);
       // 
       // mnuLoadMultiMidi
       // 
@@ -2148,6 +2060,7 @@
             this.mnuCfgSwitch,
             this.mnuPaths,
             this.mnuManChordSync,
+            this.mnuPCKBKeys,
             this.mnuCfgMisc,
             this.toolStripSeparator3,
             this.mnuShowAudioSyncWindow});
@@ -2251,6 +2164,13 @@
       this.mnuManChordSync.Size = new System.Drawing.Size(210, 22);
       this.mnuManChordSync.Text = "Manual Chord Sync";
       this.mnuManChordSync.Click += new System.EventHandler(this.mnuManChordSync_Click);
+      // 
+      // mnuPCKBKeys
+      // 
+      this.mnuPCKBKeys.Name = "mnuPCKBKeys";
+      this.mnuPCKBKeys.Size = new System.Drawing.Size(210, 22);
+      this.mnuPCKBKeys.Text = "PCKB Keys";
+      this.mnuPCKBKeys.Click += new System.EventHandler(this.mnuPCKBKeys_Click);
       // 
       // mnuCfgMisc
       // 
@@ -2360,7 +2280,8 @@
             this.mnuShowDebugInfo,
             this.mnuMonitorStats,
             this.mnuMonitorTimeline,
-            this.mnuMonitor});
+            this.mnuMonitor,
+            this.mnuTestMidiMon});
       this.mnuDebug.ForeColor = System.Drawing.Color.Red;
       this.mnuDebug.Name = "mnuDebug";
       this.mnuDebug.Size = new System.Drawing.Size(54, 20);
@@ -2414,6 +2335,14 @@
       this.mnuMonitor.Size = new System.Drawing.Size(263, 22);
       this.mnuMonitor.Text = "Monitor MidiInKB On/Off";
       this.mnuMonitor.Click += new System.EventHandler(this.mnuMonitor_Click);
+      // 
+      // mnuTestMidiMon
+      // 
+      this.mnuTestMidiMon.ForeColor = System.Drawing.Color.Red;
+      this.mnuTestMidiMon.Name = "mnuTestMidiMon";
+      this.mnuTestMidiMon.Size = new System.Drawing.Size(263, 22);
+      this.mnuTestMidiMon.Text = "Test MidiMon";
+      this.mnuTestMidiMon.Click += new System.EventHandler(this.mnuTestMidiMon_Click);
       // 
       // helpProvider1
       // 
@@ -2548,6 +2477,56 @@
       this.picBarsX.Paint += new System.Windows.Forms.PaintEventHandler(this.picBarsX_Paint);
       this.picBarsX.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picBarsX_MouseClick);
       // 
+      // picBottom
+      // 
+      this.picBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.picBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.picBottom.Location = new System.Drawing.Point(56, 570);
+      this.picBottom.Name = "picBottom";
+      this.picBottom.Size = new System.Drawing.Size(948, 41);
+      this.picBottom.TabIndex = 64;
+      this.picBottom.TabStop = false;
+      this.picBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.picBottom_Paint);
+      this.picBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseDown);
+      this.picBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseMove);
+      this.picBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseUp);
+      // 
+      // picChordNames
+      // 
+      this.picChordNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.picChordNames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.picChordNames.Location = new System.Drawing.Point(1404, 492);
+      this.picChordNames.Name = "picChordNames";
+      this.picChordNames.Size = new System.Drawing.Size(90, 71);
+      this.picChordNames.TabIndex = 40;
+      this.picChordNames.TabStop = false;
+      this.picChordNames.Paint += new System.Windows.Forms.PaintEventHandler(this.picChordNames_Paint);
+      // 
+      // picChords
+      // 
+      this.picChords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.picChords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.picChords.Location = new System.Drawing.Point(56, 492);
+      this.picChords.Name = "picChords";
+      this.picChords.Size = new System.Drawing.Size(1342, 71);
+      this.picChords.TabIndex = 39;
+      this.picChords.TabStop = false;
+      this.picChords.Paint += new System.Windows.Forms.PaintEventHandler(this.picChords_Paint);
+      this.picChords.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseDown);
+      this.picChords.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseMove);
+      this.picChords.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picChordsBottom_MouseUp);
+      // 
+      // picBars
+      // 
+      this.picBars.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.picBars.Location = new System.Drawing.Point(3, 492);
+      this.picBars.Name = "picBars";
+      this.picBars.Size = new System.Drawing.Size(48, 48);
+      this.picBars.TabIndex = 38;
+      this.picBars.TabStop = false;
+      this.picBars.Paint += new System.Windows.Forms.PaintEventHandler(this.picBars_Paint);
+      // 
       // frmSC
       // 
       this.AllowDrop = true;
@@ -2575,13 +2554,6 @@
       this.SizeChanged += new System.EventHandler(this.frmSC_SizeChanged);
       this.DragDrop += new System.Windows.Forms.DragEventHandler(this.frmSC_DragDrop);
       this.DragEnter += new System.Windows.Forms.DragEventHandler(this.frmSC_DragEnter);
-      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSC_KeyDown);
-      this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmSC_KeyPress);
-      this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSC_KeyUp);
-      ((System.ComponentModel.ISupportInitialize)(this.picBars)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picChords)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picChordNames)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picBottom)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.trkKBChanVol)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.trkKBChanPan)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudSyncopationNN)).EndInit();
@@ -2591,13 +2563,13 @@
       ((System.ComponentModel.ISupportInitialize)(this.nudBeatHeight)).EndInit();
       this.panControls.ResumeLayout(false);
       this.panControls.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trkPCKBVel)).EndInit();
       this.grpSustainAction.ResumeLayout(false);
       this.grpSustainAction.PerformLayout();
       this.panDisplay.ResumeLayout(false);
       this.panForms.ResumeLayout(false);
       this.panPlay.ResumeLayout(false);
       this.panFiles.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.nudKeyVel)).EndInit();
       this.panTrkStream.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.trkStreamVol)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.trkStreamPan)).EndInit();
@@ -2611,7 +2583,6 @@
       this.grpNoteDisplay.PerformLayout();
       this.grpOctTrans.ResumeLayout(false);
       this.grpOctTrans.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeMulti)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeKB)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeDisplay)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.nudOctTransposeKBPitch)).EndInit();
@@ -2640,6 +2611,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.picNoteMap)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.dgvLyrics)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBarsX)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBottom)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picChordNames)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picChords)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBars)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -2683,13 +2658,10 @@
     private System.Windows.Forms.Label lbltrkTempo;
     internal System.Windows.Forms.TrackBar trkTempo;
     private System.Windows.Forms.GroupBox grpOctTrans;
-    private System.Windows.Forms.Label lblnudOctTransposeKB;
-    private System.Windows.Forms.Label lblnudOctTransposeDisplay;
     private System.Windows.Forms.Label lblnudOctTransposeKBPitch;
     internal System.Windows.Forms.NumericUpDown nudOctTransposeKBPitch;
     internal System.Windows.Forms.NumericUpDown nudOctTransposeKB;
     internal System.Windows.Forms.NumericUpDown nudOctTransposeDisplay;
-    internal System.Windows.Forms.NumericUpDown nudOctTransposeMulti;
     private System.Windows.Forms.Label lblKBDisplacement;
     internal System.Windows.Forms.NumericUpDown nudKBDisplacement;
     private System.Windows.Forms.GroupBox grpSemitoneTrans;
@@ -2787,9 +2759,7 @@
     internal System.Windows.Forms.Button cmdTonnetz;
     internal System.Windows.Forms.ToolStripMenuItem mnuSaveMidiFileAs;
     private System.Windows.Forms.ToolStripMenuItem mnuAbout;
-    internal System.Windows.Forms.RadioButton optShowPCKBChar;
     private System.Windows.Forms.Label lblKeyVel;
-    internal System.Windows.Forms.NumericUpDown nudKeyVel;
     internal System.Windows.Forms.Button cmdSaveProjectAs;
     internal System.Windows.Forms.Button cmdSyncAudio;
     internal System.Windows.Forms.Button cmdPlayAndRecordAudio;
@@ -2811,11 +2781,9 @@
     private System.Windows.Forms.Label lblRangeTrk;
     private System.Windows.Forms.Label lbllblRangeTrk;
     internal System.Windows.Forms.GroupBox grpSustainAction;
-    internal System.Windows.Forms.CheckBox chkSustainAuto;
     internal System.Windows.Forms.RadioButton optSustainNormal;
     internal System.Windows.Forms.RadioButton optSustainSendCtlr;
     internal System.Windows.Forms.RadioButton optSustainReplay;
-    internal System.Windows.Forms.RadioButton optSustainCarryOver;
     internal System.Windows.Forms.CheckBox chkShowChordsRel;
     private System.Windows.Forms.Button cmdResetPlay;
     internal System.Windows.Forms.PictureBox picBarsX;
@@ -2840,5 +2808,12 @@
     private System.Windows.Forms.ToolStripMenuItem mnuShowFrmTest;
     private System.Windows.Forms.ToolStripMenuItem mnuWebPage;
     private System.Windows.Forms.ToolStripMenuItem mnuSoundFonts;
+    private System.Windows.Forms.ToolStripMenuItem mnuTestMidiMon;
+    internal System.Windows.Forms.ToolStripMenuItem mnuImport;
+    internal System.Windows.Forms.CheckBox chkShowPCKBChar;
+    private System.Windows.Forms.ToolStripMenuItem mnuPCKBKeys;
+    internal System.Windows.Forms.TrackBar trkPCKBVel;
+    internal System.Windows.Forms.Label lblnudOctTransposeKB;
+    internal System.Windows.Forms.Label lblnudOctTransposeDisplay;
   }
 }

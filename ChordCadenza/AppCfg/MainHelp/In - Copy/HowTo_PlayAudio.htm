@@ -1,0 +1,43 @@
+<h2>How To Play along with an AudioFile or Stream</h2>
+
+<p>You can play along to an <b>AudioFile</b> (MP3 etc) in a similar way to a <b>MidiFile</b>, but with some important differences:</p>
+
+<p><ul>
+    <li>You can't create a <b>ChordFile</b> directly from an <b>AudioFile</b> - you will need to do this from a <b>MidiFile</b> that approximately matches the <b>AudioFile</b>, or from an external source (e.g. sheet music).</li>
+    <li>You can't mute tracks as you can with a <b>MidiFile</b>. However, you may be able to download backing tracks that usually allow you to mute or solo audio tracks.</li>
+    <li>You will need to synchronize the midi data (chords) to the <b>AudioFile</b> using the synchronisation function, or synchronise as you play along.</li>
+</ul></p>
+
+<h3>Choose a Synchronisation Method</h3>
+<p>You can synchronise to the audio stream in one of two ways:</p>
+
+<p><ul>
+    <li>File Synchronisation</li>
+    <li>Live Synchronisation</li>
+</ul></p>
+
+<p>Use <a href="HowTo_ChooseSyncAudio.htm">How to Choose a type of Audio Synchronisation</a> to choose between the two methods above.</p>
+
+<p>If you choose Live Synchronisation, you should go to the <a href="HowTo_PlayLiveAudio.htm">How To Play along to Live Audio</a>.</p>
+
+<p>Otherwise, you will need to create a sync file using <a href="HowTo_SyncAudioFile.htm">How to Sync to an Audio File</a>, and then follow the steps below.</p>
+
+<h3>Load a <span>Project</span></h3>
+
+<p>This should contain an audio file (usually mp3) and a SyncFile (*.chtc). It should also contain a <b>ChordFile</b>(*.chp) if you want to play chords.</p>
+
+<p>If you already have a project with a chordfile but no audio file, you can use <b>PlayMap Menu > File > Save Project As...</b> to save the project with an audio file copied from elsewhere. Alternatively, you can just copy an audiofile into the project folder and rename it. Either way, you will need to reload the project to load the new audio file.</p> 
+
+<p>After loading the <span>Project</span>, the <b>Play Audio</b> <i>Button</i> on all playable windows (<b>TrackMap, ChordMap and PlayMap</b>) will be activated if an audio file has been loaded.</p>
+
+<h3>Start Audio Play</h3>
+<p>Click The <b>Play Audio</b> <i>Button</i> on any playable window (<b>PlayMap, TrackMap, or ChordMap</b>). The AudioFile should start playing from the current cursor position on the <b>ChordMap</b> or <b>TrackMap</b>.</p>
+
+<p>(If the <span>AudioSync Window</span> is open and the option to <b>Start from Position Time</b> is enabled and checked, it will start from the Time on the <b>Position</b> <i>Slider</i>.)</p>
+
+<p>The position will be updated on all visible playable windows as the <b>AudioFile</b> plays, and you should be able to use the <b>ChordMap</b> to play along with it in the same way as you play along with a <b>MidiFile</b>.</p>
+
+<h3>Transposition and Tuning</h3>
+<p>If the ChordFile is in a different key to the Audio File or Stream, you will have to use transposition to match it. One way to do this is to set the <b>KBPitch</b> on the <b>PlayMap</b> to the number of semitones to match the audio file. You can also use the transposition functions of the <b>ChordMap</b> to achieve similar results.</p>
+
+<p>In the unlikely event that the Audio File or Stream is not tuned to standard pitch, you may have to alter the fine tuning using the <a href="Form_MidiDevs_Intro.htm">Midi Configuration Window.</a> This will change the pitch of all notes played on the keyboard or midistream by up to one semitone.</p>

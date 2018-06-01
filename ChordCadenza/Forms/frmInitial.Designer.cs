@@ -60,9 +60,9 @@
       this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.Location = new System.Drawing.Point(42, 294);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(80, 13);
+      this.label1.Size = new System.Drawing.Size(84, 13);
       this.label1.TabIndex = 1;
-      this.label1.Text = "Midi Devices";
+      this.label1.Text = "MIDI Devices";
       // 
       // textBox2
       // 
@@ -82,7 +82,7 @@
       this.cmdMidiDevs.Name = "cmdMidiDevs";
       this.cmdMidiDevs.Size = new System.Drawing.Size(220, 44);
       this.cmdMidiDevs.TabIndex = 3;
-      this.cmdMidiDevs.Text = "Configure Midi Devices\r\nand SoundFonts";
+      this.cmdMidiDevs.Text = "Configure MIDI Devices\r\nand SoundFonts";
       this.cmdMidiDevs.UseVisualStyleBackColor = true;
       this.cmdMidiDevs.Click += new System.EventHandler(this.cmdMidiDevs_Click);
       // 
@@ -135,11 +135,12 @@
       this.textBox4.Multiline = true;
       this.textBox4.Name = "textBox4";
       this.textBox4.ReadOnly = true;
-      this.textBox4.Size = new System.Drawing.Size(460, 51);
+      this.textBox4.Size = new System.Drawing.Size(460, 68);
       this.textBox4.TabIndex = 9;
       this.textBox4.TabStop = false;
-      this.textBox4.Text = "This is where you configure the midi pitch ranges that your midi keyboard can tra" +
-    "nsmit.\r\n\r\nThis is used to set up any switchkeys that you may want to use.";
+      this.textBox4.Text = "This is where you configure the MIDI pitch ranges that your MIDI keyboard can tra" +
+    "nsmit, and the lowest note displayed by the PlayMap\r\n\r\nThis is used to set up an" +
+    "y switchkeys that you may want to use.";
       // 
       // label3
       // 
@@ -147,9 +148,9 @@
       this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label3.Location = new System.Drawing.Point(43, 489);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(134, 13);
+      this.label3.Size = new System.Drawing.Size(138, 13);
       this.label3.TabIndex = 8;
-      this.label3.Text = "Midi Keyboard Ranges";
+      this.label3.Text = "MIDI Keyboard Ranges";
       // 
       // cmdClose
       // 
@@ -177,7 +178,7 @@
       // cmdSaveSettings
       // 
       this.cmdSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdSaveSettings.Location = new System.Drawing.Point(347, 586);
+      this.cmdSaveSettings.Location = new System.Drawing.Point(347, 606);
       this.cmdSaveSettings.Name = "cmdSaveSettings";
       this.cmdSaveSettings.Size = new System.Drawing.Size(158, 30);
       this.cmdSaveSettings.TabIndex = 13;
@@ -209,7 +210,7 @@
       // cmdIntro
       // 
       this.cmdIntro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdIntro.Location = new System.Drawing.Point(45, 586);
+      this.cmdIntro.Location = new System.Drawing.Point(45, 606);
       this.cmdIntro.Name = "cmdIntro";
       this.cmdIntro.Size = new System.Drawing.Size(116, 30);
       this.cmdIntro.TabIndex = 94;
@@ -223,7 +224,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cmdClose;
-      this.ClientSize = new System.Drawing.Size(777, 626);
+      this.ClientSize = new System.Drawing.Size(777, 648);
       this.Controls.Add(this.cmdIntro);
       this.Controls.Add(this.cmdCopyHTML);
       this.Controls.Add(this.label4);

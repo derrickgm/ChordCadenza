@@ -1,0 +1,2 @@
+"C:\Program Files (x86)\HTML Help Workshop\hhc.exe" D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\AppCfg\MainHelp\Out\ChordCadenza.hhp
+D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\AppCfg\ChordCadenza.chm

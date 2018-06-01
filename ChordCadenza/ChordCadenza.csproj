@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChordCadenza</RootNamespace>
     <AssemblyName>ChordCadenza</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Expression\Publish\</PublishUrl>
     <Install>true</Install>
@@ -48,9 +49,11 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ChordCadenza.Program</StartupObject>
@@ -63,10 +66,12 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\Release X64\</OutputPath>
-    <DefineConstants>APPDATAPATH</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -95,10 +100,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>APPDATAPATH</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -116,7 +123,24 @@
     <ApplicationIcon>cadenza150.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bass.Net, Version=2.4.11.0, Culture=neutral, PublicKeyToken=b7566c273e6ef480, processorArchitecture=MSIL" />
+    <Reference Include="DesktopBridge.Helpers, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DesktopBridge.Helpers.1.1\lib\net45\DesktopBridge.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.2.0.4\lib\net45\ManagedBass.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Asio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Asio.2.0.0\lib\netstandard1.4\ManagedBass.Asio.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Fx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Fx.2.0.1\lib\netstandard1.4\ManagedBass.Fx.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Midi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Midi.2.0.0\lib\net45\ManagedBass.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedBass.Mix, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedBass.Mix.2.1.0\lib\netstandard1.4\ManagedBass.Mix.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -146,8 +170,8 @@
     <Compile Include="clsMap.cs" />
     <Compile Include="clsPlay\clsManChords.cs" />
     <Compile Include="clsPCKB.cs" />
-    <Compile Include="clsSustain.cs" />
     <Compile Include="AutoSync\clsAudioSync.cs" />
+    <Compile Include="clsSustain.cs" />
     <Compile Include="clsTrkArray.cs" />
     <Compile Include="clsTT.cs" />
     <Compile Include="clsWaitPlay.cs" />
@@ -186,6 +210,12 @@
     </Compile>
     <Compile Include="Forms\dlgCalcKeysOpts.Designer.cs">
       <DependentUpon>dlgCalcKeysOpts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dlgImport.Designer.cs">
+      <DependentUpon>dlgImport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmConsole.cs">
       <SubType>Form</SubType>
@@ -264,6 +294,18 @@
     </Compile>
     <Compile Include="Forms\dlgPasteSpecial.Designer.cs">
       <DependentUpon>dlgPasteSpecial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPCKBCfg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPCKBCfg.Designer.cs">
+      <DependentUpon>frmPCKBCfg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPCKBIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPCKBIn.Designer.cs">
+      <DependentUpon>frmPCKBIn.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmTest.cs">
       <SubType>Form</SubType>
@@ -391,6 +433,7 @@
     <Compile Include="MidiIO\clsBASSOutMidi.cs" />
     <None Include="ClassDiagram1.cd" />
     <Compile Include="MidiIO\clsBASSOutDev.cs" />
+    <Compile Include="MidiIO\MidiMon.cs" />
     <Compile Include="NoteMap\clsChordSegs.cs" />
     <Compile Include="NoteMap\clsNoteMap.cs" />
     <Compile Include="clsLoadCSV.cs" />
@@ -448,6 +491,9 @@
     <EmbeddedResource Include="Forms\dlgCalcKeysOpts.resx">
       <DependentUpon>dlgCalcKeysOpts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dlgImport.resx">
+      <DependentUpon>dlgImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmConsole.resx">
       <DependentUpon>frmConsole.cs</DependentUpon>
     </EmbeddedResource>
@@ -502,6 +548,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\dlgPasteSpecial.resx">
       <DependentUpon>dlgPasteSpecial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPCKBCfg.resx">
+      <DependentUpon>frmPCKBCfg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPCKBIn.resx">
+      <DependentUpon>frmPCKBIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
@@ -566,6 +618,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -628,6 +681,80 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Soundfonts\TimGM6mb.sf2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="AppCfg\License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>License.txt</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="AppCfg\ToolTips.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>ToolTips.html</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="AppCfg\ChordCadenza.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>ChordCadenza.chm</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="AppCfg\Chords.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>Chords.dat</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="AppCfg\GeneralMidi.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>GeneralMidi.dat</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)' == 'x86'">
+    <ContentWithTargetPath Include="Bass\x86\Bass_Desktop\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bass.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x86\Bass_Desktop\bass_fx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bass_fx.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x86\Bass_Desktop\bassmidi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassmidi.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x86\Bass_Desktop\bassmix.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassmix.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x86\Bass_Desktop\bassasio.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassasio.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)' == 'x64'">
+    <ContentWithTargetPath Include="Bass\x64\Bass_Desktop\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bass.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x64\Bass_Desktop\bass_fx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bass_fx.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x64\Bass_Desktop\bassmidi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassmidi.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x64\Bass_Desktop\bassmix.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassmix.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Bass\x64\Bass_Desktop\bassasio.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>bassasio.dll</TargetPath>
+    </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,47 @@
+<h2>How To Insert Keys and Chords from an External Source</h2>
+
+<p>This application can generate the keys and chords of the music from a <b>MidiFile</b>. However, you may want to insert chords into the <b>ChordFile</b> directly from an external source (sheet music, lead sheet etc). This can be done with the <b>ChordMap</b> window.</p>
+
+<p>You can either load an existing <span>Project</span> containing a <b>ChordFile</b>, or start with a Project not containing any chords.</p>
+
+<h3>Open the ChordMap window</h3>
+<p>If the <b>ChordMap</b> window is not yet opened, you can open it using the <b>ChordMap</b> <i>Button</i> on the <b>PlayMap.</b> </p>
+
+<p>If the <b>ChordMap</b> is empty, you may <b>prompted</b> to initialize a new ChordMap. Click <b>OK</b> to this.</p>
+
+<p>If there are already chords in the ChordMap, you can either override them as you insert new chords, or clear the existing chords with the <b>Cut</b> <i>Button</i>.</p>
+
+<p>The chord input window is near the top of the <b>ChordMap</b> (labelled <b>Chord Names</b>). This will show any chords currently present in the <b>ChordFile</b>. </p>
+
+<p>If your chord source (sheet music etc.) is in a different key to the <b>MidiFile</b>, it will need to be transposed. This can be done by using the transpose controls.</p>  
+
+<h3>Set the Key</h3>
+<p>If the keys of the <b>ChordFile</b> have not yet been set, this should be done using <a href="HowTo_UpdateKeys.htm">How To Update Keys</a> or <a href="HowTo_CalcKeys.htm">How To Generate Keys</a>.</p>
+
+<h3>Transpose</h3>
+<p>You can skip this section if the external source is in the same key as the music.</p>
+
+<p> <b>Transpose Chord Names</b> will transpose the <b>Chord Names</b> pane, but not the <b>Chord Notes</b> pane. <b>Transpose Chord Notes</b> will transpose the <b>Chord Notes</b> pane, but not the <b>Chord Names</b> pane. This will allow you to type in chord names from an external source, and transpose the notes.</p> 
+
+<p>If you have an external source that is in a different (initial) key to the <b>ChordFile</b> or <b>MidiFile</b>, you can use <b>Transpose Chord Names</b> to match the key with the external source. If you don't know what key the midi or audio file is in, you can transpose the chords later on. You can also transpose all the keys with the <b>Transpose Keys</b> Buttons.</p>
+
+<p>For example, if your source is sheet music in the key of C major, but your <b>MidiFile</b> is in the key of C# major, you should set <b>Transpose Chord Names</b> to -1. This is because the chordname text is one semitone lower than the midi file.</p>
+
+<p>If you have a synchronised AudioFile but no MidiFile, and don't know what key the music is in, you should start typing in the chords until some time after the first synchronised beat. You can then try playing along to it, and transpose the chord notes until it sounds right. If you can't find a transposiiton that sounds good, you may have to adjust the fine tuning (see <a href="Form_MidiDevs_Ctls.htm">Midi Devices Components</a>).</p> 
+
+ <p>Note: The <b>Chord Notes</b> pane represents the chord notes and keys that will actually be saved in the <b>ChordFile</b>.</p>
+
+<h3>Type in the Chords</h3>
+<p>The chords can now be typed in from the external source. Click on the cell you want to update and type in the name, as shown in the external source. The program should recognise most chords and variations.</p> 
+
+<p>If you type in something that is not recognised as a valid chord, the program will restore the original value.</p>
+
+<p>You can change the current cell position with the keyboard up/down/left/right keys, and delete a chord with backspace or delete. (You may need to click on a cell if the <b>Chord Names</b> window is not the currently active window.) 
+
+<h3>Save the Chords</h3>
+<p>You can check the chords in the <b>Chord Notes</b> pane. This will show the notes of the chords. You can change any notes on this screen by clicking with the mouse - this is documented elsewhere.</p>
+
+<p>To save the chords in the <b>ChordFile</b>, click the <b>Save Project</b> or <b>Save Chords As</b> <i>Button</i> in the <b>ChordMap</b> window.</p>
+
+<h3>Further Information</h3>
+<p>More information about using the <b>ChordMap</b> to generate chords can be found <a href="Form_ChordMap_Intro.htm">here</a>.</p>

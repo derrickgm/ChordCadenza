@@ -39,7 +39,6 @@ namespace ChordCadenza.Forms {
 
     private void cmdOK_Click(object sender, EventArgs e) {
       if (txtProjectLocation.Text == P.F.Project.ProjectPathXName && txtProjectName.Text == P.F.Project.Name) {
-        //MessageBox.Show("Project location and name match current location and name - not actioned");
         P.F.SaveProject(P.F.Project);
         DialogResult = DialogResult.OK;  //close form
         return;
@@ -49,18 +48,16 @@ namespace ChordCadenza.Forms {
       string fulldir = dlgNewProject.CreateProjectDir(txtProjectLocation, txtProjectName, chkAddNameToLocation);
       if (fulldir == "") return;  //do not close form
 
-      clsProject oldproject = P.F.Project;     
+      clsProject oldproject = P.F.Project;
       P.F.Project = new clsProject(P.F.Project, fulldir, txtProjectName.Text);
-      //foreach (Form frm in Application.OpenForms) {
-      //  if (frm is IFormProjectName) ((IFormProjectName)frm).SetFormTitle();
-      //}
       bool ok = P.F.SaveProject(oldproject);
       //if (!ok) MessageBox.Show("Error saving project");
+
       DialogResult = DialogResult.OK;  //close form
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_SaveAs_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_SaveAs_Intro.htm");
     }
   }
 }

@@ -199,7 +199,7 @@
       // 
       // cmdFXStream
       // 
-      this.cmdFXStream.Location = new System.Drawing.Point(10, 144);
+      this.cmdFXStream.Location = new System.Drawing.Point(320, 14);
       this.cmdFXStream.Name = "cmdFXStream";
       this.cmdFXStream.Size = new System.Drawing.Size(37, 33);
       this.cmdFXStream.TabIndex = 20;
@@ -210,7 +210,7 @@
       // cmdFXKB
       // 
       this.cmdFXKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cmdFXKB.Location = new System.Drawing.Point(556, 144);
+      this.cmdFXKB.Location = new System.Drawing.Point(319, 12);
       this.cmdFXKB.Name = "cmdFXKB";
       this.cmdFXKB.Size = new System.Drawing.Size(37, 33);
       this.cmdFXKB.TabIndex = 21;
@@ -248,8 +248,6 @@
       // 
       this.grpMidiOut.Controls.Add(this.cmdExecOutKB);
       this.grpMidiOut.Controls.Add(this.cmdExecOutStream);
-      this.grpMidiOut.Controls.Add(this.cmdFXStream);
-      this.grpMidiOut.Controls.Add(this.cmdFXKB);
       this.grpMidiOut.Controls.Add(this.grpTuningOutKB);
       this.grpMidiOut.Controls.Add(this.grpTuningOutStream);
       this.grpMidiOut.Controls.Add(this.lblCurrentAudio);
@@ -291,9 +289,10 @@
       this.grpTuningOutKB.Controls.Add(this.lblMidiOutKBFineTuning);
       this.grpTuningOutKB.Controls.Add(this.lbltrkMidiOutKBFineTuning);
       this.grpTuningOutKB.Controls.Add(this.trkMidiOutKBFineTuning);
-      this.grpTuningOutKB.Location = new System.Drawing.Point(600, 132);
+      this.grpTuningOutKB.Controls.Add(this.cmdFXKB);
+      this.grpTuningOutKB.Location = new System.Drawing.Point(553, 132);
       this.grpTuningOutKB.Name = "grpTuningOutKB";
-      this.grpTuningOutKB.Size = new System.Drawing.Size(324, 53);
+      this.grpTuningOutKB.Size = new System.Drawing.Size(371, 53);
       this.grpTuningOutKB.TabIndex = 36;
       this.grpTuningOutKB.TabStop = false;
       // 
@@ -335,10 +334,11 @@
       // 
       this.grpTuningOutStream.Controls.Add(this.lblMidiStreamFineTuning);
       this.grpTuningOutStream.Controls.Add(this.lbltrkMidiStreamFineTuning);
+      this.grpTuningOutStream.Controls.Add(this.cmdFXStream);
       this.grpTuningOutStream.Controls.Add(this.trkMidiStreamFineTuning);
-      this.grpTuningOutStream.Location = new System.Drawing.Point(53, 132);
+      this.grpTuningOutStream.Location = new System.Drawing.Point(10, 132);
       this.grpTuningOutStream.Name = "grpTuningOutStream";
-      this.grpTuningOutStream.Size = new System.Drawing.Size(323, 53);
+      this.grpTuningOutStream.Size = new System.Drawing.Size(366, 53);
       this.grpTuningOutStream.TabIndex = 35;
       this.grpTuningOutStream.TabStop = false;
       // 

@@ -15,12 +15,20 @@ namespace ChordCadenza.Forms {
     internal frmShowList(eList type) {
       Type = type;
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
     }
 
     internal frmShowList(string[] msgs) {
       Type = eList.Msgs;
       Msgs = msgs;
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     internal enum eList { Msgs, TSigs, Keys, Tempos, CtlrTots, CtlrDetails,
@@ -87,11 +95,11 @@ namespace ChordCadenza.Forms {
         lineslist.Add("64-bit Operating System = " + Environment.Is64BitOperatingSystem);
         lineslist.Add("64-bit Process = " + Environment.Is64BitProcess);
         lineslist.Add("Debug Mode = " + Debugger.IsAttached);
-        #if APPDATAPATH
-          lineslist.Add("AppDataPath = true");
-        #else
-          lineslist.Add("AppDataPath = false");
-        #endif
+        //#if APPDATAPATH
+        //  lineslist.Add("AppDataPath = true");
+        //#else
+        //  lineslist.Add("AppDataPath = false");
+        //#endif
         #if ADVANCED
           lineslist.Add("Advanced = true");
         #else

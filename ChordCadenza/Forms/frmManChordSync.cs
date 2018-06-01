@@ -25,6 +25,7 @@ namespace ChordCadenza.Forms {
 
     public frmManChordSync() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
 
       //chkDisable.CheckedChanged += Control_Changed;
 
@@ -41,6 +42,12 @@ namespace ChordCadenza.Forms {
       chkNoSkipAfterReloc.CheckedChanged += Control_Changed;
 
       Show();
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     private void frmManChordSync_Load(object sender, EventArgs e) {
@@ -97,7 +104,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ManChordSync_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_ManChordSync_Intro.htm");
     }
   }
 }

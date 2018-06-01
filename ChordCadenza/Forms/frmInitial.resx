@@ -118,22 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>You can use this program to improvise along with Midi or Audio Files, using your Midi Keyboard.
+    <value>You can use this program to improvise along with MIDI or Audio Files, using a MIDI or PC keyboard.
+It can also be used to analyze MIDI Files to find keys and chords.
 
-It can also be used to analyze Midi Files to find keys and chords.
-
-Before using this  program for the first time, you should set up the following.
+Before using this program for the first time, you should set up the following.
 (Any changes made can be reconfigured at any time.) </value>
   </data>
   <data name="textBox2.Text" xml:space="preserve">
-    <value>Use the Midi Devices Setup window to configure Midi Input and Output devices. 
+    <value>Use the MIDI Devices Setup window to configure MIDI Input and Output devices. 
 
-You should set your Midi Keyboard as the midi input devices, if that is not selected by default.
+The MIDI input device should be set your MIDI Keyboard (if you have one).
 
-There are two midi out ports: keyboard output, and sequencer output. These can be set to the same or different devices.
+There are two MIDI out ports: keyboard output, and sequencer output. These can be set to the same or different devices.
 
-If you have a midi synthesizer (hardware or software), you can set this up for the output midi devices.  Alternatively, you can use the inbuilt synthesizer of this program
-for the output devices. If you use the inbuilt synthesizer, you will need to select a soundfont to use with it.
+If you have a MIDI synthesizer (hardware or software), you can set this up as the output MIDI devices.  Alternatively, you can use the inbuilt synthesizer of this program
+as the output devices. If you use the inbuilt synthesizer, you will need to select a soundfont to use with it.
 </value>
   </data>
   <data name="textBox3.Text" xml:space="preserve">

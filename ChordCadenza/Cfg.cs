@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Diagnostics;
-using Un4seen.Bass.AddOn.Fx;
+//using Un4seen.Bass.AddOn.Fx;
+using ManagedBass;
+using ManagedBass.Fx;
+using ManagedBass.Asio;
 using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace ChordCadenza {
   internal static class Cfg { //simple replacement for input params
+    public static List<AsioProcedure> AsioProcs = new List<AsioProcedure>();
+
     internal static int LatencyMidiPlay = 0;  //from frmConfigBass nud
     internal static int LatencyKB = 0;  //from frmConfigBass nud
     internal static bool NoIni = false;
@@ -22,27 +27,33 @@ namespace ChordCadenza {
     internal static string MidiInSync = "";
     internal static string MidiOutKB = "";
     internal static string MidiOutStream = "";
-    internal static int SelectedIndexcmbInKB = -1;
-    internal static int SelectedIndexcmbInSync = -1;
-    internal static int SelectedIndexcmbOutStream = -1;
-    internal static int SelectedIndexcmbOutKB = -1;
+    internal static bool MidiInKBConnected = true;
+    internal static bool MidiInSyncConnected = false;
+    internal static bool MidiOutKBConnected = true;
+    internal static bool MidiOutStreamConnected = true;
+    //internal static int SelectedIndexcmbInKB = -1;
+    //internal static int SelectedIndexcmbInSync = -1;
+    //internal static int SelectedIndexcmbOutStream = -1;
+    //internal static int SelectedIndexcmbOutKB = -1;
     internal static int MidiOutKBFineTuning = 0;
     internal static int MidiStreamFineTuning = 0;
     internal static int MidiCHPTuningAdj = 0;
+    internal static int AsiodB = 0;
 
-#if !APPDATAPATH
-    internal static readonly string BasePath;
-#endif
-    internal static readonly string AppPath;
-    internal static readonly string AppDataPath;
+//#if !APPDATAPATH
+//    internal static readonly string BasePath;
+//#endif
+    internal static readonly string ExePath;
+    //internal static readonly string AppDataPath;
     internal static readonly string UserMusicPath;
-    internal static readonly string CfgPath;
+    internal static readonly string IniPath;
     internal static string ProjectDir; //overridden by .ini setting
     internal static string MidiFilesPath;
     internal static string AudioFilesPath;
     //internal static readonly string SamplesPath;
     //internal static string BezierFilePath;
     internal static string SwitchIniFilePath;
+    internal static string PCKBIniFilePath;
     internal static string FrmSCColoursIniFilePath;
     internal static string FrmNMColoursIniFilePath;
     internal static string FrmTonnetzColoursIniFilePath;
@@ -50,7 +61,7 @@ namespace ChordCadenza {
     internal static string ChordNamesDatFilePath;
     internal static string GeneralMidiDatFilePath;
     internal static string ChordNamesRankIniFilePath;
-    internal static string InitialScreenDatFilePath;
+    internal static string InitialScreenIniFilePath;
     internal static string RecentProjectsLines;
     internal static string MainIniFilePath;
     internal static string ChordCfgIniFilePath;
@@ -95,67 +106,62 @@ namespace ChordCadenza {
     internal static int KBPatchSelectedIndex = 0;  //only used on program start
     internal static int KBOutChan = 0;  //only used on program start
     //internal static Forms.frmSC.ePlayMode InitialMode = Forms.frmSC.ePlayMode.KB;
+    internal static int PCKBVel = 80;  //current value (updated by frmSC and frmPCKBIn)
 
     internal static Dictionary<string, clsFormProps> DictFormProps = new Dictionary<string, clsFormProps>(16);
 
     static Cfg() {
 
-      AppPath = Application.StartupPath;  //D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\bin\Debug
-      AppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+      ExePath = Application.StartupPath;  //D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\bin\Debug
+      string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-//#if !APPDATAPATH
-//      string basepath = "";  //exclude last dir
-//      string[] dirs = AppPath.Split(new string[] { "\\" }, StringSplitOptions.None);
-//      for (int i = 0; i < dirs.Length - 1; i++) {  //exclude last dir (Debug, Release, Debug X64, or Release X64)
-//        basepath += dirs[i] + "\\";
-//      }
-//      CfgPath = basepath + "Cfg";   //D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\bin\ + Cfg
-//      UserMusicPath = @"D:\D1\Sonar\Songs";
-//      SoundFontsPath = @"C:\SoundFonts";
-//#else
-//      CfgPath = AppDataPath + "\\ChordCadenza";  //C:\Users\Derrick\AppData\Roaming\ChordCadenza
-//      UserMusicPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
-//      SoundFontsPath = UserMusicPath + @"\SoundFonts";
-//#endif
-
-      #if !APPDATAPATH
-        BasePath = ""; 
-        string[] dirs = AppPath.Split(new string[] { "\\" }, StringSplitOptions.None);
-        //* exclude last 2 dirs (bin\Debug, bin\Release, bin\Debug X64, bin\Release X64)
-        for (int i = 0; i < dirs.Length - 2; i++) {  
-          BasePath += dirs[i] + "\\";
-        }
-        CfgPath = BasePath + "Cfg";   //D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\ + Cfg
-        UserMusicPath = @"D:\D1\Sonar\Songs";
-        SoundFontsPath = @"C:\SoundFonts";
-      #else
-        CfgPath = AppDataPath + "\\ChordCadenza";  //C:\Users\Derrick\AppData\Roaming\ChordCadenza
-        UserMusicPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
-        SoundFontsPath = UserMusicPath + @"\SoundFonts";
-      #endif
+      //#if !APPDATAPATH
+      //  BasePath = ""; 
+      //  string[] dirs = AppPath.Split(new string[] { "\\" }, StringSplitOptions.None);
+      //  //* exclude last 2 dirs (bin\Debug, bin\Release, bin\Debug X64, bin\Release X64)
+      //  for (int i = 0; i < dirs.Length - 2; i++) {  
+      //    BasePath += dirs[i] + "\\";
+      //  }
+      //  CfgPath = BasePath + "Cfg";   //D:\D2\Dev\CS.Express\ChordCadenza\ChordCadenza\ + Cfg
+      //  UserMusicPath = @"D:\D1\Sonar\Songs";
+      //  SoundFontsPath = @"C:\SoundFonts";
+      //#else
+      IniPath = appdatapath + "\\ChordCadenza";  //C:\Users\Derrick\AppData\Roaming\ChordCadenza
+      if (!Directory.Exists(IniPath)) Directory.CreateDirectory(IniPath);  //last qualifier may not be present
+      UserMusicPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+      SoundFontsPath = UserMusicPath + @"\SoundFonts";
+      //#endif
 
       ProjectDir = UserMusicPath + @"\ChordCadenza Projects"; //overridden by .ini setting
-      //MidiFilesPath = UserMusicPath + @"\Midi Files"; //overridden by .ini setting
-      //AudioFilesPath = UserMusicPath + @"\Audio Files"; //overridden by .ini setting
       MidiFilesPath = UserMusicPath; //overridden by .ini setting
       AudioFilesPath = UserMusicPath; //overridden by .ini setting
-      //DebugPath = CfgPath + @"\DumpChords";
       DebugPath = Path.GetTempPath() + @"\DumpChords";
-      HelpFilePath = CfgPath + "\\ChordCadenza.chm";
-      ToolTipsFilePath = CfgPath + "\\ToolTips.html";
-      LicenseFilePath = CfgPath + "\\License.txt";
-      ChordNamesDatFilePath = CfgPath + @"\Chords.dat";  //always present
-      GeneralMidiDatFilePath = CfgPath + @"\GeneralMidi.dat";  //always present
-      ChordNamesRankIniFilePath = CfgPath + @"\Chords.Ranks.ini";  
-      InitialScreenDatFilePath = CfgPath + @"\InitialScreen.dat";  //present only if initial screen wanted
-      RecentProjectsLines = CfgPath + @"\RecentProjects.ini";
-      MainIniFilePath = CfgPath + @"\ChordCadenza.ini";
-      SwitchIniFilePath = CfgPath + @"\Switch.ini";
-      FrmSCColoursIniFilePath = CfgPath + @"\FrmSCColours.ini";
-      FrmNMColoursIniFilePath = CfgPath + @"\FrmNMColours.ini";
-      FrmTonnetzColoursIniFilePath = CfgPath + @"\FrmTonnetzColours.ini";
-      ChordCfgIniFilePath = CfgPath + @"\ChordCfg.ini";
-      //SamplesPath = CfgPath + @"\Music Files\Samples\HowTo";  
+
+      //* readonly files (*.dat etc.)
+      HelpFilePath = ExePath + "\\ChordCadenza.chm";
+      ToolTipsFilePath = ExePath + "\\ToolTips.html";
+      LicenseFilePath = ExePath + "\\License.txt";
+      ChordNamesDatFilePath = ExePath + @"\Chords.dat";  //always present
+      GeneralMidiDatFilePath = ExePath + @"\GeneralMidi.dat";  //always present
+      InitialScreenIniFilePath = IniPath + @"\InitialScreen.ini";  //present only if initial screen not wanted
+
+      //* readwrite files - not present until saved 
+      ChordNamesRankIniFilePath = IniPath + @"\Chords.Ranks.ini";  
+      RecentProjectsLines = IniPath + @"\RecentProjects.ini";
+      MainIniFilePath = IniPath + @"\ChordCadenza.ini";
+      SwitchIniFilePath = IniPath + @"\Switch.ini";
+      PCKBIniFilePath = IniPath + @"\PCKB.ini";
+      FrmSCColoursIniFilePath = IniPath + @"\FrmSCColours.ini";
+      FrmNMColoursIniFilePath = IniPath + @"\FrmNMColours.ini";
+      FrmTonnetzColoursIniFilePath = IniPath + @"\FrmTonnetzColours.ini";
+      ChordCfgIniFilePath = IniPath + @"\ChordCfg.ini";
+
+#if !DESKTOP
+      if (!File.Exists(IniPath + "\\NotFirstTime")) {
+        File.Create(IniPath + "\\NotFirstTime");
+        CopyFontAndSamples();
+      }
+#endif
 
       BezierName[0] = "Velocity";
       BezierName[1] = "Aftertouch";
@@ -218,7 +224,6 @@ namespace ChordCadenza {
               if (SoundFontKB == "") SoundFontKB = Path.GetFileNameWithoutExtension(soundfontfiles[0]);
               Forms.frmConsole.WriteLine("PostReadIni: SoundFontKB =  " + SoundFontKB);
               if (DirContainsSoundFont(soundfontfiles, SoundFontKB)) MidiOutKB = "BuiltIn Synth (KB)";
-
             }
             if (MidiOutStream == "") {
               if (SoundFontStream == "") SoundFontStream = Path.GetFileNameWithoutExtension(soundfontfiles[0]);
@@ -242,7 +247,7 @@ namespace ChordCadenza {
       if (!DictFormProps.ContainsKey("frmSC"))
         DictFormProps.Add("frmSC", clsFormProps.Parse("frmSC, False, 25, 25, 1390, 650"));
       if (!DictFormProps.ContainsKey("frmStart"))
-        DictFormProps.Add("frmStart", clsFormProps.Parse("frmStart, False, 25, 25, 820, 250"));
+        DictFormProps.Add("frmStart", clsFormProps.Parse("frmStart, False, 25, 25, 820, 282"));
       if (!DictFormProps.ContainsKey("frmTonnetz"))
         DictFormProps.Add("frmTonnetz", clsFormProps.Parse("frmTonnetz, False, 25, 25, 876, 390"));
       if (!DictFormProps.ContainsKey("frmAutoSync"))
@@ -313,7 +318,8 @@ namespace ChordCadenza {
       && !File.Exists(FrmNMColoursIniFilePath)
       && !File.Exists(FrmSCColoursIniFilePath)
       //&& !File.Exists(FrmTonnetzColoursIniFilePath)
-      && !File.Exists(SwitchIniFilePath)) {
+      && !File.Exists(SwitchIniFilePath)
+      && !File.Exists(PCKBIniFilePath)) {
         Debug.WriteLine("No Ini Files - Default values will be used");
         NoIni = true;
         return;
@@ -337,7 +343,7 @@ namespace ChordCadenza {
               MidiInKB = f[1];
               break;
             case "MidiInSync":
-              MidiInSync = f[1];
+              MidiInSync = "None";
               break;
             case "MidiOutKB":
               MidiOutKB = f[1];
@@ -345,17 +351,17 @@ namespace ChordCadenza {
             case "MidiOutStream":
               MidiOutStream = f[1];
               break;
-            case "SelectedIndexcmbInKB":
-              SelectedIndexcmbInKB = int.Parse(f[1]);
+            case "MidiInKBAct":
+              MidiInKBConnected = bool.Parse(f[1]);
               break;
-            case "SelectedIndexcmbInSync":
-              SelectedIndexcmbInSync = int.Parse(f[1]);
+            case "MidiInSyncAct":
+              MidiInSyncConnected = bool.Parse(f[1]);
               break;
-            case "SelectedIndexcmbOutKB":
-              SelectedIndexcmbOutKB = int.Parse(f[1]);
+            case "MidiOutKBAct":
+              MidiOutKBConnected = bool.Parse(f[1]);
               break;
-            case "SelectedIndexcmbOutStream":
-              SelectedIndexcmbOutStream = int.Parse(f[1]);
+            case "MidiOutStreamAct":
+              MidiOutStreamConnected = bool.Parse(f[1]);
               break;
             case "KBOutChan":
               //MidiPlay.KBOutChan = int.Parse(f[1]) - 1; break;  //conv 1-16 to 0-15
@@ -378,6 +384,8 @@ namespace ChordCadenza {
               break;
             case "indAsio":
               clsBASSOutDev.indAsio = Utils.StringYesNo(f[1]); break;
+            case "AsiodB":
+              AsiodB = int.Parse(f[1]); break;
             case "AsioDevName":
               if (f[1].Length > 0) NoAsioDevName = false;
               clsBASSOutDevAsio.DevName = f[1]; break;
@@ -458,9 +466,9 @@ namespace ChordCadenza {
             case "AllNotesOffAfterSustain":
               P.frmStart.chkAllNotesOffAfterSustain.Checked = bool.Parse(f[1]);
               break;
-            case "DelaySustainOff":
-              P.frmStart.chkDelaySustain.Checked = bool.Parse(f[1]);
-              break;
+            //case "DelaySustainOff":
+            //  P.frmStart.chkDelaySustain.Checked = bool.Parse(f[1]);
+            //  break;
             case "IgnoreNullChords":
               P.frmStart.chkIgnoreNullChords.Checked = bool.Parse(f[1]);
               break;
@@ -493,8 +501,14 @@ namespace ChordCadenza {
             case "ConstantChordDisplay":
               P.frmStart.chkConstantChordDisplay.Checked = bool.Parse(f[1]);
               break;
-            case "ConstantChordPlay":
-              P.frmStart.chkConstantChordPlay.Checked = bool.Parse(f[1]);
+            case "ConstantChordPlayMidiKB":
+              P.frmStart.chkConstantChordPlayMidiKB.Checked = bool.Parse(f[1]);
+              break;
+            case "ConstantChordPlayPCKB":
+              P.frmStart.chkConstantChordPlayPCKB.Checked = bool.Parse(f[1]);
+              break;
+            case "PCKBVel":
+              PCKBVel = int.Parse(f[1]);
               break;
             case "Syncopation":  //Syncopation, NN, DD
               {
@@ -520,21 +534,21 @@ namespace ChordCadenza {
               Forms.frmSC.CapitalizeRootsStatic = true;
               Forms.frmSC.CapitalizeRootsStatic = bool.Parse(f[1]);
               break;
-            case "SustainAuto":
-              P.frmSC_Temp.chkSustainAuto.Checked = bool.Parse(f[1]);
-              break;
+            //case "SustainAuto":
+            //  P.frmSC_Temp.chkSustainAuto.Checked = bool.Parse(f[1]);
+            //  break;
             case "SustainAction":
               P.frmSC_Temp.optSustainNormal.Checked = false;
-              P.frmSC_Temp.optSustainCarryOver.Checked = false;
+              //P.frmSC_Temp.optSustainCarryOver.Checked = false;
               P.frmSC_Temp.optSustainReplay.Checked = false;
               P.frmSC_Temp.optSustainSendCtlr.Checked = false;
               switch (f[1]) {
                 case "Replay":
                   P.frmSC_Temp.optSustainReplay.Checked = true;
                   break;
-                case "CarryOver":
-                  P.frmSC_Temp.optSustainCarryOver.Checked = true;
-                  break;
+                //case "CarryOver":
+                //  P.frmSC_Temp.optSustainCarryOver.Checked = true;
+                //  break;
                 case "SendCtlr":
                   P.frmSC_Temp.optSustainSendCtlr.Checked = true;
                   break;
@@ -602,9 +616,9 @@ namespace ChordCadenza {
             //case "PlayKBChord":
             //  P.frmStart.chkPlayKBChord.Checked = bool.Parse(f[1]);
             //  break;
-            case "PCKB":
-              P.frmStart.chkPCKB.Checked = bool.Parse(f[1]);
-              break;
+            //case "PCKB":
+            //  P.frmStart.chkPCKB.Checked = bool.Parse(f[1]);
+            //  break;
             //case "AutoSyncMerge":
             //  P.frmStart.chkAutoSyncMerge.Checked = bool.Parse(f[1]);
             //  break;
@@ -636,11 +650,17 @@ namespace ChordCadenza {
               P.frmSC_Temp.optShowNoteName.Checked = false;
               P.frmSC_Temp.optShowSolfa.Checked = false;
               P.frmSC_Temp.optShowNone.Checked = false;
-              P.frmSC_Temp.optShowPCKBChar.Checked = false;
+              //P.frmSC_Temp.optShowPCKBChar.Checked = false;
               if (f[1] == "Solfa") P.frmSC_Temp.optShowSolfa.Checked = true; 
               else if (f[1] == "NoteName") P.frmSC_Temp.optShowNoteName.Checked = true;  
-              else if (f[1] == "KBName") P.frmSC_Temp.optShowPCKBChar.Checked = true;  
+              //else if (f[1] == "KBName") P.frmSC_Temp.optShowPCKBChar.Checked = true;  
               else P.frmSC_Temp.optShowNone.Checked = true;  
+              break;
+            case "ShowNotePCKB":
+              P.frmSC_Temp.chkShowPCKBChar.Checked = bool.Parse(f[1]);
+              break;
+            case "DisablePCKB":
+              P.frmStart.chkDisablePCKB.Checked = bool.Parse(f[1]);
               break;
             case "RunChordNotes":
               P.frmSC_Temp.chkRunChordNotes.Checked = bool.Parse(f[1]);  //FO
@@ -807,7 +827,9 @@ namespace ChordCadenza {
         Debug.WriteLine(MainIniFilePath + " File loaded");
       }
       catch (Exception exc) {
-        MessageBox.Show(exc.Message + " whilst reading Ini parameter: " + f[0]);
+        string msg = exc.Message + " whilst reading Ini parameter: " + f[0];
+        if (f.Length > 1) msg += " = " + f[1];
+        MessageBox.Show(msg);
       }
     }
 
@@ -820,7 +842,15 @@ namespace ChordCadenza {
       float roomsize = float.Parse(ff[3]);
       float damp = float.Parse(ff[4]);
       float width = float.Parse(ff[5]);
-      clsBassOutMidi.Freeverb[type] = new BASS_BFX_FREEVERB(drymix, wetmix, roomsize, damp, width, 0);
+      //clsBassOutMidi.Freeverb[type] = new BassFx(drymix, wetmix, roomsize, damp, width, 0);
+
+      clsBassOutMidi.Freeverb[type] = new ReverbParameters();
+      clsBassOutMidi.Freeverb[type].fDryMix = drymix;
+      clsBassOutMidi.Freeverb[type].fWetMix = wetmix;
+      clsBassOutMidi.Freeverb[type].fRoomSize = roomsize;
+      clsBassOutMidi.Freeverb[type].fDamp = damp;
+      clsBassOutMidi.Freeverb[type].fWidth = width;
+      clsBassOutMidi.Freeverb[type].lMode = 0;
     }
 
     private static bool DirContainsSoundFont(string[] files, string font) {
@@ -843,31 +873,31 @@ namespace ChordCadenza {
 
     private static void WriteLine(StreamWriter sw, string txt) {
       sw.WriteLine(txt);
+#if DEBUG
+      sw.Flush();  //temp
+#endif
     }
 
-    private static void WriteMidiDev(StreamWriter sw, clsBassMidiInOut dev, string key, string devname) {
-      if (dev == null || dev is clsBassMidiOutNull || !dev.Opened()) WriteLine(sw, key + "None");
-      else WriteLine(sw, key + devname);
-    }
+    //private static void WriteMidiDev(StreamWriter sw, clsBassMidiInOut dev, string key, string devname) {
+    //  if (dev == null || dev is clsBassMidiOutNull || !dev.Opened()) WriteLine(sw, key + "None");
+    //  else WriteLine(sw, key + devname);
+    //}
 
     private static void SaveFileSub(StreamWriter sw) {
-      WriteMidiDev(sw, MidiPlay.MidiInKB, "MidiInKB = ", MidiInKB);
-      WriteMidiDev(sw, MidiPlay.MidiInSync, "MidiInSync = ", MidiInSync);
-      WriteMidiDev(sw, (clsBassMidiInOut)MidiPlay.OutMKB, "MidiOutKB = ", MidiOutKB);
-      WriteMidiDev(sw, (clsBassMidiInOut)MidiPlay.OutMStream, "MidiOutStream = ", MidiOutStream);
+      //WriteMidiDev(sw, MidiPlay.MidiInKB, "MidiInKB = ", MidiInKB);
+      //WriteMidiDev(sw, MidiPlay.MidiInSync, "MidiInSync = ", MidiInSync);
+      //WriteMidiDev(sw, (clsBassMidiInOut)MidiPlay.OutMKB, "MidiOutKB = ", MidiOutKB);
+      //WriteMidiDev(sw, (clsBassMidiInOut)MidiPlay.OutMStream, "MidiOutStream = ", MidiOutStream);
 
-      if (MidiPlay.MidiInKB == null || !MidiPlay.MidiInKB.Opened()) {
-        WriteLine(sw, "SelectedIndexcmbInKB = " + SelectedIndexcmbInKB);
-      }
-      if (MidiPlay.MidiInSync == null || !MidiPlay.MidiInSync.Opened()) {
-        WriteLine(sw, "SelectedIndexcmbInSync = " + SelectedIndexcmbInSync);
-      }
-      if (MidiPlay.OutMKB == null || !MidiPlay.OutMKB.Opened()) {
-        WriteLine(sw, "SelectedIndexcmbOutKB = " + SelectedIndexcmbOutKB);
-      }
-      if (MidiPlay.OutMStream == null || !MidiPlay.OutMStream.Opened()) {
-        WriteLine(sw, "SelectedIndexcmbOutStream = " + SelectedIndexcmbOutStream);
-      }
+      WriteLine(sw, "MidiInKB = " + MidiInKB);
+      WriteLine(sw, "MidiInSync = None");
+      WriteLine(sw, "MidiOutKB = " + MidiOutKB);
+      WriteLine(sw, "MidiOutStream = " + MidiOutStream);
+
+      WriteLine(sw, "MidiInKBAct = " + (MidiPlay.MidiInKB != null));
+      WriteLine(sw, "MidiInSyncAct = " + (MidiPlay.MidiInSync != null));
+      WriteLine(sw, "MidiOutKBAct = " + !(MidiPlay.OutMKB is clsBassMidiOutNull));
+      WriteLine(sw, "MidiOutStreamAct = " + !(MidiPlay.OutMStream is clsBassMidiOutNull));
 
       WriteLine(sw, "KBOutChan = " + MidiPlay.KBOutChan); 
       WriteLine(sw, "ProjectPath = " + ProjectDir);
@@ -876,6 +906,7 @@ namespace ChordCadenza {
       WriteLine(sw, "SoundFontsPath = " + SoundFontsPath);
       WriteLine(sw, "AudioDisconnected = " + clsBASSOutDev.Disconnected);
       WriteLine(sw, "indAsio = " + Utils.BoolYesNo(clsBASSOutDev.indAsio));
+      WriteLine(sw, "AsiodB = " + AsiodB);
       WriteLine(sw, "AsioDevName = " + clsBASSOutDevAsio.DevName);
       WriteLine(sw, "NonAsioDevName = " + clsBASSOutDevNonAsio.DevName);
       WriteLine(sw, "NonAsioBuffer = " + clsBASSOutDevNonAsio.BufferSize);
@@ -897,7 +928,7 @@ namespace ChordCadenza {
 
       //WriteLine(sw, "LoadMidiFilePlayer = " + P.frmStart.chkLoadMidiFilePlayer.Checked);
       WriteLine(sw, "ShowRelChords = " + P.frmSC.chkShowChordsRel.Checked);
-      WriteLine(sw, "DelaySustainOff = " + P.frmStart.chkDelaySustain.Checked);
+      //WriteLine(sw, "DelaySustainOff = " + P.frmStart.chkDelaySustain.Checked);
       WriteLine(sw, "IgnoreNullChords = " + P.frmStart.chkIgnoreNullChords.Checked);
       WriteLine(sw, "KBChordMatch = " + P.frmStart.chkKBChordMatch.Checked);
       //WriteLine(sw, "ChunksPerQNote = " + (int)P.frmStart.nudChunksPerQNote.Value);
@@ -910,7 +941,8 @@ namespace ChordCadenza {
       WriteLine(sw, "NotesPerChordDisplay = " + (int)P.frmStart.nudNotesPerChordDisplay.Value);
       WriteLine(sw, "NotesPerChordPlay = " + (int)P.frmStart.nudNotesPerChordPlay.Value);
       WriteLine(sw, "ConstantChordDisplay = " + P.frmStart.chkConstantChordDisplay.Checked);
-      WriteLine(sw, "ConstantChordPlay = " + P.frmStart.chkConstantChordPlay.Checked);
+      WriteLine(sw, "ConstantChordPlayMidiKB = " + P.frmStart.chkConstantChordPlayMidiKB.Checked);
+      WriteLine(sw, "ConstantChordPlayPCKB = " + P.frmStart.chkConstantChordPlayPCKB.Checked);
       WriteLine(sw, "Syncopation = " + P.frmStart.Syncopation.NN + ", " + P.frmStart.Syncopation.DD);
       //WriteLine(sw, "EnhancedSyncopation = " + clsCF.AlternateSyncopation.NN + ", " + clsCF.AlternateSyncopation.DD);
       //WriteLine(sw, "SyncoOnce = " + P.frmStart.chkSyncoOnce.Checked);
@@ -935,7 +967,7 @@ namespace ChordCadenza {
       //WriteLine(sw, "PlaySustain = " + P.frmStart.chkPlaySustain.Checked);
       WriteLine(sw, "AllNotesOffAfterSustain = " + P.frmStart.chkAllNotesOffAfterSustain.Checked);
       //WriteLine(sw, "PlayKBChord = " + P.frmStart.chkPlayKBChord.Checked);
-      WriteLine(sw, "PCKB = " + P.frmStart.chkPCKB.Checked);
+      //WriteLine(sw, "PCKB = " + P.frmStart.chkPCKB.Checked);
       //WriteLine(sw, "SyncPlayRestore = " + P.frmStart.chkSyncPlayRestore.Checked);
       //WriteLine(sw, "AutoSyncMerge = " + P.frmStart.chkAutoSyncMerge.Checked);
       //WriteLine(sw, "SyncAudioPlaySync = " + P.frmStart.chkSyncAudioPlaySync.Checked);
@@ -965,7 +997,7 @@ namespace ChordCadenza {
         WriteLine(sw, "CapitalizeRoots = " + Forms.frmSC.CapitalizeRootsStatic);
       }
       //WriteLine(sw, "SustainAuto = " + Forms.frmStart.SustainAutoStatic);
-      WriteLine(sw, "SustainAuto = " + P.frmSC_Temp.chkSustainAuto.Checked);
+      //WriteLine(sw, "SustainAuto = " + P.frmSC_Temp.chkSustainAuto.Checked);
 
       WriteLine(sw, "VolAudio = " + P.frmSC.trkAudioVol.Value);
       WriteLine(sw, "PanAudio = " + P.frmSC.trkAudioPan.Value);
@@ -1008,15 +1040,17 @@ namespace ChordCadenza {
       WriteLine(sw, "Sync_SingleWhiteAction = " + clsPlay.SingleWhiteAction);
 
       if (P.frmSC_Temp.optSustainReplay.Checked) WriteLine(sw, "SustainAction = Replay");
-      else if (P.frmSC_Temp.optSustainCarryOver.Checked) WriteLine(sw, "SustainAction = CarryOver");
+      //else if (P.frmSC_Temp.optSustainCarryOver.Checked) WriteLine(sw, "SustainAction = CarryOver");
       else if (P.frmSC_Temp.optSustainSendCtlr.Checked) WriteLine(sw, "SustainAction = SendCtlr");
       else if (P.frmSC_Temp.optSustainNormal.Checked) WriteLine(sw, "SustainAction = Normal");
 
       if (P.frmSC.optShowSolfa.Checked) WriteLine(sw, "ShowNote = Solfa");
       else if (P.frmSC.optShowNoteName.Checked) WriteLine(sw, "ShowNote = NoteName");
-      else if (P.frmSC.optShowPCKBChar.Checked) WriteLine(sw, "ShowNote = KBName");
+      //else if (P.frmSC.optShowPCKBChar.Checked) WriteLine(sw, "ShowNote = KBName");
       else WriteLine(sw, "ShowNote = None");
-
+      WriteLine(sw, "ShowNotePCKB = " + P.frmSC_Temp.chkShowPCKBChar.Checked);
+      WriteLine(sw, "DisablePCKB = " + P.frmStart.chkDisablePCKB.Checked);
+      WriteLine(sw, "PCKBVel = " + PCKBVel);
       WriteFX(sw, clsBassOutMidi.eOutType.KB);
       WriteFX(sw, clsBassOutMidi.eOutType.Stream);
 
@@ -1078,13 +1112,26 @@ namespace ChordCadenza {
       int i = (int)type;
       if (type == clsBassOutMidi.eOutType.KB) sw.Write("FXKB = ");
       else sw.Write("FXStream = ");
-      BASS_BFX_FREEVERB fx = clsBassOutMidi.Freeverb[i];
+      ReverbParameters fx = clsBassOutMidi.Freeverb[i];
       sw.Write(clsBassOutMidi.indFreeverb[i] + ", ");
       sw.Write(fx.fDryMix + ", ");
       sw.Write(fx.fWetMix + ", ");
       sw.Write(fx.fRoomSize + ", ");
       sw.Write(fx.fDamp + ", ");
       sw.WriteLine(fx.fWidth);
+    }
+
+    private static void CopyFontAndSamples() {
+      Directory.CreateDirectory(SoundFontsPath);  //may already exist
+      if (!File.Exists(SoundFontsPath + "\\TimGM6mb.sf2")) {
+        File.Copy(ExePath + "\\Soundfonts\\TimGM6mb.sf2", SoundFontsPath + "\\TimGM6mb.sf2");
+      }
+
+      if (!Directory.Exists(UserMusicPath + "\\ChordCadenza Projects\\Samples")) {
+        Microsoft.VisualBasic.FileIO.FileSystem.CopyDirectory(
+          ExePath + "\\Samples",
+          UserMusicPath + "\\ChordCadenza Projects\\Samples");
+      }
     }
   }
 }

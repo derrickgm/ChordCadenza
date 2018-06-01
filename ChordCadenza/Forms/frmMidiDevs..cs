@@ -11,7 +11,7 @@ using System.IO;
 using System.Diagnostics;
 
 namespace ChordCadenza.Forms {
-  internal partial class frmMidiDevs : Form, IFormStream, ITT {
+  internal partial class frmMidiDevs : Form, ITT {
     //private static bool indFirstTime = true;
     //private static int SelectedIndexcmbInKB = -1;
     //private static int SelectedIndexcmbInSync = -1;
@@ -31,7 +31,14 @@ namespace ChordCadenza.Forms {
 
     internal frmMidiDevs() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       //P.Forms.Add(this);
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     private void frmMidiDevs_Load(object sender, EventArgs e) {
@@ -54,10 +61,10 @@ namespace ChordCadenza.Forms {
         PopulateCmbMidi(cmbInSync, new clsMDevsIn(), MidiPlay.MidiInSync);
         PopulateCmbMidi(cmbInKB, new clsMDevsIn(), MidiPlay.MidiInKB);
 
-        SetSelectedIndex(cmbOutStream, Cfg.SelectedIndexcmbOutStream);
-        SetSelectedIndex(cmbOutKB, Cfg.SelectedIndexcmbOutKB);
-        SetSelectedIndex(cmbInSync, Cfg.SelectedIndexcmbInSync);
-        SetSelectedIndex(cmbInKB, Cfg.SelectedIndexcmbInKB);
+        SetSelection(cmbOutStream, Cfg.MidiOutStream);
+        SetSelection(cmbOutKB, Cfg.MidiOutKB);
+        SetSelection(cmbInSync, Cfg.MidiInSync);
+        SetSelection(cmbInKB, Cfg.MidiInKB);
 
         trkMidiOutKBFineTuning.Value = Cfg.MidiOutKBFineTuning;
         trkMidiStreamFineTuning.Value = Cfg.MidiStreamFineTuning;
@@ -144,25 +151,13 @@ namespace ChordCadenza.Forms {
       }
     }
 
-    private void SetSelectedIndex(ComboBox cmb, int val) {
+    private void SetSelection(ComboBox cmb, string item) {
       //* set midi cmb selectedindex when not connected
       //if (!cmb.Enabled || indFirstTime) return;  //connected or default
       if (!cmb.Enabled) return;  //connected or default
-      if (val < 0) {
-        if (cmb.Items.Count > 0) cmb.SelectedIndex = 0;  //None - avoid no selection error
-        else cmb.SelectedIndex = -1;
-      } else if (val < cmb.Items.Count) {
-        cmb.SelectedIndex = val;
-      } else if (cmb.Items.Count > 0) {
-        #if DEBUG
-          MessageBox.Show("Warning: default device 0 selected on cmb: " + cmb.Name);
-        #endif
-        cmb.SelectedIndex = 0;
-      } else {
-        #if DEBUG
-          MessageBox.Show("Warning: default device -1 selected on cmb: " + cmb.Name);
-        #endif
-        cmb.SelectedIndex = -1;
+      if (item != "" && item != "***" && item != "None") cmb.SelectedItem = item;
+      if (cmb.SelectedIndex == -1) {
+        cmb.SelectedIndex = (cmb.Items.Count > 0) ? 0 : -1;
       }
     }
 
@@ -270,6 +265,7 @@ namespace ChordCadenza.Forms {
 
     private void DisconnectInKB() {
       MidiPlay.CloseMidi(clsMidiInOut.eType.InKB, false);
+      P.frmSC.Refresh();  //PCKB or MidiIn
       ShowCurrentConnections();
     }
 
@@ -532,27 +528,27 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_MidiDevs_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_MidiDevs_Intro.htm");
     }
 
     private void cmbOutStream_SelectedIndexChanged(object sender, EventArgs e) {
-      Cfg.SelectedIndexcmbOutStream = cmbOutStream.SelectedIndex;
+      Cfg.MidiOutStream = (string)cmbOutStream.SelectedItem;
       clsBassMidiInOut.MidiDevNameOutStream =  GetSelectedDevName(cmbOutStream);
       HideShowFontFXControls();
     }
 
     private void cmbOutKB_SelectedIndexChanged(object sender, EventArgs e) {
-      Cfg.SelectedIndexcmbOutKB = cmbOutKB.SelectedIndex;
+      Cfg.MidiOutKB = (string)cmbOutKB.SelectedItem;
       clsBassMidiInOut.MidiDevNameOutKB =  GetSelectedDevName(cmbOutKB);
       HideShowFontFXControls();
     }
 
     private void cmbInKB_SelectedIndexChanged(object sender, EventArgs e) {
-      Cfg.SelectedIndexcmbInKB = cmbInKB.SelectedIndex;
+      Cfg.MidiInKB = (string)cmbInKB.SelectedItem;
     }
 
     private void cmbInSync_SelectedIndexChanged(object sender, EventArgs e) {
-      Cfg.SelectedIndexcmbInSync = cmbInSync.SelectedIndex;
+      Cfg.MidiInSync = (string)cmbInSync.SelectedItem;
     }
 
     //private void frmMidiDevs_FormClosing(object sender, FormClosingEventArgs e) {

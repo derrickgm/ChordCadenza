@@ -1,0 +1,103 @@
+<h1>How To Play Along with Live Audio</h1>
+
+<p>You can play along with other musicians or an audio stream without synchronising the midi data (chords) beforehand.</p>
+
+<p>You can either use the <b>Next Beat/Next Bar SwitchKeys</b>, or <b>Manual Chord Sync Positioning</b>.</p>
+
+<p>Whichever method you intend to use, it will help if you can keep track of where you are in the music as it is being played. This can be achieved either by showing the lyrics, or by displaying at least one recognisable midi track from the MidiFile. You should, therefore, ensure the <b>PlayMap</b> menu item: <b>Window > Map</b> is checked. This will show the lyrics (if present), and it will also allow you to display at least one recognisable track (by selecting a track in the <b>Track Selection Window</b> on the upper left hand corner.) See <a href="Form_PlayMap_Map.htm">PlayMap</a> for more information.</p> 
+
+<h2>Using the Next/Prev Beat/Bar/Chord SwitchKeys</h2>
+<p>With the <b>Next Beat</b>, <b>Next Bar</b>, or <b>Next Chord</b> SwitchKeys, you will need to hit the <b>SwitchKey</b> as each bar, beat, or chord is reached. 
+
+<p>It is usually preferable to use just one of these SwitchKeys, depending on your personal preference. The <b>Next Beat</b> SwitchKey is the easiest to use, but can get a bit tiring after a while. This is similar to synchronising an audio file (see <a href="HowTo_SyncAudioFile.htm">How to Sync to an AudioFile</a>), except you will be synchronising as you play the chords.</p>
+
+<p>The <b>Next Bar</b> SwitchKey is only really useful if all chords are aligned to a bar. </p>
+
+<p>The <b>Next Chord</b> SwitchKey is probably the most useful, as long as you remember to hit the SwitchKey each time a chord is reached (even if you don't actually play it.)</p>
+
+<p>All of the <b>SwitchKeys</b> work on the same principle - you hit the SwitchKey to move on to the next beat/bar/chord. However, you can play the next chord just before or after hitting the SwitchKey if it coincides with the SwitchKey. This is because the SwitchKey will be set up to play the next chord when the previous SwitchKey is released. The display will change when the SwitchKey is played. This might sound a bit complicated, but it seems to work quite well in practice, as long as you keep the SwitchKey pressed down until just before the next MidiKey is played.</p> 
+
+<h3>Setup Next Bar/Beat/Chord Sync</h3>
+<p>The <b>ManSync Chord Positioning <i>CheckBox</i></b> should be unchecked to ensure you are using the <b>Next Bar/Beat/Chord SwitchKeys.</b></p>  
+
+<h3>Setup the <b>SwitchKeys</b></h3>
+<p>Go to <b>PlayMap Menu > Configure > SwitchKeys/Pedal.</b></p>
+
+<p>Set the <b>Next Beat</b>, <b>Next Bar</b>, or <b>Next Chord</b> dropdown box to a <b>SwitchKey</b> or Pedal. It is recommended to use only one of these SwitchKeys at a time.</p>
+
+<p>Optionally, you can set the <b>Prev Beat</b>, <b>Prev Bar</b>, or <b>Prev Chord</b> dropdown boxes to another <b>SwitchKey</b> or Pedal.</p>
+
+<h3>Load a <span>Project</span> and Play</h3>
+<p>You will need to load a <span>Project</span> containing a <b>ChordFile</b> that matches the audio that you want to play along to.</p>
+ 
+<p>You should then set the current cursor to where you want to start playing from. If you are playing an audio file using the <b>Play Audio NoSyn <i>Button</i></b>, it will start playing at the start unless you have set another start position from the <a href="Form_AudioSync_Intro.htm">AudioSync Configuration Window</a>.</p> 
+
+<p>Once the audio source has started playing, you should wait for it to reach the cue point, and then hit the <b>Next Beat (or Next Bar) SwitchKey</b>.</p>
+
+<p>You can now play the first chord from the cue point. </p>
+
+<p>Continue hitting the <b>SwitchKey</b> when the next beat/bar/chord is reached, whilst playing the chords.</p>
+
+<p>Chords are normally aligned to a beat, which will coincide with a <b>SwitchKey</b>. However, it doesn't matter if the chord is played just before or after the <b>SwitchKey</b>, as it will be ready to locate to the chord after the previous <b>SwitchKey</b> is released. If you are playing a slow song, or using the <b>Next Bar</b> or <b>Next Chord</b> SwitchKey, make sure you don't release the <b>SwitchKey</b> too early!</p>
+
+<p>If you lose your position in the song, you should try to go forward quickly to a point in the music you can recognise, and wait to start playing again. If you need to go backwards, you can either wait for the music to catch up, or use a <b>Prev</b> SwitchKey to to get back to the current position.</p>
+
+<h2>Using Manual Chord Positioning Without SwitchKeys</h2>
+<p>This allows you to move to the next chord when required without using a SwitchKey. It takes more time to setup and get used to, but it allows you to play the chords with one hand only. It works best when you want to play block chords to accompany the music with.</p>
+
+<p>It is configured using the <a href= "Form_ManChordSync_Intro.htm">Manual Chord Sync</a> window.</p>
+
+<p>The recommended settings on the <b>Manual Chord Sync</b> Window are:
+<ul>
+  <li><b>Single Black Key:</b> Next Chord</li>
+  <li><b>Single White Key:</b> No Action</li>
+  <li><b>Next Chord if All Black:</b> Unchecked</li>
+  <li><b>Next Chord if All White:</b> Checked</li>
+</ul> 
+
+<h3>Set ManSync Chord Positioning</h3>
+<p>The <b>ManSync Chord Positioning <i>CheckBox</i></b> should be checked to ensure you are using chord positioning (as opposed to <b>Next Bar/Next Beat SwitchKeys</b>).</b>  
+
+<h3>Set KBChord Mode</h3>
+<p>These settings will be set automatically if the <b>ManSync Bar/Beat <i>CheckBox</i></b> is changed from checked to unchecked on the <b>Miscellaneous Configuration Window</b>.</p>
+
+<p>In order to use manual chord positioning, you should set the <b>Play Mode</b> to <b>Keyboard</b>, and the <b>KBChord <i>Checkbox</b></i> should be checked. These are present in the <b>PlayMap</b> Controls Window. (<b>KBChord</b> can also be set with a <b>SwitchKey</b>.) The <b>PlayNotes per Chord <i>CheckBox</i></b> in the <b>Miscellaneous Configuration</b> Window should be left unset.</p>
+
+<h3>Load a <span>Project</span> and Play</h3>
+<p>You will need to load a <span>Project</span> containing a <b>ChordFile</b> that matches the audio that you want to play along to.</p>
+ 
+<p>You should then set the current cursor to the cue point where you want to start playing from. This should be at the start of a non-null chord. If you are playing an audio file using the <b>Play Audio NoSyn <i>Button</i></b>, it will start playing at the start unless you have set another start position from the <a href="Form_AudioSync_Intro.htm">AudioSync Configuration Window</a>.</p> 
+
+<p>Once the audio source has started playing, you should wait for it to reach the cue point, and then play the chord exclusively using the white notes or black notes of the keyboard. The position will move on to the next chord if white notes are played, and the option <b>Next Chord is All White</b> is checked, or if all black notes are played, and the option <b>Next Chord is All Black</b> is checked. The first chord should be played with a combination of notes that does not involve repositioning.</p>
+
+<p>if you want to reposition without playing a chord, use a single key. It will perform the action set according to the option selected in the <b>Single Black Key</b> or <b>Single White Key</b> options in the <a href= "Form_ManChordSync_Intro.htm">Manual Chord Sync</a> Window.</p>
+ 
+ <p>Any null chords are skipped over during repositioning.</p>
+
+<h3>Experiment with Different Options</h3>
+<p>There are a number of options on the <a href= "Form_ManChordSync_Intro.htm">Manual Chord Sync</a> Window that you can try out.  However, some combinations of options don't really make sense. The most useable options you can try out are:</p>
+
+<ul>
+  <li><b>Single Black Key:</b> Next Chord</li>
+  <li><b>Single White Key:</b> No Action</li>
+  <li><b>Next Chord if All Black:</b> Unchecked</li>
+  <li><b>Next Chord if All White:</b> Checked</li>
+</ul>
+<ul>
+  <li><b>Single Black Key:</b> Next Chord</li>
+  <li><b>Single White Key:</b> No Action</li>
+  <li><b>Next Chord if All Black:</b> Checked</li>
+  <li><b>Next Chord if All White:</b> unchecked</li>
+</ul>
+<ul>
+  <li><b>Single Black Key:</b> No Action</li>
+  <li><b>Single White Key:</b> Next Chord</li>
+  <li><b>Next Chord if All Black:</b> Unchecked</li>
+  <li><b>Next Chord if All White:</b> Checked</li>
+</ul>
+<ul>
+  <li><b>Single Black Key:</b> Previous Chord</li>
+  <li><b>Single White Key:</b> Next Chord</li>
+  <li><b>Next Chord if All Black:</b> Unchecked</li>
+  <li><b>Next Chord if All White:</b> Checked</li>
+</ul>

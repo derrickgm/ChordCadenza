@@ -21,7 +21,14 @@ namespace ChordCadenza.Forms {
     public void FormStreamOnOff(bool on) { }
     internal frmSummary() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       //P.Forms.Add(this);
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     internal clsFileStream CSVFileSummary;
@@ -167,7 +174,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Summary_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Summary_Intro.htm");
     }
 
     private void cmdShowAttributes_Click(object sender, EventArgs e) {

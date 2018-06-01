@@ -141,6 +141,7 @@ namespace ChordCadenza {
     internal void Reset() {
       if (indNoReset) return;
       KBPitchList = new clsKBPitch.Lst();
+      MidiPlay.OutMKB.AllNotesOff();  
       DeferredKB = null;
       ChordNoteCount = 0;
       MaxChordNoteCount = 0;
@@ -383,6 +384,7 @@ namespace ChordCadenza {
     }
 
     protected void MidiOff() {
+      MidiMon.KeyUp(B[1]);
       //Debug.WriteLine("clsPlay: MidiOff: ChordNoteCount = " + ChordNoteCount);
       KeyDown[B[1]] = false;
       if (ManChords != null && ManChords.MidiOff(B[1])) return;
@@ -408,6 +410,7 @@ namespace ChordCadenza {
         //indSkipKey = false;
       }
       P.frmSC.BeginInvoke(new delegRefresh(ShowCurrentChord));
+      MidiMon.CheckAllOff();
     }
 
     private bool IsManSyncNextKey(byte b) {
@@ -423,7 +426,7 @@ namespace ChordCadenza {
     private bool IsKBChordPlay {
       get {
         if (P.frmSC.PlayMode == Forms.frmSC.ePlayMode.Chords) return false;   //chordmode 
-        if (P.frmStart.chkConstantChordPlay.Checked) return false;
+        if (P.frmStart.indConstantChordPlay) return false;
         return clsPlayKeyboard.PlayNearestChordNote;  //KBChord
       }
     }
@@ -787,6 +790,7 @@ namespace ChordCadenza {
     //}
 
     private void MidiOn() {
+      MidiMon.KeyDown(B[1]);
       //Debug.WriteLine("clsPlay: MidiOn: ChordNoteCount = " + ChordNoteCount);
       //Debug.WriteLine("MidiIn thread: "
       //  + System.Threading.Thread.CurrentThread.Name

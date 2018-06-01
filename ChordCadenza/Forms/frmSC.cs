@@ -27,8 +27,13 @@ namespace ChordCadenza.Forms {
     }
 
     private static frmSC This;
-    private delegate void delegSwitchSyncopation();
+    //private delegate void delegSwitchSyncopation();
+    private delegate void delegActivate();
     private delegate void delSetOptMode(RadioButton opt);
+    private delegate void delegSetPCKBVel(int val);
+    private delegSetPCKBVel dSetPCKBVel;
+    private delegate void delegAct(Form frm);
+
     internal int valShowLowC { get { return valShowLowCDflt + OctTransposeDisplay; } }
     internal static bool AutoCapitalizeStatic = true;
     internal static bool CapitalizeRootsStatic = true;
@@ -185,6 +190,9 @@ namespace ChordCadenza.Forms {
 
       InitializeComponent();
 
+      ZZZSetPCKBEvs(this);
+      dSetPCKBVel = new delegSetPCKBVel(SetPCKBVel);
+
       Debug.WriteLine("Machine Name = <" + Environment.MachineName + ">");
 
       //if (Utils.GetFileVersion() != "???" && Utils.GetFileVersion() != P.Version) {
@@ -192,11 +200,12 @@ namespace ChordCadenza.Forms {
       //    + " does not match Program Version: " + P.Version);
       //}
 
-      #if ADVANCED
-        P.frmConsole = new Forms.frmConsole();
-      #endif
+#if ADVANCED
+      P.frmConsole = new Forms.frmConsole();
+#endif
 
-      Un4seen.Bass.BassNet.Registration("xxx@yyy.zzz", "xxx");
+      //Un4seen.Bass.BassNet.Registration("dd76063@hotmail.com", "2X991019312422");
+      //Un4seen.Bass.BassNet.Registration("xxx@yyy.zzz", "xxx");
 
       //P.Forms.Add(this);
       P.frmStart = new Forms.frmStart();
@@ -275,7 +284,8 @@ namespace ChordCadenza.Forms {
           MessageBox.Show("Error opening audio device: " + exc.Message);
         }
         try {
-          MidiPlay.OpenMidiDevs(Cfg.MidiInKB, Cfg.MidiInSync, Cfg.MidiOutStream, Cfg.MidiOutKB, false);
+          MidiPlay.OpenMidiDevs(Cfg.MidiInKB, Cfg.MidiInSync, Cfg.MidiOutStream, Cfg.MidiOutKB,
+            Cfg.MidiInKBConnected, Cfg.MidiInSyncConnected, Cfg.MidiOutKBConnected, Cfg.MidiOutStreamConnected);
         }
         catch (Exception exc) {
           MessageBox.Show("Error opening midi devices: " + exc.Message);
@@ -289,6 +299,11 @@ namespace ChordCadenza.Forms {
 
       AddMenuRecentProjects();
 
+#if !DESKTOP
+      mnuHelp.DropDownItems.Remove(mnuWebPage);
+      mnuHelp.DropDownItems.Remove(mnuSoundFonts);
+#endif
+
       panMaps.Visible = mnuMap.Checked;
       MapsEnabled(mnuMap.Checked);
 
@@ -296,22 +311,27 @@ namespace ChordCadenza.Forms {
         chkAlignKB.Hide();
         lblKBDisplacement.Hide();
         nudKBDisplacement.Hide();
-        nudOctTransposeMulti.Hide();
+        //nudOctTransposeMulti.Hide();
         //cmdRecord.Hide();
         //cmdWipeAndRecord.Hide();
         //cmdWipeTrack.Hide();
         cmdAlign.Hide();
         mnuDebug.Visible = false;
-        optShowPCKBChar.Hide();
+        //optShowPCKBChar.Hide();
         cmdTonnetz.Hide();
         mnuFile.DropDownItems.Remove(mnuLoadMultiMidi);
-        lblKeyVel.Hide();
-        nudKeyVel.Hide();
+        //lblKeyVel.Hide();
+        //nudKeyVel.Hide();
         mnuRestart.Visible = false;
         cmdResetPlay.Hide();  //Panic should do the same, and more 
 #endif
 
-      //PopulateCmbFirstNote();
+      if (P.PCKB != null) {
+        nudOctTransposeKB.Enabled = false;
+        lblnudOctTransposeKB.Enabled = false;
+        nudOctTransposeDisplay.Enabled = false;
+        lblnudOctTransposeDisplay.Enabled = false;
+      }
 
       mnuMonitor.Checked = MenuMonitor;
       ShowRanges();
@@ -372,13 +392,15 @@ namespace ChordCadenza.Forms {
       trkStreamPan_Scroll(null, null);
 
       if (indShowTracks) LoadTracks(true);
-      if (P.frmStart.chkPCKB.Checked) P.PCKB = new clsPCKB();
+      //if (P.frmStart.chkPCKB.Checked) P.PCKB = new clsPCKB();
+      trkPCKBVel.Value = Cfg.PCKBVel;
+      picChords.MouseWheel += picChords_MouseWheel;
 
       SetInitialOcts(Cfg.OctTransposeKBPitch, 0, 0);
       InitSyncopation();
-      if (chkSustainAuto.Checked) SetAutoSustain();
+      //if (chkSustainAuto.Checked) SetAutoSustain();
 
-      if (File.Exists(Cfg.InitialScreenDatFilePath)) {
+      if (!File.Exists(Cfg.InitialScreenIniFilePath)) {
         Forms.frmInitial frm = new Forms.frmInitial();
         Action action = delegate() { Utils.FormAct(frm); };
         BeginInvoke(action);
@@ -991,7 +1013,7 @@ namespace ChordCadenza.Forms {
       int w = ((this.ClientSize.Width - 4) / valOctaves) * valOctaves;  //make width exactly divisible by number of octaves
       int pancontrolsheight = (panControls.Visible) ? panControls.Height : 0;
       int panmapsheight = (panMaps.Visible) ? panMaps.Height : 0;
-      panControls.Top = panmapsheight + mnuFile.Height + 5;
+      panControls.Top = panmapsheight + mnuFile.Height + 10;
 
       SetEndBBTNoRefresh();
 
@@ -1310,49 +1332,10 @@ namespace ChordCadenza.Forms {
 #endif
     }
 
-    //private void frmMSC_Resize(object sender, EventArgs e) {
-    //  ResizeForm();
-    //}
-
-    //private int ResizeCnt;
     private void frmSC_ResizeEnd(object sender, EventArgs e) {
       //Debug.WriteLine(++ResizeCnt + ": frmSC ResizeEnd");
       ResizeForm();
     }
-
-    //private void frmMSC_ResizeBegin(object sender, EventArgs e) {
-    //  foreach (frmShowChords f in P.F.ListSC) {
-    //    //@@f.FormBorderStyle = FormBorderStyle.Sizable;
-    //    //Application.DoEvents();
-    //    ResizeForm();
-    //    //Application.DoEvents();
-    //  }
-    //}
-
-    //private void frmMSC_ResizeEnd(object sender, EventArgs e) {
-    //  foreach (frmShowChords f in P.F.ListSC) {
-    //    frmMSC_ResizeEnd(null, null);
-    //  }
-    //}
-
-    //private void frmMSC_Shown(object sender, EventArgs e) {
-    //  foreach (frmShowChords f in MdiChildren) {
-    //    f.Refresh();
-    //    //@@f.FormBorderStyle = FormBorderStyle.FixedSingle;
-    //  }
-    //}
-
-    //private void chkActiveAtBottom_CheckedChanged(object sender, EventArgs e) {
-    //  Tile();
-    //}
-
-    //private void frmMSC_MdiChildActivate(object sender, EventArgs e) {
-    //  if (chkActiveAtBottom.Checked) Tile();
-    //  P.F.frmShowChordsActive = (frmShowChords)ActiveMdiChild;
-    //  foreach (frmShowChords f in MdiChildren) {
-    //    if (f == ActiveMdiChild) f.lblActive.Text = "Active"; else f.lblActive.Text = ""; 
-    //  }
-    //}
 
     private void chkShowBeats_CheckedChanged(object sender, EventArgs e) {
       if (Bypass_Event) return;
@@ -1362,16 +1345,6 @@ namespace ChordCadenza.Forms {
     private void chkShowCurrent_CheckedChanged(object sender, EventArgs e) {
       Refresh();
     }
-
-    //private void cmdWipeTrack_Click(object sender, EventArgs e) {
-    //  if (!P.F.FSTrackMap.InitRecWipe()) {
-    //    MessageBox.Show("Multiple or missing track selection on Multimap - recording terminated");
-    //    return;
-    //  }
-    //  //P.F.FileStreamMM.WipeTrack();
-    //  if (P.F.frmTrackMap != null) P.F.frmTrackMap.UpdateTrk(P.F.FSTrackMap.RecTrk);
-    //  //cmdWipeTrack.Enabled = false;
-    //}
 
     private void nudStartBar_ValueChanged(object sender, EventArgs e) {
       //nudCurrentBar.Value = nudStartBar.Value;
@@ -1591,7 +1564,7 @@ namespace ChordCadenza.Forms {
       int? x = KPos[pitch];
       if (!x.HasValue) return;
       xgr.FillRectangle(brush, x.Value, offpix, width, height);
-      xgr.DrawLine(pen, x.Value, offpix, x.Value + width, offpix);
+      //xgr.DrawLine(pen, x.Value, offpix, x.Value + width, offpix);
     }
 
     private void ShowSolfaNote(Graphics xgr, Brush brush, int onpix, int ontime, 
@@ -1599,14 +1572,15 @@ namespace ChordCadenza.Forms {
       //* called indirectly from clsPlayKeyboard & clsRootC
       //* get sf, adjusted for ModeRootC (%12 done by Notename.GetSolfa)
       string sf;
-      if (P.PCKB != null && optShowPCKBChar.Checked) {
+      if (P.PCKB != null && chkShowPCKBChar.Checked) {
         int pp = pitch - ShowLowPitch;
         sf = (pp < P.PCKB.Chars.Length) ? P.PCKB.Chars[pp] : "?";
+        if (sf == null) sf = "";
       } else {
         sf = NoteName.GetNoteNameOrSolfa(pitch, P.F.Keys[ontime, kbtrans: true]);
       }
       //if (CapitalizeRootsStatic && !chkShowTracks.Checked && root) sf = sf.ToUpper();
-      if (CapitalizeRootsStatic && !indShowTracks && root) {
+      if (CapitalizeRootsStatic && !indShowTracks && root && sf.Length > 0) {
         sf = sf.Substring(0, 1).ToUpper() + sf.Substring(1);  //first char only
       }
       int? pos = KPos[pitch];
@@ -1746,9 +1720,10 @@ namespace ChordCadenza.Forms {
         if (n < 0) continue;
         int note = n.Mod12();
         string sf;
-        if (P.PCKB != null && optShowPCKBChar.Checked) {
+        if (P.PCKB != null && chkShowPCKBChar.Checked) {
           int pp = n - ShowLowPitch;
           sf = (pp < P.PCKB.Chars.Length && pp >= 0) ? P.PCKB.Chars[pp] : "?";
+          if (sf == null) sf = "";
         } else {
           sf = NoteName.GetNoteNameOrSolfa(note, P.F.Keys[ontime, kbtrans: true]);
         }
@@ -1769,7 +1744,7 @@ namespace ChordCadenza.Forms {
           if (playchord.IsDominant(note)) c = ColorDominant;
         }
         //if (CapitalizeRootsStatic && !chkShowTracks.Checked && playchord.IsRoot(note)) sf = sf.ToUpper();
-        if (CapitalizeRootsStatic && !indShowTracks && playchord.IsRoot(note)) {
+        if (sf.Length > 0 && CapitalizeRootsStatic && !indShowTracks && playchord.IsRoot(note)) {
           sf = sf.Substring(0, 1).ToUpper() + sf.Substring(1);  //first char only
         }
         if (c != ColorChord) {
@@ -1794,7 +1769,8 @@ namespace ChordCadenza.Forms {
       if (kb < ShowLowPitch || kb > ShowHighPitch) return;
       int? cx = KPos[kb] + KPos.GetKeyWidth(kb) / 2;  //centre of circle (x co-ord)
       if (!cx.HasValue) return;
-      int d = Math.Min(KPos.GetBlackHalfWidth(), PixsPerBeat);  //diameter of circle
+      //int d = Math.Min(KPos.GetBlackHalfWidth(), PixsPerBeat);  //diameter of circle
+      int d = KPos.GetBlackHalfWidth();  //diameter of circle
       int r = d / 2;
 
       int cy = (pic == picBottom) ?
@@ -1901,6 +1877,8 @@ namespace ChordCadenza.Forms {
       private int[] KeyWidth = new int[128];  //[pitchclass]
       private List<int>[] PitchesPC;  //[pc][oct]  PC -> pitches
       internal int MinKeyWidth = int.MaxValue;
+      private int PitchLo = 0;  //first element >= 0
+      private int PitchHi = 0;  //first element < 0 after range
 
       //construct when picShowChord width or kbdisplacement changed
       internal clsKPos(frmSC frmsc, int width, int octaves) {  //picShowChords.ClientSize.Width
@@ -1915,27 +1893,27 @@ namespace ChordCadenza.Forms {
         //* calc Pix[pitch] and PitchesPC
         int offset = (kbdisp < 0) ? Q[12 + kbdisp] - Q[12] : Q[kbdisp];  //eg C#=1 ; B=-1 
         int offsetoct = (kbdisp <= 0) ? -1 : 0;
-        int lo = lowc + kbdisp;
-        if (lo < 0) lo = 0;
-        int hi = 1 + lowc + kbdisp + octaves * 12;  //extra one at end needed to calc KeyWidth .//hi OOR...
-        if (hi > 127) hi = 127;
-        for (int p = lo; p <= hi; p++) {
+        PitchLo = lowc + kbdisp;
+        if (PitchLo < 0) PitchLo = 0;
+        PitchHi = 1 + lowc + kbdisp + octaves * 12;  //extra one at end needed to calc KeyWidth .//hi OOR...
+        if (PitchHi > 127) PitchHi = 127;
+        for (int p = PitchLo; p <= PitchHi; p++) {
           int pc1 = kbdisp.Mod12();  //0-11
           int pc = p.Mod12();
           if (pc == 0) offsetoct++;
           //Pix[p] = ((Q[pc] - offset + Q[12] * offsetoct) * OctWidth) / Q[12];
           int qpos = Q[pc] - offset + Q[12] * offsetoct;
           Pix[p] = (qpos * width) / (Q[12] * octaves + Q[1]);  //last one used to get KeyWidth
-          if (p == hi) break;  //don't need extra one here
+          if (p == PitchHi) break;  //don't need extra one here
           PitchesPC[p.Mod12()].Add(p);
         }
 
-        for (int p = lo; p < hi; p++) {
+        for (int p = PitchLo; p < PitchHi; p++) {
           KeyWidth[p] = Pix[p + 1] - Pix[p];  //last one invalid
           if (KeyWidth[p] < MinKeyWidth) MinKeyWidth = KeyWidth[p];
         }
-        Pix[hi] = -1;
-        if (hi >= 12) KeyWidth[hi] = KeyWidth[hi - 12];
+        Pix[PitchHi] = -1;
+        if (PitchHi >= 12) KeyWidth[PitchHi] = KeyWidth[PitchHi - 12];
 
         ////* calc KeyWidth[pc]
         //for (int pc = 0; pc < 12; pc++) {
@@ -1954,6 +1932,13 @@ namespace ChordCadenza.Forms {
           if (Pix[pitch] < 0) return null;
           return Pix[pitch];
         }
+      }
+
+      internal int? PosToPitch(int pos) {
+        for (int i = PitchLo; i < PitchHi; i++) {
+          if (Pix[i] >= pos) return i - 1;
+        }
+        return PitchHi - 1;
       }
 
       internal int[] GetPitchesPC(int pc) {
@@ -1992,9 +1977,11 @@ namespace ChordCadenza.Forms {
       Graphics bgr = e.Graphics;
       //NewKPos();
       bgr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-      ShowKeyboard(picBottom, bgr);
-      if (Play != null) Play.ShowPicBottom(bgr);
-      clsPlay.ShowCurrentNotes((PictureBox)sender, bgr);
+      ShowKeyboard(picBottom, bgr); PCKBDoEvents();
+      if (Play != null) {
+        Play.ShowPicBottom(bgr); PCKBDoEvents();
+      }
+      clsPlay.ShowCurrentNotes((PictureBox)sender, bgr); PCKBDoEvents();
     }
 
     //private int PaintSeq = 0; 
@@ -2004,23 +1991,27 @@ namespace ChordCadenza.Forms {
 #if Testing
       Stopwatch sw = new Stopwatch();
       sw.Start();
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 6; i++) {
 #endif
       //Debug.WriteLine(DateTime.Now +  " frmShowChords.picChords_Paint");
       Graphics chgr = e.Graphics;
       //NewKPos();
       chgr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
       //MainFont = SizeFont(chgr, "m-");
-      ShowBarBeats(chgr);
-      ShowKeys(chgr);
-      ShowKeyboard(picChords, chgr);
-      ShowChords(chgr);
-      //if (Play != null) Play.ShowCurrentNotes((PictureBox)sender, chgr);
-      clsPlay.ShowCurrentNotes((PictureBox)sender, chgr);
+      ShowBarBeats(chgr); PCKBDoEvents();
+      ShowKeys(chgr); PCKBDoEvents();
+      ShowKeyboard(picChords, chgr); PCKBDoEvents();
+      ShowChords(chgr); PCKBDoEvents();
+      //clsPlay.ShowCurrentNotes((PictureBox)sender, chgr); PCKBDoEvents();
 #if Testing
       }
       Debug.WriteLine("frmShowChords Paint millisecs = " + sw.ElapsedMilliseconds);
 #endif
+    }
+
+    private void PCKBDoEvents() {
+      //* this makes the Paint event slower, but kb/mouse input is more responsive
+      //if (P.PCKB != null) Application.DoEvents();
     }
 
     //private void SizeMainFont() {
@@ -2683,18 +2674,18 @@ namespace ChordCadenza.Forms {
       trkTempo_Scroll(sender, e);
     }
 
-    private void nudOctTransposeMulti_ValueChanged(object sender, EventArgs e) {
-      //* value: 1=increment ; -1=decrement
-      if (Bypass_Event) return;
-      int diff = (nudOctTransposeMulti.Value > 0) ? 12 : -12;
-      if (diff > 0 && nudOctTransposeDisplay.Value == nudOctTransposeDisplay.Maximum) return;
-      if (diff < 0 && nudOctTransposeDisplay.Value == nudOctTransposeDisplay.Minimum) return;
-      nudOctTransposeDisplay.Value += diff;
-      nudOctTransposeKB.Value += diff;
-      Bypass_Event = true;
-      nudOctTransposeMulti.Value = 0;
-      Bypass_Event = false;
-    }
+    //private void nudOctTransposeMulti_ValueChanged(object sender, EventArgs e) {
+    //  //* value: 1=increment ; -1=decrement
+    //  if (Bypass_Event) return;
+    //  int diff = (nudOctTransposeMulti.Value > 0) ? 12 : -12;
+    //  if (diff > 0 && nudOctTransposeDisplay.Value == nudOctTransposeDisplay.Maximum) return;
+    //  if (diff < 0 && nudOctTransposeDisplay.Value == nudOctTransposeDisplay.Minimum) return;
+    //  nudOctTransposeDisplay.Value += diff;
+    //  nudOctTransposeKB.Value += diff;
+    //  Bypass_Event = true;
+    //  nudOctTransposeMulti.Value = 0;
+    //  Bypass_Event = false;
+    //}
 
     private void nudTransposeKB_ValueChanged(object sender, EventArgs e) {
       Refresh();
@@ -2783,7 +2774,7 @@ namespace ChordCadenza.Forms {
 
     private void nudKBChanOut_ValueChanged(object sender, EventArgs e) {
       if (MidiPlay.OutMKB == null) return;
-      SetAutoSustain();
+      //SetAutoSustain();
       if (Bypass_Event) return;
       MidiPlay.OutMKB.AllNotesOff();  //use KBOutChan (before update)
       //Debug.WriteLine("KBOutChan = " + KBOutChan + " nud-1 = " + (nudKBOutChan.Value-1));
@@ -2813,7 +2804,7 @@ namespace ChordCadenza.Forms {
       int patch = cmbKBChanPatch.SelectedIndex - 1;  //2nd. selection = first patch = index 1 
       int chan = MidiPlay.KBOutChan;
       if (MidiPlay.OutMKB != null) MidiPlay.OutMKB.SendShortMsg(0xc0 | chan, patch, 0);
-      SetAutoSustain();
+      //SetAutoSustain();
     }
 
     //internal void cmbRiffChanPatch_SelectedIndexChanged(object sender, EventArgs e) {
@@ -3194,18 +3185,18 @@ namespace ChordCadenza.Forms {
 
     private void chkSwitchSustain_CheckedChanged(object sender, EventArgs e) {
       if (Bypass_Event) return;
-      if (MidiPlay.MidiInKB == null) return;
+      //if (MidiPlay.MidiInKB == null) return;
       CheckBox chk = (CheckBox)sender;
-      lock (MidiPlay.MidiInKB.SwitchKeyLock) {
+      lock (clsMidiInKB.SwitchKeyLock) {
         Forms.frmSwitch.Delegs["Sustain"](chk.Checked);
       }
     }
 
     private void chkSwitchKBChord_CheckedChanged(object sender, EventArgs e) {
       if (Bypass_Event) return;
-      if (MidiPlay.MidiInKB == null) return;
+      //if (MidiPlay.MidiInKB == null) return;
       CheckBox chk = (CheckBox)sender;
-      lock (MidiPlay.MidiInKB.SwitchKeyLock) {
+      lock (clsMidiInKB.SwitchKeyLock) {
         Forms.frmSwitch.Delegs["KB Chord"](chk.Checked);
       }
     }
@@ -3345,13 +3336,19 @@ namespace ChordCadenza.Forms {
     //  }
     //}
 
+    private delegate void delegClosefrmPCKBIn();
     private void frmSC_FormClosed(object sender, FormClosedEventArgs e) {
+      if (P.frmPCKBIn != null) {
+        P.frmPCKBIn.Invoke(new delegClosefrmPCKBIn(P.frmPCKBIn.Close));
+      }
       MidiPlay.CloseAllMidi(false);
       MidiPlay.CloseAllBass();
       if (Mtx != null) Mtx.ReleaseMutex();
       if (P.F.AudioSync != null) P.F.AudioSync.MP3Player.Free(); 
       //if (NAudio != null) NAudio.Dispose();
     }
+
+
 
     //private void chkKBOrRiffChan_CheckedChanged(object sender, EventArgs e) {
     //  if (Bypass_Event) return;
@@ -3588,8 +3585,8 @@ namespace ChordCadenza.Forms {
     private void mnuHelpContents_Click(object sender, EventArgs e) {
       HelpNavigator navigator = HelpNavigator.TableOfContents;
       //string helpfile = Cfg.CfgPath + @"\MainHelp\ChordCadenza.chm";
-      //Help.ShowHelp(this, helpfile, navigator, "PlayMap.htm");
-      Help.ShowHelp(this, Cfg.HelpFilePath, navigator);
+      //Utils.ShowHelp(this, helpfile, navigator, "PlayMap.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, navigator);
     }
 
     private void mnuShowInitialScreen_Click(object sender, EventArgs e) {
@@ -3623,8 +3620,8 @@ namespace ChordCadenza.Forms {
     //}
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      //Help.ShowHelp(this, helpfile, navigator, "PlayMap.htm");
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_PlayMap_Intro.htm");
+      //Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_PlayMap_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_PlayMap_Intro.htm");
     }
 
     private void mnuPathMidiFiles_Click(object sender, EventArgs e) {
@@ -3655,7 +3652,7 @@ namespace ChordCadenza.Forms {
       frmSC_FormClosing(null, e);
       if (e.Cancel) return;
       Bypass_Event = true;
-      Application.Restart();
+      Application.Restart();  
     }
 
     internal void mnuSaveProject_Click(object sender, EventArgs e) {
@@ -3797,28 +3794,6 @@ namespace ChordCadenza.Forms {
       frm.ShowDialog(this);
     }
 
-    //private void frmSC_KeyPress(object sender, KeyPressEventArgs e) {
-    //  //Debug.WriteLine("KeyPress: " + e.KeyChar);
-    //  if (P.PCKB == null) return;
-    //  e.Handled = true;  //kb events at form level only
-    //  P.PCKB.KeyPress(sender, e);
-    //}
-
-    private void frmSC_KeyUp(object sender, KeyEventArgs e) {
-      if (P.PCKB == null) return;
-      P.PCKB.KeyUpDown(e, false);
-    }
-
-    private void frmSC_KeyDown(object sender, KeyEventArgs e) {
-      if (P.PCKB == null) return;
-      P.PCKB.KeyUpDown(e, true);
-    }
-
-    private void frmSC_KeyPress(object sender, KeyPressEventArgs e) {
-      if (P.PCKB == null) return;
-      e.Handled = true;  //kb events at form level only (assumes KeyPreview set)
-    }
-
     private void cmdSyncAudio_Click(object sender, EventArgs e) {
       if (P.F.AudioSync != null) P.F.AudioSync.StartCmdSyncRecord();
     }
@@ -3894,19 +3869,20 @@ namespace ChordCadenza.Forms {
       }
     }
 
-    private void chkSustainAuto_CheckedChanged(object sender, EventArgs e) {
-      if (chkSustainAuto.Checked) SetAutoSustain();
-    }
+    //private void chkSustainAuto_CheckedChanged(object sender, EventArgs e) {
+    //  if (chkSustainAuto.Checked) SetAutoSustain();
+    //}
 
-    internal void SetAutoSustain() {
-      if (!chkSustainAuto.Checked) return;
-      //if (P.F == null || P.F.FSTrackMap == null) return;
-      int patch = cmbKBChanPatch.SelectedIndex - 1;
-      if (patch < 0 || patch > 127) return;
-      if (Cfg.Patches_SustainCarryOver[patch]) optSustainCarryOver.Checked = true;
-      else if (patch < 40) optSustainReplay.Checked = true;  //percussion instrument
-      //* else leave alone
-    }
+    //internal void SetAutoSustain() {
+    //  if (!chkSustainAuto.Checked) return;
+    //  //if (P.F == null || P.F.FSTrackMap == null) return;
+    //  int patch = cmbKBChanPatch.SelectedIndex - 1;
+    //  if (patch < 0 || patch > 127) return;
+    //  //if (Cfg.Patches_SustainCarryOver[patch]) optSustainCarryOver.Checked = true;
+    //  //else if (patch < 40) optSustainReplay.Checked = true;  //percussion instrument
+    //  if (patch < 40) optSustainReplay.Checked = true;  //percussion instrument
+    //  //* else leave alone
+    //}
 
     private void chkShowChordsRel_CheckedChanged(object sender, EventArgs e) {
       //if (Bypass) return;
@@ -4125,7 +4101,7 @@ namespace ChordCadenza.Forms {
       clsPlay.indSwitchKey = !chkManSyncChord.Checked;
       if (chkManSyncChord.Checked) {  //man chord positioning
         chkSwitchKBChord.Checked = true;
-        P.frmStart.chkConstantChordPlay.Checked = false;
+        //P.frmStart.chkConstantChordPlayMidiKB.Checked = false;
         if (P.frmManChordSync == null) P.frmManChordSync = new Forms.frmManChordSync();  //!!!//
         Utils.FormAct(P.frmManChordSync);  //!!!//
       }
@@ -4139,8 +4115,8 @@ namespace ChordCadenza.Forms {
 
     private void mnuReloadProject_Click(object sender, EventArgs e) {
       try {
-        if (P.F.Project.CHPPath == "") return;
-        if (P.F != null && !P.F.SaveProject(null)) return;  //check and save
+        if (P.F?.Project == null || P.F.Project.CHPPath == "") return;
+        if (!P.F.SaveProject(null)) return;  //check and save
         MidiPlay.Sync.Stop();
         if (!P.frmStart.LoadProject(P.F.Project.CHPPath, false)) {
           MessageBox.Show("Load Project failed - no valid file found");
@@ -4169,14 +4145,186 @@ namespace ChordCadenza.Forms {
     }
 
     private void mnuWebPage_Click(object sender, EventArgs e) {
+#if DESKTOP
       Process.Start("http://ChordCadenza.org");
-      //Process.Start("http://localhost");
+#endif
     }
 
     private void mnuSoundFonts_Click(object sender, EventArgs e) {
+#if DESKTOP
       Process.Start("http://ChordCadenza.org/#loc_soundfonts");
-      //Process.Start("http://localhost/#loc_soundfonts");
+#endif
     }
+
+    private void mnuTestMidiMon_Click(object sender, EventArgs e) {
+      //* play middle C vel 100 without using midiinkb
+      MidiPlay.OutMKB.SendShortMsg(0x90 | MidiPlay.KBOutChan, 60, 100);
+    }
+
+    private void mnuImport_Click(object sender, EventArgs e) {
+      try {
+        if (P.F?.Project == null || P.F.Project.CHPPath == "") return;
+        if (!P.F.SaveProject(null)) return;  //check and save
+        MidiPlay.Sync.Stop();
+        dlgImport dlg = new dlgImport();
+        dlg.ShowDialog();
+      }
+      catch (Exception exc) {
+        //* programming error or corrupt/inconsistent files, ...
+        MessageBox.Show("Reload Project failed: " + exc.Message);
+      }
+    }
+
+    private void picChordsBottom_MouseDown(object sender, MouseEventArgs e) {
+      if (P.PCKB == null) return;
+      int? kb = KPos.PosToPitch(e.X);
+      //Debug.WriteLine("Pitch = " + kb);
+      if (kb.HasValue) P.PCKB.MouseDown(kb.Value);
+    }
+
+    private void picChordsBottom_MouseUp(object sender, MouseEventArgs e) {
+      if (P.PCKB == null) return;
+      P.PCKB.MouseUp();
+    }
+
+    private void picChordsBottom_MouseMove(object sender, MouseEventArgs e) {
+      if (P.PCKB == null) return;
+      if (e.Button != MouseButtons.Left) return;
+      //Debug.WriteLine("MouseMove e.X = " + e.X);
+      if (e.X < 0) {
+        P.PCKB.MouseUp();
+        return;
+      }
+      int? kb = KPos.PosToPitch(e.X);
+      if (kb.HasValue) P.PCKB.MouseDown(kb.Value);
+    }
+
+    private void mnuPCKBKeys_Click(object sender, EventArgs e) {
+      if (P.frmPCKB == null) P.frmPCKB = new frmPCKBCfg();
+      Utils.FormAct(P.frmPCKB);
+    }
+
+    internal static void ShowfrmPCKBIn() {
+      if (P.PCKB != null) {
+        if (P.frmPCKBIn == null) {
+          Thread ThreadPCKBIn = new Thread(new ThreadStart(OpenfrmPCKBIn));
+          ThreadPCKBIn.Start();
+        } else {
+          P.frmPCKBIn.Invoke(new delegActivate(P.frmPCKBIn.Activate));
+        }
+      }
+    }
+
+    private static void OpenfrmPCKBIn() {
+      Application.Run(P.frmPCKBIn = new Forms.frmPCKBIn());
+    }
+
+    private void trkPCKBVel_Scroll(object sender, EventArgs e) {
+      TrackBar trk = (TrackBar)sender;
+      Cfg.PCKBVel = trk.Value;
+      if (P.frmPCKBIn != null) P.frmPCKBIn.BeginInvoke(dSetPCKBVel, Cfg.PCKBVel);
+    }
+
+    private void picChords_MouseWheel(object sender, MouseEventArgs e) {
+      int diff = (e.Delta > 0) ? trkPCKBVel.SmallChange : -trkPCKBVel.SmallChange;
+      Cfg.PCKBVel += diff;
+      if (Cfg.PCKBVel < 1) Cfg.PCKBVel = 1;
+      if (Cfg.PCKBVel > 127) Cfg.PCKBVel = 127;
+      trkPCKBVel.Value = Cfg.PCKBVel;
+      if (P.frmPCKBIn != null) P.frmPCKBIn.BeginInvoke(dSetPCKBVel, Cfg.PCKBVel);
+    }
+
+    private void SetPCKBVel(int val) {
+      P.frmPCKBIn.trkVel.Value = val;
+    }
+
+    //private static int temp_cnt = 0;
+    //internal static void frm_KeyUp(object sender, KeyEventArgs e) {
+    //  //* called from multiple forms
+    //  Form frm = (Form)sender;
+    //  if (P.PCKB == null) return;
+    //  if (Control.ModifierKeys != Keys.None) return;
+    //  if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.Control || e.KeyCode == Keys.Alt) return;
+    //  e.Handled = true;
+    //  P.PCKB.KeyUpDown(e, false, frm);
+    //  //Debug.WriteLine("KeyUp Event: " + ++temp_cnt);
+    //}
+
+    //internal static void frm_KeyDown(object sender, KeyEventArgs e) {
+    //  //* called from multiple forms
+    //  Form frm = (Form)sender;
+    //  if (P.PCKB == null) return;
+    //  if (Control.ModifierKeys != Keys.None) return;
+    //  if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.Control || e.KeyCode == Keys.Alt) return;
+    //  e.Handled = true;
+    //  P.PCKB.KeyUpDown(e, true, frm);
+    //  //Debug.WriteLine("KeyDown Event: " + ++temp_cnt);
+    //}
+
+    //internal static bool KeyUpDownFilter(PreviewKeyDownEventArgs e) { 
+    //  //* return true if filtered out
+    //  if (e.Control || e.Alt || e.Shift) {
+    //    return true;
+    //  } else if ((int)e.KeyCode >= (int)Keys.F1 && (int)e.KeyCode <= (int)Keys.F12) {
+    //    return true;
+    //  }
+    //  return false;
+    //}
+
+    //internal static bool KeyFilter(KeyEventArgs e) {
+    //  //* return true if filtered out
+    //  if (e.Control || e.Alt || e.Shift) {
+    //    return true;
+    //  } else if ((int)e.KeyCode >= (int)Keys.F1 && (int)e.KeyCode <= (int)Keys.F12) {
+    //    return true;
+    //  }
+    //  return false;
+    //}
+
+    //internal static bool KeyFilter(Keys keyData) {
+    //  //* return true if filtered out
+    //  if (keyData.HasFlag(Keys.Control) || keyData.HasFlag(Keys.Alt)  || keyData.HasFlag(Keys.Shift)) {
+    //    return true;
+    //  //} else if ((int)keyData >= (int)Keys.F1 && (int)keyData <= (int)Keys.F12) {
+    //  //  return true;
+    //  }
+    //  return false;
+    //}
+
+    internal static void ZZZSetPCKBEvs(Form frm) { }  //defunct
+
+    //internal static void SetPCKBEvs(Form frm) {  
+    //  frm.KeyPreview = true;
+    //  frm.KeyDown += frm_KeyDown;
+    //  frm.KeyUp += frm_KeyUp;
+    //  //frm.PreviewKeyDown += frm_PreviewKeyDown;
+    //}
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
+    }
+
+    internal static bool? StaticProcessCmdKey(ref Message msg, Keys keyData) {
+      //Debug.WriteLine("ProcessCmdKey <" + keyData + ">");
+      if (P.PCKB == null) return null;  //use base.ProcessCmdKey
+      ShowfrmPCKBIn();
+      P.PCKB.KeyUpDown(keyData, true);
+      return true;
+    }
+
+    //protected override bool IsInputKey(Keys keyData) {
+    //  Debug.WriteLine("IsInputKey <" + keyData + ">");
+
+    //  if (!KeyFilter(keyData)) {
+    //    P.PCKB.KeyUpDown(keyData, true);
+    //    ShowfrmPCKBIn();  //alt, shift, ctrl
+    //    return true;  //treat as normal key
+    //  } else {
+    //    return base.IsInputKey(keyData);
+    //  }
+    //}
 
     /*
     //*************Testing******************************************************************************
@@ -4193,30 +4341,30 @@ namespace ChordCadenza.Forms {
     KillSynchronous = 0x0100  //This flag prevents the event from occurring after the user calls timeKillEvent() to destroy it.            
     }
 
-    //[DllImport("winmm.dll")]
-    //private static extern int timeGetDevCaps(ref TIMECAPS ptc, int cbtc);
-    [DllImport("winmm.dll")]
-    private static extern int timeBeginPeriod(uint uPeriod);
-    [DllImport("winmm.dll")]
-    private static extern int timeEndPeriod(uint uPeriod);
-    [DllImport("winmm.dll")]
-    private static extern int timeGetTime();
-    [DllImport("winmm.dll")]
-    private static extern uint timeSetEvent(
-    uint uDelay,        //UINT
-    uint uResolution,   //UINT
-    delegCallback lpTimeProc,    //LPTIMECALLBACK
-    uint dwUser,        //DWORD_PTR
-    uint fuEvent        //UINT
-    );
-    [DllImport("winmm.dll")]
-    private static extern uint timeKillEvent(uint uTimerID);
-    private delegate void delegCallback(uint uID, uint uMsg, uint dwUser, int dw1, int dw2);
+    * //[DllImport("winmm.dll")]
+    * //private static extern int timeGetDevCaps(ref TIMECAPS ptc, int cbtc);
+    * [DllImport("winmm.dll")]
+    * private static extern int timeBeginPeriod(uint uPeriod);
+    * [DllImport("winmm.dll")]
+    * private static extern int timeEndPeriod(uint uPeriod);
+    * [DllImport("winmm.dll")]
+    * private static extern int timeGetTime();
+    * [DllImport("winmm.dll")]
+    * private static extern uint timeSetEvent(
+    * uint uDelay,        //UINT
+    * uint uResolution,   //UINT
+    * delegCallback lpTimeProc,    //LPTIMECALLBACK
+    * uint dwUser,        //DWORD_PTR
+    * uint fuEvent        //UINT
+    * );
+    * [DllImport("winmm.dll")]
+    * private static extern uint timeKillEvent(uint uTimerID);
+    * private delegate void delegCallback(uint uID, uint uMsg, uint dwUser, int dw1, int dw2);
     //private static uint MinPeriod { get { return (uint)ptc.wPeriodMin; } }
     //private static uint MaxPeriod { get { return (uint)ptc.wPeriodMax; } }
     //private static TIMECAPS ptc;
-    private static delegCallback Test_MM_dCallback;
-    private static uint TimerID;
+    * private static delegCallback Test_MM_dCallback;
+    * private static uint TimerID;
 
     private static int Test_Count = 0;
     private static Stopwatch Test_SW = new Stopwatch();

@@ -119,7 +119,7 @@ namespace ChordCadenza {
       if (MidiOn_ThisPlayChord == null) return;
       int pitch = MidiOn_ThisPlayChord[B[1]];
 
-      if (P.frmStart.chkConstantChordPlay.Checked) {  //play multiple chord notes
+      if (P.frmStart.indConstantChordPlay) {  //play multiple chord notes
         List<int> pp = new List<int>();
         for (int kb = B[1]; kb < 128; kb++) {
           pitch = MidiOn_ThisPlayChord[kb];
@@ -163,11 +163,12 @@ namespace ChordCadenza {
     }
 
     internal override void ShowPicBottom(Graphics xgr) {
-      //if (MidiPlay.MidiInKB.Qwerty) {
-      //  for (int p = KBLo; p <= KBHi; p++) {
-      //    frmSC.ShowBottomNote(xgr, p);
-      //  }
-      //}
+      if (P.PCKB != null) {
+        for (int p = KBLo; p <= KBHi; p++) {
+          if (clsMidiInKB.IsBlackKey(p)) continue;
+          frmSC.ShowBottomNote(xgr, p);
+        }
+      }
     }
 
     internal override void ShowCurrentChord() {

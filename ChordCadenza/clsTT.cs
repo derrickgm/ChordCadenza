@@ -158,7 +158,7 @@ namespace ChordCadenza {
       //DictFormTT.Remove(form.Name);
       tt = new ToolTip();
       tt.Active = P.frmStart.chkTTActive.Checked;
-      tt.AutoPopDelay = 15000;
+      tt.AutoPopDelay = 10000;
       tt.InitialDelay = 1000;
       tt.ReshowDelay = 500;
       // Force the ToolTip text to be displayed whether or not the form is active.
@@ -300,13 +300,12 @@ namespace ChordCadenza {
       return txt;
     }
 
-#if ADVANCED
-    internal static void CopyHTMLFiles() {
+#if ADVANCED 
+    internal static void CopyHTMLFiles(string path) {
       //if (!P.Advanced || !P.Debug) {
       //  MessageBox.Show("CopyHTMLFiles failed - invalid context");
       //  return;
       //}
-      string path = Cfg.CfgPath + "\\MainHelp";
       //* copy and update html files (after creating backup of Out file)
       //* $<name> -->
       string[] files = Directory.GetFiles(path + "\\In");

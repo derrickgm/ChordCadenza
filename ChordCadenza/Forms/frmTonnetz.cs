@@ -612,7 +612,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Tonnetz_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_Tonnetz_Intro.htm");
     }
 
     private void frmTonnetz_FormClosing(object sender, FormClosingEventArgs e) {

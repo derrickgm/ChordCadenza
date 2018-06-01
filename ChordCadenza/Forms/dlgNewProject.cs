@@ -53,16 +53,16 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdMidiPath_Click(object sender, EventArgs e) {
-      GetMidiAudioPath(txtMidiFilePath, Cfg.MidiFilesPath, "MidiFiles|*.mid", "Midi File");
+      GetMidiAudioPath(ofd, txtMidiFilePath, Cfg.MidiFilesPath, "MidiFiles|*.mid", "Midi File");
     }
 
     private void cmdAudioPath_Click(object sender, EventArgs e) {
-      GetMidiAudioPath(txtAudioFilePath, Cfg.AudioFilesPath,
+      GetMidiAudioPath(ofd, txtAudioFilePath, Cfg.AudioFilesPath,
         "AudioFiles|*.mp1;*.mp2;*.mp3;*.wav;*.riff;*.aiff;*.ogg",
         "Audio File");
     }
 
-    private void GetMidiAudioPath(TextBox txtbox, string dfltpath, string filter, string title) {
+    internal static void GetMidiAudioPath(OpenFileDialog ofd, TextBox txtbox, string dfltpath, string filter, string title) {
       string filepath = "";
       if (txtbox.Text.Length > 0) {
         try {
@@ -123,7 +123,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_NewProject_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_NewProject_Intro.htm");
     }
 
     private void cmdOK_Click(object sender, EventArgs e) {
@@ -176,7 +176,7 @@ namespace ChordCadenza.Forms {
         if (msg != "") {
           MessageBox.Show("Error saving ChordFile: " + msg);
         } else {
-          MessageBox.Show("Null ChordFile (" + P.F.MaxBBT.Bar + " Bars): " + P.F.Project.CHPPath + " created");
+          //MessageBox.Show("Null ChordFile (" + P.F.MaxBBT.Bar + " Bars): " + P.F.Project.CHPPath + " created");
           P.frmSC.UpdateRecentProjects();
         }
       }
@@ -246,7 +246,7 @@ namespace ChordCadenza.Forms {
       return true;
     }
 
-    private string CopyFile(string src, string destprojectdir, string destprojectname) {
+    private static string CopyFile(string src, string destprojectdir, string destprojectname) {
       //* copy midi or audio file
       //* return dest, or "***" if failed, or "" if no file copied
       if (src.Length == 0) return "";

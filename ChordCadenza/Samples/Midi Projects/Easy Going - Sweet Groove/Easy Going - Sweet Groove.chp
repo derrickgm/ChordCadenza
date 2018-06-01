@@ -1,0 +1,118 @@
+4/4 X G major 
+MinorKeyType MelodicUp
+SyncopationNN 1
+SyncopationDD 16
+TempoFactor 1
+17.1.1 key E minor
+28.1.1 key G major
+49.1.1 key E minor
+60.1.1 key G major
+81.1.1 key E minor
+92.1.1 key G major
+Start Chords
+1.1.1    C  E- F+ A      .Cdim7
+1.3.1    B  E- F+ A      .B7
+2.3.1    C  E- F+ A      .Cdim7
+3.1.1    G  B  D  E      .G6
+4.1.1    A  C+ E  G      .A7
+4.3.1    D  F+ A  C      .D7
+5.1.1    G  B  D         .G
+6.1.1    C  E  G         .C
+6.3.1    D  F+ A  C      .D7
+7.1.1    G  B  D         .G
+8.1.1    F+ B- C+ E      .F+7
+8.3.1    B  E- F+ A      .B7
+9.1.1    C  E- F+ A      .Cdim7
+11.1.1   G  B  D  E      .G6
+12.1.1   A  C+ E  G      .A7
+12.3.1   D  F+ A  C      .D7
+13.1.1   G  B  D         .G
+14.1.1   C  E  G         .C
+14.3.1   D  F+ A  C      .D7
+15.1.1   G  B  D         .G
+16.1.1   F+ B- C+ E      .F+7
+16.3.1   B  E- F+ A      .B7
+17.1.1   E  G  B         .Em
+19.1.1   A  C  E         .Am
+23.1.1   E  G  B         .Em
+25.1.1   B  E- F+ A      .B7
+26.3.1   A  C  E- F+     .Adim7
+27.1.1   E  G  B  D      .Em7
+28.1.1   A  C+ E  G      .A7
+28.3.1   D  F+ A  C      .D7
+29.1.1   G  B  D         .G
+30.1.1   C  E  G         .C
+30.3.1   D  F+ A  C      .D7
+31.1.1   G  B  D         .G
+32.1.1   F+ B- C+ E      .F+7
+32.3.1   B  E- F+ A      .B7
+33.1.1   C  E- F+ A      .Cdim7
+35.1.1   G  B  D  E      .G6
+36.1.1   A  C+ E  G      .A7
+36.3.1   D  F+ A  C      .D7
+37.1.1   G  B  D         .G
+38.1.1   C  E  G         .C
+38.3.1   D  F+ A  C      .D7
+39.1.1   G  B  D         .G
+40.1.1   F+ B- C+ E      .F+7
+40.3.1   B  E- F+ A      .B7
+41.1.1   C  E- F+ A      .Cdim7
+43.1.1   G  B  D  E      .G6
+44.1.1   A  C+ E  G      .A7
+44.3.1   D  F+ A  C      .D7
+45.1.1   G  B  D         .G
+46.1.1   C  E  G         .C
+46.3.1   D  F+ A  C      .D7
+47.1.1   G  B  D         .G
+48.1.1   F+ B- C+ E      .F+7
+48.3.1   B  E- F+ A      .B7
+49.1.1   E  G  B         .Em
+51.1.1   A  C  E         .Am
+55.1.1   E  G  B         .Em
+57.1.1   B  E- F+ A      .B7
+58.3.1   A  C  E- F+     .Adim7
+59.1.1   E  G  B  D      .Em7
+60.1.1   A  C+ E  G      .A7
+60.3.1   D  F+ A  C      .D7
+61.1.1   G  B  D         .G
+62.1.1   C  E  G         .C
+62.3.1   D  F+ A  C      .D7
+63.1.1   G  B  D         .G
+64.1.1   F+ B- C+ E      .F+7
+64.3.1   B  E- F+ A      .B7
+65.1.1   C  E- F+ A      .Cdim7
+67.1.1   G  B  D  E      .G6
+68.1.1   A  C+ E  G      .A7
+68.3.1   D  F+ A  C      .D7
+69.1.1   G  B  D         .G
+70.1.1   C  E  G         .C
+70.3.1   D  F+ A  C      .D7
+71.1.1   G  B  D         .G
+72.1.1   F+ B- C+ E      .F+7
+72.3.1   B  E- F+ A      .B7
+73.1.1   C  E- F+ A      .Cdim7
+75.1.1   G  B  D  E      .G6
+76.1.1   A  C+ E  G      .A7
+76.3.1   D  F+ A  C      .D7
+77.1.1   G  B  D         .G
+78.1.1   C  E  G         .C
+78.3.1   D  F+ A  C      .D7
+79.1.1   G  B  D         .G
+80.1.1   F+ B- C+ E      .F+7
+80.3.1   B  E- F+ A      .B7
+81.1.1   E  G  B         .Em
+83.1.1   A  C  E         .Am
+87.1.1   E  G  B         .Em
+89.1.1   B  E- F+ A      .B7
+90.3.1   A  C  E- F+     .Adim7
+91.1.1   E  G  B  D      .Em7
+92.1.1   A  C+ E  G      .A7
+92.3.1   D  F+ A  C      .D7
+93.1.1   G  B  D         .G
+94.1.1   C  E  G         .C
+94.3.1   D  F+ A  C      .D7
+95.1.1   G  B  D         .G
+96.1.1   F+ B- C+ E      .F+7
+96.3.1   B  E- F+ A      .B7
+97.1.1   E  G  B         .Em
+99.1.1 end

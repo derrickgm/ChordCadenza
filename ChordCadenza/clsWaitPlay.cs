@@ -209,6 +209,7 @@ namespace ChordCadenza {
       dStreamEnd = new delegStreamEnd(P.frmStart.StreamPlayOffAll);
       P.frmSC.Invoke(dStreamEnd);
       if (P.F.frmTrackMap?.RecTrk != null) FileStream.MergeRecStrm();
+      P.frmPCKBIn?.Invoke(new clsSync.delegClosefrmPCKBIn(P.frmPCKBIn.Close));
     }
   }
 }

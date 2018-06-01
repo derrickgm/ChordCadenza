@@ -21,12 +21,20 @@ namespace ChordCadenza.Forms {
 
     public frmInitial() {
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
       #if ADVANCED
         cmdCopyHTML.Click += cmdCopyHTML_Click;
       #endif
     }
 
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
+    }
+
     private void frmInitial_Load(object sender, EventArgs e) {
+      if (File.Exists(Cfg.InitialScreenIniFilePath)) cmdCloseFinal.Hide();
       BackColor = Utils.SetBackColor(Forms.frmSC.Mtx, BackColor);
       #if !ADVANCED
         cmdCopyHTML.Hide();
@@ -41,9 +49,8 @@ namespace ChordCadenza.Forms {
 
     private void cmdCloseFinal_Click(object sender, EventArgs e) {
       Close();
-      string path = Cfg.InitialScreenDatFilePath;
       try {
-        File.Delete(path);
+        File.Create(Cfg.InitialScreenIniFilePath);  //create empty file
       }
       catch { }  //ignore any errors
     }
@@ -105,23 +112,23 @@ namespace ChordCadenza.Forms {
 #if ADVANCED
     private void cmdCopyHTML_Click(object sender, EventArgs e) {
       using (new clsWaitCursor()) {
+        string path = @"D:\D0\Dev\ChCa\ChordCadenza.UWP\ChordCadenza\AppCfg\MainHelp"; 
         Stopwatch sw = new Stopwatch();
         sw.Start();
-        clsTT.CopyHTMLFiles();
+        clsTT.CopyHTMLFiles(path);
         sw.Stop();
         Debug.WriteLine("Time for CopyHTML = " + sw.ElapsedMilliseconds + " ms");
-        CompileHelp();
+        CompileHelp(path);
       }
     }
-#endif
 
-    private void CompileHelp() {
+    private void CompileHelp(string path) {
       int ExitCode;
       ProcessStartInfo ProcessInfo;
       Process Process;
 
-      //ProcessInfo = new ProcessStartInfo("cmd.exe", "/c " + @"C:\C2\Scripts\compilehelp.bat");
-      ProcessInfo = new ProcessStartInfo("cmd.exe", "/c" + Cfg.CfgPath + @"\MainHelp\compilehelp.bat");
+      //ProcessInfo = new ProcessStartInfo("cmd.exe", "/c" + Cfg.IniPath + @"\MainHelp\compilehelp.bat");
+      ProcessInfo = new ProcessStartInfo("cmd.exe", "/c" + path + "\\compilehelp.bat");
       ProcessInfo.CreateNoWindow = false;
       ProcessInfo.UseShellExecute = true;
 
@@ -133,9 +140,10 @@ namespace ChordCadenza.Forms {
 
       //MessageBox.Show("ExitCode: " + ExitCode.ToString());
     }
+#endif
 
     private void cmdIntro_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.TableOfContents);
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.TableOfContents);
     }
 
     private void cmdNewProject_Click(object sender, EventArgs e) {

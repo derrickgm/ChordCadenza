@@ -157,8 +157,8 @@ namespace ChordCadenza {
     //}
 
     internal void Pause() {
-      //MP3Player.StopPlay();
-      MP3Player.PausePlay();
+      MP3Player.StopPlay();
+      //MP3Player.PausePlay();  //unreliable?
       FinalizeStop(true);
       //MP3Player.PausePlay();
       //SetCmdRecordInactive();

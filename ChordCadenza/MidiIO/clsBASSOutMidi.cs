@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Midi;
-using Un4seen.Bass.Misc;
-using Un4seen.BassAsio;
-using Un4seen.Bass.AddOn.Mix;
-using Un4seen.Bass.AddOn.Fx;
+//using Un4seen.Bass;
+//using Un4seen.Bass.AddOn.Midi;
+//using Un4seen.Bass.Misc;
+//using Un4seen.BassAsio;
+//using Un4seen.Bass.AddOn.Mix;
+//using Un4seen.Bass.AddOn.Fx;
+using ManagedBass;
+using ManagedBass.Fx;
+using ManagedBass.Midi;
+using ManagedBass.Mix;
+using ManagedBass.Asio;
 using System.IO;
 using System.Windows.Forms;
 
@@ -95,7 +100,8 @@ namespace ChordCadenza {
     internal int NumMidiChans;
     //private string _Font = "";
 
-    internal static BASS_BFX_FREEVERB[] Freeverb = new BASS_BFX_FREEVERB[2];  //[kb/stream] 
+    //internal static BASS_BFX_FREEVERB[] Freeverb = new BASS_BFX_FREEVERB[2];  //[kb/stream] 
+    internal static ReverbParameters[] Freeverb = new ReverbParameters[2];  //[kb/stream] 
     internal static bool[] indFreeverb = new bool[2];  //[kb/stream]
     private int FreeverbHandle;
     internal Forms.frmFX frmFX;
@@ -169,16 +175,21 @@ namespace ChordCadenza {
 
     internal void InitStream() {
       //TestBass.SetAtrrAndFont(MidiStream);
-      CheckOK(Bass.BASS_ChannelSetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_MIDI_CPU, 75));
-      CheckOK(Bass.BASS_ChannelSetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_VOL, (float)0.5));
-      CheckOK(Bass.BASS_ChannelSetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_PAN, 0));
+      CheckOK(Bass.ChannelSetAttribute(MidiStream, ChannelAttribute.MidiCPU, 75));
+      CheckOK(Bass.ChannelSetAttribute(MidiStream, ChannelAttribute.Volume, (float)0.5));
+      CheckOK(Bass.ChannelSetAttribute(MidiStream, ChannelAttribute.Pan, 0));
       if (Font != "") {
-        int fonthandle = CheckHandleHard(BassMidi.BASS_MIDI_FontInit(Cfg.SoundFontsPath + "\\" + Font, 0));
+        string path = Cfg.SoundFontsPath + "\\" + Font;
+        int fonthandle = CheckHandleHard(BassMidi.FontInit(path, 0));
         //int fonthandle = CheckHandle(BassMidi.BASS_MIDI_FontInit(@"D:\0\Sonar\SoundFonts\FluidR3 GM2-2.SF2", 0));
-        BASS_MIDI_FONT font = new BASS_MIDI_FONT(fonthandle, -1, 0);
-        BASS_MIDI_FONT[] fontarr = new BASS_MIDI_FONT[] { font };
-        CheckOKHard(BassMidi.BASS_MIDI_StreamSetFonts(0, fontarr, 1));
-        CheckOKHard(BassMidi.BASS_MIDI_StreamSetFonts(MidiStream, fontarr, 1));
+        //MidiFont font = new MidiFont(fonthandle, -1, 0);
+        MidiFont font = new MidiFont();
+        font.Handle = fonthandle;
+        font.Preset = -1;
+        font.Bank = 0;
+        MidiFont[] fontarr = new MidiFont[] { font };
+        CheckOKHard(BassMidi.StreamSetFonts(0, fontarr, 1));
+        CheckOKHard(BassMidi.StreamSetFonts(MidiStream, fontarr, 1));
         if (indFreeverb[FXTypeSeq]) SetFreeverb();  //****SetReverb();
         //InitStreamSub();
       }
@@ -221,17 +232,17 @@ namespace ChordCadenza {
       //BASS_BFX_FREEVERB freeverb = new BASS_BFX_FREEVERB(0f, 1f, 0.5f, 0.5f, 1f, 0);
       try {
         if (FreeverbHandle == 0) {
-          int fxgetversion = BassFx.BASS_FX_GetVersion();  //full (e.g. 02040b01)
-          int bassgetversion = Bass.BASS_GetVersion();  //full (e.g. 02040c01)
-          int fxversion = BassFx.BASSFXVERSION;  //high order bytes (e.g. 0204)
-          Debug.WriteLine("{0:X8} {1:X8} {2:X8}", fxgetversion, bassgetversion, fxversion);
-          if ((bassgetversion & 0xFFFF0000) != (fxgetversion & 0xFFFF0000)) {
-            MessageBox.Show("FX version incompatible");
-            return;
-          }
-          FreeverbHandle = CheckHandleHard(Bass.BASS_ChannelSetFX(MidiStream, BASSFXType.BASS_FX_BFX_FREEVERB, 1));
+          Version fxgetversion = BassFx.Version;  //full (e.g. 02040b01)
+          Version bassgetversion = Bass.Version;  //full (e.g. 02040c01)
+          //int fxversion = BassFx.BASSFXVERSION;  //high order bytes (e.g. 0204)
+          Debug.WriteLine("FX version: {0:X8} Bass version: {1:X8}", fxgetversion, bassgetversion);
+          //if ((bassgetversion & 0xFFFF0000) != (fxgetversion & 0xFFFF0000)) {
+          //  MessageBox.Show("FX version incompatible");
+          //  return;
+          //}
+          FreeverbHandle = CheckHandleHard(Bass.ChannelSetFX(MidiStream, EffectType.Freeverb, 1));
         }
-        CheckOK(Bass.BASS_FXSetParameters(FreeverbHandle, Freeverb[FXTypeSeq]));
+        CheckOK(ManagedBass.Bass.FXSetParameters(FreeverbHandle, Freeverb[FXTypeSeq]));
       }
       catch (AudioIOException exc) {
         MessageBox.Show("AudioIO Exception: " + exc.Message);
@@ -239,13 +250,13 @@ namespace ChordCadenza {
     }
 
     internal void UnsetFreeverb() {
-      if (FreeverbHandle != 0) CheckOK(Bass.BASS_ChannelRemoveFX(MidiStream, FreeverbHandle));
+      if (FreeverbHandle != 0) CheckOK(Bass.ChannelRemoveFX(MidiStream, FreeverbHandle));
       FreeverbHandle = 0;
     }
 
     internal static void CheckOK(bool ok) {
       if (ok) return;
-      BASSError error = Bass.BASS_ErrorGetCode();
+      Errors error = Bass.LastError;
       #if DEBUG
         ////////throw new AudioIOException(error.ToString());
         Debug.WriteLine("Bass Error Code: " + error);
@@ -256,20 +267,34 @@ namespace ChordCadenza {
 
     internal static void CheckOKHard(bool ok) {
       if (ok) return;
-      BASSError error = Bass.BASS_ErrorGetCode();
+      Errors error = Bass.LastError;
       throw new AudioIOException(error.ToString());
+    }
+
+    internal static void CheckOKHard(int ok) {
+      return;  //ManagedBass - should be bool???
+      //if (ok == 0) return;
+      //Errors error = Bass.LastError;
+      //throw new AudioIOException(error.ToString());
     }
 
     internal static void CheckOKSoft(bool ok) {
       if (ok) return;
-      BASSError error = Bass.BASS_ErrorGetCode();
+      Errors error = Bass.LastError;
       Debug.WriteLine("BASS error code: " + error);
+    }
+
+    internal static void CheckOKSoft(int ok) {
+      return;  //ManagedBass - should be bool???
+      //if (ok == 0) return;
+      //Errors error = Bass.LastError;
+      //Debug.WriteLine("BASS error code: " + error);
     }
 
     internal static int CheckHandleHard(int handle) {
       //return handle;
       if (handle != 0) return handle;
-      BASSError error = Bass.BASS_ErrorGetCode();
+      Errors error = Bass.LastError;
       throw new AudioIOException(error.ToString());
     }
 
@@ -283,7 +308,7 @@ namespace ChordCadenza {
 
     public void SetStreamVol(int val) {  //0.0...1.0; 0...100
       float fl = (val == 100) ? 1f : (float)val / (float)100;
-      Bass.BASS_ChannelSetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_VOL, fl);
+      Bass.ChannelSetAttribute(MidiStream, ChannelAttribute.Volume, fl);
     }
 
     public void SetStreamPan(int val) {  //-1.0...1.0; -50..50
@@ -291,7 +316,7 @@ namespace ChordCadenza {
       if (val == 50) fl = 1f;
       if (val == -50) fl = -1f;
       fl = (float)val / (float)50;
-      Bass.BASS_ChannelSetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_PAN, fl);
+      Bass.ChannelSetAttribute(MidiStream, ChannelAttribute.Pan, fl);
     }
 
     public void SetFineTuning(int val) {
@@ -303,28 +328,32 @@ namespace ChordCadenza {
       int datamidi = (byte)(val + 64);  //-64.0.63 -> 0.64.127
       int databass = (datamidi == 127) ? 16383 : datamidi * 128;  //0.64.127 -> 0.8192.16383
       for (int ch = 0; ch < 16; ch++) {
-        BassMidi.BASS_MIDI_StreamEvent(MidiStream, ch, BASSMIDIEvent.MIDI_EVENT_FINETUNE, databass);
+        BassMidi.StreamEvent(MidiStream, ch, MidiEventType.FineTune, databass);
       }
     }
 
     public int GetStreamVol() {  //0.0...1.0; 0...100
       float f1 = 0;
-      if (!Bass.BASS_ChannelGetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_VOL, ref f1)) return 0;
+      if (!Bass.ChannelGetAttribute(MidiStream, ChannelAttribute.Volume, out f1)) return 0;
       return (f1 > 0.99f) ? 100 : (int)(f1 * 100f);  //avoid clipping on float/int conversion
     }
 
     public int GetStreamPan() {  //-1.0...1.0; -50..50
       float f1 = 0;
-      if (!Bass.BASS_ChannelGetAttribute(MidiStream, BASSAttribute.BASS_ATTRIB_PAN, ref f1)) return 0;
+      if (!Bass.ChannelGetAttribute(MidiStream, ChannelAttribute.Pan, out f1)) return 0;
       if (f1 > 0.99f) return 50;
       if (f1 < -0.99f) return -50;
       return (int)(f1 * 50f);  //avoid clipping on float/int conversion
     }
 
     public void SendEvents(byte[] b) {
-      BassMidi.BASS_MIDI_StreamEvents(MidiStream,
-        BASSMIDIEventMode.BASS_MIDI_EVENTS_RAW | BASSMIDIEventMode.BASS_MIDI_EVENTS_NORSTATUS,
+      BassMidi.StreamEvents(MidiStream,
+        MidiEventsMode.Raw | MidiEventsMode.NoRunningStatus,
         0, b);
+      if (OutType == eOutType.KB) {
+        int status = b[0] & 0xf0;
+        if (status == 0x80 || status == 0x90) MidiMon.MidiOutShortMsg(b[0], b[1], b[2]);
+      }
     }
 
     //public void SendShortMsgAndRecord(int status, int msg, int data) {
@@ -336,6 +365,7 @@ namespace ChordCadenza {
 
     public void SendShortMsg(int status, int msg, int data) {  //interface iOutM
       //* not from QIPlay
+      //MidiMon.MidiOutShortMsg(status, msg, data);
       SendEvents(new byte[] { (byte)status, (byte)msg, (byte)data });
       //Debug.WriteLine("SendEvents: " + status + ' ' + msg + ' ' + data);
       if (P.F.frmTrackMap != null && P.F.FSTrackMap != null && MidiPlay.Sync.indPlayActive == clsSync.ePlay.MidiStream) {
@@ -352,12 +382,13 @@ namespace ChordCadenza {
     }
 
     public void AllNotesOff() {
+      MidiMon.Reset();
       for (int ch = 0; ch < 16; ch++) {
         //for (int n = 0; n < 128; n++) {
         //  BassMidi.BASS_MIDI_StreamEvent(MidiStream, ch, BASSMIDIEvent.MIDI_EVENT_NOTE, n);
         //}
-        BassMidi.BASS_MIDI_StreamEvent(MidiStream, ch, BASSMIDIEvent.MIDI_EVENT_NOTESOFF, 0);
-        BassMidi.BASS_MIDI_StreamEvent(MidiStream, ch, BASSMIDIEvent.MIDI_EVENT_SUSTAIN, 0);
+        BassMidi.StreamEvent(MidiStream, ch, MidiEventType.NotesOff, 0);
+        BassMidi.StreamEvent(MidiStream, ch, MidiEventType.Sustain, 0);
       }
     }
 

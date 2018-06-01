@@ -8,9 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Midi;
-using Un4seen.Bass.AddOn.Mix;
+//using Un4seen.Bass;
+//using Un4seen.Bass.AddOn.Midi;
+//using Un4seen.Bass.AddOn.Mix;
+using ManagedBass;
+using ManagedBass.Midi;
+using ManagedBass.Mix;
 
 
 namespace ChordCadenza.Forms {
@@ -25,6 +28,13 @@ namespace ChordCadenza.Forms {
       //P.Forms.Add(this);
       AudioSync = autosync;
       InitializeComponent();
+      Forms.frmSC.ZZZSetPCKBEvs(this);
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+      bool? ret = Forms.frmSC.StaticProcessCmdKey(ref msg, keyData);
+      if (!ret.HasValue) return base.ProcessCmdKey(ref msg, keyData);
+      return ret.Value;
     }
 
     public void FormStreamOnOff(bool on) {  //IFormStream
@@ -369,7 +379,7 @@ namespace ChordCadenza.Forms {
     }
 
     private void cmdHelp_Click(object sender, EventArgs e) {
-      Help.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_AudioSync_Intro.htm");
+      Utils.ShowHelp(this, Cfg.HelpFilePath, HelpNavigator.Topic, "Form_AudioSync_Intro.htm");
     }
 
     private void frmAutoSync_FormClosing(object sender, FormClosingEventArgs e) {
