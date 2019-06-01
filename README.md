@@ -54,7 +54,7 @@ The files contained here should include all of the source code necessary to comp
 
 ## Development
 
-I developed the program in order to help me to play along with midi and audio files using a midi keyboard, having struggled for many years to master improvisiation. If you have any comments, feedback, ideas, or questions, please contact me at support@chordcadenza.org.
+I developed the program in order to help me to play along with midi and audio files using a midi keyboard, having struggled for many years to master improvisation. If you have any comments, feedback, ideas, or questions, please contact me at support@chordcadenza.org.
 
 ## License
 
