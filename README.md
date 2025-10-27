@@ -21,28 +21,24 @@ This program can help you to improvise and play along with a midi file or other 
 
 ## Programming
 
-The program was developed in C# using Visual Studio Community Edition 2015.
+The program was developed in C# using Visual Studio Community Edition 2022.
 
-It requires .NET 4.0 or later, and has been tested on Windows 7 and Windows 10. There are currently no ports to any other OS.
+It requires .NET 4.8 or later, and has been tested on Windows 10 and Windows 11. There are currently no ports to any other OS.
 
 This project uses:
 * Un4Seen Audio Library (aka. BASS) http://www.un4seen.com
 	copyright © 2003-2018 un4seen developments. all rights reserved.
 	BASS is free for non-commercial use.
-* BASS Add-Ons
-	All trademarks and other registered names contained in the BASS.NET package are the property of their respective owners.
-	See www.un4seen.com for details!
-* BASS.NET API
-	Copyright 2005-2018 by radio42, Author: Bernd Niedergesaess  (bn@radio42.com). All rights reserved. 
-	BASS.NET is the property of radio42 and is protected by copyright laws and international copyright treaties. BASS.NET is not sold, it is licensed.
-	
+* Chordino, Tuning, and Beat VAMP Plugins
+    The Chordino and Tuning VAMP plugins were developed by Matthias Mauch at the Centre for Digital Music, Queen Mary, University of London.
+    The Beat Tracker VAMP plugin was developed by Matthew Davies and Adam Stark at the Centre for Digital Music, Queen Mary, University of London.
+    Libsndfile for reading sound files is maintained by the libsndfile team (https://github.com/libsndfile).
+
 You will need to download 32-bit or 64-bit versions (or both) of the following BASS libraries (version 2.4) from [un4seen.com](http://www.un4seen.com):
 
 	bass.dll, bass_fx.dll, bassasio.dll, bassmidi.dll, bassmix.dll
 	
 You should place these files in the same directory as the executable application file (e.g. 32-bit in .../bin/Debug/ and 64-bit in .../bin/Debug X64/)
-
-You will also need to download and register bass.net.dll and bass.net.xml (version 2.4) from http://www.bass.radio42.com. These files should be placed in the C:\Program Files (x86) directory. The registration key should be inserted in the Un4seen.Bass.BassNet.Registration line in the source file frmSC.cs, near the start of the frmSC constructor.
 
 ## Installation
 
